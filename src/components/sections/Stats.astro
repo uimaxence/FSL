@@ -1,0 +1,73 @@
+---
+import Container from "../ui/Container.astro";
+
+const stats = [
+  { target: 20, suffix: " ans", label: "de savoir faire artisanal" },
+  { target: 120, prefix: "+", label: "Clients satisfaits" },
+  { target: 300, prefix: "+", suffix: " m²", label: "de showroom" },
+];
+---
+
+<section class="section-tight bg-[var(--color-tint)]" data-stats-section>
+  <Container width="wide">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div>
+        <p class="font-display text-[clamp(1.5rem,2.6vw,2rem)] leading-tight text-[var(--color-fg)]">
+          Votre entreprise de<br />
+          <strong class="font-bold">menuiserie d'excellence</strong>
+        </p>
+      </div>
+      <ul class="grid grid-cols-3 gap-6 lg:gap-10">
+        {
+          stats.map(({ target, prefix, suffix, label }) => (
+            <li>
+              <p class="font-display text-[clamp(1.75rem,3vw,2.5rem)] leading-none font-bold text-[var(--color-fg)]">
+                {prefix ?? ""}<span data-stat-counter data-target={target}>0</span>{suffix ?? ""}
+              </p>
+              <p class="mt-3 text-[13px] text-[var(--color-muted)] leading-snug">{label}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Container>
+</section>
+
+<script>
+  // Count-up animation déclenchée quand la section entre en vue
+  const section = document.querySelector<HTMLElement>("[data-stats-section]");
+  if (section) {
+    const counters = section.querySelectorAll<HTMLElement>("[data-stat-counter]");
+    let triggered = false;
+
+    const animate = (el: HTMLElement, target: number, duration = 1600) => {
+      const start = performance.now();
+      const step = (now: number) => {
+        const t = Math.min(1, (now - start) / duration);
+        // ease-out cubic
+        const eased = 1 - Math.pow(1 - t, 3);
+        const value = Math.round(target * eased);
+        el.textContent = String(value);
+        if (t < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && !triggered) {
+            triggered = true;
+            counters.forEach((el) => {
+              const target = Number(el.dataset.target ?? 0);
+              animate(el, target);
+            });
+            io.disconnect();
+          }
+        }
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(section);
+  }
+</script>

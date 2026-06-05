@@ -1,0 +1,211 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PageHub from "../../../components/templates/PageHub.astro";
+import Container from "../../../components/ui/Container.astro";
+import CTASection from "../../../components/sections/CTASection.astro";
+import CertificationsBanner from "../../../components/sections/CertificationsBanner.astro";
+import murLumiereImg from "../../../assets/murdelumiere-1.png";
+import murLumiere2 from "../../../assets/murdelumiere-2.png";
+import verriereImg from "../../../assets/verriere-1.png";
+
+const title = "Confort intérieur sur mesure | Murs & puits de lumière, verrières — Fenêtres sur Loir";
+const description = "Faites entrer la lumière chez vous : murs de lumière, puits de lumière et verrières sur mesure signés MéO. Pose certifiée RGE Qualibat à Angers et dans tout le Maine-et-Loire.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Confort intérieur" },
+];
+
+const cards = [
+  {
+    title: "Murs de lumière",
+    description: "Grandes baies vitrées bois-alu sur mesure : effacez la frontière entre intérieur et extérieur.",
+    href: "/solutions/confort-interieur/murs-de-lumiere",
+    placeholderLabel: "Mur de lumière bois-alu MéO dans un salon contemporain",
+    image: murLumiereImg,
+    imageAlt: "Mur de lumière bois-aluminium MéO installé par Fenêtres sur Loir",
+  },
+  {
+    title: "Puits de lumière",
+    description: "Illuminez naturellement les pièces sombres : cuisine, salle de bain, couloir, escalier.",
+    href: "/solutions/confort-interieur/puits-de-lumiere",
+    placeholderLabel: "Puits de lumière MéO au-dessus d'une cuisine",
+    image: murLumiere2,
+    imageAlt: "Puits de lumière MéO apportant la lumière naturelle dans la maison",
+  },
+  {
+    title: "Verrières",
+    description: "Style atelier ou classique, bois-alu personnalisable pour structurer vos volumes intérieurs.",
+    href: "/solutions/confort-interieur/verrieres",
+    placeholderLabel: "Verrière intérieure style atelier signée MéO",
+    image: verriereImg,
+    imageAlt: "Verrière intérieure style atelier signée MéO par Fenêtres sur Loir",
+  },
+];
+
+const benefits = [
+  {
+    icon: "☀️",
+    title: "Lumière naturelle maximisée",
+    text: "Une pièce baignée de lumière naturelle réduit la fatigue visuelle, améliore l'humeur et limite votre consommation d'éclairage artificiel jusqu'à 40 %.",
+  },
+  {
+    icon: "🌡️",
+    title: "Isolation thermique premium",
+    text: "Nos menuiseries MéO offrent des coefficients Uw jusqu'à 0,8 W/m².K et répondent aux exigences RE2020 — confort en hiver comme en été.",
+  },
+  {
+    icon: "🛡️",
+    title: "Sécurité & sérénité",
+    text: "Vitrages retardateurs d'effraction, ferrures multipoints et systèmes anti-soulèvement protègent votre maison sans compromis esthétique.",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Confort intérieur — menuiseries sur mesure",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Fenêtres sur Loir",
+  },
+  areaServed: "Maine-et-Loire",
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <PageHub
+    eyebrow="Nos solutions"
+    title="Faites entrer la lumière chez vous avec Fenêtres sur Loir"
+    intro="Expert de la menuiserie sur mesure depuis 2003, nous avons sélectionné les plus grandes marques françaises — MéO, Arcades & Baies — pour vous proposer des solutions qui améliorent durablement le confort intérieur de votre maison."
+    heroImage={murLumiereImg}
+    heroImageAlt="Salon baigné de lumière avec un mur de lumière MéO par Fenêtres sur Loir"
+    cards={cards}
+    ctaLabel=""
+  >
+    <Fragment slot="before-cards">
+      <CertificationsBanner />
+
+      <!-- Bloc éditorial introductif -->
+      <section class="section-tight bg-[var(--color-subtle)]">
+        <Container width="default">
+          <div class="grid lg:grid-cols-12 gap-10 items-center max-w-6xl mx-auto">
+            <div class="lg:col-span-7">
+              <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)] mb-3">
+                La lumière naturelle, fondement du bien-être
+              </p>
+              <h2>Pourquoi faire entrer la lumière dans votre maison ?</h2>
+              <p class="mt-5 text-[16px] text-[var(--color-muted)] leading-relaxed">
+                La lumière naturelle est bien plus qu'une simple source d'éclairage : c'est un <strong class="text-[var(--color-fg)]">pilier fondamental du bien-être</strong> chez soi. Des études scientifiques démontrent qu'un intérieur correctement éclairé en lumière du jour réduit le stress, améliore la qualité du sommeil et stimule la productivité au quotidien.
+              </p>
+              <p class="mt-4 text-[16px] text-[var(--color-muted)] leading-relaxed">
+                Chez <strong class="text-[var(--color-fg)]">Fenêtres sur Loir</strong>, nous concevons des ouvertures qui maximisent l'apport solaire tout en préservant l'<strong class="text-[var(--color-fg)]">intimité</strong>, la <strong class="text-[var(--color-fg)]">performance thermique</strong> et la <strong class="text-[var(--color-fg)]">sécurité</strong> de votre habitat. Une maison plus lumineuse, c'est aussi une maison qui consomme moins d'énergie : la lumière naturelle remplace l'éclairage artificiel pendant la journée et le rayonnement solaire participe au chauffage passif en hiver.
+              </p>
+            </div>
+            <div class="lg:col-span-5">
+              <Image
+                src={murLumiereImg}
+                alt="Salon lumineux équipé d'un mur de lumière MéO par Fenêtres sur Loir"
+                widths={[400, 600, 900]}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={80}
+                class="w-full h-auto aspect-[4/5] object-cover rounded-2xl ring-1 ring-[var(--color-border)] shadow-lg"
+              />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <!-- Bénéfices : 3 cards -->
+      <section class="section-tight">
+        <Container width="default">
+          <div class="max-w-3xl mx-auto text-center mb-10">
+            <h2>Trois engagements pour votre confort</h2>
+            <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              Chaque menuiserie installée doit cocher trois cases : esthétisme, performance et sérénité.
+            </p>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-5">
+            {
+              benefits.map((b) => (
+                <article class="bg-white rounded-2xl ring-1 ring-[var(--color-border)] p-6 hover:shadow-md transition-shadow">
+                  <p class="text-3xl">{b.icon}</p>
+                  <h3 class="mt-4 text-[var(--color-fg)]">{b.title}</h3>
+                  <p class="mt-3 text-[14px] text-[var(--color-muted)] leading-relaxed">
+                    {b.text}
+                  </p>
+                </article>
+              ))
+            }
+          </div>
+        </Container>
+      </section>
+    </Fragment>
+
+    <Fragment slot="after-cards">
+      <!-- Bloc inspiration / contexte régional -->
+      <section class="section-tight bg-[var(--color-subtle)]">
+        <Container width="default">
+          <div class="grid lg:grid-cols-12 gap-10 items-center max-w-6xl mx-auto">
+            <div class="lg:col-span-5 order-2 lg:order-1">
+              <Image
+                src={verriereImg}
+                alt="Verrière intérieure bois-aluminium MéO installée à Angers par Fenêtres sur Loir"
+                widths={[400, 600, 900]}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={80}
+                class="w-full h-auto aspect-[4/5] object-cover rounded-2xl ring-1 ring-[var(--color-border)] shadow-lg"
+              />
+            </div>
+            <div class="lg:col-span-7 order-1 lg:order-2">
+              <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)] mb-3">
+                Adapté à votre patrimoine
+              </p>
+              <h2>Des solutions pensées pour le bâti angevin</h2>
+              <p class="mt-5 text-[16px] text-[var(--color-muted)] leading-relaxed">
+                Le Maine-et-Loire, c'est un patrimoine architectural d'exception : longères de tuffeau, maisons de schiste, villas contemporaines, immeubles haussmanniens du centre d'Angers. Chaque typologie demande une approche sur mesure.
+              </p>
+              <p class="mt-4 text-[16px] text-[var(--color-muted)] leading-relaxed">
+                Notre équipe étudie l'orientation, l'épaisseur des murs, le règlement local d'urbanisme et les éventuelles prescriptions des <strong class="text-[var(--color-fg)]">Bâtiments de France</strong>. Nos partenaires <a href="/partenaires/meo" class="text-[var(--color-accent)] underline underline-offset-4">MéO</a> et <a href="/partenaires/arcades-et-baies" class="text-[var(--color-accent)] underline underline-offset-4">Arcades & Baies</a> proposent des gammes spécifiques aux zones classées : profilés affinés, finitions discrètes, vitrages restitués.
+              </p>
+              <p class="mt-4 text-[16px] text-[var(--color-muted)] leading-relaxed">
+                Résultat : une intervention <strong class="text-[var(--color-fg)]">élégante, conforme et performante</strong>, qui respecte l'âme de votre maison tout en lui apportant les standards modernes de confort.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <!-- RGE box -->
+      <section class="section-tight">
+        <Container width="default">
+          <div class="max-w-3xl mx-auto rounded-2xl bg-[var(--color-tint)] p-8 sm:p-10">
+            <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+              Fenêtres sur Loir — Certifié RGE Qualibat
+            </p>
+            <h3 class="mt-2 mb-3">Vous êtes éligibles aux aides à la rénovation énergétique</h3>
+            <p class="text-[15px] text-[var(--color-muted)] leading-relaxed">
+              En tant qu'artisan <strong class="text-[var(--color-fg)]">RGE Qualibat</strong>, nous étudions votre projet et évaluons votre éligibilité aux dispositifs : <strong class="text-[var(--color-fg)]">MaPrimeRénov'</strong>, <strong class="text-[var(--color-fg)]">TVA réduite à 5,5 %</strong>, <strong class="text-[var(--color-fg)]">CEE</strong> ou crédit d'impôt selon votre situation.
+            </p>
+          </div>
+        </Container>
+      </section>
+    </Fragment>
+  </PageHub>
+
+  <CTASection
+    eyebrow="Votre projet lumineux"
+    title="Imaginons ensemble votre intérieur baigné de lumière"
+    text="Visitez notre showroom de 300 m² à Seiches-sur-le-Loir, comparez les finitions, touchez les matériaux. Devis gratuit sous 48 h."
+    secondaryLabel="Visiter le showroom"
+    secondaryHref="/entreprise/notre-histoire#showroom"
+  />
+</BaseLayout>

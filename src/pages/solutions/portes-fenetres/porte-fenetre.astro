@@ -1,0 +1,274 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/ui/Container.astro";
+import CTASection from "../../../components/sections/CTASection.astro";
+import CertificationsBanner from "../../../components/sections/CertificationsBanner.astro";
+import AidsBox from "../../../components/sections/AidsBox.astro";
+
+import pfHero from "../../../assets/porte-fenetre-3.png";
+import pfClassique from "../../../assets/porte-fenetre-1.png";
+import pfMixte from "../../../assets/porte-fenetre-2.png";
+import pfOscillo from "../../../assets/porte-fenetre-4-oscillo.png";
+import pfOscillo2 from "../../../assets/porte-fenetre-5-oscillo.png";
+import pfGalandage from "../../../assets/porte-fenetre-6-gallandage.png";
+import pfGalandage2 from "../../../assets/porte-fenetre-7-gallandage.png";
+
+const title = "Porte-fenêtre sur mesure | Fenêtres sur Loir — Spécialiste depuis 2003 près d'Angers";
+const description = "Large choix de portes-fenêtres : classiques, modernes, oscillo-battantes, à galandage. Fenêtres sur Loir, expert menuiserie à Seiches-sur-le-Loir, vous conseille à proximité d'Angers.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres" },
+  { label: "Porte-fenêtre" },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Porte-fenêtre sur mesure",
+  brand: { "@type": "Brand", name: "MéO" },
+  description,
+  image: pfHero.src,
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <!-- Hero -->
+  <section class="section-tight">
+    <Container width="wide">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div class="lg:col-span-6">
+          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+            Portes & Fenêtres → Porte-fenêtre
+          </p>
+          <h1 class="text-balance">
+            Un expert pour bien choisir votre <strong class="font-bold">porte-fenêtre</strong> à côté d'Angers
+          </h1>
+          <p class="mt-5 text-[15px] leading-relaxed text-[var(--color-muted)]">
+            Selon l'espace disponible, l'esthétique souhaitée et la fonctionnalité recherchée, votre choix s'orientera davantage vers la porte-fenêtre plutôt que la baie vitrée. Chez <strong class="text-[var(--color-fg)]">Fenêtres sur Loir</strong>, expert depuis 2003, nous trouvons avec vous la solution la plus adaptée pour illuminer et égayer votre espace à vivre.
+          </p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+              Demander un devis
+            </a>
+            <a href="/solutions/portes-fenetres/baies-vitrees" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
+              Voir les baies vitrées
+            </a>
+          </div>
+        </div>
+        <div class="lg:col-span-6">
+          <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+            <Image
+              src={pfHero}
+              alt="Porte-fenêtre grande ouverture donnant sur terrasse installée par Fenêtres sur Loir près d'Angers"
+              widths={[500, 800, 1100]}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              loading="eager"
+              decoding="async"
+              format="webp"
+              quality={80}
+              class="w-full h-auto aspect-[4/3] object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <CertificationsBanner />
+
+  <!-- Baie vitrée ou porte-fenêtre ? -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto">
+        <h2>Baie vitrée ou porte-fenêtre ?</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          La différence entre une baie vitrée et une porte-fenêtre tient surtout à son <strong class="text-[var(--color-fg)]">système d'ouverture</strong>.
+        </p>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Une porte-fenêtre est généralement préférable dans les situations où l'on souhaite un accès facile vers l'extérieur tout en conservant une certaine intimité. Elle est idéale pour les petits jardins ou terrasses, où l'espace est limité, et permet de maximiser la lumière tout en restant plus compacte.
+        </p>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Le choix d'une porte-fenêtre est ainsi plus judicieux pour transformer l'atmosphère d'une pièce tout en améliorant la fonctionnalité de l'espace. Si vous cherchez de grandes ouvertures vitrées, orientez-vous plutôt vers nos <a href="/solutions/portes-fenetres/baies-vitrees" class="text-[var(--color-accent)] underline underline-offset-4">baies vitrées</a>.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Quel type de porte-fenêtre choisir -->
+  <section class="section-tight">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto mb-10">
+        <h2>Quel type de porte-fenêtre choisir ?</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Selon la configuration de votre espace et l'architecture de votre habitation, les choix peuvent être très différents.
+        </p>
+      </div>
+
+      <div class="max-w-5xl mx-auto space-y-12">
+        <!-- Classiques -->
+        <article class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+            <Image
+              src={pfClassique}
+              alt="Porte-fenêtre classique bois traditionnelle avec moulures Fenêtres sur Loir"
+              widths={[400, 600, 800]}
+              sizes="(max-width: 768px) 100vw, 40vw"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+              quality={80}
+              class="w-full h-auto aspect-[4/3] object-cover"
+            />
+          </div>
+          <div>
+            <h3 class="text-[var(--color-accent)]">Portes-fenêtres classiques</h3>
+            <p class="mt-3 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              Souvent fabriquées en bois, elles mettent en valeur des détails artisanaux (moulures, panneaux en relief) et confèrent un charme intemporel aux maisons traditionnelles. Peintes ou lasurées dans des tons naturels, elles se personnalisent selon votre style décoratif.
+            </p>
+          </div>
+        </article>
+
+        <!-- Modernes -->
+        <article class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="md:order-2 rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+            <Image
+              src={pfMixte}
+              alt="Porte-fenêtre moderne aluminium design épuré grande surface vitrée"
+              widths={[400, 600, 800]}
+              sizes="(max-width: 768px) 100vw, 40vw"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+              quality={80}
+              class="w-full h-auto aspect-[4/3] object-cover"
+            />
+          </div>
+          <div class="md:order-1">
+            <h3 class="text-[var(--color-accent)]">Portes-fenêtres modernes</h3>
+            <p class="mt-3 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              En aluminium ou PVC, design épuré et minimaliste. Elles privilégient de grandes surfaces vitrées, offrant une vue imprenable et un maximum de lumière, tout en garantissant une efficacité énergétique optimale grâce aux technologies de vitrage avancées.
+            </p>
+          </div>
+        </article>
+
+        <!-- Oscillo-battantes -->
+        <article class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="rounded-xl overflow-hidden ring-1 ring-[var(--color-border)]">
+              <Image
+                src={pfOscillo}
+                alt="Porte-fenêtre oscillo-battante position ouverte aération sécurisée"
+                widths={[300, 500]}
+                sizes="(max-width: 768px) 50vw, 20vw"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={80}
+                class="w-full h-auto aspect-[4/3] object-cover"
+              />
+            </div>
+            <div class="rounded-xl overflow-hidden ring-1 ring-[var(--color-border)]">
+              <Image
+                src={pfOscillo2}
+                alt="Porte-fenêtre oscillo-battante 2 vantaux PVC blanc Fenêtres sur Loir"
+                widths={[300, 500]}
+                sizes="(max-width: 768px) 50vw, 20vw"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={80}
+                class="w-full h-auto aspect-[4/3] object-cover"
+              />
+            </div>
+          </div>
+          <div>
+            <h3 class="text-[var(--color-accent)]">Portes-fenêtres oscillo-battantes</h3>
+            <p class="mt-3 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              Mécanisme d'ouverture permettant une aération optimale tout en maintenant l'espace sécurisé. Idéales pour les zones où la ventilation est essentielle — cuisines, salles de bains — tout en offrant la flexibilité d'un accès complet.
+            </p>
+          </div>
+        </article>
+
+        <!-- Galandage -->
+        <article class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="md:order-2 grid grid-cols-2 gap-3">
+            <div class="rounded-xl overflow-hidden ring-1 ring-[var(--color-border)]">
+              <Image
+                src={pfGalandage}
+                alt="Porte-fenêtre à galandage glissant dans le mur ouverture complète terrasse"
+                widths={[300, 500]}
+                sizes="(max-width: 768px) 50vw, 20vw"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={80}
+                class="w-full h-auto aspect-[4/3] object-cover"
+              />
+            </div>
+            <div class="rounded-xl overflow-hidden ring-1 ring-[var(--color-border)]">
+              <Image
+                src={pfGalandage2}
+                alt="Porte-fenêtre à galandage alu fine structure transition intérieur extérieur"
+                widths={[300, 500]}
+                sizes="(max-width: 768px) 50vw, 20vw"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={80}
+                class="w-full h-auto aspect-[4/3] object-cover"
+              />
+            </div>
+          </div>
+          <div class="md:order-1">
+            <h3 class="text-[var(--color-accent)]">Portes-fenêtres à galandage</h3>
+            <p class="mt-3 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              Solution ingénieuse pour ceux qui manquent d'espace. Lorsque la porte est ouverte, elle se glisse à l'intérieur du mur, permettant une <strong class="text-[var(--color-fg)]">ouverture complète et fluide</strong> vers l'extérieur. Parfait pour les patios et terrasses qui demandent une transition naturelle.
+            </p>
+          </div>
+        </article>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Sur-mesure -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto">
+        <h2>Porte-fenêtre sur mesure avec Fenêtres sur Loir</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          En faisant le choix d'un professionnel de la menuiserie, vous faites le choix de la sérénité. Les équipes de Fenêtres sur Loir vous accompagneront à chaque étape de votre projet : choix des matériaux, des coloris, des accessoires — rien n'est laissé au hasard.
+        </p>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Certifiés <strong class="text-[var(--color-fg)]">RGE Qualibat</strong>, les installations peuvent vous faire profiter d'aides financières dans le cadre des dispositifs pour le changement des menuiseries extérieures. En partenariat avec <a href="/partenaires/meo" class="text-[var(--color-accent)] underline underline-offset-4">MéO</a> et <a href="/partenaires/arcades-et-baies" class="text-[var(--color-accent)] underline underline-offset-4">Arcades & Baies</a>, nous vous proposons les meilleures gammes du marché.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <AidsBox />
+
+  <!-- Découvrir aussi -->
+  <section class="section-tight">
+    <Container width="default">
+      <p class="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)] mb-4">
+        Découvrir aussi
+      </p>
+      <ul class="flex flex-wrap items-center justify-center gap-3">
+        <li><a href="/solutions/portes-fenetres/portes-entree" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Porte d'entrée</a></li>
+        <li><a href="/solutions/portes-fenetres/baies-vitrees" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Baies vitrées</a></li>
+        <li><a href="/solutions/portes-fenetres/portes-interieures" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Portes intérieures</a></li>
+        <li><a href="/partenaires/meo" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Notre partenariat MéO</a></li>
+      </ul>
+    </Container>
+  </section>
+
+  <CTASection
+    title="Une porte-fenêtre qui ressemble à votre maison"
+    text="Nos équipes vous accompagnent du choix du matériau jusqu'à la pose certifiée. Devis gratuit et conseil personnalisé en showroom."
+    secondaryLabel="Visiter le showroom"
+    secondaryHref="/entreprise/notre-histoire#showroom"
+  />
+</BaseLayout>

@@ -1,0 +1,143 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import ContactForm from "../components/sections/ContactForm.astro";
+import showroomImg from "../assets/showroom-1.png";
+
+const title = "Contact & devis gratuit | Fenêtres sur Loir — Menuisier à Seiches-sur-le-Loir";
+const description = "Contactez Fenêtres sur Loir à Seiches-sur-le-Loir (49). Devis gratuit, conseil personnalisé, visite du showroom de 300 m². Intervention à Angers et dans tout le Maine-et-Loire.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Contact" },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Fenêtres sur Loir",
+  telephone: "+33241770408",
+  email: "contact@fenetres-sur-loir.fr",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "ZA de la Suzerolle",
+    postalCode: "49140",
+    addressLocality: "Seiches-sur-le-Loir",
+    addressCountry: "FR",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+33241770408",
+    contactType: "customer service",
+    areaServed: "FR",
+    availableLanguage: "French",
+  },
+};
+
+const zoneVilles = [
+  "Angers",
+  "Durtal",
+  "Baugé",
+  "Tiercé",
+  "Châteauneuf-sur-Sarthe",
+  "Le Lion-d'Angers",
+  "Beaufort-en-Anjou",
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <section class="section-tight">
+    <Container width="default">
+      <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+        Contact
+      </p>
+      <h1 class="text-balance max-w-3xl">
+        Parlons de votre projet : devis gratuit et personnalisé
+      </h1>
+      <p class="mt-5 max-w-2xl text-[15px] text-[var(--color-muted)] leading-relaxed italic">
+        [À RÉDIGER — intro courte : promesse de réponse rapide, gratuité du devis, conseil personnalisé.]
+      </p>
+    </Container>
+  </section>
+
+  <section class="pb-12">
+    <Container width="default">
+      <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+        <Image
+          src={showroomImg}
+          alt="Showroom Fenêtres sur Loir à Seiches-sur-le-Loir — accueil et conseil"
+          widths={[600, 900, 1280]}
+          sizes="(max-width: 1280px) 100vw, 1280px"
+          loading="eager"
+          decoding="async"
+          format="webp"
+          quality={82}
+          class="w-full h-auto aspect-[16/9] object-cover"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <ContactForm withHeading={false} />
+
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div>
+          <h2 class="mb-4">Visitez notre showroom de 300 m²</h2>
+          <address class="not-italic text-[15px] text-[var(--color-muted)] leading-relaxed space-y-3">
+            <p>
+              <strong class="text-[var(--color-fg)]">Adresse</strong><br />
+              ZA de la Suzerolle<br />
+              49140 Seiches-sur-le-Loir
+            </p>
+            <p>
+              <strong class="text-[var(--color-fg)]">Téléphone</strong><br />
+              <a href="tel:+33241770408" class="text-[var(--color-accent)] hover:underline">02 41 77 04 08</a>
+            </p>
+            <p>
+              <strong class="text-[var(--color-fg)]">Email</strong><br />
+              <a href="mailto:contact@fenetres-sur-loir.fr" class="text-[var(--color-accent)] hover:underline">contact@fenetres-sur-loir.fr</a>
+            </p>
+            <p>
+              <strong class="text-[var(--color-fg)]">Horaires</strong><br />
+              Lundi – Vendredi : 9 h – 18 h<br />
+              Samedi : sur rendez-vous<br />
+              Dimanche : fermé
+            </p>
+          </address>
+        </div>
+        <div>
+          <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)] h-full min-h-[300px]">
+            <iframe
+              title="Localisation du showroom Fenêtres sur Loir à Seiches-sur-le-Loir"
+              src="https://www.google.com/maps?q=ZA+de+la+Suzerolle,+49140+Seiches-sur-le-Loir&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              class="w-full h-full min-h-[300px] border-0"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section-tight">
+    <Container width="default">
+      <h2 class="mb-4">Zone d'intervention</h2>
+      <p class="text-[15px] text-[var(--color-muted)] leading-relaxed mb-6">
+        Fenêtres sur Loir intervient à <strong class="text-[var(--color-fg)]">Seiches-sur-le-Loir</strong> et dans tout le <strong class="text-[var(--color-fg)]">Maine-et-Loire</strong> :
+      </p>
+      <ul class="flex flex-wrap gap-2">
+        {
+          zoneVilles.map((ville) => (
+            <li class="inline-flex items-center px-3 py-1.5 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full">
+              {ville}
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+</BaseLayout>

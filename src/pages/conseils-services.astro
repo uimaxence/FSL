@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import histoire1 from "../assets/histoire-1.jpg";
+import histoire2 from "../assets/histoire-2.jpg";
+import histoire3 from "../assets/histoire-3.jpg";
+import histoire5 from "../assets/histoire-5.jpg";
+import histoire6 from "../assets/histoire-6.jpg";
+import histoire7 from "../assets/histoire-7.jpg";
+
+const blogCovers = [histoire1, histoire2, histoire3, histoire5, histoire6, histoire7];
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+
+const title = "Conseils & Services | Fenêtres sur Loir — Guides menuiserie et rénovation";
+const description = "Guides pratiques, retours d'expérience et actualités pour vous aider à mener votre projet de menuiseries — isolation, aides RGE, entretien, tendances déco.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Conseils & Services" },
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb}>
+  <section class="section-tight">
+    <Container width="default">
+      <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+        Le journal
+      </p>
+      <h1 class="text-balance max-w-3xl">Conseils & Services</h1>
+      <p class="mt-5 max-w-2xl text-[15px] text-[var(--color-muted)] leading-relaxed">
+        Guides, retours d'expérience et actualités pour vous aider à mener votre projet de menuiseries en toute sérénité.
+      </p>
+    </Container>
+  </section>
+
+  <section class="section-tight">
+    <Container width="wide">
+      {posts.length === 0 ? (
+        <p class="text-center text-[var(--color-muted)]">
+          Les premiers articles arrivent bientôt.
+        </p>
+      ) : (
+        <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((p, i) => (
+            <li>
+              <a href={`/blog/${p.id}`} class="group block">
+                <div class="rounded-xl overflow-hidden ring-1 ring-[var(--color-border)] mb-5 aspect-video">
+                  <Image
+                    src={blogCovers[i % blogCovers.length]}
+                    alt={p.data.title}
+                    widths={[400, 700, 1000]}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                    loading="lazy"
+                    decoding="async"
+                    format="webp"
+                    quality={80}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <p class="text-xs uppercase tracking-[0.14em] text-[var(--color-muted)] font-semibold">
+                  {formatDate(p.data.date)}
+                </p>
+                <h2 class="mt-2 text-xl group-hover:text-[var(--color-accent)] transition-colors">
+                  {p.data.title}
+                </h2>
+                <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed line-clamp-3">
+                  {p.data.description}
+                </p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </Container>
+  </section>
+</BaseLayout>

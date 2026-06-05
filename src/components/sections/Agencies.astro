@@ -1,0 +1,90 @@
+---
+import { Image } from "astro:assets";
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import Button from "../ui/Button.astro";
+import showroomImg from "../../assets/showroom-2.png";
+import agenceDoueImg from "../../assets/agence-doué.png";
+
+const agencies = [
+  {
+    name: "Seiches-sur-Loir",
+    status: "Showroom ouvert",
+    statusTone: "open",
+    address: "ZA de la Suzerolle, 49140 Seiches-sur-Loir",
+    phone: "02 41 77 04 08",
+    hours: ["Lun – Ven : 9h – 12h / 14h – 18h", "Sam : 9h – 12h (sur RDV)"],
+    image: showroomImg,
+  },
+  {
+    name: "Doué-en-Anjou",
+    status: "Ouverture prochaine",
+    statusTone: "upcoming",
+    address: "Doué-en-Anjou (49)",
+    phone: "—",
+    hours: ["Informations à venir"],
+    image: agenceDoueImg,
+  },
+];
+---
+
+<section class="section">
+  <Container width="wide">
+    <SectionHeading
+      eyebrow="Nos agences"
+      title="Venez nous rencontrer"
+      subtitle="Deux adresses pour échanger sur votre projet, toucher les matières et imaginer vos menuiseries grandeur nature."
+      align="center"
+      class="mb-14"
+    />
+
+    <ul class="grid gap-6 md:grid-cols-2">
+      {agencies.map((a) => (
+        <li class="bg-white rounded-2xl ring-1 ring-[var(--color-border)] overflow-hidden flex flex-col">
+          {a.image ? (
+            <Image
+              src={a.image}
+              alt={`Showroom Fenêtres sur Loir à ${a.name}`}
+              widths={[500, 800, 1100]}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+              quality={80}
+              class="w-full h-auto aspect-video object-cover"
+            />
+          ) : null}
+          <div class="p-6 flex flex-col flex-1">
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <h3 class="text-xl font-semibold">{a.name}</h3>
+              <span class:list={[
+                "inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full",
+                a.statusTone === "open"
+                  ? "bg-green-50 text-green-700"
+                  : "bg-amber-50 text-amber-700",
+              ]}>
+                <span class:list={[
+                  "w-1.5 h-1.5 rounded-full",
+                  a.statusTone === "open" ? "bg-green-500" : "bg-amber-500",
+                ]} />
+                {a.status}
+              </span>
+            </div>
+            <p class="text-sm text-[var(--color-muted)] mb-2">{a.address}</p>
+            <p class="text-sm font-medium mb-4">
+              <a href={`tel:${a.phone.replace(/\s/g, "")}`} class="hover:text-[var(--color-accent)]">
+                {a.phone}
+              </a>
+            </p>
+            <ul class="text-sm text-[var(--color-muted)] space-y-1 mb-6">
+              {a.hours.map((h) => <li>{h}</li>)}
+            </ul>
+            <div class="mt-auto">
+              <Button href="/contact" variant="outline">Demandez un rendez-vous</Button>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

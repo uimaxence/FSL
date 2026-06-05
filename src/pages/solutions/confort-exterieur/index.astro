@@ -1,0 +1,217 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PageHub from "../../../components/templates/PageHub.astro";
+import Container from "../../../components/ui/Container.astro";
+import CTASection from "../../../components/sections/CTASection.astro";
+import CertificationsBanner from "../../../components/sections/CertificationsBanner.astro";
+import carportImg from "../../../assets/carport-1.png";
+import marquiseImg from "../../../assets/marquise-1.png";
+
+const title = "Confort extérieur sur mesure | Carports, marquises, brise-vues — Fenêtres sur Loir Angers";
+const description = "Profitez pleinement de vos extérieurs avec Fenêtres sur Loir : carports aluminium, marquises vitrées, brise-vues et claustras sur mesure. Pose certifiée RGE dans le Maine-et-Loire.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Confort extérieur" },
+];
+
+const cards = [
+  {
+    title: "Carports & Marquises",
+    description: "Abritez votre véhicule, protégez votre entrée. Aluminium thermolaqué ou bois sur mesure.",
+    href: "/solutions/confort-exterieur/carports-marquises",
+    placeholderLabel: "Carport aluminium devant une maison contemporaine",
+    image: carportImg,
+    imageAlt: "Carport aluminium contemporain Fenêtres sur Loir",
+  },
+  {
+    title: "Brise-vues & Claustras",
+    description: "Préservez votre intimité avec style : bois, aluminium ou tôle ajourée décorative.",
+    href: "/solutions/confort-exterieur/brise-vues-claustras",
+    placeholderLabel: "Terrasse avec brise-vue et claustra décoratif",
+    image: marquiseImg,
+    imageAlt: "Marquise vitrée aluminium installée par Fenêtres sur Loir",
+  },
+];
+
+const benefits = [
+  {
+    icon: "☂️",
+    title: "Protection durable",
+    text: "Aluminium thermolaqué, verre trempé, bois traité autoclave : nos matériaux résistent aux intempéries, aux UV et au gel sans entretien lourd.",
+  },
+  {
+    icon: "🎨",
+    title: "Design contemporain",
+    text: "Profils fins, lignes épurées, large palette de coloris RAL : vos extérieurs gagnent en allure et valorisent votre patrimoine.",
+  },
+  {
+    icon: "🔒",
+    title: "Intimité préservée",
+    text: "Brise-vues et claustras créent un cocon protégé des regards, tout en laissant circuler la lumière et l'air librement.",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Confort extérieur — aménagements sur mesure",
+  provider: { "@type": "LocalBusiness", name: "Fenêtres sur Loir" },
+  areaServed: "Maine-et-Loire",
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <PageHub
+    eyebrow="Nos solutions"
+    title="Profitez pleinement de vos extérieurs avec Fenêtres sur Loir"
+    intro="Expert de la menuiserie depuis 2003, nous savons combien il est agréable de tirer le meilleur parti de vos espaces extérieurs. Carports, marquises, brise-vues, claustras — nos solutions sur mesure embellissent et protègent votre jardin, votre terrasse ou votre allée."
+    heroImage={carportImg}
+    heroImageAlt="Carport aluminium sur mesure devant une maison contemporaine par Fenêtres sur Loir"
+    cards={cards}
+    ctaLabel=""
+  >
+    <Fragment slot="before-cards">
+      <CertificationsBanner />
+
+      <!-- Editorial : pourquoi aménager ses extérieurs -->
+      <section class="section-tight bg-[var(--color-subtle)]">
+        <Container width="default">
+          <div class="grid lg:grid-cols-12 gap-10 items-center max-w-6xl mx-auto">
+            <div class="lg:col-span-5">
+              <Image
+                src={carportImg}
+                alt="Carport aluminium thermolaqué installé par Fenêtres sur Loir près d'Angers"
+                widths={[400, 600, 900]}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={80}
+                class="w-full h-auto aspect-[4/5] object-cover rounded-2xl ring-1 ring-[var(--color-border)] shadow-lg"
+              />
+            </div>
+            <div class="lg:col-span-7">
+              <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)] mb-3">
+                Vos extérieurs, votre pièce en plus
+              </p>
+              <h2>Pourquoi aménager ses espaces extérieurs ?</h2>
+              <p class="mt-5 text-[16px] text-[var(--color-muted)] leading-relaxed">
+                Votre extérieur est <strong class="text-[var(--color-fg)]">la première impression</strong> que l'on a de votre maison — et c'est aussi un véritable espace de vie quand il est correctement aménagé. Un carport aluminium protège votre véhicule des UV et de la grêle (jusqu'à <strong class="text-[var(--color-fg)]">+5 ans d'espérance de vie</strong> pour vos peintures de carrosserie). Une marquise vitrée transforme votre entrée en un seuil élégant et fonctionnel, à l'abri des intempéries.
+              </p>
+              <p class="mt-4 text-[16px] text-[var(--color-muted)] leading-relaxed">
+                Les <strong class="text-[var(--color-fg)]">brise-vues et claustras</strong>, eux, structurent vos espaces sans les cloisonner. Ils délimitent un coin repas, créent un brise-vent autour d'une terrasse, ou cachent vos voisins immédiats tout en conservant une circulation d'air essentielle.
+              </p>
+              <p class="mt-4 text-[16px] text-[var(--color-muted)] leading-relaxed">
+                Chaque solution Fenêtres sur Loir est <strong class="text-[var(--color-fg)]">conçue sur mesure</strong>, intégrée à l'architecture de votre maison, et installée par nos équipes qualifiées.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <!-- Bénéfices -->
+      <section class="section-tight">
+        <Container width="default">
+          <div class="max-w-3xl mx-auto text-center mb-10">
+            <h2>Trois engagements pour vos aménagements extérieurs</h2>
+            <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              Nos solutions extérieures conjuguent durabilité, design et intimité.
+            </p>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-5">
+            {
+              benefits.map((b) => (
+                <article class="bg-white rounded-2xl ring-1 ring-[var(--color-border)] p-6 hover:shadow-md transition-shadow">
+                  <p class="text-3xl">{b.icon}</p>
+                  <h3 class="mt-4 text-[var(--color-fg)]">{b.title}</h3>
+                  <p class="mt-3 text-[14px] text-[var(--color-muted)] leading-relaxed">
+                    {b.text}
+                  </p>
+                </article>
+              ))
+            }
+          </div>
+        </Container>
+      </section>
+    </Fragment>
+
+    <Fragment slot="after-cards">
+      <!-- Matériaux et durabilité (SEO long-form) -->
+      <section class="section-tight bg-[var(--color-subtle)]">
+        <Container width="default">
+          <div class="grid lg:grid-cols-12 gap-10 items-center max-w-6xl mx-auto">
+            <div class="lg:col-span-7 order-2 lg:order-1">
+              <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)] mb-3">
+                Des matériaux exigeants
+              </p>
+              <h2>Bois, aluminium, acier : quel matériau choisir ?</h2>
+              <p class="mt-5 text-[16px] text-[var(--color-muted)] leading-relaxed">
+                <strong class="text-[var(--color-fg)]">L'aluminium thermolaqué</strong> reste notre choix privilégié pour les carports et claustras contemporains : résistance aux intempéries sans aucun entretien, finesse des profils, large palette RAL. Garanti 10 à 25 ans selon les gammes.
+              </p>
+              <p class="mt-4 text-[16px] text-[var(--color-muted)] leading-relaxed">
+                <strong class="text-[var(--color-fg)]">Le bois traité autoclave</strong> apporte chaleur et naturalité à un brise-vue ou un pergola. Nous proposons des essences résineuses ou exotiques (douglas, pin THT, ipé) selon le rendu recherché et le budget.
+              </p>
+              <p class="mt-4 text-[16px] text-[var(--color-muted)] leading-relaxed">
+                <strong class="text-[var(--color-fg)]">Le verre trempé feuilleté</strong> sublime les marquises et garantit une sécurité absolue (résistance aux chocs et à la grêle, fragmentation sans risque). Vitrage clair, dépoli ou sérigraphié selon votre intimité souhaitée.
+              </p>
+            </div>
+            <div class="lg:col-span-5 order-1 lg:order-2">
+              <Image
+                src={marquiseImg}
+                alt="Marquise vitrée alu installée au-dessus d'une porte d'entrée par Fenêtres sur Loir"
+                widths={[400, 600, 900]}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={80}
+                class="w-full h-auto aspect-[4/5] object-cover rounded-2xl ring-1 ring-[var(--color-border)] shadow-lg"
+              />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <!-- Pose & garantie -->
+      <section class="section-tight">
+        <Container width="default">
+          <div class="max-w-3xl mx-auto">
+            <h2>Une pose soignée par nos équipes</h2>
+            <p class="mt-5 text-[16px] text-[var(--color-muted)] leading-relaxed">
+              Chaque carport, marquise ou claustra installé par Fenêtres sur Loir est <strong class="text-[var(--color-fg)]">posé par nos équipes qualifiées</strong>, jamais par sous-traitance. Cette maîtrise complète du chantier nous permet d'offrir des garanties étendues, de l'étude technique à la pose finale.
+            </p>
+            <ul class="mt-6 space-y-3">
+              <li class="flex gap-3 items-start text-[15px] text-[var(--color-fg)]">
+                <span class="mt-1.5 w-2 h-2 rounded-full bg-[var(--color-accent)] shrink-0" aria-hidden="true"></span>
+                <span><strong>Étude personnalisée à domicile</strong> — relevé de cotes, conseil sur l'orientation et les contraintes locales.</span>
+              </li>
+              <li class="flex gap-3 items-start text-[15px] text-[var(--color-fg)]">
+                <span class="mt-1.5 w-2 h-2 rounded-full bg-[var(--color-accent)] shrink-0" aria-hidden="true"></span>
+                <span><strong>Fabrication sur mesure</strong> par nos partenaires français — dimensions, coloris et finitions adaptées.</span>
+              </li>
+              <li class="flex gap-3 items-start text-[15px] text-[var(--color-fg)]">
+                <span class="mt-1.5 w-2 h-2 rounded-full bg-[var(--color-accent)] shrink-0" aria-hidden="true"></span>
+                <span><strong>Pose certifiée RGE Qualibat</strong> par nos artisans, dans le respect des normes en vigueur.</span>
+              </li>
+              <li class="flex gap-3 items-start text-[15px] text-[var(--color-fg)]">
+                <span class="mt-1.5 w-2 h-2 rounded-full bg-[var(--color-accent)] shrink-0" aria-hidden="true"></span>
+                <span><strong>Service après-vente local</strong> — un interlocuteur unique, basé à Seiches-sur-le-Loir, disponible toute l'année.</span>
+              </li>
+            </ul>
+          </div>
+        </Container>
+      </section>
+    </Fragment>
+  </PageHub>
+
+  <CTASection
+    eyebrow="Votre projet extérieur"
+    title="Imaginons ensemble vos extérieurs"
+    text="Visitez notre showroom à Seiches-sur-le-Loir, échangeons sur votre projet. Devis gratuit sous 48 h, intervention dans tout le Maine-et-Loire."
+    secondaryLabel="Voir nos réalisations"
+    secondaryHref="/realisations"
+  />
+</BaseLayout>

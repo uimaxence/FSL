@@ -1,0 +1,43 @@
+---
+import { Image } from "astro:assets";
+import Container from "../ui/Container.astro";
+import Button from "../ui/Button.astro";
+import histoireImg from "../../assets/histoire-1.jpg";
+---
+
+<section class="section">
+  <Container width="wide">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div>
+        <div class="rounded-xl overflow-hidden ring-1 ring-[var(--color-border)] aspect-square">
+          <Image
+            src={histoireImg}
+            alt="L'équipe Fenêtres sur Loir sur un chantier"
+            widths={[400, 800, 1200]}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={82}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+      <div>
+        <p class="mb-4 text-xs font-semibold tracking-[0.18em] text-[var(--color-accent)] uppercase">
+          Notre histoire
+        </p>
+        <h2 class="text-balance">Une histoire qui dure depuis plus de 20 ans</h2>
+        <p class="mt-6 text-[var(--color-muted)] leading-relaxed">
+          Depuis 2003, Fenêtres-sur-Loir est née de la passion d'une famille pour la menuiserie d'excellence. Implantée à Seiches-sur-Loir, l'entreprise s'est imposée comme un partenaire de confiance auprès des particuliers comme des professionnels, en alliant savoir-faire artisanal et exigence de qualité.
+        </p>
+        <p class="mt-4 text-[var(--color-muted)] leading-relaxed">
+          Aujourd'hui, notre showroom de 300 m² accueille tous ceux qui souhaitent imaginer leurs futures menuiseries dans des conditions réelles.
+        </p>
+        <div class="mt-8">
+          <Button href="/entreprise/notre-histoire" variant="outline">En savoir plus</Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

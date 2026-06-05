@@ -1,0 +1,143 @@
+---
+import { Image } from "astro:assets";
+import Container from "../ui/Container.astro";
+
+import heroBg from "../../assets/hero.png";
+import meoLogo from "../../assets/meo-logo.png";
+import arcadesLogo from "../../assets/arcades-baies-logo.png";
+import dcLogo from "../../assets/DC-logo.png";
+import bubendorffLogo from "../../assets/bubendorff-logo.png";
+import qualibatLogo from "../../assets/qualibat-logo.png";
+
+const partners = [
+  { name: "MéO", logo: meoLogo, href: "/partenaires/meo" },
+  { name: "Bubendorff", logo: bubendorffLogo, href: "/partenaires/bubendorff" },
+  { name: "Arcades & Baies", logo: arcadesLogo, href: "/partenaires/arcades-et-baies" },
+  { name: "DC Menuiseries", logo: dcLogo, href: "/partenaires/nos-fournisseurs" },
+  { name: "Qualibat RGE", logo: qualibatLogo, href: "/contact" },
+];
+
+const googleRating = { score: "4,8", count: 132 };
+---
+
+<section
+  class="relative isolate overflow-hidden text-white -mt-20 sm:-mt-[116px]"
+  data-hero-section
+  style="min-height: clamp(640px, 92vh, 960px);"
+>
+  <!-- Image en arrière-plan -->
+  <Image
+    src={heroBg}
+    alt=""
+    widths={[1280, 1920, 2560]}
+    sizes="100vw"
+    loading="eager"
+    decoding="async"
+    format="webp"
+    quality={82}
+    class="absolute inset-0 -z-10 w-full h-full object-cover"
+  />
+  <!-- Dégradé sombre côté gauche pour la lisibilité du texte -->
+  <div
+    class="absolute inset-0 -z-10 bg-gradient-to-r from-black/65 via-black/20 to-transparent"
+    aria-hidden="true"
+  ></div>
+
+  <Container width="wide" class="relative flex flex-col h-full min-h-[inherit] pt-32 sm:pt-40 pb-10 lg:pb-14">
+    <!-- Pastille Google en haut à gauche -->
+    <div class="flex justify-start">
+      <a
+        href="https://www.google.com/maps/place/Fen%C3%AAtres+sur+Loir"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2.5 rounded-full bg-white/95 backdrop-blur-sm pl-2 pr-4 py-1.5 text-[12px] font-medium text-[var(--color-fg)] shadow-md hover:bg-white transition-all"
+        aria-label={`${googleRating.score} sur 5 étoiles — ${googleRating.count} avis Google`}
+      >
+        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white ring-1 ring-black/10">
+          <svg width="14" height="14" viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3a12 12 0 1 1-3.3-13l5.7-5.7A20 20 0 1 0 44 24c0-1.2-.1-2.4-.4-3.5z"/>
+            <path fill="#FF3D00" d="m6.3 14.7 6.6 4.8A12 12 0 0 1 24 12c3 0 5.7 1.1 7.8 3l5.7-5.7A20 20 0 0 0 6.3 14.7z"/>
+            <path fill="#4CAF50" d="M24 44c5.2 0 10-2 13.6-5.2l-6.3-5.3A12 12 0 0 1 12.7 28l-6.5 5A20 20 0 0 0 24 44z"/>
+            <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3a12 12 0 0 1-4.1 5.5l6.3 5.3C37.2 39.6 44 34.7 44 24c0-1.2-.1-2.4-.4-3.5z"/>
+          </svg>
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="flex text-amber-400">
+            {[1, 2, 3, 4, 5].map(() => (
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            ))}
+          </span>
+          <span class="font-bold">{googleRating.score}/5</span>
+          <span class="text-[var(--color-muted)]">· {googleRating.count} avis Google</span>
+        </span>
+      </a>
+    </div>
+
+    <div class="flex-1"></div>
+
+    <!-- Colonne gauche : H1 + sous-titre + CTAs -->
+    <div class="max-w-2xl">
+      <h1
+        class="font-display text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.15] text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]"
+      >
+        Fenêtres-sur-Loir habille <strong class="font-bold">depuis plus de 20 ans</strong> les plus belles maisons du <span class="text-[var(--color-accent)]">Maine-et-Loire</span>.
+      </h1>
+      <p
+        class="mt-5 text-[13px] lg:text-[14px] leading-relaxed text-white/90 max-w-xl"
+      >
+        <strong class="text-white">Menuisier d'Excellence MéO</strong>, <strong class="text-white">Point Conseil Bubendorff</strong>, certifié <strong class="text-white">RGE Qualibat</strong>. De la fenêtre bois-alu au carport aluminium, nous concevons toutes les ouvertures et structures qui protègent et embellissent votre maison.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href="/contact"
+          class="inline-flex items-center rounded-full px-7 py-3 text-[15px] font-medium text-white shadow-lg transition-colors"
+          style="background: var(--color-accent);"
+          onmouseover="this.style.background='var(--color-accent-hover)'"
+          onmouseout="this.style.background='var(--color-accent)'"
+        >
+          Demandez un rendez-vous
+        </a>
+        <a
+          href="/realisations"
+          class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white bg-white/10 backdrop-blur-md ring-1 ring-white/30 hover:bg-white/20 transition-colors"
+        >
+          Voir nos réalisations
+        </a>
+      </div>
+    </div>
+
+    <!-- Partenaires en bas, à gauche -->
+    <div class="mt-12 lg:mt-16 max-w-2xl">
+      <p class="text-[11px] uppercase tracking-[0.18em] text-white/70 mb-4">
+        Nos partenaires de confiance
+      </p>
+      <div class="flex flex-wrap items-center gap-x-8 lg:gap-x-10 gap-y-4">
+        {
+          partners.map((p) => (
+            <a
+              href={p.href}
+              class="inline-flex items-center justify-center h-9 transition-opacity opacity-90 hover:opacity-100"
+              aria-label={`Découvrir notre partenariat ${p.name}`}
+              style="filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));"
+            >
+              <Image
+                src={p.logo}
+                alt={`Logo ${p.name}`}
+                widths={[120, 240]}
+                sizes="120px"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={90}
+                class="max-h-9 w-auto object-contain"
+              />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</section>

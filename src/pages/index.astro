@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/sections/Hero.astro";
+import VideoSection from "../components/sections/VideoSection.astro";
+import Stats from "../components/sections/Stats.astro";
+import RealisationsGrid from "../components/sections/RealisationsGrid.astro";
+import ExpertiseCards from "../components/sections/ExpertiseCards.astro";
+import ImageGallery from "../components/sections/ImageGallery.astro";
+import HistoireParallax from "../components/sections/HistoireParallax.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import Agencies from "../components/sections/Agencies.astro";
+import ContactForm from "../components/sections/ContactForm.astro";
+
+const title = "Fenêtres sur Loir — Menuisier RGE à Seiches-sur-le-Loir, près d'Angers";
+const description =
+  "Fenêtres sur Loir, artisan menuisier à Seiches-sur-le-Loir (49). Fenêtres, portes, volets, verrières et aménagements extérieurs sur mesure. Partenaire MéO, Bubendorff, Arcades & Baies.";
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Fenêtres sur Loir",
+    image: "https://www.fenetres-sur-loir.fr/og.jpg",
+    url: "https://www.fenetres-sur-loir.fr",
+    telephone: "+33241770408",
+    email: "contact@fenetres-sur-loir.fr",
+    priceRange: "€€",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "ZA de la Suzerolle",
+      postalCode: "49140",
+      addressLocality: "Seiches-sur-le-Loir",
+      addressRegion: "Maine-et-Loire",
+      addressCountry: "FR",
+    },
+    areaServed: ["Maine-et-Loire", "Angers", "Seiches-sur-le-Loir", "Durtal", "Baugé"],
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "18:00",
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Fenêtres sur Loir",
+    foundingDate: "2003",
+    brand: ["MéO", "Bubendorff", "Arcades & Baies"],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} schemaJsonLd={schema}>
+  <Hero />
+  <ExpertiseCards />
+  <VideoSection />
+  <Stats />
+  <RealisationsGrid />
+  <ImageGallery />
+  <HistoireParallax />
+  <Testimonials />
+  <Agencies />
+  <ContactForm />
+</BaseLayout>

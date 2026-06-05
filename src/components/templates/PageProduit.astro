@@ -1,0 +1,123 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Container from "../ui/Container.astro";
+import fallbackHero from "../../assets/hero-1.jpg";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  heroPlaceholderLabel: string;
+  heroImage?: ImageMetadata;
+  heroImageAlt?: string;
+  /** Style hero : "card" (image dans une card) ou "wide" (bandeau pleine largeur immersif) */
+  heroStyle?: "card" | "wide";
+  /** Petit sous-titre / lead text affiché sous le H1 */
+  lead?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  heroPlaceholderLabel,
+  heroImage,
+  heroImageAlt,
+  heroStyle = "card",
+  lead,
+} = Astro.props;
+---
+
+{
+  heroStyle === "wide" && heroImage ? (
+    <section class="relative">
+      <div class="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden">
+        <Image
+          src={heroImage}
+          alt={heroImageAlt ?? heroPlaceholderLabel}
+          widths={[800, 1280, 1920]}
+          sizes="100vw"
+          loading="eager"
+          decoding="async"
+          format="webp"
+          quality={82}
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+        <div class="absolute inset-x-0 bottom-0">
+          <Container width="wide" class="pb-10 sm:pb-14">
+            {eyebrow && (
+              <p class="text-[12px] font-semibold tracking-[0.18em] uppercase text-white/85 mb-3">
+                {eyebrow}
+              </p>
+            )}
+            <h1 class="text-white text-balance max-w-3xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
+              {title}
+            </h1>
+            {lead && (
+              <p class="mt-4 max-w-2xl text-[16px] text-white/90 leading-relaxed">{lead}</p>
+            )}
+          </Container>
+        </div>
+      </div>
+    </section>
+  ) : (
+    <>
+      <section class="section-tight">
+        <Container width="default">
+          {eyebrow && (
+            <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+              {eyebrow}
+            </p>
+          )}
+          <h1 class="text-balance max-w-3xl">{title}</h1>
+          {lead && (
+            <p class="mt-6 max-w-2xl text-[17px] leading-relaxed text-[var(--color-fg)]">{lead}</p>
+          )}
+        </Container>
+      </section>
+
+      <section class="pb-14">
+        <Container width="default">
+          {heroImage ? (
+            <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+              <Image
+                src={heroImage}
+                alt={heroImageAlt ?? heroPlaceholderLabel}
+                widths={[600, 900, 1280]}
+                sizes="(max-width: 1280px) 100vw, 1280px"
+                loading="eager"
+                decoding="async"
+                format="webp"
+                quality={82}
+                class="w-full h-auto aspect-[16/9] object-cover"
+              />
+            </div>
+          ) : (
+            <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+              <Image
+                src={fallbackHero}
+                alt={heroImageAlt ?? heroPlaceholderLabel}
+                widths={[600, 900, 1280]}
+                sizes="(max-width: 1280px) 100vw, 1280px"
+                loading="eager"
+                decoding="async"
+                format="webp"
+                quality={82}
+                class="w-full h-auto aspect-[16/9] object-cover"
+              />
+            </div>
+          )}
+        </Container>
+      </section>
+    </>
+  )
+}
+
+<div class="pb-24">
+  <Container width="default">
+    <div class="prose-fsl max-w-3xl mx-auto">
+      <slot />
+    </div>
+  </Container>
+</div>
+

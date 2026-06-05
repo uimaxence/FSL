@@ -1,0 +1,97 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PageProduit from "../../../components/templates/PageProduit.astro";
+import Container from "../../../components/ui/Container.astro";
+import puitsHero from "../../../assets/murdelumiere-2.png";
+import puitsDetail from "../../../assets/verriere-boisalu-1.png";
+
+const title = "Puits de lumière MéO | Fenêtres sur Loir — Illuminez votre maison près d'Angers";
+const description = "Installation de puits de lumière sur mesure par Fenêtres sur Loir, Menuisier d'Excellence MéO à Seiches-sur-le-Loir. Lumière naturelle et performance énergétique.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Confort intérieur", href: "/solutions/confort-interieur" },
+  { label: "Puits de lumière" },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Puits de lumière sur mesure",
+  brand: { "@type": "Brand", name: "MéO" },
+  description,
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <PageProduit
+    eyebrow="Confort intérieur"
+    title="Puits de lumière sur mesure : changez d'ambiance avec Fenêtres sur Loir"
+    heroPlaceholderLabel="Cuisine illuminée par un puits de lumière MéO"
+    heroImage={puitsHero}
+    heroImageAlt="Pièce illuminée par la lumière naturelle grâce à un puits de lumière MéO"
+    heroStyle="wide"
+    lead="Apportez la lumière du jour là où les fenêtres classiques ne suffisent pas — cuisine, couloir, salle de bains."
+  >
+    <p>
+      Chez <strong>Fenêtres sur Loir</strong>, nous croyons que la lumière naturelle est l'un des éléments les plus précieux pour transformer un espace de vie.
+    </p>
+    <p>
+      <strong>Menuisier d'Excellence MéO</strong>, nous installons des <strong>puits de lumière</strong>, solution idéale pour apporter de la luminosité naturelle dans toutes les pièces de votre maison, <strong>même celles où les fenêtres traditionnelles sont difficiles à installer</strong>. Cuisine, salle de bains, couloir : faites entrer la lumière pour changer l'ambiance de votre intérieur.
+    </p>
+
+    <h2>Pourquoi installer un puits de lumière ?</h2>
+    <p>
+      Un puits de lumière est une solution <strong>élégante et pratique</strong> pour illuminer n'importe quelle pièce, y compris les espaces sombres et enclavés comme les <strong>couloirs, escaliers, cuisines ou salles de bains</strong>. En captant la lumière naturelle et en la diffusant harmonieusement dans votre intérieur, nos puits de lumière créent des <strong>ambiances chaleureuses et accueillantes</strong>, tout en réduisant le besoin d'éclairage artificiel.
+    </p>
+
+    <h2>L'alliance de l'esthétisme et de la performance</h2>
+    <figure>
+      <Image
+        src={puitsDetail}
+        alt="Détail bois-aluminium d'une menuiserie MéO haut de gamme"
+        widths={[600, 900, 1200]}
+        sizes="(max-width: 1024px) 100vw, 720px"
+        loading="lazy"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto"
+      />
+    </figure>
+    <p>
+      Les <strong>puits de lumière MéO</strong> sont bien plus que de simples ouvertures dans votre toit. Ils sont conçus avec des <strong>menuiseries haut de gamme</strong>, fabriquées à partir de matériaux biosourcés et durables comme le <strong>bois</strong>, sélectionnés pour leur esthétique et leurs performances thermiques, et l'<strong>aluminium</strong>, façonnable et résistant.
+    </p>
+    <p>
+      Ces matériaux, associés à notre savoir-faire, garantissent une <strong>parfaite isolation, une étanchéité optimale et une longévité incomparable</strong>, tout en préservant la beauté naturelle de votre intérieur.
+    </p>
+
+    <h2>Un choix durable et responsable</h2>
+    <p>
+      En choisissant les puits de lumière MéO, nous avons opté pour des produits <strong>éco-conçus</strong>, respectueux de l'environnement, qui privilégient l'utilisation de matériaux renouvelables comme le bois.
+    </p>
+    <p>
+      Les menuiseries sont conformes à la <strong>Réglementation Environnementale 2020 (RE2020)</strong>, garantissant une empreinte écologique réduite tout en maximisant les performances énergétiques de votre maison.
+    </p>
+
+    <h2>Bénéficiez des aides de l'État</h2>
+    <p>
+      Choisir un professionnel de la menuiserie <strong>certifié RGE Eco Artisan</strong>, c'est aussi profiter des <strong>aides de l'État</strong> à la rénovation énergétique. Rapprochez-vous de nos équipes pour vérifier votre éligibilité.
+    </p>
+  </PageProduit>
+
+  <section class="pb-20">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto flex flex-wrap gap-3 justify-center">
+        <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+          Demander un devis
+        </a>
+        <a href="/partenaires/meo" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
+          Découvrir MéO
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

@@ -1,0 +1,129 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PagePartenaire from "../../components/templates/PagePartenaire.astro";
+import Container from "../../components/ui/Container.astro";
+import meoLogo from "../../assets/meo-logo.png";
+import meoHero from "../../assets/porte-1-boisalu.png";
+import meoGal1 from "../../assets/porte-2-boisalu.png";
+import meoGal2 from "../../assets/porte-6-bois.png";
+import meoGal3 from "../../assets/porte-7-bois.png";
+
+const title = "MéO — Menuisier d'Excellence à Angers | Fenêtres sur Loir";
+const description = "Fenêtres sur Loir, Menuisier d'Excellence MéO près d'Angers. Découvrez les menuiseries bois-alu françaises signées MéO : design, performance et durabilité.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos partenaires", href: "/partenaires" },
+  { label: "MéO" },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Brand",
+    name: "MéO",
+    description: "Fabricant français de menuiseries bois-aluminium haut de gamme",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Menuiseries bois-aluminium MéO",
+    brand: { "@type": "Brand", name: "MéO" },
+    description,
+  },
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <PagePartenaire
+    eyebrow="Nos partenaires"
+    title="Fenêtres sur Loir, votre Menuisier d'Excellence MéO"
+    brand="MéO"
+    brandTagline="Fabricant français de menuiseries bois-aluminium haut de gamme"
+    brandLogo={meoLogo}
+    heroPlaceholderLabel="Fenêtre bois-alu MéO en gros plan ou chantier en cours"
+    heroImage={meoHero}
+    heroImageAlt="Menuiserie bois-aluminium MéO sur mesure installée par Fenêtres sur Loir"
+  >
+    <p>
+      Chez <strong>Fenêtres sur Loir</strong>, la qualité est au cœur de chaque projet. Notre partenariat avec <strong>MéO</strong>, fabricant français de menuiseries <strong>bois-aluminium</strong>, s'inscrit dans une démarche exigeante : <strong>proposer le meilleur du design, de la performance et de la durabilité</strong>.
+    </p>
+    <p>
+      En tant que <strong>Menuisier d'Excellence MéO</strong>, nous bénéficions d'un savoir-faire exclusif et d'un accompagnement technique privilégié pour répondre à toutes vos envies.
+    </p>
+
+    <h2>Un partenariat fondé sur l'excellence française</h2>
+    <p>
+      Depuis sa création, MéO conçoit et fabrique ses menuiseries en France, dans ses <strong>ateliers de la Sarthe</strong>.
+    </p>
+    <p>
+      Leur signature : associer <strong>la chaleur du bois à la résistance de l'aluminium</strong>, pour des fenêtres, portes et baies vitrées à la fois élégantes, performantes et durables.
+    </p>
+    <blockquote>
+      Choisir MéO, c'est opter pour des menuiseries locales, éco-conçues et garanties sur le long terme.
+    </blockquote>
+
+    <h2>Pourquoi choisir les menuiseries MéO ?</h2>
+    <p>Les menuiseries MéO réunissent le meilleur de deux mondes :</p>
+    <ul>
+      <li><strong>Un design sur mesure</strong> — plus de 26 teintes aluminium et 6 essences de bois pour s'adapter à chaque style.</li>
+      <li><strong>Une performance thermique et acoustique exceptionnelle</strong> — conforme aux normes RE2020 et aux exigences BBC Rénovation.</li>
+      <li><strong>Une fabrication éco-responsable</strong> — bois issu de forêts gérées durablement, finitions sans solvants, traçabilité complète.</li>
+      <li><strong>Une sécurité renforcée</strong> — ferrures multipoints, vitrage retardateur d'effraction, motorisations compatibles domotique.</li>
+    </ul>
+
+    <h2>Notre rôle de Menuisier d'Excellence MéO</h2>
+    <p>
+      Être <strong>Menuisier d'Excellence</strong>, c'est bien plus qu'un titre : c'est un engagement envers la qualité, la maîtrise de la pose et la satisfaction client.
+    </p>
+    <p>En tant que partenaire certifié MéO, nous assurons :</p>
+    <ul>
+      <li>Une <strong>pose irréprochable</strong>, conforme aux recommandations techniques de la marque.</li>
+      <li>Des <strong>conseils personnalisés</strong>, selon votre habitat, vos envies et votre budget.</li>
+      <li>Un <strong>service après-vente réactif</strong>, en lien direct avec les équipes MéO.</li>
+      <li>Des <strong>produits garantis</strong>, posés par des artisans formés en continu.</li>
+    </ul>
+
+    <h2>Les produits MéO que nous installons</h2>
+    <ul>
+      <li><a href="/solutions/portes-fenetres/fenetres"><strong>Fenêtres et portes-fenêtres</strong></a> : bois-alu sur mesure, ouvrant caché ou traditionnel.</li>
+      <li><a href="/solutions/portes-fenetres/baies-vitrees"><strong>Baies vitrées et coulissants</strong></a> : grandes ouvertures, lignes épurées et hautes performances énergétiques.</li>
+      <li><a href="/solutions/portes-fenetres/portes-entree"><strong>Portes d'entrée</strong></a> : contemporaines ou classiques, personnalisables dans les moindres détails.</li>
+      <li><a href="/solutions/confort-interieur/verrieres"><strong>Verrières</strong></a> et <a href="/solutions/confort-interieur/murs-de-lumiere"><strong>murs de lumière</strong></a> : structures fines et élégantes.</li>
+    </ul>
+  </PagePartenaire>
+
+  <section class="pb-12">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="mb-4">Des réalisations signées MéO</h2>
+        <div class="grid grid-cols-3 gap-3">
+          {[
+            { src: meoGal1, alt: "Baies vitrées bois-alu MéO à Angers" },
+            { src: meoGal2, alt: "Fenêtres double vitrage MéO à Seiches-sur-le-Loir" },
+            { src: meoGal3, alt: "Porte d'entrée bois MéO sur mesure à Durtal" },
+          ].map((g) => (
+            <Image src={g.src} alt={g.alt} widths={[300, 500]} sizes="(max-width: 768px) 33vw, 220px" loading="lazy" decoding="async" format="webp" quality={78} class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto aspect-[4/3] object-cover" />
+          ))}
+        </div>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)]">
+          <a href="/realisations" class="text-[var(--color-accent)] underline underline-offset-4">Voir toutes nos réalisations →</a>
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-20">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto rounded-2xl bg-[var(--color-tint)] p-8 text-center">
+        <p class="text-[15px] text-[var(--color-muted)] leading-relaxed mb-6">
+          Venez découvrir les gammes MéO dans notre <strong class="text-[var(--color-fg)]">showroom de 300 m² à Seiches-sur-le-Loir</strong>. Nos conseillers vous accompagnent dans la conception de votre projet sur mesure.
+        </p>
+        <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+          Demander un devis gratuit
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

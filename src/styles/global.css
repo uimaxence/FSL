@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #ffffff;
+  --color-fg: #1a1b1f;
+  --color-muted: #6b6b6b;
+  --color-subtle: #fafafa;
+  --color-border: #e2e2e2;
+  --color-accent: #6CB1E6;
+  --color-accent-hover: #4f9bd6;
+  --color-tint: #e3f4ff;
+  --color-tint-2: #e4ebf3;
+  --color-logo-frame: #2a2d34;
+
+  --font-display: "Palatino", "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+  --font-body: "Poppins", system-ui, -apple-system, sans-serif;
+
+  --container-narrow: 64rem;
+  --container-default: 80rem;
+  --container-wide: 90rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-fg);
+    line-height: 1.2;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  h1 { font-size: clamp(1.875rem, 3.6vw, 2.375rem); font-weight: 400; line-height: 1.2; }
+  h2 { font-size: clamp(1.625rem, 3vw, 2rem); }
+  h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+  h4 { font-size: 1.125rem; }
+
+  p { color: var(--color-fg); }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+
+  img, svg, video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: #fff;
+  }
+}
+
+@layer utilities {
+  .text-muted { color: var(--color-muted); }
+  .text-accent { color: var(--color-accent); }
+  .bg-tint { background: var(--color-tint); }
+  .bg-tint-2 { background: var(--color-tint-2); }
+  .bg-subtle { background: var(--color-subtle); }
+
+  .section {
+    padding-block: clamp(4rem, 8vw, 7rem);
+  }
+
+  .section-tight {
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .bg-dots {
+    background-color: #f5f6f8;
+    background-image: radial-gradient(circle, #c9ccd1 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+}
+
+/* Typographie longue forme — utilisée sur les pages éditoriales (notre histoire,
+   pages produits, partenaires, articles de blog). Styles globaux pour qu'ils
+   s'appliquent sur n'importe quelle page qui pose la classe `.prose-fsl`. */
+.prose-fsl {
+  font-size: 16px;
+}
+.prose-fsl h2 {
+  margin-top: 3.5rem;
+  margin-bottom: 1.25rem;
+  font-size: clamp(1.5rem, 2.4vw, 1.875rem);
+}
+.prose-fsl h2:first-child {
+  margin-top: 0;
+}
+.prose-fsl h3 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: var(--color-fg);
+}
+.prose-fsl p {
+  margin-block: 1.1rem;
+  color: var(--color-muted);
+  line-height: 1.75;
+}
+.prose-fsl ul {
+  list-style: none;
+  padding-left: 0;
+  margin-block: 1.25rem;
+  color: var(--color-muted);
+}
+.prose-fsl ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-block: 0.55rem;
+  line-height: 1.7;
+}
+.prose-fsl ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--color-accent);
+}
+.prose-fsl strong {
+  color: var(--color-fg);
+  font-weight: 600;
+}
+.prose-fsl a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(108, 177, 230, 0.4);
+  transition: text-decoration-color 0.2s;
+}
+.prose-fsl a:hover {
+  text-decoration-color: var(--color-accent);
+}
+.prose-fsl blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding: 0.75rem 0 0.75rem 1.25rem;
+  margin-block: 2rem;
+  color: var(--color-fg);
+  font-style: italic;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+}
+.prose-fsl .placeholder {
+  margin-block: 2rem;
+}
+.prose-fsl figure {
+  margin-block: 2rem;
+}
+
+/* Header — états transparent (hero) vs solide (scroll / autres pages) */
+header[data-header][data-header-state="transparent"] {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+header[data-header][data-header-state="solid"] {
+  background-color: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+}
+
+/* === MODE TRANSPARENT : nav blanche === */
+/* Liens de navigation principaux */
+header[data-header][data-header-state="transparent"] nav a {
+  color: #fff;
+}
+header[data-header][data-header-state="transparent"] nav a:hover {
+  color: var(--color-accent);
+}
+/* Bouton burger mobile */
+header[data-header][data-header-state="transparent"] [data-mobile-toggle] {
+  color: #fff;
+}
+header[data-header][data-header-state="transparent"] [data-mobile-toggle]:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* === Drop-downs / mega-menu en mode transparent === */
+header[data-header][data-header-state="transparent"] [data-menu-panel] {
+  background-color: rgba(20, 22, 26, 0.85) !important;
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+/* Titre des colonnes du mega-menu (lien vers hub) */
+header[data-header][data-header-state="transparent"] [data-menu-panel] a.block {
+  color: #fff;
+}
+header[data-header][data-header-state="transparent"] [data-menu-panel] a.block:hover {
+  color: var(--color-accent);
+}
+/* Sous-liens des drop-downs (liste de sous-pages) */
+header[data-header][data-header-state="transparent"] [data-menu-panel] ul li a {
+  color: rgba(255, 255, 255, 0.7);
+}
+header[data-header][data-header-state="transparent"] [data-menu-panel] ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+/* Bordure séparatrice sous le titre de colonne */
+header[data-header][data-header-state="transparent"] [data-menu-panel] .border-b {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* TopBar — suit le même état que le header */
+body:has(header[data-header][data-header-state="transparent"]) [data-topbar] {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+}
+body:has(header[data-header][data-header-state="transparent"]) [data-topbar] .font-medium,
+body:has(header[data-header][data-header-state="transparent"]) [data-topbar] a {
+  color: #fff !important;
+}
+body:has(header[data-header][data-header-state="transparent"]) [data-topbar] [data-topbar-dot] + span,
+body:has(header[data-header][data-header-state="transparent"]) [data-topbar] span:not(.font-medium):not([data-topbar-dot]) {
+  color: rgba(255, 255, 255, 0.75);
+}

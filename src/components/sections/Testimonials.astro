@@ -1,0 +1,102 @@
+---
+import { Image } from "astro:assets";
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+import testimonyJulien from "../../assets/testimony-julien.png";
+import testimonyValerie from "../../assets/testimony-valerie.png";
+import testimonyGuy from "../../assets/testimony-guy.png";
+import testimonyLaurent from "../../assets/testimony-laurent.png";
+
+const leftColumn = [
+  {
+    name: "Julien D.",
+    location: "Seiches, 49400",
+    quote:
+      "Une belle équipe, à l'écoute et très professionnelle. Du premier rendez-vous à la pose tout est parfait. N'hésitez pas si vous cherchez une entreprise de qualité pour la réalisation de vos ouvertures.",
+    image: testimonyJulien,
+  },
+  {
+    name: "Guy G.",
+    location: "Angers, 49800",
+    quote:
+      "En 2021, j'ai lancé un beau projet de rénovation de 10 baies vitrées avec volet roulant motorisé et 2 portes d'entrée — l'une côté jardin, l'autre côté rue avec sa marquise — le tout en alu. Le choix du prestataire s'est porté rapidement vers Fenêtres sur Loir avec des critères de sérieux, prix et qualité pour les produits proposés. Le résultat est parfait.",
+    image: testimonyGuy,
+  },
+];
+
+const rightColumn = [
+  {
+    name: "Valérie G.",
+    location: "Angers, 49800",
+    quote:
+      "Vous avez besoin de changer votre porte d'entrée et/ou vos fenêtres, sans aucune hésitation faites appel à Fenêtres sur Loir ! Rosa sera votre conseillère, elle sera à votre écoute et vous donnera des super idées.",
+    image: testimonyValerie,
+  },
+  {
+    name: "Laurent S.",
+    location: "La Flèche, 49400",
+    quote:
+      "Nous avons changé 9 fenêtres, 2 portes-fenêtres et une baie vitrée dans notre maison. Excellents conseils et excellents produits. Une équipe de monteurs très pros qui nous a laissé un chantier très propre. Encore merci pour cette belle réalisation.",
+    image: testimonyLaurent,
+  },
+];
+
+const columns = [
+  { items: leftColumn, offset: false },
+  { items: rightColumn, offset: true },
+];
+---
+
+<section class="section bg-white">
+  <Container width="wide">
+    <SectionHeading
+      eyebrow="Ils nous ont fait confiance"
+      title="Ce que nos clients <br/>en disent"
+      align="center"
+      class="mb-14"
+    />
+
+    <div class="grid md:grid-cols-2 gap-6 md:gap-x-8 lg:gap-x-10 items-start">
+      {
+        columns.map((col) => (
+          <div class:list={["flex flex-col gap-6", col.offset && "md:mt-12 lg:mt-20"]}>
+            {col.items.map((t) => (
+              <article class="bg-[var(--color-tint)] rounded-2xl p-5 sm:p-6 lg:p-7 flex flex-col">
+                <div class="flex gap-4 sm:gap-5 lg:gap-6 flex-1">
+                  <p class="flex-1 min-w-0 text-[14px] leading-relaxed text-[var(--color-fg)]">
+                    {t.quote}
+                  </p>
+                  <div class="shrink-0 w-[38%] sm:w-[42%] self-stretch">
+                    <Image
+                      src={t.image}
+                      alt={`Réalisation chez ${t.name}`}
+                      widths={[320, 640]}
+                      sizes="(min-width: 1024px) 280px, (min-width: 768px) 220px, 140px"
+                      loading="lazy"
+                      decoding="async"
+                      format="webp"
+                      quality={82}
+                      class="rounded-lg w-full h-full object-cover min-h-[140px]"
+                    />
+                  </div>
+                </div>
+                <div class="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-[var(--color-accent)]/15 flex items-center gap-3 sm:gap-4">
+                  <div class="flex text-amber-400" aria-label="5 sur 5 étoiles">
+                    {Array.from({ length: 5 }).map(() => (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p class="text-sm font-semibold text-[var(--color-fg)]">{t.name}</p>
+                  <p class="text-xs text-[var(--color-muted)] ml-auto">{t.location}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>

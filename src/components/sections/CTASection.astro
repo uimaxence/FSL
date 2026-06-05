@@ -1,0 +1,93 @@
+---
+import Container from "../ui/Container.astro";
+
+type Variant = "tint" | "dark" | "white";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  text?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  variant?: Variant;
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title = "Parlons de votre projet",
+  text = "Devis gratuit, visite du showroom à Seiches-sur-le-Loir, conseil personnalisé : nos équipes vous accompagnent du premier croquis à la pose finale.",
+  ctaLabel = "Demander un devis gratuit",
+  ctaHref = "/contact",
+  secondaryLabel,
+  secondaryHref,
+  variant = "tint",
+  class: className = "",
+} = Astro.props;
+
+const styles: Record<Variant, { bg: string; fg: string; muted: string; ctaBg: string; ctaText: string; secondary: string }> = {
+  tint: {
+    bg: "bg-[var(--color-tint)]",
+    fg: "text-[var(--color-fg)]",
+    muted: "text-[var(--color-muted)]",
+    ctaBg: "background: var(--color-accent);",
+    ctaText: "text-white",
+    secondary: "border border-[var(--color-fg)] text-[var(--color-fg)] hover:bg-[var(--color-fg)] hover:text-white",
+  },
+  dark: {
+    bg: "bg-[var(--color-fg)]",
+    fg: "text-white",
+    muted: "text-white/80",
+    ctaBg: "background: var(--color-accent);",
+    ctaText: "text-white",
+    secondary: "border border-white/30 text-white hover:bg-white hover:text-[var(--color-fg)]",
+  },
+  white: {
+    bg: "bg-white ring-1 ring-[var(--color-border)]",
+    fg: "text-[var(--color-fg)]",
+    muted: "text-[var(--color-muted)]",
+    ctaBg: "background: var(--color-accent);",
+    ctaText: "text-white",
+    secondary: "border border-[var(--color-fg)] text-[var(--color-fg)] hover:bg-[var(--color-fg)] hover:text-white",
+  },
+};
+
+const s = styles[variant];
+---
+
+<section class:list={["section-tight", className]}>
+  <Container width="default">
+    <div class:list={["rounded-2xl p-8 sm:p-12 text-center", s.bg]}>
+      {eyebrow && (
+        <p class:list={["mb-3 text-xs font-semibold tracking-[0.18em] uppercase", variant === "dark" ? "text-[var(--color-accent)]" : "text-[var(--color-accent)]"]}>
+          {eyebrow}
+        </p>
+      )}
+      <h2 class:list={["max-w-2xl mx-auto text-balance", s.fg]}>{title}</h2>
+      <p class:list={["mt-4 max-w-2xl mx-auto text-[15px] leading-relaxed", s.muted]}>
+        {text}
+      </p>
+      <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href={ctaHref}
+          class:list={["inline-flex items-center rounded-full px-7 py-3 text-[14px] font-medium shadow-sm transition-colors", s.ctaText]}
+          style={s.ctaBg}
+          onmouseover="this.style.background='var(--color-accent-hover)'"
+          onmouseout="this.style.background='var(--color-accent)'"
+        >
+          {ctaLabel}
+        </a>
+        {secondaryLabel && secondaryHref && (
+          <a
+            href={secondaryHref}
+            class:list={["inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium transition-colors", s.secondary]}
+          >
+            {secondaryLabel}
+          </a>
+        )}
+      </div>
+    </div>
+  </Container>
+</section>

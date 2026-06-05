@@ -1,0 +1,145 @@
+---
+import { Image } from "astro:assets";
+
+import h1 from "../../assets/histoire-1.jpg";
+import h2 from "../../assets/histoire-2.jpg";
+import h3 from "../../assets/histoire-3.jpg";
+import h4 from "../../assets/histoire-4.jpg";
+import h5 from "../../assets/histoire-5.jpg";
+import h6 from "../../assets/histoire-6.jpg";
+import h7 from "../../assets/histoire-7.jpg";
+import h8 from "../../assets/histoire-8.png";
+
+/**
+ * Photos disposées en bandes verticales le long du viewport.
+ * - left : position horizontale en % (centré sur cette valeur)
+ * - width : largeur en % du viewport
+ * - speed : facteur parallax (1 = scroll normal, >1 plus rapide, <1 plus lent)
+ * - delay : décalage initial (en % de la hauteur viewport — 0 = en bas, 100 = très bas)
+ */
+const photos = [
+  { src: h1, alt: "Pose menuiserie façade pierre par Fenêtres sur Loir", left: 8,  width: 23, speed: 1.0,  delay: 0 },
+  { src: h5, alt: "Portrait artisan Fenêtres sur Loir", left: 22, width: 20, speed: 1.25, delay: 14 },
+  { src: h2, alt: "Atelier Fenêtres sur Loir", left: 38, width: 22, speed: 0.9,  delay: 28 },
+  { src: h3, alt: "Équipe Fenêtres sur Loir au bureau", left: 55, width: 22, speed: 1.1,  delay: 6 },
+  { src: h6, alt: "Pose technique menuiserie Fenêtres sur Loir", left: 70, width: 21, speed: 0.95, delay: 36 },
+  { src: h4, alt: "Showroom Seiches-sur-le-Loir Fenêtres sur Loir", left: 86, width: 23, speed: 1.2,  delay: 18 },
+  { src: h7, alt: "Conseillère Fenêtres sur Loir en showroom", left: 14, width: 20, speed: 1.05, delay: 46 },
+  { src: h8, alt: "Pose alu façade par Fenêtres sur Loir", left: 48, width: 19, speed: 1.35, delay: 56 },
+];
+---
+
+<section
+  class="relative bg-white overflow-hidden"
+  data-parallax-section
+  aria-labelledby="histoire-title"
+>
+  <!-- Conteneur haut pour driver le scroll. -->
+  <div class="relative" style="height: 130vh;">
+    <!-- Stage sticky : épinglé pendant le travel -->
+    <div class="sticky top-0 h-screen overflow-hidden">
+      <!-- Photos absolues, animées par JS -->
+      {
+        photos.map((p, i) => (
+          <figure
+            class="absolute will-change-transform"
+            style={`left:${p.left}%;top:0;width:${p.width}%;transform:translate(-50%, 100vh);`}
+            data-parallax-photo
+            data-speed={p.speed}
+            data-delay={p.delay}
+          >
+            <Image
+              src={p.src}
+              alt={p.alt}
+              widths={[300, 500, 800]}
+              sizes="25vw"
+              loading={i < 3 ? "eager" : "lazy"}
+              decoding="async"
+              format="webp"
+              quality={78}
+              class="w-full h-auto block rounded-lg shadow-xl"
+            />
+          </figure>
+        ))
+      }
+
+      <!-- Texte central, sans card -->
+      <div class="absolute inset-0 z-10 flex items-center justify-center px-6 pointer-events-none">
+        <div class="text-center pointer-events-auto">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)]">
+            Depuis 2003
+          </p>
+          <h2
+            id="histoire-title"
+            class="mt-3 font-display text-[clamp(2rem,5vw,3.75rem)] leading-tight text-[var(--color-fg)] drop-shadow-[0_1px_8px_rgba(255,255,255,0.6)]"
+          >
+            Une histoire qui dure depuis<br />
+            <strong class="font-bold italic text-[var(--color-accent)]">plus de 20 ans</strong>
+          </h2>
+          <a
+            href="/entreprise/notre-histoire"
+            class="mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-[var(--color-fg)] hover:text-[var(--color-accent)] transition-colors"
+          >
+            Découvrir notre histoire
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Parallax bottom→top : photos partent du bas, remontent vers le haut.
+  const section = document.querySelector<HTMLElement>("[data-parallax-section]");
+  if (section && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const photos = Array.from(section.querySelectorAll<HTMLElement>("[data-parallax-photo]"));
+    let ticking = false;
+    let visible = false;
+
+    const update = () => {
+      ticking = false;
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = section.offsetHeight + vh;
+      const passed = vh - rect.top;
+      const baseProgress = Math.max(0, Math.min(1, passed / total));
+
+      photos.forEach((el) => {
+        const speed = Number(el.dataset.speed ?? 1);
+        const delay = Number(el.dataset.delay ?? 0) / 100;
+
+        // adjustedProgress : avant `delay`, l'image reste tout en bas ; après, elle remonte.
+        const adj = Math.max(0, Math.min(1, (baseProgress - delay) / (1 - delay)));
+        // Path : translateY de 100vh (en bas, hors viewport) à -120vh (sorti par le haut).
+        // Multiplié par speed pour variation parallax.
+        const offsetVh = 100 - adj * 220 * speed;
+        el.style.transform = `translate(-50%, ${offsetVh.toFixed(2)}vh)`;
+      });
+    };
+
+    const onScroll = () => {
+      if (!visible || ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          visible = entry.isIntersecting;
+          if (visible) update();
+        }
+      },
+      { rootMargin: "50% 0px 50% 0px" }
+    );
+    io.observe(section);
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+</script>

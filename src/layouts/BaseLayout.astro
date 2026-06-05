@@ -1,0 +1,94 @@
+---
+import "../styles/global.css";
+import TopBar from "../components/layout/TopBar.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import Breadcrumb from "../components/ui/Breadcrumb.astro";
+import SchemaJsonLd from "../components/ui/SchemaJsonLd.astro";
+import DevisPopup from "../components/sections/DevisPopup.astro";
+import MeoConfiguratorFAB from "../components/sections/MeoConfiguratorFAB.astro";
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  breadcrumb?: BreadcrumbItem[];
+  schemaJsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const {
+  title = "Fenêtres-sur-Loir — Menuiseries sur mesure près d'Angers",
+  description = "Entreprise familiale de menuiserie depuis +20 ans. Fenêtres, portes, verrières, carports sur mesure. Pose certifiée RGE. Showroom 300m² à Seiches-sur-Loir.",
+  ogImage = "/og.jpg",
+  breadcrumb,
+  schemaJsonLd,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+
+const pathname = Astro.url.pathname;
+const showMeoFab =
+  pathname.startsWith("/solutions/portes-fenetres") ||
+  pathname.startsWith("/partenaires/meo");
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="image/png" href="/logo-FSL.png" />
+    <link rel="apple-touch-icon" href="/logo-FSL.png" />
+
+    {schemaJsonLd && <SchemaJsonLd data={schemaJsonLd} />}
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-[var(--color-fg)] focus:rounded-md focus:ring-2 focus:ring-[var(--color-accent)]"
+    >
+      Aller au contenu
+    </a>
+    <TopBar />
+    <Header />
+    {
+      breadcrumb && breadcrumb.length > 0 && (
+        <div class="border-b border-[var(--color-border)] bg-white">
+          <div class="mx-auto w-full max-w-[90rem] px-5 sm:px-8 py-3">
+            <Breadcrumb items={breadcrumb} />
+          </div>
+        </div>
+      )
+    }
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <DevisPopup />
+    {showMeoFab && <MeoConfiguratorFAB />}
+  </body>
+</html>

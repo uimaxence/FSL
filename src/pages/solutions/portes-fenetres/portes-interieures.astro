@@ -1,0 +1,262 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/ui/Container.astro";
+import CTASection from "../../../components/sections/CTASection.astro";
+import CertificationsBanner from "../../../components/sections/CertificationsBanner.astro";
+
+import interieurHero from "../../../assets/porte-6-bois.png";
+import porteVitree from "../../../assets/verriere-2.png";
+import accPoignee from "../../../assets/porte-7-bois.png";
+import accBouton from "../../../assets/porte-6-bois.png";
+import accCharniere from "../../../assets/porte-2-boisalu.png";
+import accButoir from "../../../assets/porte-3-PVC.png";
+
+const title = "Portes intérieures sur mesure | Faites le choix de Fenêtres sur Loir près d'Angers";
+const description = "Quelles portes intérieures choisir ? De nombreuses possibilités, à adapter à votre style et à l'architecture de votre maison avec Fenêtres sur Loir : modernes, classiques, vitrées, accessoires.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres" },
+  { label: "Portes intérieures" },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Portes intérieures sur mesure",
+  description,
+  brand: { "@type": "Organization", name: "Fenêtres sur Loir" },
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <!-- Hero -->
+  <section class="section-tight">
+    <Container width="wide">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div class="lg:col-span-6">
+          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+            Portes & Fenêtres → Portes intérieures
+          </p>
+          <h1 class="text-balance">
+            Votre expert en menuiserie pour vos <strong class="font-bold">portes intérieures</strong> près d'Angers
+          </h1>
+          <p class="mt-5 text-[15px] leading-relaxed text-[var(--color-muted)]">
+            À <strong class="text-[var(--color-fg)]">Fenêtres sur Loir</strong>, nous sommes spécialisés dans la vente et l'installation de menuiseries intérieures et extérieures. Nous travaillons avec de grandes marques françaises, reconnues pour leur excellence, pour offrir à nos clients un large choix de coloris, d'accessoires et de finitions.
+          </p>
+          <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+            Que vous cherchiez une porte moderne, classique ou sur mesure, notre équipe d'experts saura répondre à vos besoins spécifiques avec professionnalisme.
+          </p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+              Demander un devis
+            </a>
+            <a href="/entreprise/notre-histoire#showroom" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
+              Visiter le showroom
+            </a>
+          </div>
+        </div>
+        <div class="lg:col-span-6">
+          <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+            <Image
+              src={interieurHero}
+              alt="Porte intérieure vitrée moderne séparant cuisine et salon installée par Fenêtres sur Loir"
+              widths={[500, 800, 1100]}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              loading="eager"
+              decoding="async"
+              format="webp"
+              quality={80}
+              class="w-full h-auto aspect-[4/3] object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <CertificationsBanner />
+
+  <!-- Adaptées à vos besoins -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto">
+        <h2>Des portes intérieures adaptées à vos besoins pour un maximum de confort</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Vous recherchez des portes modernes au design épuré ? Une porte classique qui apporte une touche d'élégance ? Une porte sur mesure adaptée à des dimensions spécifiques ? Notre équipe d'experts vous accompagne à chaque étape.
+        </p>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Nous avons tout type de modèle qui pourra convenir à votre habitation, et nous respectons également les <strong class="text-[var(--color-fg)]">cahiers des charges exigeants des Bâtiments de France</strong>.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto mt-10 grid sm:grid-cols-3 gap-5">
+        <div class="bg-white rounded-xl p-5 ring-1 ring-[var(--color-border)]">
+          <p class="text-2xl">🌡️</p>
+          <h3 class="mt-3 text-base">Isolation thermique</h3>
+          <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">
+            Optimisez l'isolation entre les pièces, réduisez les pertes de chaleur. Joints d'étanchéité appropriés pour préserver une température agréable toute l'année.
+          </p>
+        </div>
+        <div class="bg-white rounded-xl p-5 ring-1 ring-[var(--color-border)]">
+          <p class="text-2xl">🔇</p>
+          <h3 class="mt-3 text-base">Performance acoustique</h3>
+          <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">
+            Le bois massif et d'autres matériaux performants réduisent le bruit entre les pièces. Idéal pour les bureaux à domicile, chambres et salles de jeux.
+          </p>
+        </div>
+        <div class="bg-white rounded-xl p-5 ring-1 ring-[var(--color-border)]">
+          <p class="text-2xl">⚡</p>
+          <h3 class="mt-3 text-base">Économies d'énergie</h3>
+          <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">
+            Une étape stratégique vers une maison plus écoénergétique et confortable. Investir dans des portes de qualité est aussi une décision technique.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Vitrée pour luminosité -->
+  <section class="section-tight">
+    <Container width="default">
+      <div class="grid md:grid-cols-2 gap-10 items-center max-w-5xl mx-auto">
+        <div>
+          <Image
+            src={porteVitree}
+            alt="Porte intérieure vitrée style atelier — verre clair et structure fine"
+            widths={[400, 600, 800]}
+            sizes="(max-width: 768px) 100vw, 40vw"
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={80}
+            class="w-full h-auto aspect-[4/3] object-cover rounded-2xl ring-1 ring-[var(--color-border)]"
+          />
+        </div>
+        <div>
+          <h2>La porte intérieure vitrée pour ajouter luminosité et modernité</h2>
+          <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+            Et pourquoi pas faire le choix d'une porte intérieure vitrée ? Ces portes <strong class="text-[var(--color-fg)]">maximisent la lumière naturelle</strong>, illuminant vos espaces intérieurs et créant une atmosphère ouverte et accueillante.
+          </p>
+          <p class="mt-3 text-[15px] text-[var(--color-muted)] leading-relaxed">
+            Esthétiquement, les portes vitrées apportent une touche moderne et élégante, tout en assurant une continuité visuelle entre les pièces. Elles préservent une certaine intimité tout en permettant un lien visuel — avantage intéressant pour bureaux à domicile ou salles de jeux.
+          </p>
+          <p class="mt-3 text-[15px] text-[var(--color-muted)] leading-relaxed">
+            Avec des options de vitrage spécifiques, elles améliorent également l'acoustique en réduisant le bruit entre les pièces.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Accessoires -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto">
+        <h2>Quelle porte et accessoires choisir ?</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Les portes intérieures, bien plus qu'un simple élément fonctionnel, sont de véritables atouts décoratifs. Notre sélection variée d'accessoires offre des possibilités de personnalisation infinies.
+        </p>
+      </div>
+
+      <div class="max-w-5xl mx-auto mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="bg-white rounded-xl ring-1 ring-[var(--color-border)] overflow-hidden">
+          <Image
+            src={accPoignee}
+            alt="Poignée de porte design acier brossé"
+            widths={[300, 500]}
+            sizes="(max-width: 768px) 50vw, 240px"
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={80}
+            class="w-full h-auto aspect-square object-cover"
+          />
+          <div class="p-4">
+            <p class="text-sm font-semibold">Poignées design</p>
+            <p class="mt-1 text-xs text-[var(--color-muted)]">Acier brossé contemporain</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl ring-1 ring-[var(--color-border)] overflow-hidden">
+          <Image
+            src={accBouton}
+            alt="Bouton de porte discret laiton"
+            widths={[300, 500]}
+            sizes="(max-width: 768px) 50vw, 240px"
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={80}
+            class="w-full h-auto aspect-square object-cover"
+          />
+          <div class="p-4">
+            <p class="text-sm font-semibold">Boutons discrets</p>
+            <p class="mt-1 text-xs text-[var(--color-muted)]">Laiton poli classique</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl ring-1 ring-[var(--color-border)] overflow-hidden">
+          <Image
+            src={accCharniere}
+            alt="Charnière invisible pour porte affleurante"
+            widths={[300, 500]}
+            sizes="(max-width: 768px) 50vw, 240px"
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={80}
+            class="w-full h-auto aspect-square object-cover"
+          />
+          <div class="p-4">
+            <p class="text-sm font-semibold">Charnières invisibles</p>
+            <p class="mt-1 text-xs text-[var(--color-muted)]">Pour portes affleurantes</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl ring-1 ring-[var(--color-border)] overflow-hidden">
+          <Image
+            src={accButoir}
+            alt="Butoir de porte mural protection"
+            widths={[300, 500]}
+            sizes="(max-width: 768px) 50vw, 240px"
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={80}
+            class="w-full h-auto aspect-square object-cover"
+          />
+          <div class="p-4">
+            <p class="text-sm font-semibold">Butoirs muraux</p>
+            <p class="mt-1 text-xs text-[var(--color-muted)]">Protection des murs</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center mt-8 text-[15px] text-[var(--color-muted)] max-w-2xl mx-auto">
+        Avec Fenêtres sur Loir, transformez vos portes intérieures en véritables <strong class="text-[var(--color-fg)]">éléments de design</strong>, parfaitement adaptés à votre style de vie et à votre décoration.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Découvrir aussi -->
+  <section class="section-tight">
+    <Container width="default">
+      <p class="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)] mb-4">
+        Découvrir aussi
+      </p>
+      <ul class="flex flex-wrap items-center justify-center gap-3">
+        <li><a href="/solutions/portes-fenetres/portes-entree" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Porte d'entrée</a></li>
+        <li><a href="/solutions/portes-fenetres/porte-fenetre" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Porte-fenêtre</a></li>
+        <li><a href="/solutions/portes-fenetres/porte-garage" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Porte de garage</a></li>
+        <li><a href="/solutions/confort-interieur/verrieres" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Verrières</a></li>
+      </ul>
+    </Container>
+  </section>
+
+  <CTASection
+    title="Pour tous vos projets, nos équipes sont à votre écoute"
+    text="Faisons ensemble de votre intérieur un lieu de réception confortable et élégant. Devis gratuit et conseil personnalisé en showroom."
+    secondaryLabel="Visiter le showroom"
+    secondaryHref="/entreprise/notre-histoire#showroom"
+  />
+</BaseLayout>

@@ -1,0 +1,201 @@
+---
+const eyebrow = "En images";
+const title = "Découvrez Fenêtres-sur-Loir en vidéo";
+const subtitle =
+  "Une visite guidée de notre showroom de 300 m² et de notre savoir-faire artisanal.";
+
+const videoId = "SNG88w6W3XA";
+const posterSrc = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+const posterFallback = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+const embedSrc = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+---
+
+<section
+  class="relative bg-white"
+  data-cinema
+  aria-labelledby="cinema-title"
+>
+  <!-- tall outer wrapper drives scroll progress (180vh = 80vh d'animation utile) -->
+  <div class="relative" style="height: 180vh;">
+    <!-- sticky stage pins through the scroll travel. -->
+    <div class="sticky top-0 h-screen overflow-hidden">
+      <!-- darkening background (covers full viewport including under header) -->
+      <div
+        class="absolute inset-0 bg-black"
+        style="opacity: 0;"
+        data-cinema-bg
+        aria-hidden="true"
+      ></div>
+
+      <!-- caption -->
+      <div
+        class="absolute top-[14vh] left-0 right-0 z-20 text-center px-6 transition-opacity"
+        data-cinema-caption
+      >
+        <p
+          class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase"
+          style="color: var(--color-accent);"
+          data-cinema-eyebrow
+        >
+          {eyebrow}
+        </p>
+        <h2 id="cinema-title" class="max-w-3xl mx-auto" data-cinema-title>
+          {title}
+        </h2>
+        {subtitle && (
+          <p
+            class="mt-4 max-w-xl mx-auto text-base text-[var(--color-muted)]"
+            data-cinema-subtitle
+          >
+            {subtitle}
+          </p>
+        )}
+      </div>
+
+      <!-- video frame, scales via transform.
+           pt-[80px] sm:pt-[116px] compensates the sticky header so the video
+           is visually centered in the area below the navigation. -->
+      <div class="absolute inset-0 pt-[80px] sm:pt-[116px] flex items-center justify-center">
+        <div
+          class="relative w-[78vw] max-w-[1180px] aspect-video rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5 will-change-transform bg-black"
+          style="transform: scale(0.55); transform-origin: center;"
+          data-cinema-frame
+          data-youtube-id={videoId}
+          data-youtube-embed={embedSrc}
+        >
+          <img
+            src={posterSrc}
+            onerror={`this.onerror=null;this.src='${posterFallback}';`}
+            alt="Aperçu de la vidéo de présentation Fenêtres sur Loir — showroom 300 m² à Seiches-sur-le-Loir"
+            loading="lazy"
+            decoding="async"
+            class="absolute inset-0 h-full w-full object-cover"
+            data-yt-poster
+          />
+          <div class="absolute inset-0 bg-black/20 transition-opacity" data-yt-overlay></div>
+          <button
+            type="button"
+            class="absolute inset-0 flex items-center justify-center group"
+            aria-label="Lire la vidéo de présentation Fenêtres sur Loir"
+            data-yt-play
+          >
+            <span
+              class="flex items-center justify-center w-20 h-20 rounded-full bg-white shadow-xl ring-1 ring-black/5 transition-transform group-hover:scale-110"
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                style="color: var(--color-accent);"
+                class="translate-x-0.5"
+                aria-hidden="true"
+              >
+                <polygon points="6 4 20 12 6 20 6 4" />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const sections = document.querySelectorAll<HTMLElement>("[data-cinema]");
+
+  sections.forEach((section) => {
+    const bg = section.querySelector<HTMLElement>("[data-cinema-bg]");
+    const frame = section.querySelector<HTMLElement>("[data-cinema-frame]");
+    const caption = section.querySelector<HTMLElement>("[data-cinema-caption]");
+    if (!bg || !frame || !caption) return;
+
+    // Tunables
+    const SCALE_MIN = 0.55; // resting size (in & out)
+    const SCALE_MAX = 1.0;  // peak size (fills viewport)
+    const BG_PEAK = 0.96;   // peak darkness opacity (close to black-out)
+
+    let ticking = false;
+    let visible = false;
+
+    const update = () => {
+      ticking = false;
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // Scrollable range = section height - viewport height (sticky travel)
+      const travel = section.offsetHeight - vh;
+      if (travel <= 0) return;
+
+      // Raw progress 0..1 across the sticky travel
+      const raw = -rect.top / travel;
+      const p = Math.max(0, Math.min(1, raw));
+
+      // Triangle wave: 0 -> 1 at p=0.5 -> 0 at p=1
+      const t = p < 0.5 ? p * 2 : (1 - p) * 2;
+      // Ease-in-out cubic for a softer feel
+      const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+      const scale = SCALE_MIN + (SCALE_MAX - SCALE_MIN) * e;
+      frame.style.transform = `scale(${scale.toFixed(4)})`;
+      bg.style.opacity = (e * BG_PEAK).toFixed(4);
+      caption.style.opacity = (1 - e).toFixed(4);
+    };
+
+    const onScroll = () => {
+      if (!visible || ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+
+    // Only listen when the section is roughly on-screen
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          visible = entry.isIntersecting;
+          if (visible) update();
+        }
+      },
+      { rootMargin: "50% 0px 50% 0px" }
+    );
+    io.observe(section);
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+
+    // YouTube "lite" loader : ne charge l'iframe qu'au clic du bouton play.
+    const playBtn = frame.querySelector<HTMLButtonElement>("[data-yt-play]");
+    const poster = frame.querySelector<HTMLImageElement>("[data-yt-poster]");
+    const overlay = frame.querySelector<HTMLElement>("[data-yt-overlay]");
+    const embedSrc = frame.getAttribute("data-youtube-embed");
+
+    // Préconnexion légère vers YouTube quand le user hover le bouton (anticipation)
+    const preconnect = () => {
+      if ((preconnect as any).done) return;
+      (preconnect as any).done = true;
+      ["https://www.youtube-nocookie.com", "https://i.ytimg.com", "https://s.ytimg.com"].forEach((href) => {
+        const link = document.createElement("link");
+        link.rel = "preconnect";
+        link.href = href;
+        document.head.appendChild(link);
+      });
+    };
+    playBtn?.addEventListener("mouseenter", preconnect, { once: true });
+    playBtn?.addEventListener("focus", preconnect, { once: true });
+
+    playBtn?.addEventListener("click", () => {
+      if (!embedSrc) return;
+      const iframe = document.createElement("iframe");
+      iframe.src = embedSrc;
+      iframe.title = "Vidéo de présentation Fenêtres sur Loir";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      iframe.loading = "lazy";
+      iframe.className = "absolute inset-0 w-full h-full border-0";
+      frame.appendChild(iframe);
+      poster?.remove();
+      overlay?.remove();
+      playBtn.remove();
+    });
+  });
+</script>

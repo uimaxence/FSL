@@ -1,0 +1,21 @@
+---
+type Width = "narrow" | "default" | "wide";
+
+interface Props {
+  width?: Width;
+  as?: string;
+  class?: string;
+}
+
+const { width = "default", as: Tag = "div", class: className = "" } = Astro.props;
+
+const maxWidthClass = {
+  narrow: "max-w-[64rem]",
+  default: "max-w-[80rem]",
+  wide: "max-w-[90rem]",
+}[width];
+---
+
+<Tag class={`mx-auto w-full px-5 sm:px-8 ${maxWidthClass} ${className}`}>
+  <slot />
+</Tag>

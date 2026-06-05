@@ -1,0 +1,138 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PageProduit from "../../../components/templates/PageProduit.astro";
+import Container from "../../../components/ui/Container.astro";
+import murLumiere1 from "../../../assets/murdelumiere-1.png";
+import murLumiere2 from "../../../assets/murdelumiere-2.png";
+import echantillonAlu from "../../../assets/verriere-boisalu-1.png";
+import echantillonBois from "../../../assets/verriere-boisalu-2.png";
+
+const title = "Murs de lumière sur mesure | Fenêtres sur Loir — Baies vitrées MéO près d'Angers";
+const description = "Transformez votre pièce à vivre avec un mur de lumière sur mesure. Fenêtres sur Loir, Menuisier d'Excellence MéO, installe vos baies vitrées bois-alu à Angers.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Confort intérieur", href: "/solutions/confort-interieur" },
+  { label: "Murs de lumière" },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Mur de lumière bois-aluminium sur mesure",
+  brand: { "@type": "Brand", name: "MéO" },
+  description,
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <PageProduit
+    eyebrow="Confort intérieur"
+    title="Transformez votre pièce à vivre avec un mur de lumière sur mesure"
+    heroPlaceholderLabel="Grand salon avec mur de lumière bois-alu MéO"
+    heroImage={murLumiere1}
+    heroImageAlt="Salon contemporain équipé d'un mur de lumière bois-aluminium MéO par Fenêtres sur Loir"
+    heroStyle="wide"
+    lead="Inondez vos pièces de lumière naturelle avec des baies vitrées MéO sur mesure, posées par des Menuisiers d'Excellence."
+  >
+    <p>
+      Chez <strong>Fenêtres sur Loir</strong>, nous croyons que la lumière naturelle est un élément essentiel pour créer des espaces de vie harmonieux et chaleureux. Grâce à nos <strong>murs de lumière sur mesure</strong>, nous transformons vos intérieurs en véritables havres de clarté.
+    </p>
+    <p>
+      <strong>Menuisiers d'Excellence MéO</strong> et certifiée <strong>RGE Qualibat</strong>, notre entreprise accompagne ses clients depuis 2003. Nos équipes d'installateurs travaillent avec minutie et professionnalisme pour apporter à votre intérieur <strong>style et esthétisme</strong>.
+    </p>
+
+    <h2>Pourquoi opter pour un mur de lumière ?</h2>
+    <p>
+      Ces <strong>grandes ouvertures vitrées</strong>, conçues sur mesure pour s'adapter à votre espace de vie, inondent chaque pièce de lumière naturelle et créent une <strong>ambiance chaleureuse et accueillante</strong>.
+    </p>
+    <p>
+      Elles offrent des vues dégagées et panoramiques sur l'extérieur, transformant vos fenêtres en tableaux vivants qui évoluent au fil des saisons. Plus qu'une simple ouverture, nos murs de lumière sont une <strong>véritable passerelle entre votre intérieur et la nature environnante</strong>.
+    </p>
+    <p>
+      Alliant <strong>esthétisme raffiné, confort thermique et acoustique, et innovations technologiques</strong>, nos solutions vous permettent de profiter pleinement de la beauté du paysage tout en optimisant la performance énergétique de votre habitation.
+    </p>
+
+    <h2>La lumière, sans négliger la performance thermique</h2>
+    <figure>
+      <Image
+        src={murLumiere2}
+        alt="Mur de lumière bois-aluminium MéO : étanchéité à l'air et performance thermique"
+        widths={[600, 900, 1200]}
+        sizes="(max-width: 1024px) 100vw, 720px"
+        loading="lazy"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto"
+      />
+    </figure>
+    <p>
+      En faisant le choix des <strong>menuiseries MéO</strong>, nous proposons des produits offrant une <strong>excellente isolation thermique</strong> tout en réduisant les pertes de chaleur. Leur <strong>étanchéité à l'air et à l'eau</strong> est exemplaire, et leur grande surface vitrée laisse passer un maximum de lumière, été comme hiver, pour limiter votre consommation d'électricité.
+    </p>
+    <p>
+      Adaptées aux constructions écologiques comme les maisons <strong>BBC et passives</strong>, ces menuiseries améliorent le confort de votre habitat tout en réduisant durablement son impact environnemental. Elles respectent les exigences de la <strong>Réglementation Environnementale 2020 (RE2020)</strong>.
+    </p>
+
+    <h2>Des matériaux de qualité pour un esthétisme sans pareil</h2>
+    <p>
+      La résistance et la malléabilité de l'<strong>aluminium</strong>, alliées à la chaleur et à la beauté naturelle du <strong>bois</strong> : quoi de mieux pour ajouter une touche originale à votre pièce à vivre tout en faisant entrer la lumière ?
+    </p>
+  </PageProduit>
+
+  <section class="pb-12">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto grid grid-cols-2 gap-4">
+        <Image
+          src={echantillonAlu}
+          alt="Finition aluminium d'un mur de lumière MéO — 26 teintes au choix"
+          widths={[400, 600]}
+          sizes="(max-width: 768px) 50vw, 360px"
+          loading="lazy"
+          decoding="async"
+          format="webp"
+          quality={80}
+          class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto aspect-square object-cover"
+        />
+        <Image
+          src={echantillonBois}
+          alt="Finition bois d'un mur de lumière MéO — 6 essences au choix"
+          widths={[400, 600]}
+          sizes="(max-width: 768px) 50vw, 360px"
+          loading="lazy"
+          decoding="async"
+          format="webp"
+          quality={80}
+          class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto aspect-square object-cover"
+        />
+      </div>
+      <div class="prose-fsl max-w-3xl mx-auto mt-6">
+        <ul>
+          <li><strong>Structure extérieure aluminium</strong> : large palette de <strong>26 teintes</strong>, finesse qui optimise la surface vitrée, grande résistance aux chocs et aux intempéries.</li>
+          <li><strong>Structure intérieure bois</strong> : résistante et stable, personnalisable parmi <strong>6 finitions bois</strong> pour coller à votre décoration.</li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-20">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto rounded-2xl bg-[var(--color-tint)] p-8">
+        <h3 class="mb-3">Profitez des aides à la rénovation énergétique</h3>
+        <p class="text-[15px] text-[var(--color-muted)] leading-relaxed mb-6">
+          Optez pour Fenêtres sur Loir, <strong class="text-[var(--color-fg)]">certifié RGE Qualibat</strong>, et faites le choix d'un confort durable tout en bénéficiant des <strong class="text-[var(--color-fg)]">dispositifs d'aide</strong> au changement de menuiseries extérieures.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+            Demander un devis
+          </a>
+          <a href="/partenaires/meo" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
+            Découvrir MéO
+          </a>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

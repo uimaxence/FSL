@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import meoLogo from "../../assets/meo-logo.png";
+
+interface Props {
+  href?: string;
+}
+
+const { href = "https://www.portemeo.com/Joinery" } = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="fixed right-4 bottom-4 sm:right-5 sm:bottom-5 z-40 group inline-flex items-center gap-2.5 pl-2 pr-4 py-2 rounded-full bg-[var(--color-fg)] text-white shadow-2xl ring-1 ring-black/10 hover:bg-black transition-all hover:-translate-y-0.5"
+  aria-label="Configurer ma porte MéO (ouvre dans un nouvel onglet)"
+>
+  <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white">
+    <Image
+      src={meoLogo}
+      alt=""
+      widths={[32, 64]}
+      sizes="32px"
+      loading="lazy"
+      decoding="async"
+      format="webp"
+      quality={85}
+      class="w-7 h-7 object-contain"
+    />
+  </span>
+  <span class="text-[13px] font-medium leading-tight">
+    <span class="block">Configurez votre</span>
+    <span class="block text-white/80 text-[11px]">porte MéO →</span>
+  </span>
+</a>

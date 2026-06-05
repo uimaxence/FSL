@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHub from "../../components/templates/PageHub.astro";
+import Container from "../../components/ui/Container.astro";
+import partenairesHero from "../../assets/hero-2.jpg";
+
+const title = "Nos partenaires | Fenêtres sur Loir — Marques et fabricants de confiance";
+const description = "Découvrez les partenaires de Fenêtres sur Loir : MéO, Bubendorff et Arcades & Baies. Des marques françaises reconnues pour des menuiseries sur mesure, performantes et durables.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos partenaires" },
+];
+
+const cards = [
+  {
+    title: "MéO — Menuisier d'Excellence",
+    description: "Fabricant français de menuiseries bois-aluminium haut de gamme. Accès privilégié à leurs gammes exclusives.",
+    href: "/partenaires/meo",
+    placeholderLabel: "Logo MéO et fenêtre bois-alu",
+  },
+  {
+    title: "Bubendorff — Point Conseil",
+    description: "Expert français du volet roulant électrique, solaire et connecté. Installation conforme et certifiée.",
+    href: "/partenaires/bubendorff",
+    placeholderLabel: "Logo Bubendorff et volet roulant",
+  },
+  {
+    title: "Arcades & Baies",
+    description: "Fabricant reconnu de menuiseries aluminium alliant design et performance.",
+    href: "/partenaires/arcades-et-baies",
+    placeholderLabel: "Logo Arcades & Baies et baie alu",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Fenêtres sur Loir",
+  brand: ["MéO", "Bubendorff", "Arcades & Baies"],
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <PageHub
+    eyebrow="Nos partenaires"
+    title="Des partenaires de confiance pour des menuiseries d'exception"
+    intro="Chez Fenêtres sur Loir, nous avons toujours cru qu'un projet réussi commence par le choix des bons matériaux et des bons partenaires. C'est pourquoi nous travaillons avec des marques françaises et européennes reconnues pour leur qualité, leur durabilité et leur innovation."
+    heroImage={partenairesHero}
+    heroImageAlt="Menuiseries de nos marques partenaires installées par Fenêtres sur Loir"
+    cards={cards}
+    ctaLabel="Prendre rendez-vous"
+    ctaText="Découvrez nos marques partenaires et venez rencontrer nos conseillers au showroom de Seiches-sur-le-Loir pour échanger sur votre projet."
+  >
+    <Fragment slot="before-cards">
+      <section class="section-tight bg-[var(--color-subtle)]">
+        <Container width="default">
+          <div class="max-w-3xl mx-auto">
+            <h2>Une sélection exigeante au service de votre habitat</h2>
+            <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              Nos partenaires sont choisis selon trois critères essentiels :
+            </p>
+            <ul class="mt-4 space-y-3 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              <li><strong class="text-[var(--color-fg)]">Performance et innovation</strong> — des produits conçus pour durer et répondre aux exigences thermiques et acoustiques les plus élevées.</li>
+              <li><strong class="text-[var(--color-fg)]">Fabrication responsable</strong> — priorité donnée aux circuits courts, aux matériaux recyclables et à la maîtrise énergétique.</li>
+              <li><strong class="text-[var(--color-fg)]">Design et personnalisation</strong> — des finitions, coloris et matériaux qui s'adaptent à chaque style d'habitat.</li>
+            </ul>
+            <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              Nous ne travaillons pas avec des catalogues : nous travaillons avec des <strong class="text-[var(--color-fg)]">fabricants qui partagent notre exigence du sur-mesure</strong>.
+            </p>
+          </div>
+        </Container>
+      </section>
+    </Fragment>
+
+    <Fragment slot="after-cards">
+      <section class="section-tight">
+        <Container width="default">
+          <div class="max-w-3xl mx-auto">
+            <h2>Des fournisseurs sélectionnés avec soin</h2>
+            <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              Au-delà de ces partenariats majeurs, nous travaillons également avec un <strong class="text-[var(--color-fg)]">réseau de fournisseurs français et européens</strong> spécialisés : volets et stores, portes d'entrée et de garage, accessoires de confort intérieur et extérieur.
+            </p>
+            <p class="mt-4">
+              <a href="/partenaires/nos-fournisseurs" class="text-[var(--color-accent)] underline underline-offset-4">
+                Découvrir nos fournisseurs →
+              </a>
+            </p>
+          </div>
+        </Container>
+      </section>
+    </Fragment>
+  </PageHub>
+</BaseLayout>

@@ -1,0 +1,142 @@
+---
+import { Image } from "astro:assets";
+import Container from "../ui/Container.astro";
+import qualibatLogo from "../../assets/qualibat-logo.png";
+
+interface Props {
+  withHeading?: boolean;
+}
+
+const { withHeading = true } = Astro.props;
+
+const inputBase =
+  "w-full rounded-md border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm placeholder:text-[var(--color-muted)]/60 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/30 focus:border-[var(--color-accent)] transition-colors";
+
+const labelBase = "block text-[13px] font-semibold text-[var(--color-fg)] mb-1.5";
+
+const bullets = [
+  "Une entreprise familiale",
+  "+ de 20 ans d'expérience",
+  "Entreprise locale",
+];
+---
+
+<section class="section-tight bg-[var(--color-tint)]">
+  <Container width="wide">
+    {withHeading && (
+      <div class="max-w-3xl mx-auto text-center mb-10">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+          Parlons de votre projet
+        </p>
+        <h2 class="text-[var(--color-fg)]">Demandez votre rendez-vous</h2>
+      </div>
+    )}
+
+    <div class="grid lg:grid-cols-[1fr_2fr] gap-6">
+      <!-- Left card : engagements + Qualibat -->
+      <aside class="bg-white rounded-2xl shadow-sm p-6 sm:p-8 flex flex-col justify-between">
+        <div>
+          <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)] mb-3">
+            Nos engagements
+          </p>
+          <h3 class="font-display text-[clamp(1.375rem,2vw,1.625rem)] leading-tight text-[var(--color-fg)]">
+            Un interlocuteur unique, du <strong class="font-bold">premier croquis</strong> à la <strong class="font-bold">pose finale</strong>.
+          </h3>
+
+          <ul class="mt-6 space-y-3">
+            {
+              bullets.map((b) => (
+                <li class="flex items-center gap-3 text-[14px] text-[var(--color-fg)]">
+                  <span
+                    class="inline-block w-3 h-3 rounded-full shrink-0"
+                    style="background: var(--color-accent);"
+                    aria-hidden="true"
+                  ></span>
+                  {b}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-[var(--color-border)] flex items-start gap-4">
+          <Image
+            src={qualibatLogo}
+            alt="Logo RGE Qualibat — certification garantissant des poses de qualité"
+            widths={[60, 120]}
+            sizes="60px"
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={90}
+            class="w-14 h-auto object-contain shrink-0"
+          />
+          <p class="text-[12px] text-[var(--color-muted)] leading-relaxed">
+            Nous sommes labellisés <strong class="text-[var(--color-fg)]">RGE Qualibat</strong> pour vous garantir des poses de qualité et l'éligibilité aux aides à la rénovation énergétique.
+          </p>
+        </div>
+      </aside>
+
+      <!-- Right card : form -->
+      <form
+        method="post"
+        action="#"
+        class="bg-white rounded-2xl shadow-sm p-6 sm:p-10 space-y-5"
+      >
+        <div>
+          <p class="text-[13px] text-[var(--color-muted)]">
+            Remplissez ce formulaire de contact, nous prendrons contact avec vous dans les meilleurs délais.
+          </p>
+          <h3 class="mt-2 text-[var(--color-fg)] font-display">Remplissez ces informations</h3>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <label class="block">
+            <span class={labelBase}>Nom <span class="text-[var(--color-accent)]">*</span></span>
+            <input type="text" name="nom" required class={inputBase} placeholder="Nom" autocomplete="family-name" />
+          </label>
+          <label class="block">
+            <span class={labelBase}>Prénom <span class="text-[var(--color-accent)]">*</span></span>
+            <input type="text" name="prenom" required class={inputBase} placeholder="Prénom" autocomplete="given-name" />
+          </label>
+        </div>
+
+        <label class="block">
+          <span class={labelBase}>Adresse <span class="text-[var(--color-accent)]">*</span></span>
+          <input type="text" name="adresse" required class={inputBase} placeholder="Adresse postale" autocomplete="street-address" />
+        </label>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <label class="block">
+            <span class={labelBase}>Téléphone <span class="text-[var(--color-accent)]">*</span></span>
+            <input type="tel" name="telephone" required class={inputBase} placeholder="Téléphone" autocomplete="tel" />
+          </label>
+          <label class="block">
+            <span class={labelBase}>Email <span class="text-[var(--color-accent)]">*</span></span>
+            <input type="email" name="email" required class={inputBase} placeholder="exemple@email.fr" autocomplete="email" />
+          </label>
+        </div>
+
+        <label class="block">
+          <span class={labelBase}>Votre message <span class="text-[var(--color-accent)]">*</span></span>
+          <textarea name="message" required rows="5" class={inputBase} placeholder="Message"></textarea>
+        </label>
+
+        <div class="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <p class="text-[11px] text-[var(--color-muted)]">
+            Vos données sont uniquement utilisées pour traiter votre demande (RGPD).
+          </p>
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center rounded-md px-7 py-2.5 text-[14px] font-medium text-white shadow-sm transition-colors"
+            style="background: var(--color-accent);"
+            onmouseover="this.style.background='var(--color-accent-hover)'"
+            onmouseout="this.style.background='var(--color-accent)'"
+          >
+            Envoyer
+          </button>
+        </div>
+      </form>
+    </div>
+  </Container>
+</section>

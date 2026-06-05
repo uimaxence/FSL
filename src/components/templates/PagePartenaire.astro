@@ -1,0 +1,157 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Container from "../ui/Container.astro";
+import fallbackHero from "../../assets/hero-1.jpg";
+import fallbackLogo from "../../assets/histoire-3.jpg";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  brand: string;
+  brandTagline?: string;
+  brandLogo?: ImageMetadata;
+  heroPlaceholderLabel: string;
+  heroImage?: ImageMetadata;
+  heroImageAlt?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  brand,
+  brandTagline,
+  brandLogo,
+  heroPlaceholderLabel,
+  heroImage,
+  heroImageAlt,
+} = Astro.props;
+---
+
+{
+  heroImage ? (
+    <section class="relative">
+      <div class="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden">
+        <Image
+          src={heroImage}
+          alt={heroImageAlt ?? heroPlaceholderLabel}
+          widths={[800, 1280, 1920]}
+          sizes="100vw"
+          loading="eager"
+          decoding="async"
+          format="webp"
+          quality={82}
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
+        <div class="absolute inset-x-0 bottom-0">
+          <Container width="wide" class="pb-10 sm:pb-14">
+            <div class="flex flex-wrap items-end gap-6">
+              {brandLogo && (
+                <div class="w-20 h-20 shrink-0 flex items-center justify-center bg-white rounded-lg p-2 shadow-lg">
+                  <Image
+                    src={brandLogo}
+                    alt={`Logo ${brand} partenaire de Fenêtres sur Loir`}
+                    widths={[80, 160]}
+                    sizes="80px"
+                    loading="eager"
+                    decoding="async"
+                    format="webp"
+                    quality={90}
+                    class="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              )}
+              <div class="flex-1 min-w-[260px]">
+                {eyebrow && (
+                  <p class="text-[12px] font-semibold tracking-[0.18em] uppercase text-white/85 mb-2">
+                    {eyebrow}
+                  </p>
+                )}
+                <h1 class="text-white text-balance drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">{title}</h1>
+                {brandTagline && (
+                  <p class="mt-3 text-[16px] text-white/90 max-w-2xl">{brandTagline}</p>
+                )}
+              </div>
+            </div>
+          </Container>
+        </div>
+      </div>
+    </section>
+  ) : (
+    <>
+      <section class="section-tight">
+        <Container width="default">
+          <div class="flex flex-wrap items-start gap-6">
+            {brandLogo ? (
+              <div class="w-20 h-20 shrink-0 flex items-center justify-center bg-white rounded-lg ring-1 ring-[var(--color-border)] p-2">
+                <Image
+                  src={brandLogo}
+                  alt={`Logo ${brand} partenaire de Fenêtres sur Loir`}
+                  widths={[80, 160]}
+                  sizes="80px"
+                  loading="eager"
+                  decoding="async"
+                  format="webp"
+                  quality={90}
+                  class="max-w-full max-h-full object-contain"
+                />
+              </div>
+            ) : (
+              <div class="w-20 h-20 shrink-0 rounded-lg overflow-hidden ring-1 ring-[var(--color-border)]">
+                <Image
+                  src={fallbackLogo}
+                  alt={`Logo ${brand} partenaire de Fenêtres sur Loir`}
+                  widths={[80, 160]}
+                  sizes="80px"
+                  loading="eager"
+                  decoding="async"
+                  format="webp"
+                  quality={82}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            <div class="flex-1 min-w-[260px]">
+              {eyebrow && (
+                <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+                  {eyebrow}
+                </p>
+              )}
+              <h1 class="text-balance">{title}</h1>
+              {brandTagline && (
+                <p class="mt-3 text-[15px] text-[var(--color-muted)]">{brandTagline}</p>
+              )}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section class="pb-12">
+        <Container width="default">
+          <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+            <Image
+              src={fallbackHero}
+              alt={heroPlaceholderLabel}
+              widths={[600, 900, 1280]}
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              loading="eager"
+              decoding="async"
+              format="webp"
+              quality={82}
+              class="w-full h-auto aspect-[16/9] object-cover"
+            />
+          </div>
+        </Container>
+      </section>
+    </>
+  )
+}
+
+<div class="pb-20">
+  <Container width="default">
+    <div class="prose-fsl max-w-3xl mx-auto pt-10">
+      <slot />
+    </div>
+  </Container>
+</div>

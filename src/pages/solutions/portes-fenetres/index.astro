@@ -1,0 +1,225 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/ui/Container.astro";
+import Card from "../../../components/ui/Card.astro";
+import CTASection from "../../../components/sections/CTASection.astro";
+import CertificationsBanner from "../../../components/sections/CertificationsBanner.astro";
+import AidsBox from "../../../components/sections/AidsBox.astro";
+
+import heroPorte from "../../../assets/porte-1-boisalu.png";
+import porteEntreeImg from "../../../assets/porte-7-bois.png";
+import porteFenetreImg from "../../../assets/porte-fenetre-3.png";
+import porteGarageImg from "../../../assets/porte-2-boisalu.png";
+import porteInterieureImg from "../../../assets/porte-fenetre-1.png";
+import fenetreImg from "../../../assets/porte-fenetre-2.png";
+import baieImg from "../../../assets/porte-fenetre-7-gallandage.png";
+import voletImg from "../../../assets/porte-fenetre-5-oscillo.png";
+
+const title = "Fenêtres sur Loir : expert portes & fenêtres sur mesure depuis 2003 près d'Angers";
+const description = "Portes d'entrée, porte-fenêtres, portes de garage, portes intérieures, fenêtres, baies vitrées et volets sur mesure. Showroom à Seiches-sur-le-Loir, intervention dans tout le Maine-et-Loire.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Portes & Fenêtres" },
+];
+
+const portes = [
+  {
+    title: "Porte d'entrée",
+    description: "Bois, aluminium, mixte ou PVC — sécurité, isolation et personnalisation infinie.",
+    href: "/solutions/portes-fenetres/portes-entree",
+    placeholderLabel: "Porte d'entrée bois MéO sur mesure",
+    image: porteEntreeImg,
+    imageAlt: "Porte d'entrée bois sur mesure MéO Fenêtres sur Loir",
+  },
+  {
+    title: "Porte-fenêtre",
+    description: "Classique, moderne, oscillo-battante ou à galandage. Lumière et accès vers l'extérieur.",
+    href: "/solutions/portes-fenetres/porte-fenetre",
+    placeholderLabel: "Porte-fenêtre à galandage MéO",
+    image: porteFenetreImg,
+    imageAlt: "Porte-fenêtre coulissante grande ouverture Fenêtres sur Loir",
+  },
+  {
+    title: "Porte de garage",
+    description: "Sectionnelle, latérale ou enroulable. Motorisation, sécurité et isolation thermique.",
+    href: "/solutions/portes-fenetres/porte-garage",
+    placeholderLabel: "Porte de garage sectionnelle motorisée",
+    image: porteGarageImg,
+    imageAlt: "Porte de garage motorisée sur mesure Fenêtres sur Loir",
+  },
+  {
+    title: "Portes intérieures",
+    description: "Bois massif, vitrées ou modernes. Confort acoustique et thermique entre les pièces.",
+    href: "/solutions/portes-fenetres/portes-interieures",
+    placeholderLabel: "Porte intérieure vitrée moderne",
+    image: porteInterieureImg,
+    imageAlt: "Porte intérieure vitrée moderne installée par Fenêtres sur Loir",
+  },
+];
+
+const fenetres = [
+  {
+    title: "Fenêtres",
+    description: "Bois, alu, PVC ou mixte. Hautes performances thermiques et acoustiques.",
+    href: "/solutions/portes-fenetres/fenetres",
+    placeholderLabel: "Fenêtre bois-alu MéO",
+    image: fenetreImg,
+    imageAlt: "Fenêtre bois-aluminium MéO installée par Fenêtres sur Loir",
+  },
+  {
+    title: "Baies vitrées",
+    description: "Grandes ouvertures coulissantes ou à galandage. Seuils PMR sur demande.",
+    href: "/solutions/portes-fenetres/baies-vitrees",
+    placeholderLabel: "Baie vitrée coulissante alu",
+    image: baieImg,
+    imageAlt: "Baie vitrée coulissante à galandage Arcades & Baies",
+  },
+  {
+    title: "Volets",
+    description: "Roulants solaires, électriques, connectés ou battants. Partenaire Bubendorff.",
+    href: "/solutions/portes-fenetres/volets",
+    placeholderLabel: "Volet roulant Bubendorff",
+    image: voletImg,
+    imageAlt: "Volet roulant Bubendorff installé par Fenêtres sur Loir",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  name: "Portes & Fenêtres sur mesure",
+  provider: { "@type": "LocalBusiness", name: "Fenêtres sur Loir" },
+  itemListElement: [...portes, ...fenetres].map((p) => ({
+    "@type": "Offer",
+    itemOffered: { "@type": "Product", name: p.title, description: p.description },
+    url: `https://www.fenetres-sur-loir.fr${p.href}`,
+  })),
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <!-- Hero -->
+  <section class="section-tight">
+    <Container width="wide">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+        <div>
+          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+            Portes & Fenêtres
+          </p>
+          <h1 class="text-balance">
+            Fenêtres sur Loir, expert de la menuiserie <strong class="font-bold">sur-mesure</strong> depuis 2003
+          </h1>
+          <p class="mt-5 max-w-xl text-[15px] leading-relaxed text-[var(--color-muted)]">
+            Située à Seiches-sur-le-Loir, notre équipe de passionnés est bien plus qu'une entreprise de menuiserie classique. Nous écoutons, conseillons et installons chaque porte avec un souci du détail qui fait notre signature.
+          </p>
+          <p class="mt-4 max-w-xl text-[15px] leading-relaxed text-[var(--color-muted)]">
+            Nous sélectionnons les meilleures marques françaises — <a href="/partenaires/meo" class="text-[var(--color-accent)] underline underline-offset-4">MéO</a>, <a href="/partenaires/arcades-et-baies" class="text-[var(--color-accent)] underline underline-offset-4">Arcades & Baies</a>, <a href="/partenaires/bubendorff" class="text-[var(--color-accent)] underline underline-offset-4">Bubendorff</a> — pour vous offrir des produits robustes, beaux et durables.
+          </p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+              Demander un devis
+            </a>
+            <a href="/entreprise/notre-histoire#showroom" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
+              Visiter le showroom
+            </a>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+          <Image
+            src={heroPorte}
+            alt="Porte d'entrée bois-aluminium sur mesure installée par Fenêtres sur Loir près d'Angers"
+            widths={[600, 900, 1200]}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            loading="eager"
+            decoding="async"
+            format="webp"
+            quality={80}
+            class="w-full h-auto aspect-[4/3] object-cover"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Certifications -->
+  <CertificationsBanner />
+
+  <!-- Un type de porte pour chaque espace -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto text-center mb-10">
+        <h2>Un type de porte pour chaque espace de vie</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Chaque porte joue un rôle spécifique dans votre habitat : accueillir, isoler, sécuriser, embellir. Découvrez nos quatre familles de portes et trouvez la solution adaptée à votre projet.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {
+          portes.map((c) => (
+            <Card
+              title={c.title}
+              description={c.description}
+              href={c.href}
+              placeholderLabel={c.placeholderLabel}
+              ratio="4-3"
+            />
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Fenêtres & ouvertures -->
+  <section class="section-tight">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto text-center mb-10">
+        <h2>Fenêtres, baies vitrées et volets</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Pour compléter votre projet, Fenêtres sur Loir installe également vos fenêtres, baies vitrées et volets sur mesure — avec les mêmes exigences de qualité.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-5">
+        {
+          fenetres.map((c) => (
+            <Card
+              title={c.title}
+              description={c.description}
+              href={c.href}
+              placeholderLabel={c.placeholderLabel}
+              ratio="4-3"
+            />
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Showroom & accessoires -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto">
+        <h2>Choix des accessoires visibles dans notre showroom</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Pour jouer la personnalisation jusqu'au bout, nous proposons un large choix d'accessoires : poignées classiques, pommeaux ou heurtoirs, vitrages imprimés ou décoratifs, portes en simple ou double vantaux, finitions et coloris à l'infini.
+        </p>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          En visitant notre <a href="/entreprise/notre-histoire#showroom" class="text-[var(--color-accent)] underline underline-offset-4">showroom de 300 m² à quelques pas d'Angers</a>, vous pourrez visualiser les différents modèles et options que nous vous proposons.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- RGE Qualibat / aides -->
+  <AidsBox />
+
+  <CTASection
+    eyebrow="Votre projet"
+    title="Discutons de vos portes & fenêtres"
+    text="Devis gratuit, conseil personnalisé, visite du showroom : nos équipes vous accompagnent du premier croquis à la pose finale."
+    secondaryLabel="Voir nos réalisations"
+    secondaryHref="/realisations"
+  />
+</BaseLayout>

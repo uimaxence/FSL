@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PageProduit from "../../../components/templates/PageProduit.astro";
+import Container from "../../../components/ui/Container.astro";
+import baieHero from "../../../assets/porte-fenetre-6-gallandage.png";
+
+const title = "Baies vitrées sur mesure | Fenêtres sur Loir près d'Angers";
+const description = "[À RÉDIGER — Meta description Baies vitrées : coulissants, grandes dimensions, seuils PMR, performance.]";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres" },
+  { label: "Baies vitrées" },
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb}>
+  <PageProduit
+    eyebrow="Portes & Fenêtres"
+    title="[À RÉDIGER — H1 page Baies vitrées]"
+    heroPlaceholderLabel="Baie vitrée coulissante alu grand format"
+    heroImage={baieHero}
+    heroImageAlt="Baie vitrée coulissante à galandage aluminium par Fenêtres sur Loir"
+  >
+    <p class="italic">
+      [À RÉDIGER — Intro : ouverture sur l'extérieur, lumière, isolation, partenaires MéO et Arcades & Baies.]
+    </p>
+
+    <h2>[À RÉDIGER — Coulissantes ou à galandage ?]</h2>
+    <p class="italic">[À RÉDIGER — Comparaison des typologies d'ouverture.]</p>
+
+    <h2>[À RÉDIGER — Matériaux et profils]</h2>
+    <ul>
+      <li>[À RÉDIGER — Aluminium]</li>
+      <li>[À RÉDIGER — Mixte bois-alu]</li>
+      <li>[À RÉDIGER — PVC]</li>
+    </ul>
+
+    <h2>[À RÉDIGER — Accessibilité et confort]</h2>
+    <p class="italic">[À RÉDIGER — Seuils PMR, motorisation, sécurité, vitrages.]</p>
+  </PageProduit>
+
+  <section class="pb-20">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto flex flex-wrap gap-3 justify-center">
+        <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+          Demander un devis
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

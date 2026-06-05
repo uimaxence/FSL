@@ -1,0 +1,109 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PageProduit from "../../../components/templates/PageProduit.astro";
+import Container from "../../../components/ui/Container.astro";
+import carportImg from "../../../assets/carport-1.png";
+import marquiseImg from "../../../assets/marquise-1.png";
+
+const title = "Carports & Marquises sur mesure | Fenêtres sur Loir — Protégez-vous des intempéries près d'Angers";
+const description = "Menuisier depuis 2003 à Seiches-sur-le-Loir, Fenêtres sur Loir installe carports et marquises sur mesure pour protéger votre véhicule et votre entrée.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Confort extérieur", href: "/solutions/confort-exterieur" },
+  { label: "Carports & Marquises" },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Carports et marquises sur mesure",
+  description,
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <PageProduit
+    eyebrow="Confort extérieur"
+    title="Carports et marquises sur mesure : protégez ce qui compte"
+    heroPlaceholderLabel="Carport aluminium devant une maison contemporaine"
+    heroImage={carportImg}
+    heroImageAlt="Carport aluminium contemporain installé par Fenêtres sur Loir près d'Angers"
+    heroStyle="wide"
+    lead="Protégez votre véhicule et votre entrée des intempéries avec des structures aluminium sur mesure, élégantes et durables."
+  >
+    <p>
+      Menuisier depuis <strong>2003</strong> à Seiches-sur-le-Loir, intervenant sur Angers et ses environs, les équipes de Fenêtres sur Loir vous proposent des solutions <strong>esthétiques, fonctionnelles et sur mesure</strong> pour protéger votre voiture ou votre entrée des intempéries.
+    </p>
+    <p>
+      Ces abris apportent une <strong>protection efficace contre la pluie, la grêle et les rayons UV</strong>, tout en ajoutant une touche d'élégance à votre extérieur.
+    </p>
+
+    <h2>Carports : abritez votre véhicule en toute sérénité</h2>
+    <figure>
+      <Image
+        src={carportImg}
+        alt="Carport aluminium contemporain sur mesure Fenêtres sur Loir"
+        widths={[600, 900, 1200]}
+        sizes="(max-width: 1024px) 100vw, 720px"
+        loading="lazy"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto"
+      />
+    </figure>
+    <p>
+      Un <strong>carport</strong> est la solution idéale pour protéger votre véhicule sans avoir à construire un garage complet. En plus de préserver votre voiture des aléas climatiques, il améliore la <strong>longévité de votre peinture et de vos équipements</strong>.
+    </p>
+    <p>
+      Nos carports sont conçus pour s'intégrer harmonieusement à votre maison et vous sont proposés dans une <strong>gamme de matériaux et de finitions variées</strong>.
+    </p>
+
+    <h2>Marquises : protégez et embellissez votre entrée</h2>
+    <figure>
+      <Image
+        src={marquiseImg}
+        alt="Marquise vitrée aluminium au-dessus d'une porte d'entrée par Fenêtres sur Loir"
+        widths={[600, 900, 1200]}
+        sizes="(max-width: 1024px) 100vw, 720px"
+        loading="lazy"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto"
+      />
+    </figure>
+    <p>
+      Les <strong>marquises</strong> apportent une double fonction : protéger votre porte d'entrée des intempéries tout en sublimant l'esthétique de votre façade.
+    </p>
+    <p>
+      Choisissez parmi nos nombreuses finitions, que vous préfériez un style contemporain ou plus classique : <strong>vitrage ou plexiglas</strong>, avec ou sans <strong>option d'éclairage</strong>, et de <strong>nombreux coloris disponibles</strong>.
+    </p>
+
+    <h2>Des matériaux durables et résistants</h2>
+    <p>
+      Chez Fenêtres sur Loir, la <strong>durabilité</strong> est au cœur de nos préoccupations. Tous nos carports et marquises sont fabriqués à partir de matériaux <strong>robustes et durables</strong>, comme l'<strong>aluminium traité</strong> ou le <strong>verre trempé</strong>.
+    </p>
+
+    <h2>Installation sur mesure par nos experts</h2>
+    <p>
+      L'installation de votre carport ou de votre marquise est réalisée par <strong>nos équipes spécialisées</strong>, pour une pose professionnelle, rapide et soignée.
+    </p>
+  </PageProduit>
+
+  <section class="pb-20">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-[15px] text-[var(--color-muted)] mb-6">
+          Découvrez nos solutions de carports et marquises pensées pour allier <strong class="text-[var(--color-fg)]">protection, design et durabilité</strong>.
+        </p>
+        <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+          Demander un devis personnalisé
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

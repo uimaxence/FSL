@@ -1,0 +1,56 @@
+---
+interface Item {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Item[];
+  class?: string;
+}
+
+const { items, class: className = "" } = Astro.props;
+
+const site = Astro.site?.toString().replace(/\/$/, "") ?? "";
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((it, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: it.label,
+    ...(it.href ? { item: `${site}${it.href}` } : {}),
+  })),
+};
+---
+
+<nav
+  aria-label="Fil d'Ariane"
+  class:list={["text-sm", className]}
+>
+  <ol class="flex flex-wrap items-center gap-1.5 text-[var(--color-muted)]">
+    {
+      items.map((item, i) => (
+        <li class="flex items-center gap-1.5">
+          {i > 0 && (
+            <span aria-hidden="true" class="text-[var(--color-border)]">/</span>
+          )}
+          {item.href && i < items.length - 1 ? (
+            <a
+              href={item.href}
+              class="hover:text-[var(--color-accent)] transition-colors"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <span aria-current={i === items.length - 1 ? "page" : undefined} class="text-[var(--color-fg)]">
+              {item.label}
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

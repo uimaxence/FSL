@@ -1,0 +1,121 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PagePartenaire from "../../components/templates/PagePartenaire.astro";
+import Container from "../../components/ui/Container.astro";
+import arcadesLogo from "../../assets/arcades-baies-logo.png";
+import arcadesHero from "../../assets/porte-fenetre-7-gallandage.png";
+import arcGal1 from "../../assets/porte-4-alu.png";
+import arcGal2 from "../../assets/porte-fenetre-3.png";
+import arcGal3 from "../../assets/porte-5-alu.png";
+import arcGal4 from "../../assets/porte-fenetre-6-gallandage.png";
+
+const title = "Arcades & Baies — Menuiseries aluminium à Angers | Fenêtres sur Loir";
+const description = "Fenêtres sur Loir, partenaire Arcades & Baies à Angers. Menuiseries aluminium design et performantes, fabriquées en France et posées par nos experts RGE.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos partenaires", href: "/partenaires" },
+  { label: "Arcades & Baies" },
+];
+
+const schema = [
+  { "@context": "https://schema.org", "@type": "Brand", name: "Arcades & Baies" },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Menuiseries aluminium Arcades & Baies",
+    brand: { "@type": "Brand", name: "Arcades & Baies" },
+    description,
+  },
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <PagePartenaire
+    eyebrow="Nos partenaires"
+    title="Fenêtres sur Loir, partenaire Arcades & Baies près d'Angers"
+    brand="Arcades & Baies"
+    brandTagline="Fabricant français de menuiseries aluminium design et performantes"
+    brandLogo={arcadesLogo}
+    heroPlaceholderLabel="Baie vitrée aluminium grand format Arcades & Baies"
+    heroImage={arcadesHero}
+    heroImageAlt="Menuiserie aluminium Arcades & Baies design contemporain posée par Fenêtres sur Loir"
+  >
+    <p>
+      Chez <strong>Fenêtres sur Loir</strong>, nous avons choisi de collaborer avec <strong>Arcades & Baies</strong>, un fabricant français reconnu pour la qualité et le design de ses <strong>menuiseries aluminium</strong>.
+    </p>
+    <p>
+      Ce partenariat nous permet de proposer à nos clients des <strong>fenêtres, baies vitrées et portes</strong> alliant <strong>lignes contemporaines, hautes performances thermiques</strong> et <strong>finition irréprochable</strong>.
+    </p>
+
+    <h2>Une marque française au savoir-faire industriel maîtrisé</h2>
+    <p>
+      Installée à <strong>Mauges-sur-Loire</strong>, au cœur du Maine-et-Loire, <strong>Arcades & Baies</strong> conçoit et assemble ses menuiseries dans ses propres ateliers.
+    </p>
+    <p>
+      L'entreprise s'appuie sur une <strong>technologie de pointe</strong> et sur l'expérience de ses équipes pour garantir une <strong>précision millimétrée et une finition haut de gamme</strong>.
+    </p>
+
+    <h2>Pourquoi choisir les menuiseries Arcades & Baies ?</h2>
+    <ul>
+      <li><strong>Une esthétique contemporaine</strong> — profils fins, lignes épurées, finitions soignées.</li>
+      <li><strong>Une isolation performante</strong> — rupture de pont thermique et double/triple vitrage haute efficacité.</li>
+      <li><strong>Une personnalisation totale</strong> — large choix de coloris RAL, bicoloration intérieur/extérieur.</li>
+      <li><strong>Une sécurité renforcée</strong> — serrures multipoints, vitrages de sécurité, ferrures certifiées.</li>
+      <li><strong>Une fabrication responsable</strong> — aluminium recyclable et procédés respectueux de l'environnement.</li>
+    </ul>
+
+    <h2>Notre collaboration avec Arcades & Baies</h2>
+    <p>
+      En tant que <strong>partenaire agréé</strong>, Fenêtres sur Loir est formé aux solutions techniques de la marque et à la pose de ses gammes premium.
+    </p>
+    <ul>
+      <li><strong>Étude personnalisée</strong> selon vos besoins esthétiques, énergétiques et budgétaires.</li>
+      <li><strong>Choix des gammes</strong> (fenêtres, coulissants, portes) et finitions adaptées à votre maison.</li>
+      <li><strong>Pose soignée et certifiée RGE</strong>, conforme aux normes Arcades & Baies.</li>
+      <li><strong>Service après-vente local</strong>, assuré par notre équipe de techniciens.</li>
+    </ul>
+
+    <h2>Les gammes Arcades & Baies que nous installons</h2>
+    <ul>
+      <li><a href="/solutions/portes-fenetres/fenetres"><strong>Fenêtres et portes-fenêtres aluminium</strong></a> — design fin, grande luminosité.</li>
+      <li><a href="/solutions/portes-fenetres/baies-vitrees"><strong>Baies vitrées et coulissants</strong></a> — grandes dimensions, seuils PMR.</li>
+      <li><a href="/solutions/portes-fenetres/portes-entree"><strong>Portes d'entrée aluminium</strong></a> — modèles modernes ou classiques.</li>
+      <li><strong>Vérandas et extensions vitrées</strong> — solutions élégantes pour agrandir votre espace de vie.</li>
+    </ul>
+  </PagePartenaire>
+
+  <section class="pb-12">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {[
+            { src: arcGal1, alt: "Fenêtre aluminium Arcades & Baies" },
+            { src: arcGal2, alt: "Coulissant à galandage Arcades & Baies" },
+            { src: arcGal3, alt: "Porte d'entrée aluminium Arcades & Baies" },
+            { src: arcGal4, alt: "Grande ouverture vitrée Arcades & Baies" },
+          ].map((g) => (
+            <Image src={g.src} alt={g.alt} widths={[280, 480]} sizes="(max-width: 768px) 50vw, 200px" loading="lazy" decoding="async" format="webp" quality={78} class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto aspect-[4/3] object-cover" />
+          ))}
+        </div>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)]">
+          <a href="/realisations" class="text-[var(--color-accent)] underline underline-offset-4">Voir nos réalisations Arcades & Baies →</a>
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-20">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto rounded-2xl bg-[var(--color-tint)] p-8 text-center">
+        <p class="text-[15px] text-[var(--color-muted)] leading-relaxed mb-6">
+          Découvrez les gammes aluminium <strong class="text-[var(--color-fg)]">Arcades & Baies</strong> dans notre <strong class="text-[var(--color-fg)]">showroom de 300 m² à Seiches-sur-le-Loir</strong>. <strong class="text-[var(--color-fg)]">Devis gratuit — Fabrication française — Pose certifiée RGE.</strong>
+        </p>
+        <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+          Demander un devis
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

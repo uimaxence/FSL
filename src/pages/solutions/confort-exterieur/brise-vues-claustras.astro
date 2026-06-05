@@ -1,0 +1,105 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PageProduit from "../../../components/templates/PageProduit.astro";
+import Container from "../../../components/ui/Container.astro";
+import briseVueHero from "../../../assets/marquise-1.png";
+import briseVueImg from "../../../assets/realisation-pontsdece-2.png";
+import claustraImg from "../../../assets/realisation-precigne-1.png";
+
+const title = "Brise-vues & Claustras sur mesure | Fenêtres sur Loir près d'Angers";
+const description = "Avec Fenêtres sur Loir à proximité d'Angers, profitez d'un large choix de brise-vues et claustras sur mesure pour habiller vos extérieurs avec style.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Confort extérieur", href: "/solutions/confort-exterieur" },
+  { label: "Brise-vues & Claustras" },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Brise-vues et claustras sur mesure",
+  description,
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <PageProduit
+    eyebrow="Confort extérieur"
+    title="Brise-vues et claustras : élégance et intimité sur vos extérieurs"
+    heroPlaceholderLabel="Terrasse avec brise-vue et claustra décoratif"
+    heroImage={briseVueHero}
+    heroImageAlt="Structure extérieure à lattes bois et aluminium par Fenêtres sur Loir"
+    heroStyle="wide"
+    lead="Créez un cocon protégé des regards : brise-vues et claustras sur mesure, en bois ou aluminium, qui habillent vos extérieurs avec style."
+  >
+    <p>
+      Chez <strong>Fenêtres sur Loir</strong>, menuisiers à Seiches-sur-le-Loir, nous vous proposons des solutions pour <strong>habiller vos extérieurs avec style</strong>.
+    </p>
+    <p>
+      Nos <strong>brise-vues</strong> et <strong>claustras</strong> sur mesure allient esthétisme, confort et intimité pour votre jardin ou votre terrasse.
+    </p>
+
+    <h2>Le brise-vue : préservez votre intimité en toute simplicité</h2>
+    <figure>
+      <Image
+        src={briseVueImg}
+        alt="Brise-vue aluminium en bordure de terrasse"
+        widths={[400, 800, 1200]}
+        sizes="(max-width: 1024px) 100vw, 720px"
+        loading="lazy"
+        decoding="async"
+        format="webp"
+        quality={82}
+        class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto aspect-[4/3] object-cover"
+      />
+    </figure>
+    <p>
+      Le <strong>brise-vue</strong> est la solution idéale si vous recherchez une protection totale contre les regards. Installé sur votre <strong>clôture, balcon ou terrasse</strong>, il vous permet de créer un <strong>véritable cocon</strong> à l'abri des voisins.
+    </p>
+    <p>
+      En plus de préserver votre intimité, il vous offre une <strong>protection contre le vent et le soleil</strong>. Nos brise-vues sont disponibles dans différents matériaux, du <strong>bois naturel à l'aluminium</strong>, et dans plusieurs coloris.
+    </p>
+
+    <h2>Le claustra : une séparation décorative et fonctionnelle</h2>
+    <figure>
+      <Image
+        src={claustraImg}
+        alt="Claustra ajouré séparant deux zones de jardin"
+        widths={[400, 800, 1200]}
+        sizes="(max-width: 1024px) 100vw, 720px"
+        loading="lazy"
+        decoding="async"
+        format="webp"
+        quality={82}
+        class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto aspect-[4/3] object-cover"
+      />
+    </figure>
+    <p>
+      Pour ceux qui souhaitent <strong>délimiter des espaces</strong> tout en jouant avec la lumière et la ventilation, le <strong>claustra</strong> est une option parfaite. Ajouré, orné de motifs modernes ou classiques, il sépare vos zones extérieures tout en apportant une <strong>touche décorative</strong>.
+    </p>
+    <p>
+      <strong>Panneaux en tôle pliée lisse, ou avec décor</strong> : les claustras peuvent être personnalisés à votre goût.
+    </p>
+
+    <h2>Pourquoi choisir un brise-vue ou un claustra avec Fenêtres sur Loir ?</h2>
+    <p>
+      Que ce soit pour vous isoler des voisins ou pour vous protéger du vent, <strong>nos solutions s'adaptent à tous vos besoins</strong>. Avec une large gamme de matériaux, de couleurs et de styles, nos brise-vues et claustras peuvent être conçus sur mesure pour s'intégrer parfaitement à votre espace extérieur.
+    </p>
+  </PageProduit>
+
+  <section class="pb-20">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-[15px] text-[var(--color-muted)] mb-6">
+          Opter pour un brise-vue ou un claustra, c'est transformer votre extérieur en un espace à la fois fonctionnel et esthétique.
+        </p>
+        <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+          Découvrir nos gammes
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

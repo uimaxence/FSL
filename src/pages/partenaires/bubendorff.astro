@@ -1,0 +1,133 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PagePartenaire from "../../components/templates/PagePartenaire.astro";
+import Container from "../../components/ui/Container.astro";
+import bubendorffLogo from "../../assets/bubendorff-logo.png";
+import bubendorffHero from "../../assets/realisation-pontsdece-1.png";
+import voletSolaire from "../../assets/realisation-pontsdece-2.png";
+import voletElectrique from "../../assets/realisation-pontsdece-3.jpg";
+import voletConnecte from "../../assets/realisation-precigne-1.png";
+import voletRenovation from "../../assets/realisation-seiche-1.png";
+
+const title = "Bubendorff — Point Conseil à Angers | Volets roulants solaires et électriques — Fenêtres sur Loir";
+const description = "Fenêtres sur Loir, Point Conseil Bubendorff près d'Angers. Volets roulants électriques, solaires et connectés posés par des experts agréés. Devis gratuit.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos partenaires", href: "/partenaires" },
+  { label: "Bubendorff" },
+];
+
+const schema = [
+  { "@context": "https://schema.org", "@type": "Brand", name: "Bubendorff" },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Volets roulants Bubendorff",
+    brand: { "@type": "Brand", name: "Bubendorff" },
+    description,
+  },
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <PagePartenaire
+    eyebrow="Nos partenaires"
+    title="Fenêtres sur Loir, votre Point Conseil Bubendorff"
+    brand="Bubendorff"
+    brandTagline="Expert français du volet roulant électrique, solaire et connecté"
+    brandLogo={bubendorffLogo}
+    heroPlaceholderLabel="Volet roulant Bubendorff en cours de fonctionnement"
+    heroImage={bubendorffHero}
+    heroImageAlt="Façade équipée de volets roulants Bubendorff posés par Fenêtres sur Loir"
+  >
+    <p>
+      À <strong>Seiches-sur-le-Loir</strong>, près d'Angers, <strong>Fenêtres sur Loir</strong> fait partie du réseau officiel des <strong>Points Conseil Bubendorff</strong>.
+    </p>
+    <p>
+      Ce label distingue les professionnels formés et agréés par la marque pour <strong>conseiller, installer et entretenir</strong> leurs volets roulants électriques, solaires et connectés.
+    </p>
+    <blockquote>
+      Choisir un Point Conseil Bubendorff, c'est faire le choix d'une installation certifiée, durable et garantie.
+    </blockquote>
+
+    <h2>Une marque française, pionnière du volet roulant</h2>
+    <p>
+      Depuis plus de <strong>60 ans</strong>, <strong>Bubendorff</strong> innove dans le domaine des volets roulants et fabrique <strong>100 % de ses produits en France</strong>.
+    </p>
+    <p>
+      Basée en Alsace, la marque s'est imposée comme <strong>leader européen</strong> du volet électrique et solaire grâce à son expertise technique et sa fiabilité.
+    </p>
+
+    <h2>Pourquoi choisir Bubendorff ?</h2>
+    <p>Les volets Bubendorff sont reconnus pour leurs performances et leur durabilité :</p>
+    <ul>
+      <li><strong>Électriques ou solaires</strong> — adaptés à toutes les configurations, sans travaux électriques lourds.</li>
+      <li><strong>Économiques et écologiques</strong> — motorisations basse consommation, panneaux solaires intégrés.</li>
+      <li><strong>Connectés</strong> — compatibles avec les systèmes de domotique (pilotage à distance via smartphone).</li>
+      <li><strong>Sécurisés</strong> — verrous automatiques anti-relevage, matériaux robustes, garantie jusqu'à 7 ans.</li>
+      <li><strong>Esthétiques et discrets</strong> — coffres compacts, plusieurs coloris au choix.</li>
+    </ul>
+
+    <h2>Notre rôle de Point Conseil Bubendorff</h2>
+    <p>En tant que <strong>Point Conseil</strong>, Fenêtres sur Loir vous accompagne à chaque étape :</p>
+    <ul>
+      <li><strong>Étude sur mesure</strong> — sélection du type de volet selon votre habitat.</li>
+      <li><strong>Conseil technique</strong> — compatibilité avec vos menuiseries, isolation et orientation.</li>
+      <li><strong>Installation certifiée</strong> — pose conforme aux standards Bubendorff et aux normes RGE.</li>
+      <li><strong>Service après-vente direct</strong> — diagnostic, réparation ou remplacement par nos techniciens agréés.</li>
+    </ul>
+
+    <h2>Les solutions Bubendorff que nous proposons</h2>
+    <ul>
+      <li><strong>Volets roulants solaires</strong> — autonomie complète, sans branchement ni travaux électriques.</li>
+      <li><strong>Volets électriques filaires ou radio</strong> — motorisation fluide, silencieuse et durable.</li>
+      <li><strong>Volets connectés</strong> — gestion via application, centralisation, programmation horaire.</li>
+      <li><strong>Volets rénovation ou intégrés</strong> — solutions adaptées à chaque type de fenêtre ou de façade.</li>
+    </ul>
+  </PagePartenaire>
+
+  <section class="pb-12">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto">
+        <div class="grid grid-cols-4 gap-3">
+          {[
+            { src: voletSolaire, alt: "Volet roulant solaire Bubendorff" },
+            { src: voletElectrique, alt: "Volet électrique filaire Bubendorff" },
+            { src: voletConnecte, alt: "Volet connecté Bubendorff" },
+            { src: voletRenovation, alt: "Volet rénovation Bubendorff" },
+          ].map((g) => (
+            <Image
+              src={g.src}
+              alt={g.alt}
+              widths={[200, 400]}
+              sizes="(max-width: 768px) 25vw, 160px"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+              quality={78}
+              class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto aspect-[4/3] object-cover"
+            />
+          ))}
+        </div>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)]">
+          <a href="/realisations" class="text-[var(--color-accent)] underline underline-offset-4">Voir nos réalisations avec volets Bubendorff →</a>
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-20">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto rounded-2xl bg-[var(--color-tint)] p-8 text-center">
+        <p class="text-[15px] text-[var(--color-muted)] leading-relaxed mb-6">
+          Venez découvrir les solutions Bubendorff dans notre <strong class="text-[var(--color-fg)]">showroom de 300 m² à Seiches-sur-le-Loir</strong>. <strong class="text-[var(--color-fg)]">Devis gratuit — Installation agréée Point Conseil Bubendorff.</strong>
+        </p>
+        <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+          Demander un devis
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

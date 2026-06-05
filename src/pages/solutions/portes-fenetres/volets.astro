@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PageProduit from "../../../components/templates/PageProduit.astro";
+import Container from "../../../components/ui/Container.astro";
+import voletHero from "../../../assets/realisation-pontsdece-1.png";
+
+const title = "Volets sur mesure | Fenêtres sur Loir — Partenaire Bubendorff près d'Angers";
+const description = "[À RÉDIGER — Meta description Volets : roulants solaires, électriques, connectés, partenaire Bubendorff.]";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres" },
+  { label: "Volets" },
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb}>
+  <PageProduit
+    eyebrow="Portes & Fenêtres"
+    title="[À RÉDIGER — H1 page Volets]"
+    heroPlaceholderLabel="Volet roulant Bubendorff en façade"
+    heroImage={voletHero}
+    heroImageAlt="Façade équipée de menuiseries et volets posés par Fenêtres sur Loir"
+  >
+    <p class="italic">
+      [À RÉDIGER — Intro : confort, sécurité, isolation, partenariat Point Conseil Bubendorff.]
+    </p>
+
+    <h2>[À RÉDIGER — Types de volets]</h2>
+    <ul>
+      <li>[À RÉDIGER — Volets roulants solaires]</li>
+      <li>[À RÉDIGER — Volets roulants électriques]</li>
+      <li>[À RÉDIGER — Volets battants]</li>
+      <li>[À RÉDIGER — Volets connectés]</li>
+    </ul>
+
+    <h2>[À RÉDIGER — Pourquoi choisir Bubendorff ?]</h2>
+    <p class="italic">[À RÉDIGER — Voir détails partenaire <a href="/partenaires/bubendorff">Bubendorff</a>.]</p>
+
+    <h2>[À RÉDIGER — Installation et SAV]</h2>
+    <p class="italic">[À RÉDIGER — Service après-vente direct, garanties, formation Point Conseil.]</p>
+  </PageProduit>
+
+  <section class="pb-20">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto flex flex-wrap gap-3 justify-center">
+        <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+          Demander un devis
+        </a>
+        <a href="/partenaires/bubendorff" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
+          Découvrir Bubendorff
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

@@ -1,0 +1,82 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import defaultCover from "../../assets/histoire-3.jpg";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, description, date, tags, schema } = post.data;
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+---
+
+<BaseLayout
+  title={`${title} — Fenêtres sur Loir`}
+  description={description}
+  schemaJsonLd={schema as any}
+>
+  <article>
+    <section class="section pt-16 lg:pt-20">
+      <Container width="narrow">
+        <a href="/conseils-services" class="text-sm text-[var(--color-accent)] hover:underline">
+          ← Tous les articles
+        </a>
+        <p class="mt-6 text-xs uppercase tracking-[0.14em] text-[var(--color-muted)] font-semibold">
+          {formatDate(date)}
+        </p>
+        <h1 class="mt-3 text-balance">{title}</h1>
+        {description && (
+          <p class="mt-6 text-lg text-[var(--color-muted)] leading-relaxed">
+            {description}
+          </p>
+        )}
+        {tags && tags.length > 0 && (
+          <ul class="mt-6 flex flex-wrap gap-2">
+            {tags.map((t) => (
+              <li class="text-xs font-medium px-2.5 py-1 rounded-full bg-[var(--color-tint)] text-[var(--color-accent)]">
+                #{t}
+              </li>
+            ))}
+          </ul>
+        )}
+      </Container>
+    </section>
+
+    <section class="section-tight">
+      <Container width="wide">
+        <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+          <Image
+            src={defaultCover}
+            alt={title}
+            widths={[600, 900, 1280, 1600]}
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={82}
+            class="w-full h-auto aspect-video object-cover"
+          />
+        </div>
+      </Container>
+    </section>
+
+    <section class="pb-24">
+      <Container width="narrow">
+        <div class="prose-fsl">
+          <Content />
+        </div>
+      </Container>
+    </section>
+  </article>
+</BaseLayout>

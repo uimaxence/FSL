@@ -1,0 +1,367 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/ui/Container.astro";
+import CTASection from "../../../components/sections/CTASection.astro";
+import CertificationsBanner from "../../../components/sections/CertificationsBanner.astro";
+import AidsBox from "../../../components/sections/AidsBox.astro";
+
+import porteHero from "../../../assets/porte-1-boisalu.png";
+import porteMixte from "../../../assets/porte-1-boisalu.png";
+import porteMixte2 from "../../../assets/porte-2-boisalu.png";
+import portePvc from "../../../assets/porte-3-PVC.png";
+import porteAlu from "../../../assets/porte-4-alu.png";
+import porteAlu2 from "../../../assets/porte-5-alu.png";
+import porteBois from "../../../assets/porte-6-bois.png";
+
+const title = "Fenêtres sur Loir : un large choix pour vos portes d'entrée près d'Angers";
+const description = "Fenêtres sur Loir, menuiserie d'Excellence MéO, et magasin Arcades & Baies vous conseille et installe vos portes d'entrée sur Angers et ses environs. Bois, alu, PVC, mixte.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres" },
+  { label: "Porte d'entrée" },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Porte d'entrée sur mesure",
+  brand: [
+    { "@type": "Brand", name: "MéO" },
+    { "@type": "Brand", name: "Arcades & Baies" },
+  ],
+  description,
+  image: porteHero.src,
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <!-- Hero -->
+  <section class="section-tight">
+    <Container width="wide">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div class="lg:col-span-6">
+          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+            Portes & Fenêtres → Porte d'entrée
+          </p>
+          <h1 class="text-balance">
+            Conseils et accompagnement pour vos <strong class="font-bold">portes d'entrée</strong> avec Fenêtres sur Loir sur Angers
+          </h1>
+          <p class="mt-5 text-[15px] leading-relaxed text-[var(--color-muted)]">
+            Chez Fenêtres sur Loir, chaque porte est une promesse de qualité et de style. Imaginez entrer dans votre maison et sentir immédiatement la chaleur de l'accueil, la sécurité de l'intérieur et l'élégance du design.
+          </p>
+          <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+            Nous avons fait le choix de grandes marques françaises — <a href="/partenaires/meo" class="text-[var(--color-accent)] underline underline-offset-4">MéO</a> et <a href="/partenaires/arcades-et-baies" class="text-[var(--color-accent)] underline underline-offset-4">Arcades & Baies</a> — pour leur qualité et leurs possibilités de personnalisation sur-mesure. Certifiés <strong class="text-[var(--color-fg)]">RGE Qualibat</strong>, nous vous accompagnons à chaque étape depuis plus de 20 ans.
+          </p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+              Demander un devis
+            </a>
+            <a href="#modeles" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
+              Voir les modèles
+            </a>
+          </div>
+        </div>
+        <div class="lg:col-span-6">
+          <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+            <Image
+              src={porteHero}
+              alt="Porte d'entrée bois massif sur mesure MéO installée par Fenêtres sur Loir près d'Angers"
+              widths={[500, 800, 1100]}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              loading="eager"
+              decoding="async"
+              format="webp"
+              quality={80}
+              class="w-full h-auto aspect-[4/5] object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <CertificationsBanner />
+
+  <!-- Quelle porte d'entrée choisir ? -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto">
+        <h2>Quelle porte d'entrée choisir ?</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Quatre critères clés guident votre choix. Nos conseillers vous orientent vers la solution la mieux adaptée à votre habitat.
+        </p>
+
+        <div class="mt-8 grid sm:grid-cols-2 gap-5">
+          <div class="bg-white rounded-xl p-5 ring-1 ring-[var(--color-border)]">
+            <h3 class="text-base">🌡️ Isolation</h3>
+            <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">
+              Thermique et phonique : régulez la température intérieure, réduisez vos factures d'énergie et préservez votre tranquillité.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl p-5 ring-1 ring-[var(--color-border)]">
+            <h3 class="text-base">🔒 Sécurité</h3>
+            <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">
+              Matériaux robustes (aluminium, bois massif) et systèmes de verrouillage fiables : serrures multipoints, vitrages anti-effraction.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl p-5 ring-1 ring-[var(--color-border)]">
+            <h3 class="text-base">☀️ Luminosité</h3>
+            <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">
+              Vitrages clairs ou vitraux contemporains : laissez entrer la lumière naturelle et créez une atmosphère accueillante.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl p-5 ring-1 ring-[var(--color-border)]">
+            <h3 class="text-base">🎨 Design</h3>
+            <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">
+              Finitions personnalisées, couleurs et accessoires (poignée, vantaux, cadre apparent, vitrage) — votre style, votre projet.
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Choix des matériaux -->
+  <section class="section-tight">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto">
+        <h2>Choix des matériaux : bois-alu, alu, PVC, bois</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Le matériau influence non seulement l'esthétique, mais aussi la durabilité et l'efficacité énergétique. Chaque option a ses propres avantages.
+        </p>
+      </div>
+
+      <div class="max-w-5xl mx-auto mt-10 space-y-12">
+        <!-- Bois-Alu -->
+        <article class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+            <Image
+              src={porteMixte}
+              alt="Porte d'entrée mixte bois-aluminium MéO chaleur du bois intérieur et résistance alu extérieur"
+              widths={[400, 600, 800]}
+              sizes="(max-width: 768px) 100vw, 40vw"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+              quality={80}
+              class="w-full h-auto aspect-[4/3] object-cover"
+            />
+          </div>
+          <div>
+            <h3 class="text-[var(--color-accent)]">Les portes mixte Bois-Aluminium</h3>
+            <p class="mt-3 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              Combinant le charme du bois à l'intérieur et la résistance de l'aluminium à l'extérieur, elles offrent le meilleur des deux mondes. Esthétique chaleureuse, durabilité, faible entretien et performance énergétique optimisée.
+            </p>
+            <p class="mt-3 text-sm text-[var(--color-muted)]">
+              Idéal pour les projets <strong class="text-[var(--color-fg)]">RE2020 et BBC</strong>.
+            </p>
+          </div>
+        </article>
+
+        <!-- PVC -->
+        <article class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="md:order-2 rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+            <Image
+              src={portePvc}
+              alt="Porte d'entrée PVC blanc Fenêtres sur Loir économique et fonctionnelle"
+              widths={[400, 600, 800]}
+              sizes="(max-width: 768px) 100vw, 40vw"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+              quality={80}
+              class="w-full h-auto aspect-[4/3] object-cover"
+            />
+          </div>
+          <div class="md:order-1">
+            <h3 class="text-[var(--color-accent)]">Les portes PVC</h3>
+            <p class="mt-3 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              Option économique et très fonctionnelle. Léger, facile à entretenir, bonne isolation, disponible dans de nombreuses couleurs et finitions. Particulièrement adapté aux environnements humides — ni corrosion, ni déformation.
+            </p>
+            <p class="mt-3 text-sm text-[var(--color-muted)]">
+              Excellent <strong class="text-[var(--color-fg)]">rapport qualité-prix</strong>.
+            </p>
+          </div>
+        </article>
+
+        <!-- Alu -->
+        <article class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+            <Image
+              src={porteAlu}
+              alt="Porte d'entrée aluminium design contemporain Arcades & Baies sur mesure"
+              widths={[400, 600, 800]}
+              sizes="(max-width: 768px) 100vw, 40vw"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+              quality={80}
+              class="w-full h-auto aspect-[4/3] object-cover"
+            />
+          </div>
+          <div>
+            <h3 class="text-[var(--color-accent)]">Les portes Aluminium</h3>
+            <p class="mt-3 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              Reconnu pour sa robustesse et sa résistance aux intempéries, l'aluminium est facile à entretenir, ne rouille pas et conserve sa couleur dans le temps. Une grande variété de styles modernes et de couleurs pour une esthétique contemporaine.
+            </p>
+            <p class="mt-3 text-sm text-[var(--color-muted)]">
+              Souvent utilisé pour des <strong class="text-[var(--color-fg)]">ouvrants larges</strong> et lumineux.
+            </p>
+          </div>
+        </article>
+
+        <!-- Bois -->
+        <article class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="md:order-2 rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+            <Image
+              src={porteBois}
+              alt="Porte d'entrée bois massif sur mesure chaleur et élégance Fenêtres sur Loir"
+              widths={[400, 600, 800]}
+              sizes="(max-width: 768px) 100vw, 40vw"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+              quality={80}
+              class="w-full h-auto aspect-[4/3] object-cover"
+            />
+          </div>
+          <div class="md:order-1">
+            <h3 class="text-[var(--color-accent)]">Les portes bois</h3>
+            <p class="mt-3 text-[15px] text-[var(--color-muted)] leading-relaxed">
+              Le bois est un choix classique qui apporte chaleur et élégance. Personnalisable (teinté, peint), excellent isolant naturel thermique et phonique. Nos solutions techniques permettent de remplacer vos menuiseries en <strong class="text-[var(--color-fg)]">zones classées Bâtiments de France</strong>.
+            </p>
+          </div>
+        </article>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Isolation & RGE -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto">
+        <h2>Le choix de la porte d'entrée pour une bonne isolation, avec un artisan certifié RGE</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          L'isolation est un aspect crucial. Chaque porte que nous proposons est dotée d'un <strong class="text-[var(--color-fg)]">système d'isolation thermique et acoustique de pointe</strong> : préservation de la chaleur en hiver, fraîcheur en été, réduction significative des nuisances sonores.
+        </p>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Grâce à des matériaux innovants et une conception soignée, nos portes minimisent les pertes de chaleur et contribuent à l'efficacité énergétique de votre maison. Résultat : économies d'énergie et impact réduit sur l'environnement.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <AidsBox />
+
+  <!-- Installation pro -->
+  <section class="section-tight">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto">
+        <h2>Installation professionnelle et suivi de chantier</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          La qualité de nos produits se reflète dans leur installation. Notre service d'installation est assuré par nos <strong class="text-[var(--color-fg)]">poseurs qualifiés</strong>, qui s'assurent que chaque porte est posée avec précision pour garantir son bon fonctionnement et sa durabilité.
+        </p>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Nous restons disponibles même après l'installation pour toute question ou besoin d'assistance — votre satisfaction est notre priorité.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 3 modèles à la Une -->
+  <section id="modeles" class="section-tight bg-[var(--color-subtle)] scroll-mt-28">
+    <Container width="wide">
+      <div class="max-w-3xl mx-auto text-center mb-10">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+          Sélection MéO
+        </p>
+        <h2>Quelques modèles à la Une</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Trois portes signature de notre partenaire <a href="/partenaires/meo" class="text-[var(--color-accent)] underline underline-offset-4">MéO</a> que vous pouvez découvrir en showroom.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Manoir -->
+        <article class="bg-white rounded-2xl ring-1 ring-[var(--color-border)] overflow-hidden flex flex-col">
+          <Image src={porteMixte2} alt="Modèle MéO Privilège Manoir — porte d'entrée monobloc traditionnelle bois-alu" widths={[400, 600, 800]} sizes="(max-width: 768px) 100vw, 33vw" loading="lazy" decoding="async" format="webp" quality={80} class="w-full h-auto aspect-[4/3] object-cover" />
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-accent)]">Traditionnelle · Gamme Privilège</p>
+            <h3 class="mt-2 text-lg">MéO Manoir — Monobloc</h3>
+            <ul class="mt-4 space-y-1 text-sm text-[var(--color-muted)]">
+              <li>• Monobloc 89 mm</li>
+              <li>• Double ou triple vitrage 44.6 retardateur d'effraction</li>
+              <li>• Acoustique jusqu'à 33 dB · Ud jusqu'à 0,7 W/m².K</li>
+              <li>• 10 finitions bois · 27 couleurs aluminium</li>
+              <li>• Options : grille intégrée, cintre, motif gravé, 1/2 vantaux</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Phèdre -->
+        <article class="bg-white rounded-2xl ring-1 ring-[var(--color-border)] overflow-hidden flex flex-col">
+          <Image src={porteBois} alt="Modèle MéO Légende Phèdre — porte d'entrée bois à cadre apparent" widths={[400, 600, 800]} sizes="(max-width: 768px) 100vw, 33vw" loading="lazy" decoding="async" format="webp" quality={80} class="w-full h-auto aspect-[4/3] object-cover" />
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-accent)]">Traditionnelle · Gamme Légende</p>
+            <h3 class="mt-2 text-lg">MéO Phèdre — Cadre apparent</h3>
+            <ul class="mt-4 space-y-1 text-sm text-[var(--color-muted)]">
+              <li>• Cadre apparent 67 mm</li>
+              <li>• Double vitrage 44.6 retardateur d'effraction</li>
+              <li>• Acoustique jusqu'à 33 dB · Ud 1,4 W/m².K</li>
+              <li>• 10 finitions bois · 27 couleurs aluminium</li>
+              <li>• Options : vitrage motif décor, petit-bois en applique</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Apparence -->
+        <article class="bg-white rounded-2xl ring-1 ring-[var(--color-border)] overflow-hidden flex flex-col">
+          <Image src={porteAlu2} alt="Modèle MéO Utopie Apparence — porte d'entrée contemporaine aluminium motif gravé" widths={[400, 600, 800]} sizes="(max-width: 768px) 100vw, 33vw" loading="lazy" decoding="async" format="webp" quality={80} class="w-full h-auto aspect-[4/3] object-cover" />
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-accent)]">Contemporaine · Gamme Utopie</p>
+            <h3 class="mt-2 text-lg">MéO Apparence — Monobloc</h3>
+            <ul class="mt-4 space-y-1 text-sm text-[var(--color-muted)]">
+              <li>• Monobloc 89 mm</li>
+              <li>• Double ou triple vitrage 44.6 retardateur d'effraction</li>
+              <li>• Acoustique jusqu'à 33 dB · Ud jusqu'à 0,8 W/m².K</li>
+              <li>• 10 finitions bois (avec motif décor gravé)</li>
+              <li>• 27 couleurs aluminium · disponible en cintres</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <p class="text-center mt-8 text-sm text-[var(--color-muted)]">
+        Catalogue complet visible en showroom ·
+        <a href="https://www.meomenuiserie.com" target="_blank" rel="noopener noreferrer" class="text-[var(--color-accent)] underline underline-offset-4">
+          meomenuiserie.com
+        </a>
+      </p>
+    </Container>
+  </section>
+
+  <!-- Découvrir aussi -->
+  <section class="section-tight">
+    <Container width="default">
+      <p class="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)] mb-4">
+        Découvrir aussi
+      </p>
+      <ul class="flex flex-wrap items-center justify-center gap-3">
+        <li><a href="/solutions/portes-fenetres/porte-fenetre" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Porte-fenêtre</a></li>
+        <li><a href="/solutions/portes-fenetres/porte-garage" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Porte de garage</a></li>
+        <li><a href="/solutions/portes-fenetres/portes-interieures" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Portes intérieures</a></li>
+        <li><a href="/partenaires/meo" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Notre partenariat MéO</a></li>
+      </ul>
+    </Container>
+  </section>
+
+  <CTASection
+    title="Transformez votre entrée en un espace qui reflète votre goût"
+    text="Contactez-nous pour découvrir comment nous pouvons vous aider à choisir et installer la porte d'entrée parfaite pour votre maison."
+    secondaryLabel="Visiter le showroom"
+    secondaryHref="/entreprise/notre-histoire#showroom"
+  />
+</BaseLayout>

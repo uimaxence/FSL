@@ -1,0 +1,236 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import Placeholder from "../../components/ui/Placeholder.astro";
+import PartnerLogoBlock from "../../components/ui/PartnerLogoBlock.astro";
+import meoLogo from "../../assets/meo-logo.png";
+import bubendorffLogo from "../../assets/bubendorff-logo.png";
+import arcadesLogo from "../../assets/arcades-baies-logo.png";
+import histoireHero from "../../assets/histoire-1.jpg";
+import histoireAtelier from "../../assets/histoire-2.jpg";
+import histoireShowroom from "../../assets/showroom-1.png";
+
+const title = "Notre histoire | Fenêtres sur Loir — Menuisier à Seiches-sur-le-Loir depuis 2003";
+const description = "Découvrez l'histoire de Fenêtres sur Loir, entreprise familiale de menuiserie à Seiches-sur-le-Loir (49). Pose sur mesure de fenêtres, portes et volets depuis plus de 20 ans.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "L'entreprise", href: "/entreprise/notre-histoire" },
+  { label: "Notre histoire" },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Fenêtres sur Loir",
+    url: "https://www.fenetres-sur-loir.fr",
+    foundingDate: "2003",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "ZA de la Suzerolle",
+      postalCode: "49140",
+      addressLocality: "Seiches-sur-le-Loir",
+      addressRegion: "Maine-et-Loire",
+      addressCountry: "FR",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Fenêtres sur Loir",
+    image: "https://www.fenetres-sur-loir.fr/og.jpg",
+    telephone: "+33241770408",
+    priceRange: "€€",
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  breadcrumb={breadcrumb}
+  schemaJsonLd={schema}
+>
+  <section class="section-tight">
+    <Container width="default">
+      <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+        L'entreprise
+      </p>
+      <h1 class="text-balance max-w-3xl">
+        Fenêtres sur Loir : <strong class="font-bold">20 ans de savoir-faire</strong> au service de votre habitat
+      </h1>
+    </Container>
+  </section>
+
+  <section class="pb-12">
+    <Container width="default">
+      <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+        <Image
+          src={histoireHero}
+          alt="L'équipe Fenêtres sur Loir sur un chantier près de Seiches-sur-le-Loir"
+          widths={[800, 1200, 1600]}
+          sizes="(max-width: 1280px) 100vw, 1280px"
+          loading="eager"
+          decoding="async"
+          format="webp"
+          quality={82}
+          class="w-full h-auto aspect-[16/9] object-cover"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <div class="pb-20">
+    <Container width="default">
+      <div class="prose-fsl max-w-3xl mx-auto">
+        <p>
+          Depuis plus de deux décennies, <strong>Fenêtres sur Loir</strong> accompagne particuliers et professionnels dans leurs projets de rénovation et d'aménagement autour d'Angers et dans tout le Maine-et-Loire.
+        </p>
+        <p>
+          Notre mission est simple : <strong>apporter confort, lumière et sérénité à votre habitat</strong>, grâce à une pose maîtrisée et des produits durables, sélectionnés auprès de partenaires français et européens reconnus.
+        </p>
+
+        <h2>Une entreprise familiale ancrée dans le territoire</h2>
+        <figure>
+          <Image
+            src={histoireAtelier}
+            alt="Artisan menuisier de Fenêtres sur Loir au travail en atelier"
+            widths={[600, 900, 1200]}
+            sizes="(max-width: 1024px) 100vw, 720px"
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={80}
+            class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto"
+          />
+        </figure>
+        <p>
+          Créée à <strong>Seiches-sur-le-Loir</strong>, l'entreprise est née de la volonté d'allier <strong>savoir-faire artisanal</strong> et <strong>innovation des menuiseries modernes</strong>. Année après année, Fenêtres sur Loir s'est développée autour d'une valeur centrale : <strong>le travail bien fait</strong>.
+        </p>
+        <p>
+          Aujourd'hui, notre équipe rassemble <strong>techniciens, poseurs et conseillers</strong> passionnés, attachés à la proximité et à la satisfaction client.
+        </p>
+        <blockquote>
+          Nous croyons qu'un projet de menuiserie, c'est avant tout une relation de confiance.
+        </blockquote>
+
+        <h2>Une expertise reconnue dans la pose sur mesure</h2>
+        <p>
+          Fenêtres sur Loir est <strong>spécialiste de la pose sur mesure</strong> : fenêtres, portes, volets, verrières, brise-vues, carports et solutions de confort intérieur et extérieur. Chaque projet est étudié dans le moindre détail :
+        </p>
+        <ul>
+          <li><strong>Conseil personnalisé</strong>, à domicile ou au showroom (300 m² à Seiches-sur-le-Loir)</li>
+          <li><strong>Accompagnement technique</strong> selon vos besoins thermiques, acoustiques et esthétiques</li>
+          <li><strong>Pose RGE Qualibat</strong>, gage de qualité et d'éligibilité aux aides à la rénovation énergétique</li>
+        </ul>
+        <p>
+          Nos installations allient performance, esthétisme et durabilité — pour un habitat aussi beau que confortable.
+        </p>
+
+        <h2>Une entreprise certifiée et engagée</h2>
+        <p>
+          Parce que la qualité ne s'improvise pas, nous collaborons avec les <strong>meilleures marques françaises et européennes</strong> :
+        </p>
+        <ul>
+          <li><a href="/partenaires/meo"><strong>MéO</strong></a>, dont nous sommes <em>Menuisiers d'Excellence</em></li>
+          <li><a href="/partenaires/bubendorff"><strong>Bubendorff</strong></a>, <em>Point Conseil</em> expert en volets roulants</li>
+          <li><a href="/partenaires/arcades-et-baies"><strong>Arcades & Baies</strong></a>, pour des menuiseries aluminium performantes et design</li>
+        </ul>
+        <p>
+          Ces partenariats s'ajoutent à un <a href="/partenaires/nos-fournisseurs">réseau de fournisseurs</a> rigoureusement sélectionnés pour leurs matériaux, leur innovation et leur fiabilité.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto mt-10 mb-20 grid grid-cols-3 gap-4 sm:gap-6">
+        <PartnerLogoBlock
+          name="MéO"
+          href="/partenaires/meo"
+          externalUrl="https://www.meo-fr.com"
+          tagline="Menuisier d'Excellence"
+          logo={meoLogo}
+          accentColor="#93B43A"
+        />
+        <PartnerLogoBlock
+          name="Bubendorff"
+          href="/partenaires/bubendorff"
+          externalUrl="https://www.bubendorff.com"
+          tagline="Point Conseil"
+          logo={bubendorffLogo}
+          accentColor="#EE7022"
+        />
+        <PartnerLogoBlock
+          name="Arcades & Baies"
+          href="/partenaires/arcades-et-baies"
+          externalUrl="https://www.arcades-baies.com"
+          tagline="Partenaire alu"
+          logo={arcadesLogo}
+          accentColor="#1F4E8C"
+        />
+      </div>
+
+      <div class="prose-fsl max-w-3xl mx-auto">
+        <h2>Une entreprise responsable</h2>
+        <p>
+          Au-delà des performances techniques, Fenêtres sur Loir s'engage pour un habitat plus durable :
+        </p>
+        <ul>
+          <li>Sélection de produits <strong>certifiés et recyclables</strong></li>
+          <li>Optimisation énergétique de chaque projet</li>
+          <li>Réduction des déchets sur chantier</li>
+          <li>Formation continue des équipes à la rénovation responsable</li>
+        </ul>
+        <blockquote>
+          Notre objectif : améliorer votre confort tout en préservant celui de la planète.
+        </blockquote>
+      </div>
+
+      <!-- Showroom anchor section -->
+      <section id="showroom" class="mt-16 scroll-mt-28">
+        <div class="rounded-2xl bg-[var(--color-tint)] p-8 sm:p-12">
+          <div class="max-w-3xl mx-auto">
+            <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)] mb-2">
+              Notre showroom
+            </p>
+            <h2 class="mb-4">Un showroom à découvrir</h2>
+            <div class="rounded-xl overflow-hidden ring-1 ring-[var(--color-border)] mb-6">
+              <Image
+                src={histoireShowroom}
+                alt="Intérieur du showroom 300 m² de Fenêtres sur Loir à Seiches-sur-le-Loir"
+                widths={[600, 900, 1200]}
+                sizes="(max-width: 1024px) 100vw, 720px"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={80}
+                class="w-full h-auto aspect-[16/9] object-cover"
+              />
+            </div>
+            <p class="text-[15px] text-[var(--color-muted)] leading-relaxed mb-3">
+              <strong class="text-[var(--color-fg)]">Showroom de 300 m²</strong> — ZA de la Suzerolle, Seiches-sur-le-Loir
+            </p>
+            <p class="text-[15px] text-[var(--color-muted)] leading-relaxed mb-6">
+              Venez découvrir nos menuiseries, comparer les finitions, toucher les matériaux et imaginer votre projet en situation réelle. Nos conseillers vous accueillent <strong class="text-[var(--color-fg)]">sur rendez-vous</strong> pour étudier votre besoin, vous présenter les gammes et établir un <strong class="text-[var(--color-fg)]">devis gratuit et personnalisé</strong>.
+            </p>
+            <a
+              href="/contact"
+              class="inline-flex items-center rounded-full px-6 py-3 text-[15px] font-medium text-white shadow-sm"
+              style="background: var(--color-accent);"
+              onmouseover="this.style.background='var(--color-accent-hover)'"
+              onmouseout="this.style.background='var(--color-accent)'"
+            >
+              Prendre rendez-vous
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div class="prose-fsl max-w-3xl mx-auto mt-12 text-center">
+        <p>
+          <strong>Fenêtres sur Loir</strong> — l'expertise, la proximité et le service d'un artisan local à votre écoute depuis plus de 20 ans.
+        </p>
+      </div>
+    </Container>
+  </div>
+</BaseLayout>

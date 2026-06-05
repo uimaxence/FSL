@@ -1,0 +1,121 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import atelierImg from "../../assets/histoire-2.jpg";
+
+const title = "Nos fournisseurs | Fenêtres sur Loir — Qualité et fiabilité des menuiseries";
+const description = "Découvrez les fournisseurs de Fenêtres sur Loir, spécialistes français et européens de la menuiserie, des volets, stores et aménagements extérieurs sur mesure.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos partenaires", href: "/partenaires" },
+  { label: "Nos fournisseurs" },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Fenêtres sur Loir",
+  description,
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <section class="section-tight">
+    <Container width="default">
+      <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+        Nos partenaires
+      </p>
+      <h1 class="text-balance max-w-3xl">
+        Des fournisseurs sélectionnés pour leur fiabilité et leur exigence
+      </h1>
+    </Container>
+  </section>
+
+  <section class="pb-12">
+    <Container width="default">
+      <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+        <Image
+          src={atelierImg}
+          alt="Atelier et savoir-faire des fournisseurs sélectionnés par Fenêtres sur Loir"
+          widths={[600, 900, 1280]}
+          sizes="(max-width: 1280px) 100vw, 1280px"
+          loading="eager"
+          decoding="async"
+          format="webp"
+          quality={80}
+          class="w-full h-auto aspect-[16/9] object-cover"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <div class="pb-20">
+    <Container width="default">
+      <div class="prose-fsl max-w-3xl mx-auto">
+        <p>
+          Chez <strong>Fenêtres sur Loir</strong>, chaque projet est unique — mais une chose ne change jamais : notre <strong>exigence en matière de qualité</strong>.
+        </p>
+        <p>
+          C'est pourquoi nous collaborons depuis plus de <strong>20 ans</strong> avec des <strong>fournisseurs français et européens</strong> reconnus pour leur sérieux, leur innovation et la durabilité de leurs produits.
+        </p>
+
+        <h2>Des partenaires complémentaires à nos grandes marques</h2>
+        <p>
+          En plus de nos partenariats privilégiés avec <a href="/partenaires/meo"><strong>MéO</strong></a>, <a href="/partenaires/bubendorff"><strong>Bubendorff</strong></a> et <a href="/partenaires/arcades-et-baies"><strong>Arcades & Baies</strong></a>, nous travaillons avec un <strong>réseau élargi de fournisseurs spécialisés</strong>.
+        </p>
+
+        <h2>Nos principaux domaines d'approvisionnement</h2>
+
+        <h3>Fenêtres et portes d'entrée</h3>
+        <p>
+          Nos fournisseurs proposent des gammes en <strong>bois, aluminium, PVC ou mixtes bois-alu</strong>. Nous sélectionnons uniquement des fabricants :
+        </p>
+        <ul>
+          <li>labellisés <strong>NF Fenêtres</strong>, <strong>CE</strong>, ou <strong>Acotherm</strong></li>
+          <li>disposant d'une <strong>traçabilité complète</strong> des matériaux</li>
+          <li>engagés dans une <strong>démarche écoresponsable</strong></li>
+        </ul>
+
+        <h3>Volets, stores et protections solaires</h3>
+        <p>
+          Nous collaborons avec plusieurs fabricants français de <strong>volets battants, coulissants ou persiennes</strong>, ainsi que de <strong>stores intérieurs et extérieurs</strong> :
+        </p>
+        <ul>
+          <li>Solutions motorisées et connectées</li>
+          <li>Finitions sur mesure, adaptées aux façades régionales</li>
+          <li>Matériaux durables et faciles d'entretien</li>
+        </ul>
+
+        <h3>Aménagements extérieurs</h3>
+        <p>
+          Pour vos projets de <a href="/solutions/confort-exterieur/carports-marquises"><strong>carports, marquises</strong></a>, <a href="/solutions/confort-exterieur/brise-vues-claustras"><strong>brise-vues ou claustras</strong></a>, nous faisons appel à des fabricants spécialisés dans les structures en <strong>aluminium, bois ou acier galvanisé</strong>.
+        </p>
+
+        <h3>Accessoires et finitions</h3>
+        <p>
+          Nos fournisseurs d'accessoires (<strong>poignées, vitrages, motorisations, ferrures</strong>) sont choisis pour leur <strong>compatibilité parfaite</strong> avec nos menuiseries.
+        </p>
+
+        <h2>Un réseau durable, gage de confiance</h2>
+        <p>Tous nos fournisseurs partagent nos valeurs :</p>
+        <ul>
+          <li><strong>Qualité contrôlée</strong> et conformité aux normes françaises</li>
+          <li><strong>Innovation continue</strong> au service de la performance énergétique</li>
+          <li><strong>Engagement écologique</strong> dans les procédés de fabrication</li>
+          <li><strong>Service réactif</strong> pour assurer la meilleure disponibilité produits</li>
+        </ul>
+      </div>
+
+      <div class="max-w-3xl mx-auto mt-10 rounded-2xl bg-[var(--color-tint)] p-8 text-center">
+        <p class="text-[15px] text-[var(--color-muted)] leading-relaxed mb-6">
+          Venez découvrir l'ensemble de nos produits et finitions dans notre <strong class="text-[var(--color-fg)]">showroom de 300 m² à Seiches-sur-le-Loir</strong>.
+        </p>
+        <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+          Demander un devis
+        </a>
+      </div>
+    </Container>
+  </div>
+</BaseLayout>

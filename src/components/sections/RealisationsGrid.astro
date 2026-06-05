@@ -1,0 +1,66 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import Button from "../ui/Button.astro";
+import { getRealisationMedia } from "../../lib/realisations-media";
+
+interface Props {
+  showHeading?: boolean;
+  limit?: number;
+}
+
+const { showHeading = true, limit = 4 } = Astro.props;
+
+const all = (await getCollection("realisations")).sort(
+  (a, b) => (b.data.year ?? 0) - (a.data.year ?? 0),
+);
+const items = all.slice(0, limit);
+---
+
+<section class="section">
+  <Container width="wide">
+    {showHeading && (
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+        <SectionHeading
+          eyebrow="Nos réalisations"
+          title="Des chantiers qui parlent <br/>plus que les mots"
+          subtitle="Découvrez quelques-uns de nos projets récents : rénovations, extensions, constructions neuves — chaque réalisation raconte une histoire."
+        />
+        <Button href="/realisations" variant="outline">Toutes les réalisations</Button>
+      </div>
+    )}
+
+    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {items.map((r, i) => {
+        const media = getRealisationMedia(r.id);
+        return (
+          <li>
+            <a href={`/realisations/${r.id}`} class="group block">
+              <div class="relative aspect-[3/4] overflow-hidden rounded-xl ring-1 ring-[var(--color-border)] mb-4">
+                <Image
+                  src={media.cover}
+                  alt={`${r.data.title} à ${r.data.location} — Fenêtres sur Loir`}
+                  widths={[300, 500, 700]}
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  loading={i < 2 ? "eager" : "lazy"}
+                  decoding="async"
+                  format="webp"
+                  quality={78}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <p class="text-xs uppercase tracking-[0.14em] text-[var(--color-accent)] font-semibold">
+                {r.data.location}
+              </p>
+              <h3 class="mt-1 text-lg group-hover:text-[var(--color-accent)] transition-colors">
+                {r.data.title}
+              </h3>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </Container>
+</section>

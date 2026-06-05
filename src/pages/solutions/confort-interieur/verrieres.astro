@@ -1,0 +1,134 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PageProduit from "../../../components/templates/PageProduit.astro";
+import Container from "../../../components/ui/Container.astro";
+import verriere1 from "../../../assets/verriere-1.png";
+import verriere2 from "../../../assets/verriere-2.png";
+import verriereBoisAlu1 from "../../../assets/verriere-boisalu-1.png";
+import verriereBoisAlu2 from "../../../assets/verriere-boisalu-2.png";
+
+const title = "Verrières sur mesure MéO | Fenêtres sur Loir — Pose près d'Angers";
+const description = "Verrières d'intérieur sur mesure bois-aluminium MéO posées par Fenêtres sur Loir à Seiches-sur-le-Loir. Style, lumière et performance pour votre habitat.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Confort intérieur", href: "/solutions/confort-interieur" },
+  { label: "Verrières" },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Verrière intérieure sur mesure bois-aluminium",
+  brand: { "@type": "Brand", name: "MéO" },
+  description,
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <PageProduit
+    eyebrow="Confort intérieur"
+    title="Verrières d'exception signées Fenêtres sur Loir × MéO"
+    heroPlaceholderLabel="Verrière style atelier séparant cuisine et salon"
+    heroImage={verriere1}
+    heroImageAlt="Verrière intérieure style atelier MéO installée par Fenêtres sur Loir"
+    heroStyle="wide"
+    lead="Structurez vos volumes intérieurs avec des verrières bois-aluminium qui marient lumière, design et performance thermique."
+  >
+    <p>
+      Chez <strong>Fenêtres sur Loir</strong>, nous allions tradition et innovation pour vous offrir des <strong>verrières d'exception</strong>, qui marient design et performance technique.
+    </p>
+    <p>
+      <strong>Menuisier d'Excellence MéO</strong>, nous proposons des verrières de grande qualité pour <strong>ouvrir vos espaces à la lumière naturelle</strong>, tout en créant des séparations élégantes et fonctionnelles.
+    </p>
+
+    <h2>Des menuiseries de qualité, des matériaux d'exception</h2>
+    <p>
+      Nos verrières <strong>bois-alu</strong> sont conçues et fabriquées par la grande marque française <strong>MéO</strong>, qui se distingue par la qualité des matériaux utilisés. Conçues à partir de <strong>bois et de matériaux biosourcés</strong>, elles allient solidité, isolation thermique et esthétique soignée.
+    </p>
+    <ul>
+      <li>Le <strong>bois</strong> garantit une grande résistance tout en apportant une chaleur naturelle à votre décoration.</li>
+      <li>L'<strong>aluminium</strong> offre durabilité et de larges possibilités de personnalisation, avec peu d'entretien.</li>
+    </ul>
+
+    <h2>Pourquoi choisir une verrière ?</h2>
+    <figure>
+      <Image
+        src={verriere2}
+        alt="Verrière sur mesure séparant deux espaces tout en laissant passer la lumière"
+        widths={[600, 900, 1200]}
+        sizes="(max-width: 1024px) 100vw, 720px"
+        loading="lazy"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto"
+      />
+    </figure>
+    <p>
+      Les verrières sont bien plus qu'un simple élément décoratif : elles <strong>réinventent vos espaces</strong> en apportant lumière, style et fonctionnalité. Idéales pour délimiter des espaces sans les cloisonner, elles permettent de conserver une belle fluidité dans votre intérieur tout en laissant passer la lumière.
+    </p>
+    <p>
+      Que ce soit pour une <strong>cuisine ouverte sur le salon</strong>, une <strong>salle de bains attenante à une chambre</strong>, ou un <strong>atelier baigné de clarté</strong>, les verrières transforment l'atmosphère de chaque pièce.
+    </p>
+
+    <h2>Une performance énergétique optimisée</h2>
+    <p>
+      Grâce à la qualité de leurs menuiseries et à un savoir-faire unique, les <strong>verrières MéO</strong> garantissent une excellente <strong>performance thermique</strong>. Leur conception minimise les pertes de chaleur tout en optimisant la lumière naturelle.
+    </p>
+
+    <h2>Un large choix pour votre verrière sur mesure</h2>
+    <p>
+      Installer une verrière sur mesure avec Fenêtres sur Loir, c'est faire un choix <strong>esthétique et pratique</strong>.
+    </p>
+  </PageProduit>
+
+  <section class="pb-12">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto grid grid-cols-2 gap-4">
+        <Image
+          src={verriereBoisAlu1}
+          alt="Verrière bois-aluminium MéO — choix de teinte alu sur mesure"
+          widths={[400, 600]}
+          sizes="(max-width: 768px) 50vw, 360px"
+          loading="lazy"
+          decoding="async"
+          format="webp"
+          quality={80}
+          class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto aspect-square object-cover"
+        />
+        <Image
+          src={verriereBoisAlu2}
+          alt="Verrière bois-aluminium MéO — finition bois chaleureuse"
+          widths={[400, 600]}
+          sizes="(max-width: 768px) 50vw, 360px"
+          loading="lazy"
+          decoding="async"
+          format="webp"
+          quality={80}
+          class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto aspect-square object-cover"
+        />
+      </div>
+      <div class="prose-fsl max-w-3xl mx-auto mt-6">
+        <p>
+          Grâce à nos <strong>26 coloris aluminium</strong> (finitions satinées, texturées, sablées) et nos <strong>6 nuances bois</strong>, chaque verrière est personnalisée pour s'intégrer harmonieusement à votre décoration.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-20">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto flex flex-wrap gap-3 justify-center">
+        <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+          Demander un devis
+        </a>
+        <a href="/partenaires/meo" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
+          Découvrir MéO
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
