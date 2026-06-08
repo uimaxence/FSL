@@ -53,14 +53,15 @@ const navColumns = [
 ---
 
 <footer class="relative overflow-hidden bg-[#1a1b1f] text-white/85">
-  <!-- Decorative bird (logo FSL stylisé) — caché en mobile pour ne pas parasiter le texte -->
+  <!-- Decorative bird (logo FSL stylisé). En mobile : plus petit et opacité réduite
+       pour ne pas parasiter le texte mais rester visible. -->
   <Image
     src={birdLogo}
     alt=""
     aria-hidden="true"
     loading="lazy"
     decoding="async"
-    class="pointer-events-none hidden sm:block absolute -left-24 -bottom-16 w-[520px] h-auto opacity-[0.07] select-none"
+    class="pointer-events-none absolute -left-16 sm:-left-24 -bottom-10 sm:-bottom-16 w-[280px] sm:w-[520px] h-auto opacity-[0.05] sm:opacity-[0.07] select-none"
   />
 
   <Container width="wide" class="relative pt-14 sm:pt-16 pb-10">

@@ -18,14 +18,16 @@ import h8 from "../../assets/histoire-8.png";
  * - delay : décalage initial (en % de la hauteur viewport — 0 = en bas, 100 = très bas)
  */
 const photos = [
-  { src: h1, alt: "Pose menuiserie façade pierre par Fenêtres sur Loir", left: 8,  width: 23, leftM: 22, widthM: 42, speed: 1.0,  delay: 0 },
-  { src: h5, alt: "Portrait artisan Fenêtres sur Loir",                  left: 22, width: 20, leftM: 70, widthM: 38, speed: 1.25, delay: 14 },
-  { src: h2, alt: "Atelier Fenêtres sur Loir",                           left: 38, width: 22, leftM: 28, widthM: 44, speed: 0.9,  delay: 28 },
-  { src: h3, alt: "Équipe Fenêtres sur Loir au bureau",                  left: 55, width: 22, leftM: 75, widthM: 40, speed: 1.1,  delay: 6 },
-  { src: h6, alt: "Pose technique menuiserie Fenêtres sur Loir",         left: 70, width: 21, leftM: 30, widthM: 42, speed: 0.95, delay: 36 },
-  { src: h4, alt: "Showroom Seiches-sur-le-Loir Fenêtres sur Loir",      left: 86, width: 23, leftM: 72, widthM: 44, speed: 1.2,  delay: 18 },
-  { src: h7, alt: "Conseillère Fenêtres sur Loir en showroom",           left: 14, width: 20, leftM: 26, widthM: 40, speed: 1.05, delay: 46 },
-  { src: h8, alt: "Pose alu façade par Fenêtres sur Loir",               left: 48, width: 19, leftM: 74, widthM: 38, speed: 1.35, delay: 56 },
+  // Mobile : 2 colonnes alternées (gauche ~25 % / droite ~75 %), photos ~44 % de viewport,
+  // delays resserrés pour avoir toujours 4-5 photos visibles à l'écran.
+  { src: h1, alt: "Pose menuiserie façade pierre par Fenêtres sur Loir", left: 8,  width: 23, leftM: 24, widthM: 44, speed: 1.0,  delay: 0,  delayM: 0  },
+  { src: h5, alt: "Portrait artisan Fenêtres sur Loir",                  left: 22, width: 20, leftM: 76, widthM: 42, speed: 1.25, delay: 14, delayM: 7  },
+  { src: h2, alt: "Atelier Fenêtres sur Loir",                           left: 38, width: 22, leftM: 22, widthM: 46, speed: 0.9,  delay: 28, delayM: 14 },
+  { src: h3, alt: "Équipe Fenêtres sur Loir au bureau",                  left: 55, width: 22, leftM: 74, widthM: 44, speed: 1.1,  delay: 6,  delayM: 21 },
+  { src: h6, alt: "Pose technique menuiserie Fenêtres sur Loir",         left: 70, width: 21, leftM: 26, widthM: 42, speed: 0.95, delay: 36, delayM: 28 },
+  { src: h4, alt: "Showroom Seiches-sur-le-Loir Fenêtres sur Loir",      left: 86, width: 23, leftM: 75, widthM: 44, speed: 1.2,  delay: 18, delayM: 35 },
+  { src: h7, alt: "Conseillère Fenêtres sur Loir en showroom",           left: 14, width: 20, leftM: 23, widthM: 44, speed: 1.05, delay: 46, delayM: 43 },
+  { src: h8, alt: "Pose alu façade par Fenêtres sur Loir",               left: 48, width: 19, leftM: 76, widthM: 42, speed: 1.35, delay: 56, delayM: 50 },
 ];
 ---
 
@@ -35,7 +37,7 @@ const photos = [
   aria-labelledby="histoire-title"
 >
   <!-- Conteneur haut pour driver le scroll. -->
-  <div class="relative h-[110vh] sm:h-[130vh]">
+  <div class="relative h-[130vh]">
     <!-- Stage sticky : épinglé pendant le travel -->
     <div class="sticky top-0 h-screen overflow-hidden">
       <!-- Photos absolues, animées par JS -->
@@ -47,6 +49,7 @@ const photos = [
             data-parallax-photo
             data-speed={p.speed}
             data-delay={p.delay}
+            data-delay-m={p.delayM}
             data-left={p.left}
             data-width={p.width}
             data-left-m={p.leftM}
@@ -128,9 +131,13 @@ const photos = [
       const passed = vh - rect.top;
       const baseProgress = Math.max(0, Math.min(1, passed / total));
 
+      const mobile = mobileQuery.matches;
       photos.forEach((el) => {
         const speed = Number(el.dataset.speed ?? 1);
-        const delay = Number(el.dataset.delay ?? 0) / 100;
+        const delayRaw = mobile
+          ? Number(el.dataset.delayM ?? el.dataset.delay ?? 0)
+          : Number(el.dataset.delay ?? 0);
+        const delay = delayRaw / 100;
 
         // adjustedProgress : avant `delay`, l'image reste tout en bas ; après, elle remonte.
         const adj = Math.max(0, Math.min(1, (baseProgress - delay) / (1 - delay)));
