@@ -4,8 +4,9 @@ import PageProduit from "../../../components/templates/PageProduit.astro";
 import Container from "../../../components/ui/Container.astro";
 import baieHero from "../../../assets/porte-fenetre-6-gallandage.png";
 
-const title = "Baies vitrées sur mesure | Fenêtres sur Loir près d'Angers";
-const description = "[À RÉDIGER — Meta description Baies vitrées : coulissants, grandes dimensions, seuils PMR, performance.]";
+const title = "Baies vitrées sur mesure à Angers — Coulissantes, galandage | Fenêtres sur Loir";
+const description =
+  "Pose de baies vitrées coulissantes et à galandage à Angers, Doué-en-Anjou et dans le Maine-et-Loire. Aluminium, mixte bois-alu ou PVC, seuils PMR, grandes dimensions. Menuisier d'Excellence MéO, RGE Qualibat.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -13,39 +14,139 @@ const breadcrumb = [
   { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres" },
   { label: "Baies vitrées" },
 ];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Baies vitrées sur mesure — coulissantes, à galandage, à levage",
+  brand: { "@type": "Brand", name: "MéO" },
+  description,
+  areaServed: ["Angers", "Maine-et-Loire", "Doué-en-Anjou", "Seiches-sur-le-Loir"],
+};
 ---
 
-<BaseLayout title={title} description={description} breadcrumb={breadcrumb}>
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
   <PageProduit
     eyebrow="Portes & Fenêtres"
-    title="[À RÉDIGER — H1 page Baies vitrées]"
+    title="Baies vitrées sur mesure à Angers : coulissantes, à galandage ou à levage"
     heroPlaceholderLabel="Baie vitrée coulissante alu grand format"
     heroImage={baieHero}
-    heroImageAlt="Baie vitrée coulissante à galandage aluminium par Fenêtres sur Loir"
+    heroImageAlt="Baie vitrée coulissante à galandage en aluminium par Fenêtres sur Loir près d'Angers"
+    lead="Inondez vos pièces de lumière avec des baies vitrées sur mesure, aluminium ou mixte bois-alu, fabriquées en France par MéO et Arcades & Baies, posées par nos équipes RGE Qualibat à Angers et dans tout le Maine-et-Loire."
   >
-    <p class="italic">
-      [À RÉDIGER — Intro : ouverture sur l'extérieur, lumière, isolation, partenaires MéO et Arcades & Baies.]
+    <p>
+      La baie vitrée est devenue <strong>l'élément central des pièces à vivre</strong>. Elle prolonge
+      le salon vers la terrasse, capte la lumière naturelle, et transforme un simple mur en
+      perspective ouverte sur le jardin. Chez <strong>Fenêtres sur Loir</strong>, à
+      <strong>Seiches-sur-le-Loir près d'Angers</strong>, nous concevons et installons des baies
+      vitrées sur mesure jusqu'à 6 mètres de large, en aluminium, bois-alu ou PVC, adaptées aux
+      maisons traditionnelles comme aux constructions contemporaines du Maine-et-Loire.
     </p>
 
-    <h2>[À RÉDIGER — Coulissantes ou à galandage ?]</h2>
-    <p class="italic">[À RÉDIGER — Comparaison des typologies d'ouverture.]</p>
-
-    <h2>[À RÉDIGER — Matériaux et profils]</h2>
+    <h2>Coulissante, à galandage, à levage : quelle baie vitrée choisir ?</h2>
+    <p>
+      Le type d'ouverture détermine l'esthétique, le passage utile et le confort d'usage de votre
+      baie. Voici les trois grandes familles que nous installons à Angers, Doué-en-Anjou et dans
+      tout le département :
+    </p>
     <ul>
-      <li>[À RÉDIGER — Aluminium]</li>
-      <li>[À RÉDIGER — Mixte bois-alu]</li>
-      <li>[À RÉDIGER — PVC]</li>
+      <li>
+        <strong>Baie coulissante classique</strong> — La plus répandue. Les vantaux glissent
+        latéralement devant la partie fixe. <strong>Économique, fiable, étanche</strong>. Idéale en
+        rénovation ou en construction quand la circulation derrière la baie n'est pas un enjeu.
+        Disponible en 2, 3 ou 4 vantaux.
+      </li>
+      <li>
+        <strong>Baie à galandage</strong> — Les vantaux <strong>disparaissent entièrement dans le mur</strong>
+        lors de l'ouverture. L'effet est spectaculaire : la pièce s'ouvre intégralement sur la
+        terrasse, comme s'il n'y avait plus de séparation. Solution premium pour les
+        <strong>extensions, vérandas et maisons d'architecte</strong>. Demande une réservation
+        spécifique dans la maçonnerie — nous étudions la faisabilité lors de la visite technique.
+      </li>
+      <li>
+        <strong>Baie à levage-coulissant</strong> — Pour les <strong>très grandes dimensions et
+        vitrages lourds</strong> (jusqu'à 400 kg par vantail). Le vantail est légèrement soulevé
+        avant de glisser, ce qui garantit une étanchéité parfaite même sur de très larges baies.
+        Recommandé pour les façades sud très ouvertes et les maisons RE2020.
+      </li>
     </ul>
 
-    <h2>[À RÉDIGER — Accessibilité et confort]</h2>
-    <p class="italic">[À RÉDIGER — Seuils PMR, motorisation, sécurité, vitrages.]</p>
+    <h2>Aluminium, mixte bois-alu ou PVC : le bon profil pour votre baie</h2>
+    <ul>
+      <li>
+        <strong>Baies vitrées aluminium</strong> — Profils ultra-fins (jusqu'à 25 mm visibles), pour
+        un <strong>maximum de surface vitrée</strong>. Disponibles en 26 teintes (laquage Qualicoat,
+        garantie 10 ans). L'aluminium MéO ou Arcades & Baies est à <strong>rupture de pont
+        thermique</strong> : Uw jusqu'à 1,1 W/m².K en double vitrage, 0,8 en triple. Aucun entretien.
+      </li>
+      <li>
+        <strong>Baies mixtes bois-alu</strong> — Aluminium extérieur résistant aux intempéries
+        angevines, bois noble côté intérieur (chêne, chêne français, mélèze). Le compromis idéal
+        pour les <strong>maisons RE2020 et passives</strong> qui veulent allier performance,
+        esthétique et durabilité.
+      </li>
+      <li>
+        <strong>Baies vitrées PVC</strong> — Solution économique aux performances thermiques
+        excellentes. Recommandée pour les rénovations de pavillons et les budgets contenus.
+        Disponible en blanc, gris anthracite ou imitation bois plaxée.
+      </li>
+    </ul>
+
+    <h2>Accessibilité PMR, motorisation et sécurité</h2>
+    <p>
+      Nos baies vitrées sont compatibles avec les <strong>seuils encastrés PMR</strong> (norme NF
+      P 98-351), pour une <strong>circulation sans ressaut</strong> entre l'intérieur et la
+      terrasse. Indispensable pour les maisons de plain-pied, les projets d'accessibilité ou
+      simplement pour le confort au quotidien (poussette, fauteuil roulant, mobilier d'extérieur
+      qui rentre l'hiver).
+    </p>
+    <p>
+      Côté équipements, nous proposons :
+    </p>
+    <ul>
+      <li><strong>Motorisation</strong> pour les baies lourdes ou les ouvertures fréquentes.</li>
+      <li><strong>Vitrages anti-effraction feuilletés</strong> (44.2 ou 44.6) pour les baies de plain-pied.</li>
+      <li><strong>Serrures multipoints</strong> et poignées sécurisées.</li>
+      <li><strong>Vitrages à contrôle solaire</strong> pour les façades plein sud (limite la surchauffe estivale).</li>
+      <li><strong>Stores et brise-soleil orientables</strong> intégrés pour la gestion de la lumière.</li>
+    </ul>
+
+    <h2>Aides à la rénovation pour vos baies vitrées</h2>
+    <p>
+      Remplacer une ancienne porte-fenêtre ou installer une baie vitrée en rénovation vous ouvre
+      droit aux mêmes aides énergétiques que les fenêtres :
+    </p>
+    <ul>
+      <li><strong>MaPrimeRénov'</strong> — jusqu'à 100 €/menuiserie selon les revenus.</li>
+      <li><strong>TVA à 5,5 %</strong> (pose et fourniture).</li>
+      <li><strong>Certificats d'Économies d'Énergie (CEE)</strong>.</li>
+      <li><strong>Éco-prêt à taux zéro</strong>.</li>
+    </ul>
+    <p>
+      Notre certification <strong>RGE Qualibat</strong> est la condition pour bénéficier de
+      l'ensemble de ces dispositifs. Nous nous occupons du montage de votre dossier d'aide
+      gratuitement.
+    </p>
+
+    <h2>Notre zone d'intervention dans le Maine-et-Loire</h2>
+    <p>
+      Nos poseurs Fenêtres sur Loir interviennent dans tout le Maine-et-Loire (49) :
+      <strong>Angers</strong>, <strong>Doué-en-Anjou</strong>, <strong>Saumur</strong>,
+      <strong>Tiercé</strong>, <strong>Baugé-en-Anjou</strong>, <strong>Durtal</strong>,
+      <strong>Beaufort-en-Anjou</strong>, <strong>Les Ponts-de-Cé</strong>, <strong>La Flèche</strong>
+      et leurs alentours. Venez voir les baies fonctionner grandeur nature dans notre showroom
+      de 300 m² à <strong>Seiches-sur-le-Loir</strong>.
+    </p>
   </PageProduit>
 
   <section class="pb-20">
     <Container width="default">
       <div class="max-w-3xl mx-auto flex flex-wrap gap-3 justify-center">
         <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
-          Demander un devis
+          Demander un devis gratuit
+        </a>
+        <a href="/solutions/confort-interieur/murs-de-lumiere" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
+          Voir nos murs de lumière
         </a>
       </div>
     </Container>

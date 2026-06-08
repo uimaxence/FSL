@@ -4,8 +4,9 @@ import PageProduit from "../../../components/templates/PageProduit.astro";
 import Container from "../../../components/ui/Container.astro";
 import voletHero from "../../../assets/realisation-pontsdece-1.png";
 
-const title = "Volets sur mesure | Fenêtres sur Loir — Partenaire Bubendorff près d'Angers";
-const description = "[À RÉDIGER — Meta description Volets : roulants solaires, électriques, connectés, partenaire Bubendorff.]";
+const title = "Volets roulants Bubendorff à Angers — Solaires, électriques, connectés | Fenêtres sur Loir";
+const description =
+  "Pose de volets roulants solaires, électriques et connectés à Angers, Doué-en-Anjou et dans le Maine-et-Loire. Point Conseil Bubendorff, volets battants alu et bois. SAV direct, RGE Qualibat.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -13,40 +14,147 @@ const breadcrumb = [
   { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres" },
   { label: "Volets" },
 ];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Volets roulants solaires, électriques et connectés Bubendorff",
+  brand: { "@type": "Brand", name: "Bubendorff" },
+  description,
+  areaServed: ["Angers", "Maine-et-Loire", "Doué-en-Anjou", "Seiches-sur-le-Loir"],
+};
 ---
 
-<BaseLayout title={title} description={description} breadcrumb={breadcrumb}>
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
   <PageProduit
     eyebrow="Portes & Fenêtres"
-    title="[À RÉDIGER — H1 page Volets]"
+    title="Volets roulants Bubendorff à Angers : solaires, électriques et connectés"
     heroPlaceholderLabel="Volet roulant Bubendorff en façade"
     heroImage={voletHero}
-    heroImageAlt="Façade équipée de menuiseries et volets posés par Fenêtres sur Loir"
+    heroImageAlt="Façade équipée de menuiseries et volets roulants posés par Fenêtres sur Loir près d'Angers"
+    lead="Point Conseil Bubendorff officiel à Seiches-sur-le-Loir, Fenêtres sur Loir installe vos volets roulants, battants et connectés à Angers, Doué-en-Anjou et partout dans le Maine-et-Loire — avec SAV direct sans intermédiaire."
   >
-    <p class="italic">
-      [À RÉDIGER — Intro : confort, sécurité, isolation, partenariat Point Conseil Bubendorff.]
+    <p>
+      Le volet est <strong>l'allié quotidien</strong> de votre maison : il protège du froid, du
+      soleil, du bruit et des intrusions, tout en habillant votre façade. Chez
+      <strong>Fenêtres sur Loir</strong>, nous sommes <strong>Point Conseil officiel Bubendorff</strong>
+      — le fabricant français leader des volets roulants — et nous installons toute la gamme
+      à Angers, Doué-en-Anjou, Tiercé, Baugé-en-Anjou et dans tout le Maine-et-Loire.
     </p>
 
-    <h2>[À RÉDIGER — Types de volets]</h2>
+    <h2>Tous les types de volets, posés près d'Angers</h2>
     <ul>
-      <li>[À RÉDIGER — Volets roulants solaires]</li>
-      <li>[À RÉDIGER — Volets roulants électriques]</li>
-      <li>[À RÉDIGER — Volets battants]</li>
-      <li>[À RÉDIGER — Volets connectés]</li>
+      <li>
+        <strong>Volets roulants solaires Bubendorff</strong> — <strong>Aucun raccordement
+        électrique nécessaire</strong>. Le panneau solaire intégré au coffre alimente le moteur
+        et la batterie. Idéal en <strong>rénovation</strong> : pas de saignée dans les murs, pas
+        de tableau électrique à modifier. Installation en quelques heures par fenêtre. Garantie
+        7 ans pièces, moteur et batterie.
+      </li>
+      <li>
+        <strong>Volets roulants électriques filaires</strong> — La solution classique pour les
+        <strong>constructions neuves</strong> ou les rénovations avec passage de gaines. Moteur
+        radio ou filaire, commandes locales ou centralisées, intégration domotique possible.
+      </li>
+      <li>
+        <strong>Volets roulants connectés Bubendorff iD</strong> — Pilotage par smartphone (iOS,
+        Android), <strong>compatibles Google Assistant, Alexa et Somfy TaHoma</strong>.
+        Programmation horaire, scénarios "départ en vacances", gestion par pièce. Idéal pour
+        les maisons RE2020 et les seniors qui veulent automatiser la fermeture du soir.
+      </li>
+      <li>
+        <strong>Volets battants alu et bois</strong> — Pour les maisons de caractère, les
+        longères et les biens situés en <strong>zone Architectes des Bâtiments de France</strong>
+        (centre historique d'Angers, Saumur, Doué-en-Anjou, secteurs sauvegardés du Maine-et-Loire).
+        Disponibles à <strong>persiennes, panneaux pleins ou à barres et écharpes</strong>, en
+        aluminium très basse maintenance ou en bois exotique traité.
+      </li>
+      <li>
+        <strong>Volets coulissants alu</strong> — Solution contemporaine pour les baies vitrées
+        et grandes ouvertures. Style architectural fort, occultation totale ou partielle selon
+        le remplissage choisi.
+      </li>
     </ul>
 
-    <h2>[À RÉDIGER — Pourquoi choisir Bubendorff ?]</h2>
-    <p class="italic">[À RÉDIGER — Voir détails partenaire <a href="/partenaires/bubendorff">Bubendorff</a>.]</p>
+    <h2>Pourquoi nous choisissons Bubendorff</h2>
+    <p>
+      Notre statut de <strong>Point Conseil Bubendorff</strong> n'est pas un simple label
+      commercial : il nous engage à former régulièrement nos équipes au catalogue, aux nouveautés
+      et aux gestes techniques de pose. Concrètement, cela signifie pour vous :
+    </p>
+    <ul>
+      <li>
+        <strong>Fabrication 100 % française</strong> en Alsace, dans des usines automatisées —
+        délais maîtrisés (3 à 5 semaines selon la saison) et qualité constante.
+      </li>
+      <li>
+        <strong>Garantie 7 ans</strong> sur la totalité du volet, moteur et batterie inclus. C'est
+        la plus longue garantie du marché sur ce type de produit.
+      </li>
+      <li>
+        <strong>SAV direct par Fenêtres sur Loir</strong> : nous intervenons nous-mêmes sur tous
+        les volets Bubendorff que nous avons installés. Pas de centre d'appel, pas d'intermédiaire —
+        un numéro, une équipe locale qui connaît votre installation.
+      </li>
+      <li>
+        Compatible avec <strong>toutes nos menuiseries MéO et Arcades & Baies</strong> :
+        un coffre unique cohérent sur l'ensemble de la façade.
+      </li>
+    </ul>
+    <p>
+      Pour aller plus loin sur la marque, consultez notre <a href="/partenaires/bubendorff">page
+      partenariat Bubendorff</a>.
+    </p>
 
-    <h2>[À RÉDIGER — Installation et SAV]</h2>
-    <p class="italic">[À RÉDIGER — Service après-vente direct, garanties, formation Point Conseil.]</p>
+    <h2>Pose et SAV : la promesse Fenêtres sur Loir</h2>
+    <p>
+      Tous nos volets sont posés par <strong>nos équipes salariées certifiées RGE Qualibat</strong>,
+      jamais en sous-traitance. La pose d'un volet roulant standard prend une demi-journée par
+      fenêtre, le temps d'intégrer proprement le coffre, de raccorder le moteur (filaire ou solaire)
+      et de tester chaque commande avec vous avant de quitter le chantier.
+    </p>
+    <p>
+      <strong>Après la pose</strong>, nous restons votre interlocuteur unique : si une lame se
+      voile, si un moteur faiblit, si la batterie solaire baisse, vous appelez Seiches-sur-le-Loir,
+      et c'est l'un de nos techniciens qui passe — pas un sous-traitant national. Ce service de
+      proximité est l'une des raisons pour lesquelles nos clients d'Angers, des Ponts-de-Cé, de
+      Saumur ou de Tiercé nous recommandent depuis plus de 20 ans.
+    </p>
+
+    <h2>Aides à la rénovation pour vos volets</h2>
+    <p>
+      Le remplacement de volets seul n'est en général pas éligible à MaPrimeRénov' (qui cible
+      principalement les menuiseries vitrées). En revanche, un <strong>changement combiné
+      fenêtres + volets</strong> permet de cumuler plusieurs avantages :
+    </p>
+    <ul>
+      <li><strong>TVA à 5,5 %</strong> sur la fourniture et la pose des volets quand ils sont posés en même temps que vos fenêtres dans une logique d'amélioration énergétique.</li>
+      <li><strong>Certificats d'Économies d'Énergie (CEE)</strong> sur l'opération globale.</li>
+      <li>Éco-prêt à taux zéro inclus dans un bouquet de travaux RGE.</li>
+    </ul>
+    <p>
+      Nous étudions votre projet dans son ensemble pour optimiser le montage financier — n'hésitez
+      pas à demander un devis combiné.
+    </p>
+
+    <h2>Notre zone d'intervention</h2>
+    <p>
+      Nos équipes interviennent à <strong>Angers</strong> et dans son agglomération (Avrillé,
+      Beaucouzé, Trélazé, Saint-Barthélemy-d'Anjou, Les Ponts-de-Cé), <strong>Doué-en-Anjou</strong>,
+      <strong>Saumur</strong>, <strong>Tiercé</strong>, <strong>Baugé-en-Anjou</strong>,
+      <strong>Durtal</strong>, <strong>Châteauneuf-sur-Sarthe</strong>,
+      <strong>Le Lion-d'Angers</strong>, <strong>Beaufort-en-Anjou</strong>,
+      <strong>La Flèche</strong> et toutes les communes du Maine-et-Loire et du sud-Sarthe.
+      Une agence ouvrira prochainement à <strong>Doué-en-Anjou</strong> pour mieux couvrir le sud
+      du département.
+    </p>
   </PageProduit>
 
   <section class="pb-20">
     <Container width="default">
       <div class="max-w-3xl mx-auto flex flex-wrap gap-3 justify-center">
         <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
-          Demander un devis
+          Demander un devis gratuit
         </a>
         <a href="/partenaires/bubendorff" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
           Découvrir Bubendorff

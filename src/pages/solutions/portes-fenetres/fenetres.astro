@@ -4,8 +4,9 @@ import PageProduit from "../../../components/templates/PageProduit.astro";
 import Container from "../../../components/ui/Container.astro";
 import fenetreHero from "../../../assets/porte-fenetre-1.png";
 
-const title = "Fenêtres sur mesure | Fenêtres sur Loir près d'Angers";
-const description = "[À RÉDIGER — Meta description Fenêtres : bois, alu, PVC, mixte, performance thermique, partenaires MéO et Arcades & Baies]";
+const title = "Fenêtres sur mesure à Angers — Bois, Alu, PVC | Fenêtres sur Loir";
+const description =
+  "Pose de fenêtres sur mesure à Angers, Doué-en-Anjou et dans tout le Maine-et-Loire. Bois, aluminium, PVC ou bois-alu — Menuisier d'Excellence MéO, certifié RGE Qualibat. Éligible MaPrimeRénov' et TVA 5,5 %.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -13,41 +14,130 @@ const breadcrumb = [
   { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres" },
   { label: "Fenêtres" },
 ];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Fenêtres sur mesure bois, aluminium, PVC et mixte bois-alu",
+  brand: { "@type": "Brand", name: "MéO" },
+  description,
+  areaServed: ["Angers", "Maine-et-Loire", "Doué-en-Anjou", "Seiches-sur-le-Loir"],
+};
 ---
 
-<BaseLayout title={title} description={description} breadcrumb={breadcrumb}>
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
   <PageProduit
     eyebrow="Portes & Fenêtres"
-    title="[À RÉDIGER — H1 page Fenêtres]"
+    title="Fenêtres sur mesure à Angers : bois, aluminium, PVC et bois-alu"
     heroPlaceholderLabel="Fenêtre bois-alu MéO en gros plan"
     heroImage={fenetreHero}
-    heroImageAlt="Fenêtre bois-aluminium MéO sur mesure installée par Fenêtres sur Loir"
+    heroImageAlt="Fenêtre bois-aluminium MéO sur mesure installée par Fenêtres sur Loir près d'Angers"
+    lead="Menuisier d'Excellence MéO et Point Conseil Bubendorff, Fenêtres sur Loir conçoit, fabrique et pose vos fenêtres sur mesure à Angers, Doué-en-Anjou, Seiches-sur-le-Loir et dans tout le Maine-et-Loire."
   >
-    <p class="italic">
-      [À RÉDIGER — Intro : présentation du savoir-faire Fenêtres sur Loir sur les fenêtres,
-      partenariats MéO et Arcades & Baies, certifications RGE Qualibat.]
+    <p>
+      Depuis 2003, <strong>Fenêtres sur Loir</strong> accompagne les particuliers du
+      <strong>Maine-et-Loire</strong> dans le choix et la pose de leurs <strong>fenêtres sur mesure</strong>.
+      Notre showroom de 300 m² à <strong>Seiches-sur-le-Loir</strong>, à quelques minutes d'Angers, vous permet
+      de toucher les matières, comparer les vitrages et imaginer vos futures menuiseries dans
+      des conditions réelles. Grâce à notre certification <strong>RGE Qualibat</strong>, votre projet
+      est éligible à <strong>MaPrimeRénov'</strong> et à la <strong>TVA réduite à 5,5 %</strong>.
     </p>
 
-    <h2>[À RÉDIGER — Pourquoi choisir vos fenêtres avec nous ?]</h2>
-    <p class="italic">[À RÉDIGER — Bénéfices principaux : performance énergétique, esthétique, durabilité.]</p>
-
-    <h2>[À RÉDIGER — Matériaux disponibles]</h2>
+    <h2>Pourquoi confier vos fenêtres à Fenêtres sur Loir ?</h2>
+    <p>
+      Changer ses fenêtres, c'est un investissement à long terme : <strong>20 à 30 ans de
+      tranquillité</strong> si la pose est faite dans les règles. C'est pour cette raison que nos
+      clients d'<strong>Angers</strong>, de <strong>Doué-en-Anjou</strong>, de Tiercé, Baugé ou
+      La Flèche nous font confiance depuis plus de 20 ans :
+    </p>
     <ul>
-      <li>[À RÉDIGER — Bois]</li>
-      <li>[À RÉDIGER — Aluminium]</li>
-      <li>[À RÉDIGER — PVC]</li>
-      <li>[À RÉDIGER — Mixte bois-alu]</li>
+      <li><strong>Un interlocuteur unique</strong> du premier croquis à la pose finale.</li>
+      <li><strong>Une étude technique gratuite</strong> à domicile : prise de cotes, conseil sur les vitrages, accompagnement administratif (aides énergétiques, copropriété, ABF en zone protégée).</li>
+      <li><strong>Une pose certifiée RGE Qualibat</strong> par nos équipes salariées — pas de sous-traitance.</li>
+      <li><strong>Garantie décennale</strong> sur la pose, garantie fabricant MéO ou Arcades & Baies sur la menuiserie.</li>
     </ul>
 
-    <h2>[À RÉDIGER — Performance thermique et acoustique]</h2>
-    <p class="italic">[À RÉDIGER — Vitrages, normes RE2020, Acotherm, conformité aides RGE.]</p>
+    <h2>Quel matériau choisir pour vos fenêtres ?</h2>
+    <p>
+      Le matériau idéal dépend de votre style de maison, de votre budget et du niveau d'isolation
+      recherché. Voici nos quatre familles, toutes disponibles en showroom à Seiches-sur-le-Loir.
+    </p>
+    <ul>
+      <li>
+        <strong>Fenêtres bois</strong> — Chêne, chêne français ou pin sylvestre. Idéales pour les
+        <strong>maisons anciennes</strong>, les longères et les biens situés en <strong>zone
+        Architectes des Bâtiments de France</strong> (centre historique d'Angers, secteurs sauvegardés
+        de Doué-en-Anjou, etc.). Excellente isolation thermique naturelle, chaleur du grain visible
+        à l'intérieur.
+      </li>
+      <li>
+        <strong>Fenêtres aluminium</strong> — Profils fins, grandes ouvertures, <strong>26 teintes
+        au choix</strong>. Parfait pour les <strong>maisons contemporaines</strong> et les rénovations
+        haut de gamme. Aluminium signé MéO ou Arcades & Baies, à <strong>rupture de pont thermique</strong>
+        pour de très bonnes performances Uw.
+      </li>
+      <li>
+        <strong>Fenêtres PVC</strong> — Le meilleur rapport qualité/prix. <strong>Excellente
+        isolation</strong>, entretien minimal, durée de vie 25 ans+. Recommandé pour les rénovations
+        de pavillons et les budgets maîtrisés. Plusieurs coloris dont teintes bois plaxées.
+      </li>
+      <li>
+        <strong>Fenêtres mixtes bois-alu</strong> — Le <strong>haut de gamme MéO</strong> : aluminium
+        extérieur (résistance aux intempéries, aucun entretien) et bois côté intérieur (chaleur,
+        esthétique). Solution privilégiée pour les <strong>maisons RE2020</strong>, BBC et passives.
+      </li>
+    </ul>
+
+    <h2>Performance thermique et acoustique</h2>
+    <p>
+      Toutes nos fenêtres répondent aux exigences de la <strong>Réglementation Environnementale
+      2020 (RE2020)</strong>. Nous proposons en standard du <strong>double vitrage 4/16/4 à argon</strong>
+      avec <strong>Uw ≤ 1,3 W/m².K</strong>, et en option du <strong>triple vitrage</strong>
+      (Uw jusqu'à 0,8 W/m².K) pour les façades exposées au nord ou les habitations en zone froide.
+    </p>
+    <p>
+      Côté acoustique, nous proposons des <strong>vitrages feuilletés silence</strong> (classes
+      Acotherm AR3 à AR6) adaptés aux logements situés à proximité de voies passantes, du
+      périphérique d'Angers ou de zones d'activité. Idéal pour retrouver le calme chez vous, même
+      à 5 minutes du centre-ville.
+    </p>
+
+    <h2>Quelles aides pour le changement de fenêtres en Maine-et-Loire ?</h2>
+    <p>
+      Notre certification <strong>RGE Qualibat 8112</strong> ouvre droit à l'ensemble des dispositifs
+      d'aide à la rénovation énergétique en vigueur en 2026 :
+    </p>
+    <ul>
+      <li><strong>MaPrimeRénov'</strong> — jusqu'à 100 €/fenêtre selon les revenus du foyer.</li>
+      <li><strong>TVA à 5,5 %</strong> appliquée directement sur la facture (pose comprise).</li>
+      <li><strong>Certificats d'Économies d'Énergie (CEE)</strong> — prime des fournisseurs d'énergie.</li>
+      <li><strong>Éco-prêt à taux zéro (éco-PTZ)</strong> — jusqu'à 7 000 € pour un changement de fenêtres seul.</li>
+      <li>Aides locales d'<strong>Angers Loire Métropole</strong> et de certaines communes du Maine-et-Loire.</li>
+    </ul>
+    <p>
+      Nous montons votre dossier d'aide gratuitement et nous nous occupons des justificatifs
+      techniques nécessaires (factures détaillées, certificats RGE, attestations de performance).
+    </p>
+
+    <h2>Notre zone d'intervention</h2>
+    <p>
+      Depuis nos ateliers de Seiches-sur-le-Loir, nos équipes interviennent dans tout le département
+      du Maine-et-Loire (49) : <strong>Angers</strong> et son agglomération (Avrillé, Beaucouzé,
+      Saint-Barthélemy-d'Anjou, Trélazé, Les Ponts-de-Cé), <strong>Doué-en-Anjou</strong> et le
+      Saumurois, <strong>Tiercé</strong>, <strong>Baugé-en-Anjou</strong>, <strong>Durtal</strong>,
+      <strong>Châteauneuf-sur-Sarthe</strong>, <strong>Le Lion-d'Angers</strong>,
+      <strong>Beaufort-en-Anjou</strong> et <strong>La Flèche</strong>. Notre showroom de
+      Seiches-sur-le-Loir est ouvert du lundi au vendredi (et le samedi matin sur rendez-vous), et
+      une <strong>seconde agence à Doué-en-Anjou</strong> ouvrira prochainement pour mieux couvrir
+      le sud du département.
+    </p>
   </PageProduit>
 
   <section class="pb-20">
     <Container width="default">
       <div class="max-w-3xl mx-auto flex flex-wrap gap-3 justify-center">
         <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
-          Demander un devis
+          Demander un devis gratuit
         </a>
         <a href="/partenaires/meo" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
           Découvrir MéO
