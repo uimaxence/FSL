@@ -89,6 +89,15 @@
     background-image: radial-gradient(circle, #c9ccd1 1px, transparent 1px);
     background-size: 22px 22px;
   }
+
+  /* Masquer la scrollbar tout en gardant le scroll possible (mobile carrousels horizontaux) */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Typographie longue forme — utilisée sur les pages éditoriales (notre histoire,

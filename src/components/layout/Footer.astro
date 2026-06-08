@@ -53,17 +53,17 @@ const navColumns = [
 ---
 
 <footer class="relative overflow-hidden bg-[#1a1b1f] text-white/85">
-  <!-- Decorative bird (logo FSL stylisé) -->
+  <!-- Decorative bird (logo FSL stylisé) — caché en mobile pour ne pas parasiter le texte -->
   <Image
     src={birdLogo}
     alt=""
     aria-hidden="true"
     loading="lazy"
     decoding="async"
-    class="pointer-events-none absolute -left-24 -bottom-16 w-[520px] h-auto opacity-[0.07] select-none"
+    class="pointer-events-none hidden sm:block absolute -left-24 -bottom-16 w-[520px] h-auto opacity-[0.07] select-none"
   />
 
-  <Container width="wide" class="relative pt-16 pb-10">
+  <Container width="wide" class="relative pt-14 sm:pt-16 pb-10">
     <!-- Top nav grid (5 cols on desktop) -->
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10">
       {
@@ -80,7 +80,7 @@ const navColumns = [
                 <li>
                   <a
                     href={link.href}
-                    class="text-sm text-white/55 hover:text-white transition-colors"
+                    class="text-sm text-white/75 hover:text-white transition-colors"
                   >
                     {link.label}
                   </a>
@@ -93,16 +93,16 @@ const navColumns = [
     </div>
 
     <!-- Big brand mark -->
-    <div class="mt-16 lg:mt-20 border-t border-white/10 pt-12">
-      <div class="grid lg:grid-cols-3 gap-10 items-end">
-        <div class="lg:col-span-2">
-          <p class="font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] italic text-white">
+    <div class="mt-14 sm:mt-16 lg:mt-20 border-t border-white/10 pt-10 sm:pt-12">
+      <div class="grid lg:grid-cols-3 gap-8 lg:gap-10 items-end">
+        <div class="lg:col-span-2 min-w-0">
+          <p class="font-display text-[clamp(2rem,7vw,5.5rem)] leading-[0.95] italic text-white break-words">
             Fenêtres-sur-loir
           </p>
         </div>
-        <address class="not-italic text-sm text-white/60 leading-relaxed lg:text-right space-y-1">
-          <p class="text-[11px] uppercase tracking-[0.16em] text-white/80">© {year}, Fenêtres-sur-loir</p>
-          <p class="text-[11px] uppercase tracking-[0.16em] text-white/40">ALL RIGHTS RESERVED</p>
+        <address class="not-italic text-sm text-white/75 leading-relaxed lg:text-right space-y-1">
+          <p class="text-[11px] uppercase tracking-[0.16em] text-white">© {year}, Fenêtres-sur-loir</p>
+          <p class="text-[11px] uppercase tracking-[0.16em] text-white/60">All rights reserved</p>
           <p class="mt-3">ZA de la Suzerolle</p>
           <p>49140 Seiches-sur-le-Loir</p>
           <p>

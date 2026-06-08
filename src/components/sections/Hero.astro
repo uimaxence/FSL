@@ -29,17 +29,17 @@ const googleRating = { score: "4,8", count: 132 };
   <Image
     src={heroBg}
     alt=""
-    widths={[1280, 1920, 2560]}
+    widths={[640, 960, 1280, 1920, 2560]}
     sizes="100vw"
     loading="eager"
     decoding="async"
     format="webp"
-    quality={82}
+    quality={78}
     class="absolute inset-0 -z-10 w-full h-full object-cover"
   />
-  <!-- Dégradé sombre côté gauche pour la lisibilité du texte -->
+  <!-- Dégradé sombre — plus prononcé en mobile (vertical) puis horizontal en desktop -->
   <div
-    class="absolute inset-0 -z-10 bg-gradient-to-r from-black/65 via-black/20 to-transparent"
+    class="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/55 to-black/40 sm:bg-gradient-to-r sm:from-black/70 sm:via-black/30 sm:to-transparent"
     aria-hidden="true"
   ></div>
 
@@ -110,16 +110,17 @@ const googleRating = { score: "4,8", count: 132 };
     </div>
 
     <!-- Partenaires en bas, à gauche -->
-    <div class="mt-12 lg:mt-16 max-w-2xl">
-      <p class="text-[11px] uppercase tracking-[0.18em] text-white/70 mb-4">
+    <div class="mt-10 sm:mt-12 lg:mt-16 max-w-2xl">
+      <p class="text-[11px] uppercase tracking-[0.18em] text-white/70 mb-3 sm:mb-4">
         Nos partenaires de confiance
       </p>
-      <div class="flex flex-wrap items-center gap-x-8 lg:gap-x-10 gap-y-4">
+      <!-- En mobile : une seule ligne (scroll horizontal si dépassement). En desktop : wrap classique. -->
+      <div class="flex items-center gap-x-5 sm:gap-x-8 lg:gap-x-10 gap-y-4 overflow-x-auto sm:overflow-visible sm:flex-wrap -mx-1 px-1 pb-1 scrollbar-hide">
         {
           partners.map((p) => (
             <a
               href={p.href}
-              class="inline-flex items-center justify-center h-9 transition-opacity opacity-90 hover:opacity-100"
+              class="inline-flex items-center justify-center h-8 sm:h-9 shrink-0 transition-opacity opacity-90 hover:opacity-100"
               aria-label={`Découvrir notre partenariat ${p.name}`}
               style="filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));"
             >
@@ -132,7 +133,7 @@ const googleRating = { score: "4,8", count: 132 };
                 decoding="async"
                 format="webp"
                 quality={90}
-                class="max-h-9 w-auto object-contain"
+                class="max-h-8 sm:max-h-9 w-auto object-contain"
               />
             </a>
           ))

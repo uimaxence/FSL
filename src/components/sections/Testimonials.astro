@@ -63,23 +63,24 @@ const columns = [
           <div class:list={["flex flex-col gap-6", col.offset && "md:mt-12 lg:mt-20"]}>
             {col.items.map((t) => (
               <article class="bg-[var(--color-tint)] rounded-2xl p-5 sm:p-6 lg:p-7 flex flex-col">
-                <div class="flex gap-4 sm:gap-5 lg:gap-6 flex-1">
-                  <p class="flex-1 min-w-0 text-[14px] leading-relaxed text-[var(--color-fg)]">
-                    {t.quote}
-                  </p>
-                  <div class="shrink-0 w-[38%] sm:w-[42%] self-stretch">
+                <!-- Mobile : image en haut, texte en dessous. Desktop : côte à côte. -->
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-5 lg:gap-6 flex-1">
+                  <div class="w-full sm:shrink-0 sm:w-[42%] sm:self-stretch order-first">
                     <Image
                       src={t.image}
                       alt={`Réalisation chez ${t.name}`}
-                      widths={[320, 640]}
-                      sizes="(min-width: 1024px) 280px, (min-width: 768px) 220px, 140px"
+                      widths={[320, 640, 800]}
+                      sizes="(min-width: 1024px) 280px, (min-width: 768px) 220px, 100vw"
                       loading="lazy"
                       decoding="async"
                       format="webp"
                       quality={82}
-                      class="rounded-lg w-full h-full object-cover min-h-[140px]"
+                      class="rounded-lg w-full h-full object-cover aspect-[4/3] sm:aspect-auto sm:min-h-[180px]"
                     />
                   </div>
+                  <p class="flex-1 min-w-0 text-[14px] leading-relaxed text-[var(--color-fg)]">
+                    {t.quote}
+                  </p>
                 </div>
                 <div class="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-[var(--color-accent)]/15 flex items-center gap-3 sm:gap-4">
                   <div class="flex text-amber-400" aria-label="5 sur 5 étoiles">
