@@ -9,6 +9,11 @@ interface Props {
 
 const { withHeading = true } = Astro.props;
 
+// Clé Web3Forms (gratuite, à créer sur https://web3forms.com).
+// Définie dans le fichier .env : PUBLIC_WEB3FORMS_KEY=xxxx-xxxx-...
+// Sur Vercel : à ajouter dans Settings → Environment Variables.
+const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? "";
+
 const inputBase =
   "w-full rounded-md border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm placeholder:text-[var(--color-muted)]/60 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/30 focus:border-[var(--color-accent)] transition-colors";
 
@@ -79,10 +84,18 @@ const bullets = [
 
       <!-- Right card : form -->
       <form
+        id="contact-form"
         method="post"
-        action="#"
+        action="https://api.web3forms.com/submit"
         class="bg-white rounded-2xl shadow-sm p-6 sm:p-10 space-y-5"
       >
+        <!-- Champs Web3Forms -->
+        <input type="hidden" name="access_key" value={web3formsKey} />
+        <input type="hidden" name="subject" value="Nouvelle demande de contact — fenetres-sur-loir.fr" />
+        <input type="hidden" name="from_name" value="Site Fenêtres sur Loir" />
+        <!-- Honeypot anti-spam : laissé vide, masqué aux humains -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
         <div>
           <p class="text-[13px] text-[var(--color-muted)]">
             Remplissez ce formulaire de contact, nous prendrons contact avec vous dans les meilleurs délais.
@@ -122,13 +135,22 @@ const bullets = [
           <textarea name="message" required rows="5" class={inputBase} placeholder="Message"></textarea>
         </label>
 
+        <!-- Message de statut (succès / erreur) -->
+        <p
+          id="contact-form-status"
+          role="status"
+          aria-live="polite"
+          class="hidden text-[14px] font-medium rounded-md px-4 py-3"
+        ></p>
+
         <div class="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <p class="text-[11px] text-[var(--color-muted)]">
             Vos données sont uniquement utilisées pour traiter votre demande (RGPD).
           </p>
           <button
             type="submit"
-            class="inline-flex items-center justify-center rounded-md px-7 py-2.5 text-[14px] font-medium text-white shadow-sm transition-colors"
+            data-default-label="Envoyer"
+            class="inline-flex items-center justify-center rounded-md px-7 py-2.5 text-[14px] font-medium text-white shadow-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             style="background: var(--color-accent);"
             onmouseover="this.style.background='var(--color-accent-hover)'"
             onmouseout="this.style.background='var(--color-accent)'"
@@ -140,3 +162,69 @@ const bullets = [
     </div>
   </Container>
 </section>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const status = document.getElementById("contact-form-status") as HTMLElement | null;
+
+  if (form && status) {
+    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    const defaultLabel = button?.dataset.defaultLabel ?? "Envoyer";
+
+    const showStatus = (message: string, ok: boolean) => {
+      status.textContent = message;
+      status.classList.remove("hidden");
+      status.style.background = ok ? "rgba(34,197,94,0.12)" : "rgba(239,68,68,0.12)";
+      status.style.color = ok ? "#15803d" : "#b91c1c";
+    };
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!button) return;
+
+      // Garde-fou : clé manquante
+      const accessKey = (form.elements.namedItem("access_key") as HTMLInputElement)?.value;
+      if (!accessKey) {
+        showStatus(
+          "Le formulaire n'est pas encore configuré. Écrivez-nous à contacts@fenetres-sur-loir.fr ou appelez le 02 41 77 04 08.",
+          false,
+        );
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Envoi…";
+      status.classList.add("hidden");
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
+        });
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          form.reset();
+          showStatus(
+            "Merci ! Votre demande a bien été envoyée. Notre équipe vous recontacte sous 48 h ouvrées.",
+            true,
+          );
+        } else {
+          showStatus(
+            "Une erreur est survenue. Réessayez ou contactez-nous au 02 41 77 04 08.",
+            false,
+          );
+        }
+      } catch {
+        showStatus(
+          "Impossible d'envoyer le message. Vérifiez votre connexion ou appelez-nous au 02 41 77 04 08.",
+          false,
+        );
+      } finally {
+        button.disabled = false;
+        button.textContent = defaultLabel;
+      }
+    });
+  }
+</script>
