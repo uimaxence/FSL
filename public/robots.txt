@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.fenetres-sur-loir.fr/sitemap-index.xml
