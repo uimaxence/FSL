@@ -68,7 +68,7 @@ Toute l'équipe se réjouit d'avance de vous accueillir dans ce nouveau point de
   <p class="mt-2 text-[var(--color-muted)]">📅 <strong>Horaires :</strong> Du lundi au vendredi de 9h à 18h30, et le samedi de 9h à 12h.</p>
 </div>
 
-Vous souhaitez planifier votre visite ou obtenir un itinéraire en un clic ? Découvrez notre toute nouvelle **Fiche Google Business Profile Fenêtres sur Loir - Doué-en-Anjou** pour retrouver nos actualités locales et nous laisser vos premiers messages d'encouragement !
+Vous souhaitez planifier votre visite ou obtenir un itinéraire en un clic ? Découvrez notre toute nouvelle **[Fiche Google Business Profile Fenêtres sur Loir - Doué-en-Anjou](https://share.google/BFyBXSMuxjDl0Yxk8)** pour retrouver nos actualités locales et nous laisser vos premiers messages d'encouragement !
 
 Pour toute demande de devis, vous pouvez également nous contacter directement via notre site internet : **[Demander un rendez-vous personnalisé](/contact)**.
 
