@@ -3,6 +3,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHub from "../../components/templates/PageHub.astro";
 import Container from "../../components/ui/Container.astro";
 import partenairesHero from "../../assets/hero-2.jpg";
+import bubendorffPart from "../../assets/buben-part.webp";
+import arcadesPart from "../../assets/arcades-part.jpg";
 
 const title = "Nos partenaires | Fenêtres sur Loir — Marques et fabricants de confiance";
 const description = "Découvrez les partenaires de Fenêtres sur Loir : MéO, Bubendorff et Arcades & Baies. Des marques françaises reconnues pour des menuiseries sur mesure, performantes et durables.";
@@ -24,12 +26,16 @@ const cards = [
     description: "Expert français du volet roulant électrique, solaire et connecté. Installation conforme et certifiée.",
     href: "/partenaires/bubendorff",
     placeholderLabel: "Logo Bubendorff et volet roulant",
+    image: bubendorffPart,
+    imageAlt: "Volet roulant Bubendorff installé par Fenêtres sur Loir",
   },
   {
     title: "Arcades & Baies",
     description: "Fabricant reconnu de menuiseries aluminium alliant design et performance.",
     href: "/partenaires/arcades-et-baies",
     placeholderLabel: "Logo Arcades & Baies et baie alu",
+    image: arcadesPart,
+    imageAlt: "Menuiserie aluminium Arcades & Baies posée par Fenêtres sur Loir",
   },
 ];
 

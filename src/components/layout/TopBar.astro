@@ -50,21 +50,23 @@ const cityShort = "Seiches-sur-le-Loir";
 </div>
 
 <script>
-  // Showroom hours : Lun–Ven 9h-18h, Sam sur RDV (affiché "fermé sauf RDV"), Dim fermé
+  // Showroom hours : Lun–Ven 9h-12h / 14h-18h30, Sam 9h-12h, Dim fermé
   const status = document.querySelector<HTMLElement>("[data-topbar-status]");
   const dot = document.querySelector<HTMLElement>("[data-topbar-dot]");
   if (status && dot) {
     const now = new Date();
     const day = now.getDay(); // 0 = dim, 6 = sam
-    const h = now.getHours();
+    const mins = now.getHours() * 60 + now.getMinutes();
+    const morning = mins >= 9 * 60 && mins < 12 * 60;
+    const afternoon = mins >= 14 * 60 && mins < 18 * 60 + 30;
     let label = "";
     let color = "";
-    if (day >= 1 && day <= 5 && h >= 9 && h < 18) {
+    if (day >= 1 && day <= 5 && (morning || afternoon)) {
       label = "Showroom ouvert";
       color = "bg-emerald-500";
-    } else if (day === 6) {
-      label = "Samedi sur rendez-vous";
-      color = "bg-amber-500";
+    } else if (day === 6 && morning) {
+      label = "Showroom ouvert";
+      color = "bg-emerald-500";
     } else {
       label = "Showroom fermé";
       color = "bg-rose-500";
