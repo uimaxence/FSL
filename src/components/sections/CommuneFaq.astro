@@ -1,0 +1,50 @@
+---
+import Container from "../ui/Container.astro";
+import type { CommuneFaq } from "../../data/communes";
+
+interface Props {
+  faq: CommuneFaq[];
+  communeNom: string;
+}
+
+const { faq, communeNom } = Astro.props;
+---
+
+{
+  faq.length > 0 && (
+    <section class="section-tight">
+      <Container width="narrow">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)] text-center">
+          Questions fréquentes
+        </p>
+        <h2 class="text-center mb-10 text-balance">Menuiserie à {communeNom} : vos questions</h2>
+        <ul class="space-y-3">
+          {faq.map((item) => (
+            <li class="rounded-xl ring-1 ring-[var(--color-border)] bg-white overflow-hidden">
+              <details class="group">
+                <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer list-none font-medium text-[var(--color-fg)] hover:bg-[var(--color-tint)] transition-colors">
+                  {item.question}
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="shrink-0 text-[var(--color-accent)] transition-transform group-open:rotate-180"
+                    aria-hidden="true"
+                  >
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </summary>
+                <p class="px-5 pb-5 text-[var(--color-muted)] leading-relaxed">{item.reponse}</p>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </section>
+  )
+}

@@ -1,0 +1,387 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import Button from "../components/ui/Button.astro";
+import CTASection from "../components/sections/CTASection.astro";
+import AgenceProche from "../components/sections/AgenceProche.astro";
+import CommuneRealisations from "../components/sections/CommuneRealisations.astro";
+import CommuneFaq from "../components/sections/CommuneFaq.astro";
+import { communes, AGENCES } from "../data/communes";
+import { getCommuneMedia } from "../lib/commune-media";
+
+export function getStaticPaths() {
+  return communes.map((commune) => ({
+    params: { ville: commune.slug },
+    props: { commune },
+  }));
+}
+
+const { commune } = Astro.props;
+const agence = AGENCES[commune.agence];
+const media = getCommuneMedia(commune.slug);
+
+// FAQ : questions uniques de la commune + 3 questions localisées (interpolées
+// avec le nom de la commune) communes à toutes les pages, pour densifier le
+// FAQPage et couvrir le longue-traîne « fenêtres / RGE / devis + ville ».
+const faqLocalisees = [
+  {
+    question: `Quels types de fenêtres posez-vous à ${commune.nom} ?`,
+    reponse: `À ${commune.nom}, nous posons des fenêtres PVC, aluminium, bois et mixtes bois-alu, en double ou triple vitrage, aussi bien en rénovation qu'en construction neuve. Le choix dépend de votre budget, de l'exposition et du style de votre maison.`,
+  },
+  {
+    question: `Faut-il être certifié RGE pour bénéficier des aides à ${commune.nom} ?`,
+    reponse: `Oui. Nos poses à ${commune.nom} sont réalisées par nos équipes certifiées RGE Qualibat, condition nécessaire pour mobiliser MaPrimeRénov', les primes CEE ou l'éco-PTZ sur le remplacement de vos menuiseries.`,
+  },
+  {
+    question: `Le devis pour des menuiseries à ${commune.nom} est-il gratuit ?`,
+    reponse: `Oui, le devis est gratuit et sans engagement. Après une prise de mesures à ${commune.nom}, nous vous remettons une proposition détaillée sous 48 h.`,
+  },
+];
+const faqAll = [...(commune.faq ?? []), ...faqLocalisees];
+
+const services = [
+  {
+    label: "Fenêtres",
+    href: "/solutions/portes-fenetres/fenetres",
+    desc: "Fenêtres PVC, aluminium, bois ou mixte bois-alu, en double ou triple vitrage : des menuiseries sur mesure parfaitement isolées et adaptées à chaque ouverture.",
+  },
+  {
+    label: "Portes d'entrée",
+    href: "/solutions/portes-fenetres/portes-entree",
+    desc: "Portes d'entrée alu ou bois-alu, serrures multipoints A2P : sécurité, isolation et design pour valoriser votre façade.",
+  },
+  {
+    label: "Baies vitrées",
+    href: "/solutions/portes-fenetres/baies-vitrees",
+    desc: "Baies coulissantes, à galandage ou à levage, avec seuil plat accessible : un maximum de lumière et d'ouverture vers le jardin.",
+  },
+  {
+    label: "Volets & stores",
+    href: "/solutions/portes-fenetres/volets",
+    desc: "Volets roulants, battants ou solaires Bubendorff, motorisés et connectés : confort, occultation et sécurité au quotidien.",
+  },
+  {
+    label: "Verrières",
+    href: "/solutions/confort-interieur/verrieres",
+    desc: "Verrières d'atelier sur mesure pour séparer les espaces sans perdre de luminosité, en acier ou aluminium.",
+  },
+  {
+    label: "Carports & pergolas",
+    href: "/solutions/confort-exterieur/carports-marquises",
+    desc: "Carports, marquises et pergolas bioclimatiques en aluminium pour aménager et protéger vos extérieurs.",
+  },
+];
+
+const aides = [
+  { titre: "Certification RGE Qualibat", texte: "Indispensable pour ouvrir droit aux aides : notre pose est réalisée par nos équipes, sans sous-traitance." },
+  { titre: "MaPrimeRénov'", texte: "Aide de l'État au remplacement de menuiseries simple vitrage, selon vos revenus." },
+  { titre: "Primes CEE", texte: "Certificats d'économie d'énergie cumulables pour vos travaux d'isolation." },
+  { titre: "Éco-PTZ & TVA 5,5 %", texte: "Prêt à taux zéro et TVA réduite sur la fourniture et la pose en rénovation énergétique." },
+];
+
+const atouts = [
+  "Plus de 20 ans d'expérience et 2 000 chantiers réalisés en Maine-et-Loire",
+  "Pose assurée par nos équipes, sans sous-traitance",
+  "Certification RGE Qualibat ouvrant droit aux aides",
+  "Showroom de 300 m² pour voir et toucher les menuiseries",
+  "Partenaire des marques françaises MéO, Bubendorff et Arcades & Baies",
+  "Devis gratuit et détaillé sous 48 h",
+];
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Zones d'intervention", href: "/zones-intervention" },
+  { label: commune.nom },
+];
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+
+// JSON-LD : LocalBusiness ancré sur l'agence réelle, areaServed = la commune.
+const localBusiness: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+  name: `Fenêtres sur Loir — Menuisier à ${commune.nom}`,
+  description: commune.metaDescription,
+  image: "https://www.fenetres-sur-loir.fr/og.jpg",
+  url: canonical,
+  telephone: "+33241770408",
+  email: "contacts@fenetres-sur-loir.fr",
+  priceRange: "€€",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: agence.adresse,
+    postalCode: agence.codePostal,
+    addressLocality: agence.ville,
+    addressRegion: "Maine-et-Loire",
+    addressCountry: "FR",
+  },
+  areaServed: {
+    "@type": "City",
+    name: commune.nom,
+    address: {
+      "@type": "PostalAddress",
+      postalCode: commune.codePostal,
+      addressLocality: commune.nom,
+      addressRegion: "Maine-et-Loire",
+      addressCountry: "FR",
+    },
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: commune.lat,
+    longitude: commune.lng,
+  },
+};
+
+const schema: Array<Record<string, unknown>> = [localBusiness];
+
+if (faqAll.length > 0) {
+  schema.push({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqAll.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.reponse },
+    })),
+  });
+}
+---
+
+<BaseLayout
+  title={commune.metaTitle}
+  description={commune.metaDescription}
+  breadcrumb={breadcrumb}
+  schemaJsonLd={schema}
+>
+  <!-- Hero localisé — photo plein cadre style magazine -->
+  <section class="relative">
+    <div class="relative min-h-[420px] sm:min-h-[520px] flex items-end overflow-hidden">
+      <Image
+        src={media.hero}
+        alt={`Menuiseries sur mesure posées par Fenêtres sur Loir à ${commune.nom}`}
+        widths={[640, 960, 1280, 1920]}
+        sizes="100vw"
+        loading="eager"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+      <Container width="default" class="relative pb-12 sm:pb-16 pt-24">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-white/85">
+          Zone d'intervention · Maine-et-Loire (49)
+        </p>
+        <h1 class="text-white text-balance max-w-3xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
+          Menuisier à {commune.nom} ({commune.codePostal})
+        </h1>
+        <p class="mt-5 max-w-2xl text-[17px] leading-relaxed text-white/90">
+          {commune.intro}
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="/contact"
+            class="inline-flex items-center rounded-full px-7 py-3 text-[14px] font-medium text-white shadow-sm transition-colors"
+            style="background: var(--color-accent);"
+            onmouseover="this.style.background='var(--color-accent-hover)'"
+            onmouseout="this.style.background='var(--color-accent)'"
+          >
+            Demander un devis gratuit
+          </a>
+          <a
+            href="/realisations"
+            class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white border border-white/50 hover:bg-white hover:text-[var(--color-fg)] transition-colors"
+          >
+            Voir nos réalisations
+          </a>
+        </div>
+      </Container>
+    </div>
+  </section>
+
+  <!-- Corps rédactionnel -->
+  <section class="section-tight">
+    <Container width="default">
+      <div class="prose-fsl max-w-3xl">
+        <p class="lead">
+          Vous cherchez un <strong>menuisier à {commune.nom}</strong> pour la pose ou le
+          remplacement de fenêtres, portes, volets ou baies vitrées ? Artisan certifié RGE,
+          Fenêtres sur Loir conçoit, fabrique et installe vos menuiseries sur mesure à
+          {commune.nom} et dans tout le secteur ({commune.codePostal}).
+        </p>
+        {commune.body.map((p) => <p>{p}</p>)}
+      </div>
+
+      {commune.quartiers && commune.quartiers.length > 0 && (
+        <div class="max-w-3xl mt-8">
+          <h2 class="text-xl mb-3">Nos interventions à {commune.nom} et alentours</h2>
+          <ul class="flex flex-wrap gap-2">
+            {commune.quartiers.map((q) => (
+              <li class="inline-flex items-center rounded-full bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] px-3.5 py-1.5 text-sm text-[var(--color-fg)]">
+                {q}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {commune.abf && commune.abfNote && (
+        <div class="max-w-3xl mt-8 rounded-xl bg-[var(--color-tint)] p-5 sm:p-6">
+          <p class="flex items-start gap-3 text-sm text-[var(--color-fg)] leading-relaxed">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5" aria-hidden="true">
+              <path d="M3 21h18" /><path d="M5 21V8l7-4 7 4v13" /><path d="M9 21v-6h6v6" />
+            </svg>
+            <span><strong>Secteur protégé (ABF) —</strong> {commune.abfNote}</span>
+          </p>
+        </div>
+      )}
+    </Container>
+  </section>
+
+  <!-- Bandeau photo pleine largeur -->
+  <section class="relative">
+    <div class="relative aspect-[16/9] sm:aspect-[21/7] overflow-hidden">
+      <Image
+        src={media.band}
+        alt={`Réalisation de menuiserie Fenêtres sur Loir près de ${commune.nom}`}
+        widths={[640, 960, 1280, 1920]}
+        sizes="100vw"
+        loading="lazy"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+      <div class="absolute inset-0 flex items-center">
+        <Container width="default">
+          <p class="text-xs font-semibold tracking-[0.18em] uppercase text-white/80 mb-2">
+            Artisan menuisier RGE
+          </p>
+          <p class="font-display text-white text-[clamp(1.5rem,3.5vw,2.5rem)] leading-tight max-w-2xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)]">
+            Fenêtres, portes &amp; volets sur mesure, posés près de {commune.nom}.
+          </p>
+        </Container>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services / menuiseries (maillage interne + mots-clés) -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <h2 class="text-center mb-3 text-balance">Nos menuiseries sur mesure à {commune.nom}</h2>
+      <p class="text-center text-[var(--color-muted)] max-w-2xl mx-auto mb-10">
+        Fenêtres, portes, volets, baies vitrées, verrières ou aménagements extérieurs : retrouvez
+        toutes nos solutions de menuiserie posées à {commune.nom} par un artisan RGE.
+      </p>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {services.map((s) => (
+          <li>
+            <a
+              href={s.href}
+              class="group flex flex-col h-full rounded-2xl bg-white ring-1 ring-[var(--color-border)] p-5 hover:ring-[var(--color-accent)] transition-colors"
+            >
+              <span class="flex items-center justify-between gap-2 font-semibold text-[var(--color-fg)] group-hover:text-[var(--color-accent)] transition-colors">
+                {s.label} à {commune.nom}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+                </svg>
+              </span>
+              <span class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">{s.desc}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
+
+  <!-- Rénovation énergétique & aides -->
+  <section class="section-tight">
+    <Container width="default">
+      <div class="grid lg:grid-cols-[1fr_1.1fr] gap-8 lg:gap-12 items-center">
+        <div>
+          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+            Rénovation énergétique
+          </p>
+          <h2 class="text-balance mb-4">Vos aides pour vos menuiseries à {commune.nom}</h2>
+          <p class="text-[var(--color-muted)] leading-relaxed">
+            Remplacer vos fenêtres ou volets à {commune.nom} améliore le confort et réduit
+            votre facture d'énergie. En tant qu'artisan RGE Qualibat, nous vous aidons à
+            mobiliser les dispositifs en vigueur et nous nous occupons des démarches.
+          </p>
+          <div class="mt-6">
+            <Button href="/contact" variant="primary">Estimer mon projet à {commune.nom}</Button>
+          </div>
+        </div>
+        <ul class="grid sm:grid-cols-2 gap-4">
+          {aides.map((a) => (
+            <li class="rounded-xl bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] p-5">
+              <p class="font-semibold text-[var(--color-fg)] mb-1">{a.titre}</p>
+              <p class="text-sm text-[var(--color-muted)] leading-relaxed">{a.texte}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Pourquoi nous — magazine 2 colonnes -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="wide">
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)] order-2 lg:order-1">
+          <Image
+            src={media.portrait}
+            alt={`Fenêtres sur Loir, menuisier de confiance à ${commune.nom}`}
+            widths={[480, 720, 960]}
+            sizes="(max-width: 1024px) 100vw, 45vw"
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={80}
+            class="w-full h-full aspect-[4/3] object-cover"
+          />
+        </div>
+        <div class="order-1 lg:order-2">
+          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+            Artisan de confiance
+          </p>
+          <h2 class="text-balance mb-3">Pourquoi choisir Fenêtres sur Loir à {commune.nom} ?</h2>
+          <p class="text-[var(--color-muted)] leading-relaxed mb-6">
+            {commune.distanceKm === 0
+              ? `Notre agence est implantée à ${commune.nom} : un menuisier local, réactif et au plus près de votre chantier.`
+              : `À environ ${commune.distanceKm} km de notre agence de ${agence.nom}, nous intervenons rapidement à ${commune.nom} pour la prise de mesures, la pose et le SAV.`}
+          </p>
+          <ul class="grid sm:grid-cols-2 gap-3">
+            {atouts.map((a) => (
+              <li class="flex items-start gap-3 rounded-xl bg-white ring-1 ring-[var(--color-border)] px-4 py-3.5">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span class="text-sm text-[var(--color-fg)] leading-relaxed">{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <AgenceProche agence={commune.agence} communeNom={commune.nom} distanceKm={commune.distanceKm} />
+
+  {commune.realisationSlugs && commune.realisationSlugs.length > 0 && (
+    <CommuneRealisations slugs={commune.realisationSlugs} communeNom={commune.nom} />
+  )}
+
+  <CommuneFaq faq={faqAll} communeNom={commune.nom} />
+
+  <CTASection
+    eyebrow={`Votre projet à ${commune.nom}`}
+    title={`Votre devis de menuiserie à ${commune.nom}`}
+    text="Devis gratuit sous 48 h, visite du showroom ou rendez-vous chez vous : nos équipes vous accompagnent du premier croquis à la pose finale."
+    secondaryLabel="Toutes nos zones"
+    secondaryHref="/zones-intervention"
+  />
+</BaseLayout>

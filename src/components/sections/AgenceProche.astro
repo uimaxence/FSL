@@ -1,0 +1,48 @@
+---
+import Container from "../ui/Container.astro";
+import Button from "../ui/Button.astro";
+import { AGENCES, type AgenceRattachement } from "../../data/communes";
+
+interface Props {
+  agence: AgenceRattachement;
+  communeNom: string;
+  distanceKm: number;
+}
+
+const { agence, communeNom, distanceKm } = Astro.props;
+const a = AGENCES[agence];
+const telHref = `tel:${a.telephone.replace(/\s/g, "")}`;
+
+// Pour l'agence où se trouve la commune elle-même, distanceKm vaut 0.
+const proximite =
+  distanceKm === 0
+    ? `Notre agence se trouve à ${communeNom} même.`
+    : `Votre agence la plus proche est à ${communeNom} à environ ${distanceKm} km, soit une intervention rapide.`;
+---
+
+<section class="section-tight">
+  <Container width="default">
+    <div class="rounded-2xl ring-1 ring-[var(--color-border)] bg-white p-8 sm:p-10">
+      <div class="grid sm:grid-cols-[1fr_auto] gap-6 sm:items-center">
+        <div>
+          <p class="mb-2 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+            Votre agence de proximité
+          </p>
+          <h2 class="text-2xl mb-2">Fenêtres sur Loir — {a.nom}</h2>
+          <p class="text-[var(--color-muted)]">{proximite}</p>
+          <address class="not-italic mt-4 text-sm text-[var(--color-fg)] space-y-1">
+            <p>{a.adresse}</p>
+            <p>{a.codePostal} {a.ville}</p>
+            <p class="font-medium">
+              <a href={telHref} class="hover:text-[var(--color-accent)]">{a.telephone}</a>
+            </p>
+          </address>
+        </div>
+        <div class="flex flex-col gap-3 sm:items-end">
+          <Button href="/contact" variant="primary">Demander un devis gratuit</Button>
+          <Button href={telHref} variant="outline" arrow={false}>Nous appeler</Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

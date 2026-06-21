@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Container from "../ui/Container.astro";
+import { getRealisationMedia } from "../../lib/realisations-media";
+
+interface Props {
+  /** slugs de réalisations à afficher (ids de la collection "realisations") */
+  slugs: string[];
+  communeNom: string;
+}
+
+const { slugs, communeNom } = Astro.props;
+
+const all = await getCollection("realisations");
+// Conserve l'ordre demandé dans communes.ts et ignore les slugs inconnus.
+const items = slugs
+  .map((slug) => all.find((r) => r.id === slug))
+  .filter((r): r is (typeof all)[number] => Boolean(r));
+---
+
+{
+  items.length > 0 && (
+    <section class="section-tight bg-[var(--color-subtle)]">
+      <Container width="wide">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)] text-center">
+          À proximité
+        </p>
+        <h2 class="text-center mb-10 text-balance">Nos réalisations près de {communeNom}</h2>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {items.map((item) => {
+            const media = getRealisationMedia(item.id);
+            return (
+              <li>
+                <a
+                  href={`/realisations/${item.id}`}
+                  class="group block overflow-hidden rounded-2xl ring-1 ring-[var(--color-border)] bg-white hover:shadow-xl transition-shadow"
+                >
+                  <div class="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={media.cover}
+                      alt={`${item.data.title} à ${item.data.location} — réalisation Fenêtres sur Loir`}
+                      widths={[400, 700, 1000]}
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      loading="lazy"
+                      decoding="async"
+                      format="webp"
+                      quality={78}
+                      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div class="p-5">
+                    <p class="text-xs font-medium text-[var(--color-accent)]">
+                      {item.data.location}
+                      {item.data.year ? ` · ${item.data.year}` : ""}
+                    </p>
+                    <h3 class="mt-1 text-lg">{item.data.title}</h3>
+                  </div>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </Container>
+    </section>
+  )
+}

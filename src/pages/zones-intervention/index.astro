@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import ZonesMap from "../../components/sections/ZonesMap.astro";
+import CTASection from "../../components/sections/CTASection.astro";
+import { AGENCES, communesParAgence } from "../../data/communes";
+
+const title =
+  "Zones d'intervention — Menuisier en Maine-et-Loire (49) | Fenêtres sur Loir";
+const description =
+  "Fenêtres sur Loir intervient dans tout le Maine-et-Loire depuis ses agences de Seiches-sur-le-Loir et Doué-en-Anjou. Découvrez nos communes : Angers, Saumur, Baugé, Segré…";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Zones d'intervention" },
+];
+
+const groupes = [
+  { agence: "seiches" as const, communes: communesParAgence("seiches") },
+  { agence: "doue" as const, communes: communesParAgence("doue") },
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb}>
+  <!-- Intro -->
+  <section class="section-tight">
+    <Container width="default">
+      <div class="max-w-3xl">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+          Zones d'intervention
+        </p>
+        <h1 class="text-balance">Votre menuisier dans tout le Maine-et-Loire (49)</h1>
+        <p class="mt-6 text-[17px] leading-relaxed text-[var(--color-muted)]">
+          De l'agglomération angevine au Saumurois, de la vallée du Loir à l'Anjou bleu,
+          nos équipes interviennent dans tout le département depuis deux agences :
+          Seiches-sur-le-Loir et Doué-en-Anjou. Sélectionnez votre commune pour découvrir
+          nos prestations locales.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Carte -->
+  <ZonesMap variant="full" class="!pt-0" />
+
+  <!-- Liste des communes par agence -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="wide">
+      <div class="grid gap-12 md:grid-cols-2">
+        {groupes.map((g) => (
+          <div>
+            <h2 class="text-xl mb-1">Autour de {AGENCES[g.agence].nom}</h2>
+            <p class="text-sm text-[var(--color-muted)] mb-5">
+              {AGENCES[g.agence].adresse}, {AGENCES[g.agence].codePostal} {AGENCES[g.agence].ville}
+            </p>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {g.communes.map((c) => (
+                <li>
+                  <a
+                    href={`/menuisier-${c.slug}`}
+                    class="group flex items-center justify-between gap-2 rounded-xl bg-white ring-1 ring-[var(--color-border)] px-4 py-3 text-sm font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+                  >
+                    <span>
+                      {c.nom}
+                      <span class="text-[var(--color-muted)] font-normal"> ({c.codePostal})</span>
+                    </span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden="true">
+                      <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-10 text-sm text-[var(--color-muted)] max-w-3xl">
+        Votre commune n'apparaît pas dans la liste ? Nous intervenons bien au-delà :
+        <a href="/contact" class="text-[var(--color-accent)] underline underline-offset-2">contactez-nous</a>
+        pour vérifier la couverture de votre secteur.
+      </p>
+    </Container>
+  </section>
+
+  <CTASection
+    eyebrow="Un projet de menuiserie ?"
+    title="Trouvons la solution adaptée à votre commune"
+    secondaryLabel="Voir nos réalisations"
+    secondaryHref="/realisations"
+  />
+</BaseLayout>
