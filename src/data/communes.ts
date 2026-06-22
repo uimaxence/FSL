@@ -470,6 +470,613 @@ export const communes: Commune[] = [
       },
     ],
   },
+  {
+    slug: "saint-barthelemy-d-anjou",
+    nom: "Saint-Barthélemy-d'Anjou",
+    codePostal: "49124",
+    lat: 47.4741,
+    lng: -0.4826,
+    agence: "seiches",
+    distanceKm: 18,
+    metaTitle: "Menuisier à Saint-Barthélemy-d'Anjou (49) — Fenêtres & portes | Fenêtres sur Loir",
+    metaDescription:
+      "Fenêtres, portes et volets sur mesure à Saint-Barthélemy-d'Anjou. Artisan RGE pour la rénovation des pavillons de l'est angevin. Devis gratuit sous 48 h.",
+    intro:
+      "Accolée à Angers à l'est, Saint-Barthélemy-d'Anjou mêle zones pavillonnaires, le parc et le château de Pignerolle et le quartier d'activités. Nous y intervenons surtout en rénovation de maisons des années 1970-1990.",
+    body: [
+      "Sur les pavillons barthélemois, nous remplaçons fréquemment des menuiseries d'origine par des fenêtres PVC ou aluminium performantes, avec volets roulants motorisés, dans le cadre de rénovations énergétiques.",
+      "La proximité immédiate d'Angers nous permet d'enchaîner prise de mesures et pose sans délai, du quartier de la Chambre aux abords du parc de Pignerolle.",
+    ],
+    quartiers: ["La Chambre", "Pignerolle", "Le Pin", "La Goducière"],
+    faq: [
+      {
+        question: "Posez-vous des volets roulants solaires à Saint-Barthélemy-d'Anjou ?",
+        reponse:
+          "Oui. Sur les pavillons existants, le volet roulant solaire évite de gros travaux électriques : il s'installe sans saignée et améliore l'isolation, souvent dans le cadre d'une rénovation énergétique.",
+      },
+    ],
+  },
+  {
+    slug: "verrieres-en-anjou",
+    nom: "Verrières-en-Anjou",
+    codePostal: "49112",
+    lat: 47.5182,
+    lng: -0.4746,
+    agence: "seiches",
+    distanceKm: 14,
+    metaTitle: "Menuisier à Verrières-en-Anjou (49) — Fenêtres, portes & volets | Fenêtres sur Loir",
+    metaDescription:
+      "Menuiseries sur mesure à Verrières-en-Anjou (Pellouailles-les-Vignes, Saint-Sylvain-d'Anjou). Artisan RGE, neuf et rénovation. Devis gratuit et conseil de proximité.",
+    intro:
+      "Née du regroupement de Pellouailles-les-Vignes et Saint-Sylvain-d'Anjou, Verrières-en-Anjou est une commune résidentielle en plein essor au nord-est d'Angers, sur l'axe de Seiches. Autant dire l'une de nos zones les plus proches.",
+    body: [
+      "Les nombreux lotissements récents de Verrières appellent surtout des baies coulissantes, des portes d'entrée contemporaines et des volets motorisés que nous posons en neuf comme en remplacement.",
+      "Située entre Angers et notre showroom de Seiches, la commune bénéficie de délais d'intervention très courts pour la prise de mesures comme pour le SAV.",
+    ],
+    quartiers: ["Pellouailles-les-Vignes", "Saint-Sylvain-d'Anjou", "La Croix-Cadeau"],
+    faq: [
+      {
+        question: "Intervenez-vous sur les maisons neuves des lotissements de Verrières-en-Anjou ?",
+        reponse:
+          "Oui, c'est fréquent. Sur les constructions récentes, nous installons baies coulissantes, portes d'entrée aluminium et volets roulants en neuf, en coordination avec votre calendrier de chantier.",
+      },
+    ],
+  },
+  {
+    slug: "loire-authion",
+    nom: "Loire-Authion",
+    codePostal: "49800",
+    lat: 47.4695,
+    lng: -0.3734,
+    agence: "seiches",
+    distanceKm: 16,
+    metaTitle: "Menuisier à Loire-Authion (49) — Fenêtres & portes sur mesure | Fenêtres sur Loir",
+    metaDescription:
+      "Fenêtres, portes et baies vitrées sur mesure à Loire-Authion (Andard, Brain-sur-l'Authion, La Daguenière…). Artisan RGE en vallée de l'Authion. Devis gratuit sous 48 h.",
+    intro:
+      "Entre Loire et Authion, à l'est d'Angers, Loire-Authion regroupe plusieurs bourgs maraîchers : Andard, Brain-sur-l'Authion, La Bohalle, La Daguenière, Bauné, Corné. Un territoire plat et bien exposé, idéal pour les grandes ouvertures.",
+    body: [
+      "Sur ces maisons de plain-pied, nous installons volontiers des baies coulissantes à seuil plat ouvrant sur le jardin, avec vitrage à contrôle solaire pour le confort d'été dans cette plaine très ensoleillée.",
+      "La proximité de la Loire et de l'Authion impose une vigilance sur l'étanchéité : nous privilégions des menuiseries à rupture de pont thermique et des seuils adaptés aux secteurs parfois inondables.",
+    ],
+    quartiers: ["Andard", "Brain-sur-l'Authion", "La Bohalle", "La Daguenière", "Bauné", "Corné"],
+    faq: [
+      {
+        question: "Couvrez-vous tous les bourgs de Loire-Authion ?",
+        reponse:
+          "Oui, nous intervenons sur l'ensemble de la commune nouvelle, d'Andard à Corné en passant par Brain-sur-l'Authion et La Bohalle, en rénovation comme en construction neuve.",
+      },
+    ],
+  },
+  {
+    slug: "bouchemaine",
+    nom: "Bouchemaine",
+    codePostal: "49080",
+    lat: 47.4288,
+    lng: -0.6241,
+    agence: "seiches",
+    distanceKm: 28,
+    metaTitle: "Menuisier à Bouchemaine (49) — Fenêtres, portes & volets | Fenêtres sur Loir",
+    metaDescription:
+      "Menuiseries sur mesure à Bouchemaine, à la confluence Maine-Loire. Artisan RGE attentif aux maisons de mariniers de La Pointe. Devis gratuit et conseil personnalisé.",
+    intro:
+      "À la confluence de la Maine et de la Loire, Bouchemaine séduit par son hameau de mariniers de La Pointe et ses maisons tournées vers l'eau. Nous y soignons des menuiseries qui respectent ce cadre patrimonial et fluvial.",
+    body: [
+      "Le long des quais et à La Pointe, le bâti ancien demande des fenêtres aux proportions justes : nous travaillons souvent le bois ou le bois-alu pour conserver le caractère des maisons de bord de Loire.",
+      "Sur les coteaux résidentiels de Pruniers et de La Chambre, nous posons aussi des baies vitrées profitant des vues sur la confluence et des volets adaptés à l'exposition.",
+    ],
+    quartiers: ["La Pointe", "Pruniers", "Le Bourg", "La Chambre"],
+    faq: [
+      {
+        question: "Quelles menuiseries pour une maison de mariniers à La Pointe de Bouchemaine ?",
+        reponse:
+          "Sur ces maisons de bord de Loire, nous recommandons des fenêtres bois ou bois-aluminium à fines partitions, qui préservent le cachet du hameau tout en apportant un vrai confort thermique et phonique.",
+      },
+    ],
+  },
+  {
+    slug: "sainte-gemmes-sur-loire",
+    nom: "Sainte-Gemmes-sur-Loire",
+    codePostal: "49130",
+    lat: 47.4296,
+    lng: -0.5702,
+    agence: "seiches",
+    distanceKm: 27,
+    metaTitle: "Menuisier à Sainte-Gemmes-sur-Loire (49) — Fenêtres & portes | Fenêtres sur Loir",
+    metaDescription:
+      "Fenêtres, portes et volets sur mesure à Sainte-Gemmes-sur-Loire. Artisan RGE en bord de Loire, au sud d'Angers. Devis gratuit, pose certifiée, conseil personnalisé.",
+    intro:
+      "Au sud d'Angers, Sainte-Gemmes-sur-Loire borde le fleuve et la zone maraîchère de la Baumette. Entre maisons de bourg et pavillons résidentiels, nous y menons rénovations et remplacements de menuiseries.",
+    body: [
+      "Le secteur, proche de la Loire, appelle une attention à l'humidité et à la ventilation : nous proposons des menuiseries performantes avec entrées d'air maîtrisées et vitrages adaptés.",
+      "Sur les maisons tournées vers le fleuve, nous agrandissons fréquemment les ouvertures pour profiter de la lumière et des vues, avec baies coulissantes et portes-fenêtres sur mesure.",
+    ],
+    quartiers: ["Le Bourg", "La Baumette", "Port-Thibault", "Le Petit-Claye"],
+    faq: [
+      {
+        question: "Faites-vous l'agrandissement d'ouvertures à Sainte-Gemmes-sur-Loire ?",
+        reponse:
+          "Oui. Nous vérifions la faisabilité technique (linteau, allège) puis transformons fenêtres en portes-fenêtres ou créons des baies coulissantes pour ouvrir la maison vers le jardin ou la Loire.",
+      },
+    ],
+  },
+  {
+    slug: "murs-erigne",
+    nom: "Mûrs-Érigné",
+    codePostal: "49610",
+    lat: 47.3948,
+    lng: -0.5529,
+    agence: "seiches",
+    distanceKm: 28,
+    metaTitle: "Menuisier à Mûrs-Érigné (49) — Fenêtres, portes & volets | Fenêtres sur Loir",
+    metaDescription:
+      "Menuiseries sur mesure à Mûrs-Érigné, dans la vallée de l'Aubance au sud d'Angers. Artisan RGE, rénovation et neuf. Devis gratuit et conseil personnalisé.",
+    intro:
+      "Au sud d'Angers, dans la vallée de l'Aubance, Mûrs-Érigné associe coteaux boisés, bourgs anciens et lotissements récents autour des Ponts-de-Cé voisins. Nous y intervenons sur des biens très variés.",
+    body: [
+      "Sur les maisons de coteau et le bâti ancien des bords de l'Aubance, nous soignons des menuiseries bois ou aluminium discrètes, bien intégrées au relief et à la végétation.",
+      "Dans les quartiers pavillonnaires, la demande porte surtout sur la rénovation énergétique : passage au double vitrage, motorisation des volets et portes d'entrée mieux isolées.",
+    ],
+    quartiers: ["Mûrs", "Érigné", "La Roche", "Le Grand-Launay"],
+    faq: [
+      {
+        question: "Sous quel délai obtenir un devis à Mûrs-Érigné ?",
+        reponse:
+          "Nous nous déplaçons sous quelques jours pour la prise de mesures et remettons un devis gratuit sous 48 h, en rénovation comme pour un projet de construction neuve.",
+      },
+    ],
+  },
+  {
+    slug: "chalonnes-sur-loire",
+    nom: "Chalonnes-sur-Loire",
+    codePostal: "49290",
+    lat: 47.3496,
+    lng: -0.7729,
+    agence: "seiches",
+    distanceKm: 35,
+    metaTitle: "Menuisier à Chalonnes-sur-Loire (49) — Fenêtres & portes | Fenêtres sur Loir",
+    metaDescription:
+      "Fenêtres, portes et volets sur mesure à Chalonnes-sur-Loire, en val de Loire (UNESCO) et coteaux du Layon. Artisan RGE. Devis gratuit sous 48 h.",
+    intro:
+      "Aux portes du vignoble du Layon et au bord de la Loire inscrite à l'UNESCO, Chalonnes-sur-Loire mêle bourg de tuffeau, maisons de vignerons et habitat de bord de fleuve. Un bâti qui mérite des menuiseries soignées.",
+    body: [
+      "Dans le centre ancien et sur les maisons de vignerons des coteaux, nous privilégions des fenêtres bois ou bois-alu reprenant les partitions traditionnelles, respectueuses du paysage ligérien.",
+      "En bord de Loire, l'enjeu est l'isolation et l'étanchéité face à l'humidité : nous installons des menuiseries performantes et des volets adaptés aux secteurs exposés.",
+    ],
+    quartiers: ["Le Bourg", "Chalonnes", "Saint-Maurille", "La Basse-Île"],
+    faq: [
+      {
+        question: "Le bord de Loire à Chalonnes impose-t-il des contraintes particulières ?",
+        reponse:
+          "Le val de Loire est un paysage classé : nous veillons à des menuiseries cohérentes avec le bâti ligérien et, en secteur inondable, à des seuils et matériaux adaptés. Nous faisons le point lors du devis.",
+      },
+    ],
+  },
+  {
+    slug: "saint-georges-sur-loire",
+    nom: "Saint-Georges-sur-Loire",
+    codePostal: "49170",
+    lat: 47.4031,
+    lng: -0.7537,
+    agence: "seiches",
+    distanceKm: 32,
+    metaTitle: "Menuisier à Saint-Georges-sur-Loire (49) — Fenêtres & portes | Fenêtres sur Loir",
+    metaDescription:
+      "Menuiseries sur mesure à Saint-Georges-sur-Loire, à l'ouest d'Angers près du château de Serrant. Artisan RGE, rénovation et neuf. Devis gratuit et conseil.",
+    intro:
+      "À l'ouest d'Angers, sur l'axe vers Nantes et à deux pas du château de Serrant, Saint-Georges-sur-Loire est un bourg dynamique entouré de communes rurales. Nous y intervenons en rénovation comme en neuf.",
+    body: [
+      "Le bourg ancien, marqué par l'ancienne abbaye et le tuffeau, demande des menuiseries sobres et bien proportionnées que nous réalisons sur mesure.",
+      "Dans les lotissements et hameaux environnants, nous posons surtout des fenêtres PVC ou aluminium performantes, des portes d'entrée sécurisées et des volets motorisés.",
+    ],
+    quartiers: ["Le Bourg", "La Possonnière", "Serrant", "Coulaines"],
+    faq: [
+      {
+        question: "Intervenez-vous sur les communes rurales autour de Saint-Georges-sur-Loire ?",
+        reponse:
+          "Oui. Depuis cet axe à l'ouest d'Angers, nous desservons les bourgs voisins pour la prise de mesures, la pose et le SAV, en rénovation comme en construction neuve.",
+      },
+    ],
+  },
+  {
+    slug: "mauges-sur-loire",
+    nom: "Mauges-sur-Loire",
+    codePostal: "49410",
+    lat: 47.3435,
+    lng: -0.9351,
+    agence: "seiches",
+    distanceKm: 42,
+    metaTitle: "Menuisier à Mauges-sur-Loire (49) — Fenêtres & portes sur mesure | Fenêtres sur Loir",
+    metaDescription:
+      "Fenêtres, portes et volets sur mesure à Mauges-sur-Loire (Saint-Florent-le-Vieil, Le Mesnil-en-Vallée…). Artisan RGE, patrimoine ligérien. Devis gratuit.",
+    intro:
+      "Étendue le long de la Loire, Mauges-sur-Loire réunit onze communes déléguées, de Saint-Florent-le-Vieil et sa célèbre butte au Mesnil-en-Vallée. Un territoire ligérien au bâti de schiste et de tuffeau.",
+    body: [
+      "Sur la butte de Saint-Florent-le-Vieil, autour de l'abbatiale, nous proposons des menuiseries discrètes respectant le caractère historique du site et son panorama sur la Loire.",
+      "Dans les bourgs et la vallée maraîchère, nous remplaçons des fenêtres souvent anciennes par des modèles performants, en bois, PVC ou aluminium selon le caractère de chaque maison.",
+    ],
+    quartiers: ["Saint-Florent-le-Vieil", "Le Mesnil-en-Vallée", "Montjean-sur-Loire", "La Pommeraye"],
+    abf: true,
+    abfNote:
+      "La butte et l'abbatiale de Saint-Florent-le-Vieil, dans un site ligérien remarquable, placent une partie du bourg en périmètre protégé : nous adaptons matériaux, teintes et partitions aux prescriptions patrimoniales.",
+    faq: [
+      {
+        question: "Intervenez-vous dans toutes les communes déléguées de Mauges-sur-Loire ?",
+        reponse:
+          "Oui, nous couvrons l'ensemble du territoire, de Saint-Florent-le-Vieil à Montjean-sur-Loire et La Pommeraye, en organisant nos déplacements pour la prise de mesures et la pose.",
+      },
+    ],
+  },
+  {
+    slug: "montrevault-sur-evre",
+    nom: "Montrevault-sur-Èvre",
+    codePostal: "49110",
+    lat: 47.2494,
+    lng: -1.0204,
+    agence: "seiches",
+    distanceKm: 48,
+    metaTitle: "Menuisier à Montrevault-sur-Èvre (49) — Fenêtres & portes | Fenêtres sur Loir",
+    metaDescription:
+      "Menuiseries sur mesure à Montrevault-sur-Èvre, dans les Mauges. Artisan RGE pour la rénovation des maisons de schiste et le neuf. Devis gratuit sous 48 h.",
+    intro:
+      "Au cœur des Mauges, le long de la vallée de l'Èvre, Montrevault-sur-Èvre rassemble une dizaine de bourgs ruraux au bâti souvent ancien. Nous y accompagnons rénovations et constructions neuves.",
+    body: [
+      "Sur les maisons de schiste et de tuffeau des bourgs maugeois, nous remplaçons les menuiseries vétustes par des modèles performants, en conservant les proportions des façades.",
+      "Dans les nombreux lotissements et zones pavillonnaires, la demande porte sur la rénovation énergétique : double vitrage, volets motorisés et portes d'entrée mieux isolées.",
+    ],
+    quartiers: ["Montrevault", "Saint-Pierre-Montlimart", "Le Fuilet", "Chaudron-en-Mauges"],
+    faq: [
+      {
+        question: "Les Mauges font-elles partie de votre zone d'intervention ?",
+        reponse:
+          "Oui. Bien que situées à l'ouest du département, les communes des Mauges comme Montrevault-sur-Èvre font partie de notre zone : nous organisons les déplacements pour la prise de mesures et la pose.",
+      },
+    ],
+  },
+  {
+    slug: "oree-d-anjou",
+    nom: "Orée-d'Anjou",
+    codePostal: "49270",
+    lat: 47.3042,
+    lng: -1.2135,
+    agence: "seiches",
+    distanceKm: 58,
+    metaTitle: "Menuisier à Orée-d'Anjou (49) — Fenêtres & portes sur mesure | Fenêtres sur Loir",
+    metaDescription:
+      "Fenêtres, portes et volets sur mesure à Orée-d'Anjou (Champtoceaux, Drain, Liré…), à la pointe ouest du département. Artisan RGE. Devis gratuit.",
+    intro:
+      "À la pointe ouest du Maine-et-Loire, face à la Loire et aux portes de la Loire-Atlantique, Orée-d'Anjou réunit Champtoceaux, Drain, Liré et leurs voisines. Un balcon sur le fleuve au bâti de caractère.",
+    body: [
+      "À Champtoceaux, le promontoire et ses points de vue sur la Loire demandent des menuiseries soignées : nous travaillons des fenêtres bien proportionnées, respectueuses du panorama et du bâti ancien.",
+      "Dans les bourgs viticoles et les hameaux, nous remplaçons fenêtres et volets vétustes par des solutions performantes adaptées à chaque maison, en bois, PVC ou aluminium.",
+    ],
+    quartiers: ["Champtoceaux", "Drain", "Liré", "Saint-Laurent-des-Autels"],
+    faq: [
+      {
+        question: "Orée-d'Anjou, à l'extrême ouest, est-elle desservie ?",
+        reponse:
+          "Oui, elle fait partie de notre zone d'intervention. Compte tenu de la distance, nous organisons les déplacements de manière groupée pour la prise de mesures et la pose, sans surcoût pour vous.",
+      },
+    ],
+  },
+  {
+    slug: "le-lion-d-angers",
+    nom: "Le Lion-d'Angers",
+    codePostal: "49220",
+    lat: 47.6340,
+    lng: -0.7517,
+    agence: "seiches",
+    distanceKm: 32,
+    metaTitle: "Menuisier au Lion-d'Angers (49) — Fenêtres, portes & volets | Fenêtres sur Loir",
+    metaDescription:
+      "Menuiseries sur mesure au Lion-d'Angers, sur l'Oudon et près du haras national de l'Isle-Briand. Artisan RGE, rénovation et neuf. Devis gratuit sous 48 h.",
+    intro:
+      "Au nord-ouest d'Angers, sur les rives de l'Oudon et près du haras national de l'Isle-Briand, Le Lion-d'Angers est un bourg vivant entouré de campagne. Nous y intervenons en rénovation comme en neuf.",
+    body: [
+      "Le centre ancien, en bord d'Oudon, demande des menuiseries respectueuses du bâti : fenêtres bois ou bois-alu aux partitions traditionnelles pour les maisons de caractère.",
+      "Dans les lotissements et les fermes rénovées des environs, nous posons des fenêtres performantes, de grandes baies vitrées et des volets motorisés selon les projets.",
+    ],
+    quartiers: ["Le Bourg", "L'Isle-Briand", "Andigné", "La Ferrière-de-Flée"],
+    faq: [
+      {
+        question: "Travaillez-vous sur les fermes et longères rénovées autour du Lion-d'Angers ?",
+        reponse:
+          "Oui, c'est une demande fréquente. Le sur-mesure nous permet d'équiper des ouvertures atypiques de longères et fermes anciennes avec des menuiseries parfaitement ajustées et bien isolées.",
+      },
+    ],
+  },
+  {
+    slug: "les-hauts-d-anjou",
+    nom: "Les Hauts-d'Anjou",
+    codePostal: "49330",
+    lat: 47.6970,
+    lng: -0.5499,
+    agence: "seiches",
+    distanceKm: 12,
+    metaTitle: "Menuisier aux Hauts-d'Anjou (49) — Fenêtres & portes sur mesure | Fenêtres sur Loir",
+    metaDescription:
+      "Fenêtres, portes et volets sur mesure aux Hauts-d'Anjou (Châteauneuf-sur-Sarthe, Champigné…), tout près de notre showroom de Seiches. Artisan RGE. Devis sous 48 h.",
+    intro:
+      "Sur les bords de Sarthe, à quelques minutes de notre showroom de Seiches, Les Hauts-d'Anjou réunit Châteauneuf-sur-Sarthe, Champigné et leurs voisines. C'est l'une de nos communes les plus proches.",
+    body: [
+      "Cette grande proximité facilite tout : prise de mesures rapide, suivi de chantier réactif et SAV de proximité, du bourg de Châteauneuf aux hameaux de Champigné.",
+      "Sur le bâti ancien des bords de Sarthe comme dans les lotissements récents, nous adaptons fenêtres, portes et volets au caractère de chaque maison, en rénovation comme en neuf.",
+    ],
+    quartiers: ["Châteauneuf-sur-Sarthe", "Champigné", "Contigné", "Marigné"],
+    faq: [
+      {
+        question: "Sous quel délai intervenez-vous aux Hauts-d'Anjou ?",
+        reponse:
+          "Les Hauts-d'Anjou étant tout proches de notre agence de Seiches-sur-le-Loir, nous nous déplaçons très rapidement pour la prise de mesures, et le suivi de chantier y est particulièrement réactif.",
+      },
+    ],
+  },
+  {
+    slug: "ombree-d-anjou",
+    nom: "Ombrée d'Anjou",
+    codePostal: "49420",
+    lat: 47.7232,
+    lng: -1.1086,
+    agence: "seiches",
+    distanceKm: 58,
+    metaTitle: "Menuisier à Ombrée d'Anjou (49) — Fenêtres & portes sur mesure | Fenêtres sur Loir",
+    metaDescription:
+      "Menuiseries sur mesure à Ombrée d'Anjou (Pouancé, Combrée, Le Tremblay…), à la pointe nord-ouest du département. Artisan RGE pour le bâti de schiste. Devis gratuit.",
+    intro:
+      "À la pointe nord-ouest du département, aux confins de la Mayenne et de la Loire-Atlantique, Ombrée d'Anjou réunit Pouancé, Combrée, Le Tremblay et d'autres bourgs de l'Anjou bleu, terre de schiste et d'étangs.",
+    body: [
+      "Sur les maisons de schiste de Pouancé et des bourgs voisins, parfois anciennes, nous remplaçons des menuiseries vétustes par des modèles performants tout en respectant les façades minérales.",
+      "Commune nouvelle très étendue, Ombrée d'Anjou compte de nombreux villages ruraux que nous desservons pour la rénovation comme pour le neuf, en organisant des déplacements groupés.",
+    ],
+    quartiers: ["Pouancé", "Combrée", "Le Tremblay", "La Prévière"],
+    faq: [
+      {
+        question: "Ombrée d'Anjou, à l'extrême nord-ouest, fait-elle partie de votre zone ?",
+        reponse:
+          "Oui. Malgré la distance depuis nos agences, Ombrée d'Anjou fait partie de notre zone d'intervention : nous regroupons les déplacements pour la prise de mesures et la pose afin de rester efficaces.",
+      },
+    ],
+  },
+  {
+    slug: "noyant-villages",
+    nom: "Noyant-Villages",
+    codePostal: "49490",
+    lat: 47.5111,
+    lng: 0.1027,
+    agence: "seiches",
+    distanceKm: 30,
+    metaTitle: "Menuisier à Noyant-Villages (49) — Fenêtres & portes sur mesure | Fenêtres sur Loir",
+    metaDescription:
+      "Fenêtres, portes et volets sur mesure à Noyant-Villages, à la pointe est du département (Baugeois). Artisan RGE, rénovation et neuf. Devis gratuit sous 48 h.",
+    intro:
+      "À la pointe est du Maine-et-Loire, aux portes de la Touraine et du Baugeois forestier, Noyant-Villages réunit une douzaine de bourgs ruraux. Un territoire boisé au bâti traditionnel que nous connaissons bien.",
+    body: [
+      "Sur les longères et maisons anciennes du Baugeois, nous travaillons des menuiseries sur mesure, souvent en bois, qui respectent les proportions et le caractère rural des façades.",
+      "Dans les bourgs et hameaux, nous remplaçons fenêtres et volets anciens par des solutions performantes et nous équipons les constructions neuves de baies et portes contemporaines.",
+    ],
+    quartiers: ["Noyant", "Vernantes", "Méon", "Genneteil"],
+    faq: [
+      {
+        question: "Noyant-Villages, à l'est du département, est-elle desservie ?",
+        reponse:
+          "Oui, ce secteur du Baugeois fait partie de notre zone d'intervention. Nous organisons les déplacements depuis Seiches-sur-le-Loir pour la prise de mesures, la pose et le SAV.",
+      },
+    ],
+  },
+  {
+    slug: "cholet",
+    nom: "Cholet",
+    codePostal: "49300",
+    lat: 47.0358,
+    lng: -0.8750,
+    agence: "doue",
+    distanceKm: 55,
+    metaTitle: "Menuisier à Cholet (49) — Fenêtres, portes & volets sur mesure | Fenêtres sur Loir",
+    metaDescription:
+      "Artisan menuisier à Cholet : fenêtres, portes d'entrée, volets et baies vitrées sur mesure, pose RGE. Rénovation énergétique des pavillons choletais. Devis gratuit.",
+    intro:
+      "Deuxième ville du département, au sud des Mauges, Cholet est une cité largement reconstruite et entourée de vastes quartiers pavillonnaires. C'est un terrain de choix pour la rénovation énergétique des fenêtres et volets.",
+    body: [
+      "Sur les pavillons choletais des années 1950-1990, nous remplaçons les menuiseries d'origine par des fenêtres PVC ou aluminium à haute performance, souvent éligibles aux aides à la rénovation.",
+      "Dans les programmes neufs et les extensions, nous installons de larges baies coulissantes et des portes d'entrée contemporaines, avec vitrage à contrôle solaire pour le confort d'été.",
+    ],
+    quartiers: ["Centre-ville", "Le Bordage", "La Girardière", "Le Val de Moine"],
+    faq: [
+      {
+        question: "Le remplacement de mes fenêtres à Cholet est-il éligible aux aides ?",
+        reponse:
+          "Selon votre situation, le passage à des menuiseries performantes peut ouvrir droit à certains dispositifs d'aide à la rénovation énergétique. Étant certifiés RGE, nous faisons le point précis lors du devis.",
+      },
+    ],
+  },
+  {
+    slug: "chemille-en-anjou",
+    nom: "Chemillé-en-Anjou",
+    codePostal: "49120",
+    lat: 47.2211,
+    lng: -0.6964,
+    agence: "doue",
+    distanceKm: 33,
+    metaTitle: "Menuisier à Chemillé-en-Anjou (49) — Fenêtres & portes | Fenêtres sur Loir",
+    metaDescription:
+      "Menuiseries sur mesure à Chemillé-en-Anjou, capitale des plantes médicinales. Artisan RGE, rénovation et neuf dans les Mauges. Devis gratuit sous 48 h.",
+    intro:
+      "Au nord des Mauges, sur l'axe Angers-Cholet, Chemillé-en-Anjou — capitale des plantes médicinales — regroupe treize communes déléguées. Un vaste territoire rural que nous desservons depuis notre agence de Doué.",
+    body: [
+      "Sur le bâti ancien de schiste et de tuffeau des bourgs maugeois, nous posons des menuiseries respectueuses des façades, en bois, bois-alu ou aluminium selon le caractère des maisons.",
+      "Dans les nombreux lotissements de Chemillé et des bourgs voisins, la demande porte surtout sur la rénovation énergétique et l'équipement des constructions neuves.",
+    ],
+    quartiers: ["Chemillé", "Melay", "Neuvy-en-Mauges", "La Tourlandry"],
+    faq: [
+      {
+        question: "Couvrez-vous toutes les communes déléguées de Chemillé-en-Anjou ?",
+        reponse:
+          "Oui, nous intervenons sur l'ensemble de la commune nouvelle, de Chemillé aux bourgs voisins comme Melay ou Neuvy-en-Mauges, en rénovation comme en construction neuve.",
+      },
+    ],
+  },
+  {
+    slug: "beaupreau-en-mauges",
+    nom: "Beaupréau-en-Mauges",
+    codePostal: "49600",
+    lat: 47.2028,
+    lng: -0.9844,
+    agence: "doue",
+    distanceKm: 48,
+    metaTitle: "Menuisier à Beaupréau-en-Mauges (49) — Fenêtres & portes | Fenêtres sur Loir",
+    metaDescription:
+      "Fenêtres, portes et volets sur mesure à Beaupréau-en-Mauges. Artisan RGE pour la rénovation du bâti maugeois et le neuf. Devis gratuit et conseil personnalisé.",
+    intro:
+      "Au cœur des Mauges, dominée par son château surplombant l'Èvre, Beaupréau-en-Mauges réunit dix communes déléguées. Un territoire à la fois historique et dynamique où nous intervenons largement.",
+    body: [
+      "Aux abords du château et dans les centres-bourgs anciens, nous proposons des menuiseries discrètes et bien proportionnées, en bois ou bois-alu, respectueuses du bâti maugeois.",
+      "Dans les zones pavillonnaires et les bourgs en développement, nous posons des fenêtres performantes, des baies coulissantes et des volets motorisés, en rénovation comme en neuf.",
+    ],
+    quartiers: ["Beaupréau", "Andrezé", "Gesté", "Jallais"],
+    faq: [
+      {
+        question: "Intervenez-vous dans toutes les communes déléguées de Beaupréau-en-Mauges ?",
+        reponse:
+          "Oui, nous couvrons l'ensemble de la commune nouvelle, de Beaupréau à Gesté ou Jallais, en organisant nos déplacements pour la prise de mesures et la pose.",
+      },
+    ],
+  },
+  {
+    slug: "sevremoine",
+    nom: "Sèvremoine",
+    codePostal: "49230",
+    lat: 47.0878,
+    lng: -1.0968,
+    agence: "doue",
+    distanceKm: 62,
+    metaTitle: "Menuisier à Sèvremoine (49) — Fenêtres & portes sur mesure | Fenêtres sur Loir",
+    metaDescription:
+      "Menuiseries sur mesure à Sèvremoine (Saint-Macaire-en-Mauges, Montfaucon-Montigné…), au sud-ouest des Mauges. Artisan RGE, rénovation et neuf. Devis gratuit.",
+    intro:
+      "À la pointe sud-ouest du département, aux confins de la Vendée et de la Loire-Atlantique, Sèvremoine réunit dix communes déléguées autour de Saint-Macaire-en-Mauges. Un bassin de vie dynamique et industrieux.",
+    body: [
+      "Sur le bâti de schiste des bourgs maugeois et les nombreuses maisons individuelles, nous remplaçons les menuiseries vétustes par des modèles performants adaptés à chaque façade.",
+      "Dans ce secteur en pleine croissance, nous équipons aussi de nombreuses constructions neuves de baies coulissantes, portes d'entrée contemporaines et volets motorisés.",
+    ],
+    quartiers: ["Saint-Macaire-en-Mauges", "Montfaucon-Montigné", "Le Longeron", "Torfou"],
+    faq: [
+      {
+        question: "Sèvremoine, à l'extrême sud-ouest, fait-elle partie de votre zone ?",
+        reponse:
+          "Oui, elle fait partie de notre zone d'intervention. Compte tenu de la distance depuis nos agences, nous organisons les déplacements de façon groupée pour la prise de mesures et la pose.",
+      },
+    ],
+  },
+  {
+    slug: "gennes-val-de-loire",
+    nom: "Gennes-Val-de-Loire",
+    codePostal: "49350",
+    lat: 47.3424,
+    lng: -0.2352,
+    agence: "doue",
+    distanceKm: 24,
+    metaTitle: "Menuisier à Gennes-Val-de-Loire (49) — Fenêtres & portes | Fenêtres sur Loir",
+    metaDescription:
+      "Fenêtres, portes et volets sur mesure à Gennes-Val-de-Loire (Cunault, Les Rosiers, Le Thoureil…). Artisan RGE, patrimoine ligérien et ABF. Devis gratuit.",
+    intro:
+      "Entre Loire et coteaux, sur la rive sud du fleuve inscrit à l'UNESCO, Gennes-Val-de-Loire réunit Gennes, Cunault, Les Rosiers-sur-Loire et Le Thoureil. Un territoire de tuffeau, de troglodytes et de patrimoine roman.",
+    body: [
+      "Autour du prieuré de Cunault et dans les bourgs ligériens, nous proposons des menuiseries soignées, en bois ou bois-alu, respectueuses d'un cadre patrimonial exceptionnel.",
+      "Sur les maisons de tuffeau et les habitations troglodytiques des coteaux, le sur-mesure s'impose : nous relevons précisément chaque ouverture atypique pour fabriquer des menuiseries parfaitement ajustées.",
+    ],
+    quartiers: ["Gennes", "Cunault", "Les Rosiers-sur-Loire", "Le Thoureil"],
+    abf: true,
+    abfNote:
+      "Le prieuré de Cunault et le site ligérien inscrit à l'UNESCO placent une partie de la commune en périmètre protégé : matériaux, teintes et partitions sont étudiés selon les prescriptions de l'ABF.",
+    faq: [
+      {
+        question: "Travaillez-vous sur les habitations troglodytiques de Gennes-Val-de-Loire ?",
+        reponse:
+          "Oui. Les ouvertures du bâti troglodytique sont rarement standard : notre savoir-faire du sur-mesure nous permet de relever et fabriquer des menuiseries parfaitement adaptées à chaque ouverture.",
+      },
+    ],
+  },
+  {
+    slug: "longue-jumelles",
+    nom: "Longué-Jumelles",
+    codePostal: "49160",
+    lat: 47.3961,
+    lng: -0.1092,
+    agence: "doue",
+    distanceKm: 28,
+    metaTitle: "Menuisier à Longué-Jumelles (49) — Fenêtres & portes | Fenêtres sur Loir",
+    metaDescription:
+      "Menuiseries sur mesure à Longué-Jumelles, en vallée de l'Authion près de Saumur. Artisan RGE, rénovation et neuf. Devis gratuit sous 48 h.",
+    intro:
+      "Dans la plaine maraîchère de l'Authion, entre Angers et Saumur, Longué-Jumelles est un bourg actif entouré de cultures et de pépinières. Un secteur plat et ensoleillé propice aux grandes ouvertures.",
+    body: [
+      "Sur les maisons de plain-pied du secteur, nous installons volontiers des baies coulissantes à seuil plat et des portes-fenêtres ouvrant largement sur le jardin.",
+      "Dans le bourg ancien et les hameaux, nous remplaçons fenêtres et volets vétustes par des solutions performantes, avec une attention à l'étanchéité dans cette vallée parfois humide.",
+    ],
+    quartiers: ["Longué", "Jumelles", "Le Vieil-Baugé", "Saint-Philbert"],
+    faq: [
+      {
+        question: "Posez-vous des baies à seuil plat à Longué-Jumelles ?",
+        reponse:
+          "Oui. Sur les maisons de plain-pied de la plaine de l'Authion, les baies coulissantes à seuil plat sont idéales : elles offrent une continuité entre intérieur et jardin et facilitent l'accessibilité.",
+      },
+    ],
+  },
+  {
+    slug: "allonnes",
+    nom: "Allonnes",
+    codePostal: "49650",
+    lat: 47.3069,
+    lng: 0.0081,
+    agence: "doue",
+    distanceKm: 28,
+    metaTitle: "Menuisier à Allonnes (49) — Fenêtres, portes & volets | Fenêtres sur Loir",
+    metaDescription:
+      "Fenêtres, portes et volets sur mesure à Allonnes, à l'est de Saumur près du lac de Rillé. Artisan RGE, rénovation et neuf. Devis gratuit et conseil personnalisé.",
+    intro:
+      "À l'est de Saumur, aux portes de la Touraine et près des étangs, Allonnes est un bourg rural entouré de plaines et de forêts. Nous y intervenons en rénovation comme pour les constructions neuves.",
+    body: [
+      "Sur les maisons anciennes du bourg, en tuffeau, nous soignons des menuiseries bien proportionnées qui respectent l'architecture locale tout en améliorant nettement l'isolation.",
+      "Dans les lotissements et les maisons récentes, nous posons des fenêtres performantes, de larges baies vitrées et des volets motorisés selon les projets.",
+    ],
+    quartiers: ["Le Bourg", "Les Loges", "Préban", "La Brèche"],
+    faq: [
+      {
+        question: "Allonnes, à l'est du département, est-elle dans votre zone ?",
+        reponse:
+          "Oui, ce secteur à l'est de Saumur fait partie de notre zone d'intervention. Nous organisons nos déplacements pour la prise de mesures, la pose et le SAV depuis notre agence de Doué-en-Anjou.",
+      },
+    ],
+  },
+  {
+    slug: "montreuil-bellay",
+    nom: "Montreuil-Bellay",
+    codePostal: "49260",
+    lat: 47.1295,
+    lng: -0.1246,
+    agence: "doue",
+    distanceKm: 16,
+    metaTitle: "Menuisier à Montreuil-Bellay (49) — Fenêtres & portes | Fenêtres sur Loir",
+    metaDescription:
+      "Menuiseries sur mesure à Montreuil-Bellay, cité médiévale du Saumurois. Artisan RGE attentif au patrimoine et aux contraintes ABF. Devis gratuit sous 48 h.",
+    intro:
+      "Au sud de Saumur, dominant le Thouet, Montreuil-Bellay est l'une des plus belles cités médiévales d'Anjou, avec son château, ses remparts et son bâti de tuffeau. Un patrimoine qui exige des menuiseries soignées.",
+    body: [
+      "Dans la ville close et aux abords du château, chaque menuiserie est étudiée pour respecter les prescriptions de l'Architecte des Bâtiments de France : matériaux, teintes, petits-bois et systèmes d'ouverture.",
+      "Sur le tuffeau du Saumurois, nous privilégions le bois et le bois-alu aux fines partitions, qui préservent l'esthétique historique tout en apportant le confort thermique d'aujourd'hui.",
+    ],
+    quartiers: ["La Ville Close", "Le Faubourg", "Méron", "Le Coudray-Macouard"],
+    abf: true,
+    abfNote:
+      "Le château, les remparts et la ville close de Montreuil-Bellay placent une grande partie de la cité en périmètre ABF : nous montons le dossier et proposons des menuiseries conformes aux prescriptions patrimoniales.",
+    faq: [
+      {
+        question: "Mes fenêtres à Montreuil-Bellay doivent-elles respecter des règles ABF ?",
+        reponse:
+          "Dans la ville close et aux abords du château, oui. Nous maîtrisons ces contraintes : nous constituons le dossier et proposons des menuiseries conformes aux exigences de l'ABF, sans renoncer au confort.",
+      },
+    ],
+  },
 ];
 
 export const getCommune = (slug: string): Commune | undefined =>
