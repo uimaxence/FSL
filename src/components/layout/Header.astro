@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Container from "../ui/Container.astro";
-import logoFsl from "../../assets/logo-FSL.png";
+import logoFsl from "../../assets/logo_pp.svg";
 import portesImg from "../../assets/porte-1-boisalu.png";
 import fenetresImg from "../../assets/porte-fenetre-3.png";
 import exterieurImg from "../../assets/carport-1.png";
@@ -91,15 +91,13 @@ const navItems: NavEntry[] = [
 >
   <Container width="wide" class="flex items-center justify-between h-20 gap-6">
     <a href="/" class="flex items-center shrink-0" aria-label="Fenêtres-sur-Loir — Accueil">
-      <Image
-        src={logoFsl}
+      <img
+        src={logoFsl.src}
         alt="Fenêtres-sur-Loir"
-        widths={[120, 200]}
-        sizes="100px"
+        width={logoFsl.width}
+        height={logoFsl.height}
         loading="eager"
         decoding="async"
-        format="webp"
-        quality={95}
         class="h-12 w-auto object-contain"
       />
     </a>
