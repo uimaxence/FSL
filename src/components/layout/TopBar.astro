@@ -6,7 +6,7 @@ const cityShort = "Seiches-sur-le-Loir";
 ---
 
 <div
-  class="hidden sm:flex sticky top-0 z-50 items-center justify-end gap-5 px-6 lg:px-10 h-9 text-[12px] text-[var(--color-muted)] bg-[var(--color-subtle)] border-b border-[var(--color-border)]"
+  class="flex sticky top-0 z-50 items-center justify-end gap-5 px-6 lg:px-10 h-9 text-[12px] text-[var(--color-muted)] bg-[var(--color-subtle)] border-b border-[var(--color-border)]"
   data-topbar
   aria-label="Informations de contact"
 >
@@ -19,6 +19,20 @@ const cityShort = "Seiches-sur-le-Loir";
     <span data-topbar-status>
       <span class="font-medium text-[var(--color-fg)]">Showroom ouvert</span>
       <span class="hidden md:inline"> · {cityShort}</span>
+    </span>
+  </div>
+
+  <!-- Doué-en-Anjou — révélé en JS à partir de la date d'ouverture (desktop only) -->
+  <span class="text-[var(--color-border)]" data-doue-sep aria-hidden="true">·</span>
+  <div class="items-center gap-2" data-doue>
+    <span
+      class="inline-block w-2 h-2 rounded-full bg-emerald-500"
+      data-doue-dot
+      aria-hidden="true"
+    ></span>
+    <span data-doue-status>
+      <span class="font-medium text-[var(--color-fg)]">Showroom ouvert</span>
+      <span> · Doué-en-Anjou</span>
     </span>
   </div>
 
@@ -49,31 +63,107 @@ const cityShort = "Seiches-sur-le-Loir";
   </a>
 </div>
 
+<style is:global>
+  /* Repli au scroll : la TopBar et le Header glissent ensemble (pas de trou) */
+  [data-topbar],
+  header[data-header] {
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  }
+  [data-topbar].is-collapsed {
+    transform: translateY(-100%);
+  }
+  header[data-header].is-collapsed {
+    transform: translateY(-2.25rem); /* = h-9, comble l'espace laissé par la TopBar */
+  }
+
+  /* Doué : masqué tant que la date d'ouverture n'est pas atteinte, puis desktop only */
+  [data-doue],
+  [data-doue-sep] {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    [data-doue].is-live {
+      display: flex;
+    }
+    [data-doue-sep].is-live {
+      display: inline;
+    }
+  }
+</style>
+
 <script>
-  // Showroom hours : Lun–Ven 9h-12h / 14h-18h30, Sam 9h-12h, Dim fermé
-  const status = document.querySelector<HTMLElement>("[data-topbar-status]");
-  const dot = document.querySelector<HTMLElement>("[data-topbar-dot]");
-  if (status && dot) {
-    const now = new Date();
+  // Horaires showroom : Lun–Ven 9h-12h / 14h-18h30, Sam 9h-12h, Dim fermé
+  function computeStatus(now: Date) {
     const day = now.getDay(); // 0 = dim, 6 = sam
     const mins = now.getHours() * 60 + now.getMinutes();
     const morning = mins >= 9 * 60 && mins < 12 * 60;
     const afternoon = mins >= 14 * 60 && mins < 18 * 60 + 30;
-    let label = "";
-    let color = "";
-    if (day >= 1 && day <= 5 && (morning || afternoon)) {
-      label = "Showroom ouvert";
-      color = "bg-emerald-500";
-    } else if (day === 6 && morning) {
-      label = "Showroom ouvert";
-      color = "bg-emerald-500";
-    } else {
-      label = "Showroom fermé";
-      color = "bg-rose-500";
-    }
-    const strong = status.querySelector("span.font-medium");
-    if (strong) strong.textContent = label;
-    dot.classList.remove("bg-emerald-500", "bg-amber-500", "bg-rose-500");
-    dot.classList.add(color);
+    const open =
+      (day >= 1 && day <= 5 && (morning || afternoon)) || (day === 6 && morning);
+    return {
+      label: open ? "Showroom ouvert" : "Showroom fermé",
+      color: open ? "bg-emerald-500" : "bg-rose-500",
+    };
   }
+
+  function applyStatus(
+    statusEl: HTMLElement | null,
+    dotEl: HTMLElement | null,
+    now: Date,
+  ) {
+    if (!statusEl || !dotEl) return;
+    const { label, color } = computeStatus(now);
+    const strong = statusEl.querySelector("span.font-medium");
+    if (strong) strong.textContent = label;
+    dotEl.classList.remove("bg-emerald-500", "bg-amber-500", "bg-rose-500");
+    dotEl.classList.add(color);
+  }
+
+  const now = new Date();
+
+  // Seiches — statut live (toujours affiché)
+  applyStatus(
+    document.querySelector<HTMLElement>("[data-topbar-status]"),
+    document.querySelector<HTMLElement>("[data-topbar-dot]"),
+    now,
+  );
+
+  // Doué-en-Anjou — statut live, desktop only (affiché à côté de Seiches)
+  document.querySelector("[data-doue]")?.classList.add("is-live");
+  document.querySelector("[data-doue-sep]")?.classList.add("is-live");
+  applyStatus(
+    document.querySelector<HTMLElement>("[data-doue-status]"),
+    document.querySelector<HTMLElement>("[data-doue-dot]"),
+    now,
+  );
+
+  // Repli au scroll : disparaît vers le bas, revient vers le haut
+  (() => {
+    const topbar = document.querySelector<HTMLElement>("[data-topbar]");
+    const header = document.querySelector<HTMLElement>("header[data-header]");
+    if (!topbar) return;
+    const REVEAL_ZONE = 80; // toujours visible tout en haut de page
+    let lastY = window.scrollY || window.pageYOffset;
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const y = window.scrollY || window.pageYOffset;
+      const goingDown = y > lastY;
+      const collapse = goingDown && y > REVEAL_ZONE;
+      topbar.classList.toggle("is-collapsed", collapse);
+      header?.classList.toggle("is-collapsed", collapse);
+      lastY = y;
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+      },
+      { passive: true },
+    );
+  })();
 </script>
