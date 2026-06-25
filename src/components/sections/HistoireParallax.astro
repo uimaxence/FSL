@@ -9,6 +9,17 @@ import h5 from "../../assets/histoire-5.jpg";
 import h6 from "../../assets/histoire-6.jpg";
 import h7 from "../../assets/histoire-7.jpg";
 import h8 from "../../assets/histoire-8.png";
+import h9 from "../../assets/histoire-9.jpg";
+import h10 from "../../assets/histoire-10.jpg";
+import h11 from "../../assets/histoire-11.jpg";
+import h12 from "../../assets/histoire-12.jpg";
+import h13 from "../../assets/histoire-13.jpg";
+import h14 from "../../assets/histoire-14.jpg";
+import h15 from "../../assets/histoire-15.jpg";
+import h16 from "../../assets/histoire-16.jpg";
+import h17 from "../../assets/histoire-17.jpg";
+import h18 from "../../assets/histoire-18.jpg";
+import h19 from "../../assets/histoire-19.jpg";
 
 /**
  * Photos disposées en bandes verticales le long du viewport.
@@ -17,17 +28,31 @@ import h8 from "../../assets/histoire-8.png";
  * - speed : facteur parallax (1 = scroll normal, >1 plus rapide, <1 plus lent)
  * - delay : décalage initial (en % de la hauteur viewport — 0 = en bas, 100 = très bas)
  */
+// 19 photos. `delay` réparti régulièrement (0→90 %) pour un flux continu, et
+// surtout des `speed` TRÈS variés (0,5 → 1,45) : les photos lentes restent
+// longtemps à l'écran et couvrent le haut pendant que les rapides filent — y
+// compris en fin de section, ce qui évite le grand blanc avant la section
+// suivante (sinon, en bas, tout est déjà sorti par le haut).
 const photos = [
-  // Mobile : 2 colonnes alternées (gauche ~25 % / droite ~75 %), photos ~44 % de viewport,
-  // delays resserrés pour avoir toujours 4-5 photos visibles à l'écran.
-  { src: h1, alt: "Pose menuiserie façade pierre par Fenêtres sur Loir", left: 8,  width: 23, leftM: 24, widthM: 44, speed: 1.0,  delay: 0,  delayM: 0  },
-  { src: h5, alt: "Portrait artisan Fenêtres sur Loir",                  left: 22, width: 20, leftM: 76, widthM: 42, speed: 1.25, delay: 14, delayM: 7  },
-  { src: h2, alt: "Atelier Fenêtres sur Loir",                           left: 38, width: 22, leftM: 22, widthM: 46, speed: 0.9,  delay: 28, delayM: 14 },
-  { src: h3, alt: "Équipe Fenêtres sur Loir au bureau",                  left: 55, width: 22, leftM: 74, widthM: 44, speed: 1.1,  delay: 6,  delayM: 21 },
-  { src: h6, alt: "Pose technique menuiserie Fenêtres sur Loir",         left: 70, width: 21, leftM: 26, widthM: 42, speed: 0.95, delay: 36, delayM: 28 },
-  { src: h4, alt: "Showroom Seiches-sur-le-Loir Fenêtres sur Loir",      left: 86, width: 23, leftM: 75, widthM: 44, speed: 1.2,  delay: 18, delayM: 35 },
-  { src: h7, alt: "Conseillère Fenêtres sur Loir en showroom",           left: 14, width: 20, leftM: 23, widthM: 44, speed: 1.05, delay: 46, delayM: 43 },
-  { src: h8, alt: "Pose alu façade par Fenêtres sur Loir",               left: 48, width: 19, leftM: 76, widthM: 42, speed: 1.35, delay: 56, delayM: 50 },
+  { src: h1,  alt: "Pose menuiserie façade pierre par Fenêtres sur Loir", left: 8,  width: 23, leftM: 24, widthM: 44, speed: 0.55, delay: 0,  delayM: 0  },
+  { src: h5,  alt: "Portrait artisan Fenêtres sur Loir",                  left: 22, width: 20, leftM: 76, widthM: 42, speed: 1.3,  delay: 5,  delayM: 5  },
+  { src: h2,  alt: "Atelier Fenêtres sur Loir",                           left: 38, width: 22, leftM: 22, widthM: 46, speed: 0.9,  delay: 10, delayM: 10 },
+  { src: h3,  alt: "Équipe Fenêtres sur Loir au bureau",                  left: 55, width: 22, leftM: 74, widthM: 44, speed: 1.45, delay: 15, delayM: 15 },
+  { src: h6,  alt: "Pose technique menuiserie Fenêtres sur Loir",         left: 70, width: 21, leftM: 26, widthM: 42, speed: 0.6,  delay: 20, delayM: 20 },
+  { src: h4,  alt: "Showroom Seiches-sur-le-Loir Fenêtres sur Loir",      left: 86, width: 23, leftM: 75, widthM: 44, speed: 1.1,  delay: 25, delayM: 25 },
+  { src: h7,  alt: "Conseillère Fenêtres sur Loir en showroom",           left: 14, width: 20, leftM: 23, widthM: 44, speed: 0.8,  delay: 30, delayM: 30 },
+  { src: h8,  alt: "Pose alu façade par Fenêtres sur Loir",               left: 48, width: 19, leftM: 76, widthM: 42, speed: 1.35, delay: 35, delayM: 35 },
+  { src: h9,  alt: "Chantier de pose par Fenêtres sur Loir",             left: 30, width: 24, leftM: 25, widthM: 46, speed: 0.55, delay: 40, delayM: 40 },
+  { src: h10, alt: "Réalisation menuiserie Fenêtres sur Loir",           left: 64, width: 23, leftM: 75, widthM: 44, speed: 1.0,  delay: 45, delayM: 45 },
+  { src: h11, alt: "Porte-fenêtre posée par Fenêtres sur Loir",          left: 5,  width: 18, leftM: 24, widthM: 40, speed: 1.25, delay: 50, delayM: 50 },
+  { src: h12, alt: "Façade rénovée par Fenêtres sur Loir",               left: 79, width: 24, leftM: 76, widthM: 46, speed: 0.7,  delay: 55, delayM: 55 },
+  { src: h13, alt: "Pose de fenêtres par Fenêtres sur Loir",             left: 42, width: 21, leftM: 23, widthM: 44, speed: 1.15, delay: 60, delayM: 60 },
+  { src: h14, alt: "Menuiserie sur mesure Fenêtres sur Loir",            left: 91, width: 17, leftM: 77, widthM: 40, speed: 0.85, delay: 65, delayM: 65 },
+  { src: h15, alt: "Chantier extérieur Fenêtres sur Loir",               left: 18, width: 23, leftM: 25, widthM: 46, speed: 1.3,  delay: 70, delayM: 70 },
+  { src: h16, alt: "Réalisation récente Fenêtres sur Loir",              left: 56, width: 22, leftM: 74, widthM: 44, speed: 0.6,  delay: 75, delayM: 75 },
+  { src: h17, alt: "Détail de pose Fenêtres sur Loir",                   left: 34, width: 18, leftM: 24, widthM: 40, speed: 1.0,  delay: 80, delayM: 80 },
+  { src: h18, alt: "Projet livré par Fenêtres sur Loir",                 left: 73, width: 24, leftM: 76, widthM: 46, speed: 0.8,  delay: 85, delayM: 85 },
+  { src: h19, alt: "Ouvrage vertical posé par Fenêtres sur Loir",        left: 10, width: 17, leftM: 23, widthM: 40, speed: 0.65, delay: 90, delayM: 90 },
 ];
 ---
 
@@ -36,8 +61,8 @@ const photos = [
   data-parallax-section
   aria-labelledby="histoire-title"
 >
-  <!-- Conteneur haut pour driver le scroll. -->
-  <div class="relative h-[130vh]">
+  <!-- Conteneur haut pour driver le scroll (19 photos défilent). -->
+  <div class="relative h-[135vh]">
     <!-- Stage sticky : épinglé pendant le travel -->
     <div class="sticky top-0 h-screen overflow-hidden">
       <!-- Photos absolues, animées par JS -->

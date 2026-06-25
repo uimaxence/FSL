@@ -91,6 +91,7 @@ const zones = Object.entries(communesGeo).map(([slug, geo]) => {
           class="w-full h-auto overflow-visible"
           role="img"
           aria-labelledby="zonesmap-title zonesmap-desc"
+          data-zonesmap
         >
           <title id="zonesmap-title">Carte des zones d'intervention de Fenêtres sur Loir en Maine-et-Loire</title>
           <desc id="zonesmap-desc">
@@ -108,53 +109,48 @@ const zones = Object.entries(communesGeo).map(([slug, geo]) => {
             stroke-linejoin="round"
           />
 
-          <!-- Toutes les communes du 49, même bleu uni, découpées par le
-               trait blanc. Celles non desservies par une page : simple
-               polygone (non cliquable). -->
-          {zones.filter((z) => !z.served).map((z) => (
-            <path
-              d={z.d}
-              stroke="white"
-              stroke-width="1"
-              stroke-linejoin="round"
-              class="zm-fill"
-            >
-              <title>{z.nom}</title>
-            </path>
-          ))}
+          <!-- COUCHE 1 — polygones de TOUTES les communes (même bleu uni,
+               découpées par un fin trait blanc). Les desservies sont
+               cliquables. Aucun libellé ici : ils sont dans la couche 2 pour
+               ne jamais passer sous une commune voisine. -->
+          <g>
+            {zones.filter((z) => !z.served).map((z) => (
+              <path d={z.d} class="zm-fill zm-border">
+                <title>{z.nom}</title>
+              </path>
+            ))}
+            {zones.filter((z) => z.served).map((z) => (
+              <a
+                href={`/menuisier-${z.slug}`}
+                class="group"
+                data-zone={z.slug}
+                aria-label={`Menuisier à ${z.nom}`}
+              >
+                <title>{z.nom}</title>
+                <path d={z.d} class="zm-commune zm-border" />
+              </a>
+            ))}
+          </g>
 
-          <!-- Communes desservies : cliquables, reconnaissables au libellé. -->
-          {zones.filter((z) => z.served).map((z) => (
-            <a href={`/menuisier-${z.slug}`} class="group" aria-label={`Menuisier à ${z.nom}`}>
-              <title>{z.nom}</title>
-              <path
-                d={z.d}
-                stroke="white"
-                stroke-width="1.5"
-                stroke-linejoin="round"
-                class="zm-commune"
-              />
-              {z.isAgence && (
-                <circle cx={z.cx} cy={z.cy} r="6" fill="white" stroke="var(--color-accent)" stroke-width="3" />
-              )}
+          <!-- COUCHE 2 — marqueurs des agences + libellés, toujours au-dessus
+               des polygones (jamais tronqués). Les libellés non permanents
+               apparaissent au survol/focus de leur commune (voir script). -->
+          <g class="pointer-events-none">
+            {zones.filter((z) => z.isAgence).map((z) => (
+              <circle cx={z.cx} cy={z.cy} r="6" fill="white" stroke="var(--color-accent)" stroke-width="3" />
+            ))}
+            {zones.filter((z) => z.served).map((z) => (
               <text
+                data-zone-label={z.slug}
                 x={z.cx}
                 y={z.isAgence ? z.cy - 14 : z.cy}
                 text-anchor="middle"
-                class:list={[
-                  "select-none pointer-events-none transition-opacity duration-150",
-                  z.permanent ? "opacity-100" : "opacity-0 group-hover:opacity-100",
-                ]}
+                class:list={["zm-label", z.permanent && "is-permanent"]}
                 font-size={z.isAgence ? 19 : 16}
                 font-weight={z.isAgence ? 700 : 600}
-                fill="var(--color-fg)"
-                paint-order="stroke"
-                stroke="white"
-                stroke-width="4.5"
-                stroke-linejoin="round"
               >{z.nom}</text>
-            </a>
-          ))}
+            ))}
+          </g>
         </svg>
       </div>
 
@@ -183,16 +179,63 @@ const zones = Object.entries(communesGeo).map(([slug, geo]) => {
 <style>
   /* Bleu uni partout : le fond du département et les communes partagent
      exactement la même couleur (solide, donc aucune surimpression ne
-     fonce les zones). Les communes ne se distinguent que par leur découpe
-     blanche ; la commune survolée passe en bleu plein. */
+     fonce les zones). Les communes ne se distinguent que par leur découpe ;
+     la commune survolée passe en bleu plein. */
   .zm-fill,
   .zm-commune {
     fill: color-mix(in srgb, var(--color-accent) 34%, white);
   }
+  /* Découpe fine et discrète entre communes (un peu transparente pour ne
+     pas créer une grille trop dure). */
+  .zm-border {
+    stroke: rgba(255, 255, 255, 0.85);
+    stroke-width: 1;
+    stroke-linejoin: round;
+  }
   .zm-commune {
     transition: fill 0.15s ease;
   }
+  /* La commune cliquable survolée se démarque : bleu plein + contour net. */
   .group:hover .zm-commune {
     fill: var(--color-accent);
+    stroke: #fff;
+    stroke-width: 1.5;
+  }
+
+  /* Libellés (couche du dessus) : halo blanc pour rester lisibles sur le
+     bleu, masqués par défaut, révélés via .is-permanent ou au survol (JS). */
+  .zm-label {
+    fill: var(--color-fg);
+    paint-order: stroke;
+    stroke: #fff;
+    stroke-width: 4.5px;
+    stroke-linejoin: round;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .zm-label.is-permanent {
+    opacity: 1;
   }
 </style>
+
+<script>
+  // Révèle le libellé d'une commune cliquable au survol / focus (les
+  // libellés permanents restent toujours visibles).
+  for (const svg of document.querySelectorAll<SVGSVGElement>("[data-zonesmap]")) {
+    for (const link of svg.querySelectorAll<SVGAElement>("[data-zone]")) {
+      const slug = link.getAttribute("data-zone");
+      const label = svg.querySelector<SVGTextElement>(
+        `[data-zone-label="${slug}"]`
+      );
+      if (!label || label.classList.contains("is-permanent")) continue;
+      const show = () => (label.style.opacity = "1");
+      const hide = () => (label.style.opacity = "");
+      link.addEventListener("mouseenter", show);
+      link.addEventListener("mouseleave", hide);
+      link.addEventListener("focus", show);
+      link.addEventListener("blur", hide);
+    }
+  }
+</script>
