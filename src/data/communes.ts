@@ -73,7 +73,7 @@ export const AGENCES: Record<AgenceRattachement, Agence> = {
     ville: "Doué-en-Anjou",
     lat: 47.1936,
     lng: -0.2772,
-    telephone: "02 41 77 04 08",
+    telephone: "07 66 52 24 00",
   },
 };
 
@@ -377,7 +377,7 @@ export const communes: Commune[] = [
       {
         question: "Quelles sont les coordonnées de l'agence de Doué-en-Anjou ?",
         reponse:
-          "Notre agence se situe au 7 rue Saint François, 49700 Doué-en-Anjou. Vous pouvez nous joindre au 02 41 77 04 08 pour un rendez-vous ou un devis gratuit.",
+          "Notre agence se situe au 7 rue Saint François, 49700 Doué-en-Anjou. Vous pouvez nous joindre au 07 66 52 24 00 pour un rendez-vous ou un devis gratuit.",
       },
     ],
   },

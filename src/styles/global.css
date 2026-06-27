@@ -251,3 +251,16 @@ body:has(header[data-header][data-header-state="transparent"]) [data-topbar] [da
 body:has(header[data-header][data-header-state="transparent"]) [data-topbar] span:not(.font-medium):not([data-topbar-dot]) {
   color: rgba(255, 255, 255, 0.75);
 }
+
+/* === Menu mobile ouvert : on neutralise le mode transparent ===
+   La barre supérieure du header redevient blanche et l'icône (croix) foncée,
+   pour rester lisible au-dessus du panneau blanc du menu. */
+header[data-header][data-menu-open] {
+  background-color: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: var(--color-border);
+}
+header[data-header][data-menu-open] [data-mobile-toggle] {
+  color: var(--color-fg);
+}

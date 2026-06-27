@@ -98,6 +98,8 @@ const breadcrumb = [
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 
 // JSON-LD : LocalBusiness ancré sur l'agence réelle, areaServed = la commune.
+// Téléphone aligné sur l'agence de rattachement (Doué a sa propre ligne).
+const agenceTelE164 = "+33" + agence.telephone.replace(/\D/g, "").replace(/^0/, "");
 const localBusiness: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
@@ -105,7 +107,7 @@ const localBusiness: Record<string, unknown> = {
   description: commune.metaDescription,
   image: "https://www.fenetres-sur-loir.fr/og.jpg",
   url: canonical,
-  telephone: "+33241770408",
+  telephone: agenceTelE164,
   email: "contacts@fenetres-sur-loir.fr",
   priceRange: "€€",
   address: {

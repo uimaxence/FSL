@@ -1,0 +1,256 @@
+---
+import { Image } from "astro:assets";
+import deventureDoue from "../../assets/deventure_doué.png";
+
+interface Props {
+  /** Délai d'apparition après l'arrivée sur le site (en ms) */
+  delayMs?: number;
+}
+
+const { delayMs = 1200 } = Astro.props;
+
+// Message pré-rédigé partagé sur WhatsApp / Messenger
+const shareMessage =
+  "L'entreprise de menuiserie Fenêtres sur Loir ouvre une nouvelle agence à Doué-en-Anjou ! N'hésitez pas à venir nous voir pour parler de vos projets.";
+const shareUrl = "https://www.fenetres-sur-loir.fr";
+---
+
+<div
+  id="ouverture-doue-modal"
+  class="fixed inset-0 z-[100] flex items-center justify-center p-4 opacity-0 invisible transition-opacity duration-300 ease-out"
+  data-doue-modal
+  data-delay={delayMs}
+  data-share-message={shareMessage}
+  data-share-url={shareUrl}
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="ouverture-doue-title"
+  aria-hidden="true"
+>
+  <!-- Voile -->
+  <div
+    class="absolute inset-0 bg-black/60 backdrop-blur-sm"
+    data-doue-modal-overlay
+    aria-hidden="true"
+  >
+  </div>
+
+  <!-- Carte -->
+  <div
+    class="relative w-[min(440px,100%)] max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl ring-1 ring-black/5 translate-y-4 scale-[0.98] transition-transform duration-300 ease-out"
+    data-doue-modal-card
+  >
+    <button
+      type="button"
+      class="absolute top-3 right-3 z-10 inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/95 ring-1 ring-black/10 text-[var(--color-fg)] hover:bg-[var(--color-tint)] transition-colors"
+      data-doue-modal-close
+      aria-label="Fermer"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="relative aspect-[16/10] overflow-hidden rounded-t-3xl">
+      <Image
+        src={deventureDoue}
+        alt="Nouvelle agence Fenêtres sur Loir à Doué-en-Anjou"
+        widths={[440, 880]}
+        sizes="440px"
+        loading="eager"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent"></div>
+      <span
+        class="absolute top-4 left-4 inline-flex items-center px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white rounded-full"
+        style="background: var(--color-accent);"
+      >
+        Nouvelle agence
+      </span>
+    </div>
+
+    <div class="p-6 sm:p-7 text-center">
+      <h2
+        id="ouverture-doue-title"
+        class="font-display text-[24px] sm:text-[26px] leading-tight text-[var(--color-fg)]"
+      >
+        Notre agence de Doué-la-Fontaine ouvre ses portes lundi&nbsp;!
+      </h2>
+      <p class="mt-3 text-left text-[15px] leading-relaxed text-[var(--color-muted)]">
+        Fenêtres sur Loir s'installe à Doué-en-Anjou. Nous avons hâte de vous y
+        accueillir pour échanger sur tous vos projets de menuiserie. Venez nous
+        rencontrer&nbsp;!
+      </p>
+
+      <div class="mt-6 flex flex-col gap-2.5">
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-[15px] font-medium text-white shadow-sm transition-colors"
+          style="background: var(--color-accent);"
+          onmouseover="this.style.background='var(--color-accent-hover)'"
+          onmouseout="this.style.background='var(--color-accent)'"
+          data-doue-modal-contact
+        >
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          Nous contacter
+        </a>
+
+        <button
+          type="button"
+          class="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-[15px] font-medium text-[var(--color-fg)] ring-1 ring-[var(--color-border)] hover:bg-[var(--color-subtle)] transition-colors"
+          data-doue-modal-share
+        >
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          Partager la nouvelle
+        </button>
+
+        <!-- Secours desktop (si la feuille de partage native est indisponible) :
+             WhatsApp (lien direct) + Copier le lien (fiable partout). -->
+        <div
+          class="hidden grid-cols-2 gap-2.5"
+          data-doue-modal-share-fallback
+        >
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
+            style="background: #25D366;"
+            data-doue-share-whatsapp
+          >
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.892c0 2.096.549 4.142 1.595 5.945L0 24l6.305-1.654a11.96 11.96 0 0 0 5.734 1.459h.005c6.581 0 11.945-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"></path>
+            </svg>
+            WhatsApp
+          </a>
+          <button
+            type="button"
+            class="inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-[14px] font-medium text-[var(--color-fg)] ring-1 ring-[var(--color-border)] hover:bg-[var(--color-subtle)] transition-colors"
+            data-doue-share-copy
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <span data-doue-copy-label>Copier le lien</span>
+          </button>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="mt-4 text-[13px] text-[var(--color-muted)] hover:text-[var(--color-fg)] underline underline-offset-2"
+        data-doue-modal-later
+      >
+        Plus tard
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = "fsl-ouverture-doue-modal-dismissed";
+  const modal = document.getElementById("ouverture-doue-modal");
+
+  if (modal && !sessionStorage.getItem(STORAGE_KEY) && !localStorage.getItem(STORAGE_KEY)) {
+    const card = modal.querySelector<HTMLElement>("[data-doue-modal-card]");
+    const delay = Number(modal.getAttribute("data-delay") ?? 1200);
+    const message = modal.getAttribute("data-share-message") ?? "";
+    const url = modal.getAttribute("data-share-url") ?? window.location.origin;
+
+    const show = () => {
+      modal.classList.remove("opacity-0", "invisible");
+      modal.classList.add("opacity-100");
+      modal.setAttribute("aria-hidden", "false");
+      card?.classList.remove("translate-y-4", "scale-[0.98]");
+      document.body.style.overflow = "hidden";
+    };
+
+    const hide = () => {
+      modal.classList.add("opacity-0");
+      modal.classList.remove("opacity-100");
+      card?.classList.add("translate-y-4", "scale-[0.98]");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      window.setTimeout(() => modal.classList.add("invisible"), 300);
+      localStorage.setItem(STORAGE_KEY, "1");
+    };
+
+    window.setTimeout(show, delay);
+
+    // Fermeture
+    modal.querySelector("[data-doue-modal-close]")?.addEventListener("click", hide);
+    modal.querySelector("[data-doue-modal-later]")?.addEventListener("click", hide);
+    modal.querySelector("[data-doue-modal-overlay]")?.addEventListener("click", hide);
+    modal.querySelector("[data-doue-modal-contact]")?.addEventListener("click", () => {
+      localStorage.setItem(STORAGE_KEY, "1");
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.getAttribute("aria-hidden") === "false") hide();
+    });
+
+    // Partage
+    const fullText = `${message} ${url}`;
+    const fallback = modal.querySelector<HTMLElement>("[data-doue-modal-share-fallback]");
+    const waLink = modal.querySelector<HTMLAnchorElement>("[data-doue-share-whatsapp]");
+    const copyBtn = modal.querySelector<HTMLButtonElement>("[data-doue-share-copy]");
+
+    if (waLink) {
+      waLink.href = `https://wa.me/?text=${encodeURIComponent(fullText)}`;
+    }
+
+    // Copier le lien — fiable sur tous les navigateurs (avec repli si l'API
+    // Clipboard est indisponible, ex. contexte non sécurisé).
+    copyBtn?.addEventListener("click", async () => {
+      const label = copyBtn.querySelector<HTMLElement>("[data-doue-copy-label]");
+      let ok = false;
+      try {
+        await navigator.clipboard.writeText(fullText);
+        ok = true;
+      } catch {
+        const ta = document.createElement("textarea");
+        ta.value = fullText;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { ok = document.execCommand("copy"); } catch { ok = false; }
+        document.body.removeChild(ta);
+      }
+      if (label) {
+        label.textContent = ok ? "Lien copié ✓" : "Échec de la copie";
+        window.setTimeout(() => (label.textContent = "Copier le lien"), 2000);
+      }
+    });
+
+    modal.querySelector("[data-doue-modal-share]")?.addEventListener("click", async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: "Fenêtres sur Loir — Nouvelle agence à Doué-en-Anjou",
+            text: message,
+            url,
+          });
+          return;
+        } catch {
+          // partage annulé → on affiche les options manuelles
+        }
+      }
+      // Pas de Web Share API (desktop) : révèle WhatsApp + Copier le lien
+      fallback?.classList.remove("hidden");
+      fallback?.classList.add("grid");
+    });
+  }
+</script>

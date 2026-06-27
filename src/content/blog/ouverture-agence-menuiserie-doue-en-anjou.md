@@ -13,7 +13,7 @@ schema:
     description: "Nouvelle agence de menuiserie sur-mesure Fenêtres sur Loir à Doué-en-Anjou : fenêtres, portes d'entrée, baies vitrées, volets et fermetures extérieures. Pose certifiée RGE."
     areaServed: Doué-en-Anjou
     hasCredential: RGE
-    telephone: "02 41 77 04 08"
+    telephone: "07 66 52 24 00"
     openingHoursSpecification:
       - "@type": OpeningHoursSpecification
         dayOfWeek:

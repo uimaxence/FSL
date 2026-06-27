@@ -159,10 +159,14 @@ const navItems: NavEntry[] = [
         aria-expanded="false"
         data-mobile-toggle
       >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-icon-menu>
           <line x1="3" y1="6" x2="21" y2="6" />
           <line x1="3" y1="12" x2="21" y2="12" />
           <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hidden" data-icon-close>
+          <line x1="6" y1="6" x2="18" y2="18" />
+          <line x1="18" y1="6" x2="6" y2="18" />
         </svg>
       </button>
     </div>
@@ -420,9 +424,17 @@ const navItems: NavEntry[] = [
   // Mobile menu toggle
   const toggle = document.querySelector<HTMLButtonElement>("[data-mobile-toggle]");
   const menu = document.getElementById("mobile-menu");
+  const headerEl = document.querySelector<HTMLElement>("header[data-header]");
+  const iconMenu = toggle?.querySelector<SVGElement>("[data-icon-menu]");
+  const iconClose = toggle?.querySelector<SVGElement>("[data-icon-close]");
   toggle?.addEventListener("click", () => {
     const isOpen = menu?.classList.toggle("hidden") === false;
     toggle.setAttribute("aria-expanded", String(isOpen));
+    toggle.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
+    iconMenu?.classList.toggle("hidden", isOpen);
+    iconClose?.classList.toggle("hidden", !isOpen);
+    // Menu ouvert : on force l'état solide (fond blanc + icône foncée lisible)
+    headerEl?.toggleAttribute("data-menu-open", isOpen);
   });
 
   // Desktop dropdowns (hover + focus, multi-panel)
