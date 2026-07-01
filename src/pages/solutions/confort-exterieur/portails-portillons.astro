@@ -1,0 +1,106 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PageProduit from "../../../components/templates/PageProduit.astro";
+import Container from "../../../components/ui/Container.astro";
+import portail1 from "../../../assets/portail_1.jpg";
+import portail2 from "../../../assets/portail_2.jpg";
+
+const title = "Portails & Portillons aluminium sur mesure | Fenêtres sur Loir — Angers & Doué-en-Anjou";
+const description = "Fenêtres sur Loir conçoit et pose vos portails et portillons sur mesure : aluminium, battant ou coulissant, motorisé, avec visiophone. Pose certifiée RGE à Angers, Doué-en-Anjou et dans tout le Maine-et-Loire.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur" },
+  { label: "Confort extérieur", href: "/solutions/confort-exterieur" },
+  { label: "Portails & Portillons" },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Portails et portillons aluminium sur mesure",
+  description,
+  brand: { "@type": "Brand", name: "Fenêtres sur Loir" },
+  category: "Portail, portillon, clôture",
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <PageProduit
+    eyebrow="Confort extérieur"
+    title="Portails et portillons sur mesure : l'entrée qui donne le ton"
+    heroPlaceholderLabel="Portail aluminium coulissant anthracite installé par Fenêtres sur Loir"
+    heroImage={portail1}
+    heroImageAlt="Portail aluminium coulissant anthracite avec décor ajouré et pilier visiophone installé par Fenêtres sur Loir près d'Angers"
+    heroStyle="wide"
+    lead="Premier regard sur votre maison, votre portail conjugue sécurité, esthétique et confort au quotidien. Nous le concevons et le posons sur mesure, avec son portillon assorti."
+  >
+    <p>
+      Menuisier depuis <strong>2003</strong> à Seiches-sur-le-Loir et désormais à <strong>Doué-en-Anjou</strong>, Fenêtres sur Loir installe des <strong>portails et portillons sur mesure</strong> à Angers et dans tout le Maine-et-Loire. Bien plus qu'une simple entrée, votre portail participe à la <strong>sécurité de votre propriété</strong>, à son <strong>intimité</strong> et à l'<strong>allure de votre façade</strong>.
+    </p>
+    <p>
+      Nous dessinons chaque projet à partir de vos contraintes réelles — largeur de passage, pente, style de la maison, motorisation — pour une réalisation <strong>parfaitement intégrée</strong> et durable.
+    </p>
+
+    <h2>Portail battant ou portail coulissant : lequel choisir ?</h2>
+    <figure>
+      <Image
+        src={portail2}
+        alt="Portail aluminium coulissant motorisé à barreaudage installé par Fenêtres sur Loir dans le Maine-et-Loire"
+        widths={[600, 900, 1200]}
+        sizes="(max-width: 1024px) 100vw, 720px"
+        loading="lazy"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto"
+      />
+    </figure>
+    <p>
+      Le <strong>portail battant</strong>, composé de deux vantaux qui s'ouvrent vers l'intérieur, reste le grand classique : élégant et économique, il convient à la plupart des entrées disposant d'un recul suffisant.
+    </p>
+    <p>
+      Le <strong>portail coulissant</strong>, qui s'efface le long de votre clôture, est idéal lorsque l'espace manque ou en présence d'une pente. Facile à motoriser, il offre un confort d'usage optimal au quotidien, comme sur le modèle coulissant motorisé ci-dessus.
+    </p>
+
+    <h2>L'aluminium : le meilleur matériau pour un portail durable</h2>
+    <p>
+      Nous privilégions l'<strong>aluminium thermolaqué</strong> pour vos portails et portillons : <strong>inaltérable, sans entretien et garanti dans le temps</strong>. Il ne rouille pas, ne se déforme pas et conserve sa teinte des années durant, même exposé à la pluie et aux UV de l'Anjou.
+    </p>
+    <p>
+      Portail <strong>plein</strong> pour une intimité totale, <strong>semi-ajouré</strong> avec décor découpé au laser, ou <strong>barreaudé</strong> pour un style plus traditionnel : chaque configuration est déclinable dans une large palette de <strong>coloris RAL</strong> — anthracite, gris, blanc, noir sablé… — assortie à vos fenêtres, volets et à votre porte d'entrée.
+    </p>
+
+    <h2>Un portillon assorti pour un ensemble cohérent</h2>
+    <p>
+      Nous complétons naturellement votre portail par un <strong>portillon piéton coordonné</strong> — même matériau, même coloris, même décor — pour une entrée harmonieuse et un accès du quotidien pratique, sans avoir à ouvrir le grand portail.
+    </p>
+
+    <h2>Motorisation, visiophone et sécurité</h2>
+    <p>
+      Gagnez en confort avec la <strong>motorisation de votre portail</strong> : ouverture à distance par télécommande, digicode ou smartphone. Nous intégrons également <strong>visiophone, interphone, éclairage et boîte aux lettres</strong> dans un pilier technique soigné, pour filtrer les visites sans quitter votre maison.
+    </p>
+    <p>
+      Tous nos automatismes sont posés dans les règles de l'art, avec les <strong>sécurités anti-écrasement</strong> conformes à la réglementation, pour protéger votre famille comme vos véhicules.
+    </p>
+
+    <h2>Une pose sur mesure par nos équipes, à Angers et Doué-en-Anjou</h2>
+    <p>
+      De l'<strong>étude à domicile</strong> à la mise en service de la motorisation, votre portail est <strong>fabriqué en France</strong> et posé par <strong>nos équipes qualifiées</strong>, jamais par sous-traitance. Cette maîtrise complète du chantier et notre <strong>certification RGE Qualibat</strong> vous garantissent une installation durable et un interlocuteur unique, disponible toute l'année dans tout le Maine-et-Loire.
+    </p>
+  </PageProduit>
+
+  <section class="pb-20">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-[15px] text-[var(--color-muted)] mb-6">
+          Envie d'une entrée à votre image, <strong class="text-[var(--color-fg)]">sécurisée, motorisée et sur mesure</strong> ? Parlons-en.
+        </p>
+        <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+          Demander un devis personnalisé
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

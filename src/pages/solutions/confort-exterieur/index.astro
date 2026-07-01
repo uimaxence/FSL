@@ -7,9 +7,10 @@ import CTASection from "../../../components/sections/CTASection.astro";
 import CertificationsBanner from "../../../components/sections/CertificationsBanner.astro";
 import carportImg from "../../../assets/carport-1.png";
 import marquiseImg from "../../../assets/marquise-1.png";
+import portailImg from "../../../assets/portail_1.jpg";
 
-const title = "Confort extérieur sur mesure | Carports, marquises, brise-vues — Fenêtres sur Loir Angers";
-const description = "Profitez pleinement de vos extérieurs avec Fenêtres sur Loir : carports aluminium, marquises vitrées, brise-vues et claustras sur mesure. Pose certifiée RGE dans le Maine-et-Loire.";
+const title = "Confort extérieur sur mesure | Portails, carports, marquises, brise-vues — Fenêtres sur Loir Angers";
+const description = "Profitez pleinement de vos extérieurs avec Fenêtres sur Loir : portails et portillons aluminium, carports, marquises vitrées, brise-vues et claustras sur mesure. Pose certifiée RGE dans le Maine-et-Loire.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -18,6 +19,14 @@ const breadcrumb = [
 ];
 
 const cards = [
+  {
+    title: "Portails & Portillons",
+    description: "Sécurisez et embellissez votre entrée : aluminium sur mesure, battant ou coulissant, motorisé et portillon assorti.",
+    href: "/solutions/confort-exterieur/portails-portillons",
+    placeholderLabel: "Portail aluminium coulissant anthracite devant une maison",
+    image: portailImg,
+    imageAlt: "Portail aluminium coulissant sur mesure installé par Fenêtres sur Loir près d'Angers",
+  },
   {
     title: "Carports & Marquises",
     description: "Abritez votre véhicule, protégez votre entrée. Aluminium thermolaqué ou bois sur mesure.",
@@ -67,7 +76,7 @@ const schema = {
   <PageHub
     eyebrow="Nos solutions"
     title="Profitez pleinement de vos extérieurs avec Fenêtres sur Loir"
-    intro="Expert de la menuiserie depuis 2003, nous savons combien il est agréable de tirer le meilleur parti de vos espaces extérieurs. Carports, marquises, brise-vues, claustras — nos solutions sur mesure embellissent et protègent votre jardin, votre terrasse ou votre allée."
+    intro="Expert de la menuiserie depuis 2003, nous savons combien il est agréable de tirer le meilleur parti de vos espaces extérieurs. Portails et portillons, carports, marquises, brise-vues, claustras — nos solutions sur mesure sécurisent, embellissent et protègent votre jardin, votre terrasse, votre allée et l'entrée de votre propriété."
     heroImage={carportImg}
     heroImageAlt="Carport aluminium sur mesure devant une maison contemporaine par Fenêtres sur Loir"
     cards={cards}
