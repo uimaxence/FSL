@@ -6,7 +6,6 @@ import Footer from "../components/layout/Footer.astro";
 import Breadcrumb from "../components/ui/Breadcrumb.astro";
 import SchemaJsonLd from "../components/ui/SchemaJsonLd.astro";
 import DevisPopup from "../components/sections/DevisPopup.astro";
-import OuvertureDoueModal from "../components/sections/OuvertureDoueModal.astro";
 import MeoConfiguratorFAB from "../components/sections/MeoConfiguratorFAB.astro";
 
 interface BreadcrumbItem {
@@ -96,7 +95,6 @@ const showMeoFab =
     </main>
     <Footer />
     <DevisPopup />
-    <OuvertureDoueModal />
     {showMeoFab && <MeoConfiguratorFAB />}
   </body>
 </html>
