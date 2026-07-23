@@ -8,15 +8,11 @@ import { AGENCES_CONTENU } from "../../data/agences-contenu";
 import {
   AGENCES,
   business,
-  social,
-  sameAs,
-  SITE_URL,
   toE164,
-  postalAddress,
   addressOneLine,
-  openingHoursSpecification,
   openingHoursHuman,
 } from "../../config/business";
+import { organizationNode, agencyNode } from "../../lib/schema";
 import showroomImg from "../../assets/showroom-1.png";
 import showroomImg2 from "../../assets/showroom-2.png";
 import agenceDoueImg from "../../assets/deventure_doué.png";
@@ -50,39 +46,11 @@ const breadcrumb = [
   { label: agence.ville },
 ];
 
-const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
-
-// JSON-LD : HomeAndConstructionBusiness ancré (@id) et relié à l'Organization.
-const schema = [
-  {
-    "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
-    "@id": `${pageUrl}#business`,
-    name: `Fenêtres sur Loir — Agence de ${agence.ville}`,
-    description: contenu.metaDescription,
-    url: pageUrl,
-    image: business.image,
-    logo: business.logo,
-    telephone: phoneE164,
-    email: business.email,
-    priceRange: business.priceRange,
-    parentOrganization: { "@id": `${SITE_URL}/#organization` },
-    address: postalAddress(agence),
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: agence.lat,
-      longitude: agence.lng,
-    },
-    openingHoursSpecification,
-    areaServed: communesAgence.map((c) => ({ "@type": "City", name: c.nom })),
-    hasCredential: {
-      "@type": "EducationalOccupationalCredential",
-      credentialCategory: "certification",
-      name: "RGE Qualibat",
-    },
-    sameAs,
-  },
-];
+// JSON-LD : Organization + nœud agence (@id) reliés dans un même graphe.
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [organizationNode(), agencyNode(contenu.cle)],
+};
 ---
 
 <BaseLayout

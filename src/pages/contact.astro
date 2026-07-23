@@ -4,7 +4,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Container from "../components/ui/Container.astro";
 import ContactForm from "../components/sections/ContactForm.astro";
 import showroomImg from "../assets/showroom-1.png";
-import { business, mainAgence, addressOneLine, toE164, openingHoursHuman } from "../config/business";
+import { business, mainAgence, addressOneLine, toE164, openingHoursHuman, SITE_URL } from "../config/business";
+import { organizationGraph } from "../lib/schema";
 
 const phoneE164 = toE164(mainAgence.telephone);
 const mapsQuery = encodeURIComponent(`${mainAgence.adresse}, ${mainAgence.codePostal} ${mainAgence.ville}`);
@@ -17,27 +18,15 @@ const breadcrumb = [
   { label: "Contact" },
 ];
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Fenêtres sur Loir",
-  telephone: "+33241770408",
-  email: "contacts@fenetres-sur-loir.fr",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "287 Rue de l'Innovation",
-    postalCode: "49140",
-    addressLocality: "Seiches-sur-le-Loir",
-    addressCountry: "FR",
+// Entité reliée : Organization (contactPoint inclus) + ContactPage.
+const schema = organizationGraph([
+  {
+    "@type": "ContactPage",
+    name: "Contact — Fenêtres sur Loir",
+    url: `${SITE_URL}/contact`,
+    isPartOf: { "@id": `${SITE_URL}/#website` },
   },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+33241770408",
-    contactType: "customer service",
-    areaServed: "FR",
-    availableLanguage: "French",
-  },
-};
+]);
 
 const zoneVilles = [
   "Angers",

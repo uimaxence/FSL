@@ -9,6 +9,7 @@ import CommuneRealisations from "../components/sections/CommuneRealisations.astr
 import CommuneFaq from "../components/sections/CommuneFaq.astro";
 import { communes, AGENCES } from "../data/communes";
 import { getCommuneMedia } from "../lib/commune-media";
+import { communeGraph } from "../lib/schema";
 
 export function getStaticPaths() {
   return communes.map((commune) => ({
@@ -95,60 +96,9 @@ const breadcrumb = [
   { label: commune.nom },
 ];
 
-const canonical = new URL(Astro.url.pathname, Astro.site).toString();
-
-// JSON-LD : LocalBusiness ancré sur l'agence réelle, areaServed = la commune.
-// Téléphone aligné sur l'agence de rattachement (Doué a sa propre ligne).
-const agenceTelE164 = "+33" + agence.telephone.replace(/\D/g, "").replace(/^0/, "");
-const localBusiness: Record<string, unknown> = {
-  "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
-  name: `Fenêtres sur Loir — Menuisier à ${commune.nom}`,
-  description: commune.metaDescription,
-  image: "https://www.fenetres-sur-loir.fr/og.jpg",
-  url: canonical,
-  telephone: agenceTelE164,
-  email: "contacts@fenetres-sur-loir.fr",
-  priceRange: "€€",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: agence.adresse,
-    postalCode: agence.codePostal,
-    addressLocality: agence.ville,
-    addressRegion: "Maine-et-Loire",
-    addressCountry: "FR",
-  },
-  areaServed: {
-    "@type": "City",
-    name: commune.nom,
-    address: {
-      "@type": "PostalAddress",
-      postalCode: commune.codePostal,
-      addressLocality: commune.nom,
-      addressRegion: "Maine-et-Loire",
-      addressCountry: "FR",
-    },
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: commune.lat,
-    longitude: commune.lng,
-  },
-};
-
-const schema: Array<Record<string, unknown>> = [localBusiness];
-
-if (faqAll.length > 0) {
-  schema.push({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqAll.map((f) => ({
-      "@type": "Question",
-      name: f.question,
-      acceptedAnswer: { "@type": "Answer", text: f.reponse },
-    })),
-  });
-}
+// JSON-LD : graphe relié (Organization + agence de rattachement +
+// Service provider→agence + FAQPage), au lieu d'un LocalBusiness isolé.
+const schema = communeGraph(commune, faqAll);
 ---
 
 <BaseLayout

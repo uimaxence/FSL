@@ -11,6 +11,7 @@ import histoireHero from "../../assets/histoire-1.jpg";
 import histoireAtelier from "../../assets/histoire-2.jpg";
 import histoireShowroom from "../../assets/showroom-1.png";
 import { mainAgence } from "../../config/business";
+import { organizationGraph } from "../../lib/schema";
 
 const title = "Notre histoire | Fenêtres sur Loir — Menuisier à Seiches-sur-le-Loir depuis 2003";
 const description = "Découvrez l'histoire de Fenêtres sur Loir, entreprise familiale de menuiserie à Seiches-sur-le-Loir (49). Pose sur mesure de fenêtres, portes et volets depuis plus de 20 ans.";
@@ -21,31 +22,8 @@ const breadcrumb = [
   { label: "Notre histoire" },
 ];
 
-const schema = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Fenêtres sur Loir",
-    url: "https://www.fenetres-sur-loir.fr",
-    foundingDate: "2003",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "287 Rue de l'Innovation",
-      postalCode: "49140",
-      addressLocality: "Seiches-sur-le-Loir",
-      addressRegion: "Maine-et-Loire",
-      addressCountry: "FR",
-    },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Fenêtres sur Loir",
-    image: "https://www.fenetres-sur-loir.fr/og.jpg",
-    telephone: "+33241770408",
-    priceRange: "€€",
-  },
-];
+// Entité unique reliée (Organization) — plus de blocs dupliqués/isolés.
+const schema = organizationGraph();
 ---
 
 <BaseLayout
