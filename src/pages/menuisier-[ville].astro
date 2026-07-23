@@ -10,6 +10,7 @@ import CommuneFaq from "../components/sections/CommuneFaq.astro";
 import { communes, AGENCES } from "../data/communes";
 import { getCommuneMedia } from "../lib/commune-media";
 import { communeGraph } from "../lib/schema";
+import { communesVoisines } from "../lib/maillage";
 
 export function getStaticPaths() {
   return communes.map((commune) => ({
@@ -21,6 +22,7 @@ export function getStaticPaths() {
 const { commune } = Astro.props;
 const agence = AGENCES[commune.agence];
 const media = getCommuneMedia(commune.slug);
+const voisines = communesVoisines(commune.slug, 4);
 
 // FAQ : questions uniques de la commune + 3 questions localisées (interpolées
 // avec le nom de la commune) communes à toutes les pages, pour densifier le
@@ -325,6 +327,41 @@ const schema = communeGraph(commune, faqAll);
 
   {commune.realisationSlugs && commune.realisationSlugs.length > 0 && (
     <CommuneRealisations slugs={commune.realisationSlugs} communeNom={commune.nom} />
+  )}
+
+  {voisines.length > 0 && (
+    <section class="section-tight">
+      <Container width="default">
+        <h2 class="mb-3">Fenêtres sur Loir intervient aussi près de {commune.nom}</h2>
+        <p class="text-[var(--color-muted)] max-w-2xl mb-6 leading-relaxed">
+          Notre zone d'intervention s'étend aux communes voisines. Découvrez nos
+          menuiseries sur mesure dans les secteurs proches de {commune.nom} :
+        </p>
+        <ul class="flex flex-wrap gap-2">
+          {voisines.map((v) => (
+            <li>
+              <a
+                href={`/menuisier-${v.slug}`}
+                class="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+              >
+                Menuisier à {v.nom}
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </li>
+          ))}
+          <li>
+            <a
+              href="/zones-intervention"
+              class="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-[var(--color-accent)] hover:underline"
+            >
+              Toutes nos communes →
+            </a>
+          </li>
+        </ul>
+      </Container>
+    </section>
   )}
 
   <CommuneFaq faq={faqAll} communeNom={commune.nom} />

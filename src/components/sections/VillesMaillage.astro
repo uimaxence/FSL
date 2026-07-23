@@ -1,0 +1,45 @@
+---
+// Maillage transversal : lie une page solution vers les 3 plus grandes villes
+// couvertes (Angers, Cholet, Saumur). Sort les pages solutions des culs-de-sac.
+import Container from "../ui/Container.astro";
+import { grandesVilles } from "../../lib/maillage";
+
+interface Props {
+  /** libellé du produit/solution, ex. « Fenêtres », « Volets » */
+  produit?: string;
+}
+const { produit } = Astro.props;
+const intro = produit
+  ? `${produit} sur mesure, posées par un artisan RGE dans les principales villes du Maine-et-Loire :`
+  : "Nos menuiseries sur mesure, posées par un artisan RGE dans les principales villes du Maine-et-Loire :";
+---
+
+<section class="section-tight bg-[var(--color-subtle)]">
+  <Container width="default">
+    <h2 class="mb-3">Nous intervenons partout en Maine-et-Loire</h2>
+    <p class="text-[var(--color-muted)] max-w-2xl mb-6 leading-relaxed">{intro}</p>
+    <ul class="flex flex-wrap gap-2">
+      {grandesVilles.map((v) => (
+        <li>
+          <a
+            href={`/menuisier-${v.slug}`}
+            class="inline-flex items-center gap-1.5 rounded-full bg-white ring-1 ring-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+          >
+            Menuisier à {v.nom}
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+        </li>
+      ))}
+      <li>
+        <a
+          href="/zones-intervention"
+          class="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-[var(--color-accent)] hover:underline"
+        >
+          Toutes nos zones →
+        </a>
+      </li>
+    </ul>
+  </Container>
+</section>

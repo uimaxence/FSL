@@ -6,6 +6,9 @@ import Container from "../../components/ui/Container.astro";
 import Button from "../../components/ui/Button.astro";
 import CTASection from "../../components/sections/CTASection.astro";
 import { getRealisationMedia } from "../../lib/realisations-media";
+import { communePourLieu } from "../../lib/maillage";
+import { ORG_ID } from "../../lib/schema";
+import { SITE_URL } from "../../config/business";
 
 export async function getStaticPaths() {
   const items = await getCollection("realisations");
@@ -26,12 +29,32 @@ const breadcrumb = [
   { label: "Réalisations", href: "/realisations" },
   { label: title },
 ];
+
+// Page commune correspondante (maillage réalisation ↔ commune).
+const commune = communePourLieu(location);
+
+const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
+
+// JSON-LD : la réalisation comme CreativeWork, créée par l'Organization.
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "@id": `${pageUrl}#realisation`,
+  name: title,
+  ...(description ? { description } : {}),
+  ...(year ? { dateCreated: String(year) } : {}),
+  locationCreated: { "@type": "Place", name: location },
+  image: new URL(media.cover.src, SITE_URL).toString(),
+  creator: { "@id": ORG_ID },
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+};
 ---
 
 <BaseLayout
   title={`${title} (${location}) — Fenêtres sur Loir`}
   description={description ?? `Réalisation Fenêtres sur Loir à ${location}.`}
   breadcrumb={breadcrumb}
+  schemaJsonLd={schema}
 >
   <article>
     <!-- Hero photo + meta -->
@@ -101,6 +124,20 @@ const breadcrumb = [
               </li>
             ))}
           </ul>
+        </Container>
+      </section>
+    )}
+
+    {commune && (
+      <section class="section-tight">
+        <Container width="default">
+          <div class="max-w-3xl rounded-2xl bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] p-6 sm:p-7">
+            <p class="text-[15px] text-[var(--color-muted)] leading-relaxed">
+              Cette réalisation a été menée à <strong class="text-[var(--color-fg)]">{location}</strong>.
+              Découvrez toutes nos prestations de
+              <a href={`/menuisier-${commune.slug}`} class="text-[var(--color-accent)] font-medium hover:underline"> menuisier à {commune.nom}</a>.
+            </p>
+          </div>
         </Container>
       </section>
     )}
