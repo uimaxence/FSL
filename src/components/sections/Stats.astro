@@ -3,7 +3,7 @@ import Container from "../ui/Container.astro";
 
 const stats = [
   { target: 20, suffix: " ans", label: "de savoir faire artisanal" },
-  { target: 120, prefix: "+", label: "Clients satisfaits" },
+  { target: 2000, label: "chantiers réalisés" },
   { target: 300, prefix: "+", suffix: " m²", label: "de showroom" },
 ];
 ---
@@ -22,7 +22,7 @@ const stats = [
           stats.map(({ target, prefix, suffix, label }) => (
             <li>
               <p class="font-display text-[clamp(1.75rem,3vw,2.5rem)] leading-none font-bold text-[var(--color-fg)]">
-                {prefix ?? ""}<span data-stat-counter data-target={target}>0</span>{suffix ?? ""}
+                {prefix ?? ""}<span data-stat-counter data-target={target}>{target}</span>{suffix ?? ""}
               </p>
               <p class="mt-3 text-[13px] text-[var(--color-muted)] leading-snug">{label}</p>
             </li>

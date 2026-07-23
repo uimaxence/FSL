@@ -10,6 +10,7 @@ import arcadesLogo from "../../assets/arcades-baies-logo.png";
 import histoireHero from "../../assets/histoire-1.jpg";
 import histoireAtelier from "../../assets/histoire-2.jpg";
 import histoireShowroom from "../../assets/showroom-1.png";
+import { mainAgence } from "../../config/business";
 
 const title = "Notre histoire | Fenêtres sur Loir — Menuisier à Seiches-sur-le-Loir depuis 2003";
 const description = "Découvrez l'histoire de Fenêtres sur Loir, entreprise familiale de menuiserie à Seiches-sur-le-Loir (49). Pose sur mesure de fenêtres, portes et volets depuis plus de 20 ans.";
@@ -208,7 +209,7 @@ const schema = [
               />
             </div>
             <p class="text-[15px] text-[var(--color-muted)] leading-relaxed mb-3">
-              <strong class="text-[var(--color-fg)]">Showroom de 300 m²</strong> — 287 Rue de l'Innovation, Seiches-sur-le-Loir
+              <strong class="text-[var(--color-fg)]">Showroom de 300 m²</strong> — {mainAgence.adresse}, {mainAgence.ville}
             </p>
             <p class="text-[15px] text-[var(--color-muted)] leading-relaxed mb-6">
               Venez découvrir nos menuiseries, comparer les finitions, toucher les matériaux et imaginer votre projet en situation réelle. Nos conseillers vous accueillent <strong class="text-[var(--color-fg)]">sur rendez-vous</strong> pour étudier votre besoin, vous présenter les gammes et établir un <strong class="text-[var(--color-fg)]">devis gratuit et personnalisé</strong>.

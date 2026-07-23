@@ -1,0 +1,238 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import CTASection from "../../components/sections/CTASection.astro";
+import { communes } from "../../data/communes";
+import { AGENCES_CONTENU } from "../../data/agences-contenu";
+import {
+  AGENCES,
+  business,
+  social,
+  sameAs,
+  SITE_URL,
+  toE164,
+  postalAddress,
+  addressOneLine,
+  openingHoursSpecification,
+  openingHoursHuman,
+} from "../../config/business";
+import showroomImg from "../../assets/showroom-1.png";
+import showroomImg2 from "../../assets/showroom-2.png";
+import agenceDoueImg from "../../assets/deventure_doué.png";
+
+export function getStaticPaths() {
+  return Object.values(AGENCES_CONTENU).map((contenu) => ({
+    params: { slug: contenu.slug },
+    props: { contenu },
+  }));
+}
+
+const { contenu } = Astro.props;
+const agence = AGENCES[contenu.cle];
+const phoneE164 = toE164(agence.telephone);
+
+const heroImg = contenu.cle === "doue" ? agenceDoueImg : showroomImg;
+const secondImg = contenu.cle === "doue" ? agenceDoueImg : showroomImg2;
+
+// Communes desservies par cette agence (celles qui ont une page dédiée) — maillage.
+const communesAgence = communes.filter(
+  (c) => c.agence === contenu.cle && c.slug !== contenu.slug,
+);
+
+const mapsQuery = encodeURIComponent(
+  `${agence.adresse}, ${agence.codePostal} ${agence.ville}`,
+);
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos agences", href: "/agences" },
+  { label: agence.ville },
+];
+
+const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
+
+// JSON-LD : HomeAndConstructionBusiness ancré (@id) et relié à l'Organization.
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+    "@id": `${pageUrl}#business`,
+    name: `Fenêtres sur Loir — Agence de ${agence.ville}`,
+    description: contenu.metaDescription,
+    url: pageUrl,
+    image: business.image,
+    logo: business.logo,
+    telephone: phoneE164,
+    email: business.email,
+    priceRange: business.priceRange,
+    parentOrganization: { "@id": `${SITE_URL}/#organization` },
+    address: postalAddress(agence),
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: agence.lat,
+      longitude: agence.lng,
+    },
+    openingHoursSpecification,
+    areaServed: communesAgence.map((c) => ({ "@type": "City", name: c.nom })),
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "certification",
+      name: "RGE Qualibat",
+    },
+    sameAs,
+  },
+];
+---
+
+<BaseLayout
+  title={contenu.metaTitle}
+  description={contenu.metaDescription}
+  breadcrumb={breadcrumb}
+  schemaJsonLd={schema}
+>
+  <!-- Hero -->
+  <section class="relative">
+    <div class="relative min-h-[380px] sm:min-h-[460px] flex items-end overflow-hidden">
+      <Image
+        src={heroImg}
+        alt={`Agence Fenêtres sur Loir à ${agence.ville}`}
+        widths={[640, 960, 1280, 1920]}
+        sizes="100vw"
+        loading="eager"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+      <Container width="default" class="relative pb-12 sm:pb-14 pt-24">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-white/85">
+          {contenu.eyebrow} · Maine-et-Loire (49)
+        </p>
+        <h1 class="text-white text-balance max-w-3xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
+          Agence Fenêtres sur Loir à {agence.ville}
+        </h1>
+        <p class="mt-4 max-w-2xl text-[16px] leading-relaxed text-white/90">
+          {addressOneLine(agence)}
+        </p>
+      </Container>
+    </div>
+  </section>
+
+  <!-- Bloc réponse directe -->
+  <section class="section-tight">
+    <Container width="default">
+      <div class="max-w-3xl rounded-2xl bg-[var(--color-tint)] p-6 sm:p-7">
+        <p class="text-[17px] leading-relaxed text-[var(--color-fg)]">{contenu.lead}</p>
+      </div>
+
+      <div class="prose-fsl max-w-3xl mt-8">
+        {contenu.body.map((p) => <p>{p}</p>)}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Coordonnées + carte -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div>
+          <h2 class="mb-4">Coordonnées & horaires</h2>
+          <address class="not-italic text-[15px] text-[var(--color-muted)] leading-relaxed space-y-3">
+            <p>
+              <strong class="text-[var(--color-fg)]">Adresse</strong><br />
+              {agence.adresse}<br />
+              {agence.codePostal} {agence.ville}
+            </p>
+            <p>
+              <strong class="text-[var(--color-fg)]">Téléphone</strong><br />
+              <a href={`tel:${phoneE164}`} class="text-[var(--color-accent)] hover:underline">{agence.telephone}</a>
+            </p>
+            <p>
+              <strong class="text-[var(--color-fg)]">Email</strong><br />
+              <a href={`mailto:${business.email}`} class="text-[var(--color-accent)] hover:underline">{business.email}</a>
+            </p>
+            <p>
+              <strong class="text-[var(--color-fg)]">Horaires</strong><br />
+              {openingHoursHuman[0]}<br />
+              {openingHoursHuman[1]}<br />
+              Dimanche : fermé
+            </p>
+          </address>
+        </div>
+        <div>
+          <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)] h-full min-h-[320px]">
+            <iframe
+              title={`Localisation de l'agence Fenêtres sur Loir à ${agence.ville}`}
+              src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              class="w-full h-full min-h-[320px] border-0"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Zone desservie (maillage vers pages communes) -->
+  <section class="section-tight">
+    <Container width="default">
+      <h2 class="mb-3">Communes desservies depuis {agence.ville}</h2>
+      <p class="text-[var(--color-muted)] max-w-2xl mb-6 leading-relaxed">
+        {contenu.secteurs}
+      </p>
+      {communesAgence.length > 0 && (
+        <ul class="flex flex-wrap gap-2">
+          {communesAgence.map((c) => (
+            <li>
+              <a
+                href={`/menuisier-${c.slug}`}
+                class="inline-flex items-center rounded-full bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] px-3.5 py-1.5 text-sm text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+              >
+                Menuisier à {c.nom}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </Container>
+  </section>
+
+  <!-- Bandeau photo -->
+  <section class="relative">
+    <div class="relative aspect-[16/9] sm:aspect-[21/7] overflow-hidden">
+      <Image
+        src={secondImg}
+        alt={`Menuiseries sur mesure — agence de ${agence.ville}`}
+        widths={[640, 960, 1280, 1920]}
+        sizes="100vw"
+        loading="lazy"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+      <div class="absolute inset-0 flex items-center">
+        <Container width="default">
+          <p class="text-xs font-semibold tracking-[0.18em] uppercase text-white/80 mb-2">
+            Artisan menuisier RGE Qualibat
+          </p>
+          <p class="font-display text-white text-[clamp(1.5rem,3.5vw,2.5rem)] leading-tight max-w-2xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)]">
+            Fenêtres, portes &amp; volets sur mesure, posés depuis {agence.ville}.
+          </p>
+        </Container>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    eyebrow="Prendre rendez-vous"
+    title={`Rencontrons-nous à ${agence.ville}`}
+    text="Devis gratuit sous 48 h, visite de l'agence ou rendez-vous chez vous : nos équipes vous accompagnent du premier croquis à la pose finale."
+    secondaryLabel="Toutes nos agences"
+    secondaryHref="/agences"
+  />
+</BaseLayout>

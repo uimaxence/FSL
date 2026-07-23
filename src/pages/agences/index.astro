@@ -1,0 +1,96 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import CTASection from "../../components/sections/CTASection.astro";
+import { AGENCES, addressOneLine, openingHoursHuman, toE164 } from "../../config/business";
+import { AGENCES_CONTENU } from "../../data/agences-contenu";
+import showroomImg from "../../assets/showroom-2.png";
+import agenceDoueImg from "../../assets/deventure_doué.png";
+
+const title = "Nos agences | Fenêtres sur Loir — Seiches-sur-le-Loir & Doué-en-Anjou";
+const description =
+  "Les deux agences Fenêtres sur Loir en Maine-et-Loire : le showroom de 300 m² à Seiches-sur-le-Loir (près d'Angers) et l'agence de Doué-en-Anjou (Saumurois & Choletais). Adresses, horaires et contacts.";
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Nos agences" },
+];
+
+const cards = [
+  { contenu: AGENCES_CONTENU.seiches, agence: AGENCES.seiches, img: showroomImg },
+  { contenu: AGENCES_CONTENU.doue, agence: AGENCES.doue, img: agenceDoueImg },
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb}>
+  <section class="section-tight">
+    <Container width="default">
+      <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+        Nos agences
+      </p>
+      <h1 class="text-balance max-w-3xl">Deux agences en Maine-et-Loire</h1>
+      <p class="mt-5 max-w-2xl text-[16px] text-[var(--color-muted)] leading-relaxed">
+        Fenêtres sur Loir couvre l'ensemble du département depuis deux agences : le showroom
+        historique de Seiches-sur-le-Loir, près d'Angers, et l'agence de Doué-en-Anjou, au
+        service du Saumurois, du Choletais et des Mauges.
+      </p>
+    </Container>
+  </section>
+
+  <section class="pb-12">
+    <Container width="default">
+      <div class="grid md:grid-cols-2 gap-8">
+        {cards.map(({ contenu, agence, img }) => (
+          <a
+            href={`/agences/${contenu.slug}`}
+            class="group flex flex-col rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)] bg-white hover:ring-[var(--color-accent)] transition-colors"
+          >
+            <div class="aspect-[16/10] overflow-hidden">
+              <Image
+                src={img}
+                alt={`Agence Fenêtres sur Loir à ${agence.ville}`}
+                widths={[480, 720, 960]}
+                sizes="(max-width: 768px) 100vw, 45vw"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={80}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-semibold tracking-[0.16em] uppercase text-[var(--color-accent)]">
+                {contenu.eyebrow}
+              </p>
+              <h2 class="mt-2 text-xl group-hover:text-[var(--color-accent)] transition-colors">
+                {agence.ville}
+              </h2>
+              <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">
+                {addressOneLine(agence)}
+              </p>
+              <p class="mt-1 text-sm text-[var(--color-muted)]">
+                <a href={`tel:${toE164(agence.telephone)}`} class="hover:text-[var(--color-accent)]">{agence.telephone}</a>
+              </p>
+              <p class="mt-3 text-sm text-[var(--color-muted)]">{openingHoursHuman[0]}<br />{openingHoursHuman[1]}</p>
+              <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-accent)]">
+                Voir l'agence
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-0.5" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <CTASection
+    eyebrow="Un projet de menuiserie ?"
+    title="Parlons de votre projet"
+    text="Devis gratuit sous 48 h, quel que soit votre secteur en Maine-et-Loire."
+    secondaryLabel="Nous contacter"
+    secondaryHref="/contact"
+  />
+</BaseLayout>

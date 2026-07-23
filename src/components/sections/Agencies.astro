@@ -5,24 +5,27 @@ import SectionHeading from "../ui/SectionHeading.astro";
 import Button from "../ui/Button.astro";
 import showroomImg from "../../assets/showroom-2.png";
 import agenceDoueImg from "../../assets/deventure_doué.png";
+import { AGENCES, addressOneLine, openingHoursHuman } from "../../config/business";
+
+const hours = [...openingHoursHuman];
 
 const agencies = [
   {
-    name: "Seiches-sur-Loir",
+    name: AGENCES.seiches.ville,
     status: "Showroom ouvert",
     statusTone: "open",
-    address: "287 Rue de l'Innovation, 49140 Seiches-sur-Loir",
-    phone: "02 41 77 04 08",
-    hours: ["Lun – Ven : 9h – 12h / 14h – 18h30", "Sam : 9h – 12h"],
+    address: addressOneLine(AGENCES.seiches),
+    phone: AGENCES.seiches.telephone,
+    hours,
     image: showroomImg,
   },
   {
-    name: "Doué-en-Anjou",
+    name: AGENCES.doue.ville,
     status: "Showroom ouvert",
     statusTone: "open",
-    address: "Doué-la-Fontaine, 49700 Doué-en-Anjou",
-    phone: "07 66 52 24 00",
-    hours: ["Lun – Ven : 9h – 12h / 14h – 18h30", "Sam : 9h – 12h"],
+    address: addressOneLine(AGENCES.doue),
+    phone: AGENCES.doue.telephone,
+    hours,
     image: agenceDoueImg,
   },
 ];

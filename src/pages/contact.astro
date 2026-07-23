@@ -4,6 +4,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Container from "../components/ui/Container.astro";
 import ContactForm from "../components/sections/ContactForm.astro";
 import showroomImg from "../assets/showroom-1.png";
+import { business, mainAgence, addressOneLine, toE164, openingHoursHuman } from "../config/business";
+
+const phoneE164 = toE164(mainAgence.telephone);
+const mapsQuery = encodeURIComponent(`${mainAgence.adresse}, ${mainAgence.codePostal} ${mainAgence.ville}`);
 
 const title = "Contact & devis gratuit | Fenêtres sur Loir — Menuisier à Seiches-sur-le-Loir";
 const description = "Contactez Fenêtres sur Loir à Seiches-sur-le-Loir (49). Devis gratuit, conseil personnalisé, visite du showroom de 300 m². Intervention à Angers et dans tout le Maine-et-Loire.";
@@ -69,24 +73,24 @@ const zoneVilles = [
       <!-- Raccourcis tactiles : utile en mobile -->
       <div class="mt-7 flex flex-wrap gap-3">
         <a
-          href="tel:+33241770408"
+          href={`tel:${phoneE164}`}
           class="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-medium text-white shadow-sm transition-colors"
           style="background: var(--color-accent);"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.84.59 2.8.72A2 2 0 0 1 22 16.92z"/>
           </svg>
-          02 41 77 04 08
+          {mainAgence.telephone}
         </a>
         <a
-          href="mailto:contacts@fenetres-sur-loir.fr"
+          href={`mailto:${business.email}`}
           class="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-medium border border-[var(--color-fg)]/15 text-[var(--color-fg)] hover:bg-[var(--color-tint)] transition-colors"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="5" width="18" height="14" rx="2" />
             <polyline points="3 7 12 13 21 7" />
           </svg>
-          contacts@fenetres-sur-loir.fr
+          {business.email}
         </a>
       </div>
     </Container>
@@ -120,21 +124,21 @@ const zoneVilles = [
           <address class="not-italic text-[15px] text-[var(--color-muted)] leading-relaxed space-y-3">
             <p>
               <strong class="text-[var(--color-fg)]">Adresse</strong><br />
-              287 Rue de l'Innovation<br />
-              49140 Seiches-sur-le-Loir
+              {mainAgence.adresse}<br />
+              {mainAgence.codePostal} {mainAgence.ville}
             </p>
             <p>
               <strong class="text-[var(--color-fg)]">Téléphone</strong><br />
-              <a href="tel:+33241770408" class="text-[var(--color-accent)] hover:underline">02 41 77 04 08</a>
+              <a href={`tel:${phoneE164}`} class="text-[var(--color-accent)] hover:underline">{mainAgence.telephone}</a>
             </p>
             <p>
               <strong class="text-[var(--color-fg)]">Email</strong><br />
-              <a href="mailto:contacts@fenetres-sur-loir.fr" class="text-[var(--color-accent)] hover:underline">contacts@fenetres-sur-loir.fr</a>
+              <a href={`mailto:${business.email}`} class="text-[var(--color-accent)] hover:underline">{business.email}</a>
             </p>
             <p>
               <strong class="text-[var(--color-fg)]">Horaires</strong><br />
-              Lundi – Vendredi : 9 h – 12 h / 14 h – 18 h 30<br />
-              Samedi : 9 h – 12 h<br />
+              {openingHoursHuman[0]}<br />
+              {openingHoursHuman[1]}<br />
               Dimanche : fermé
             </p>
           </address>
@@ -143,7 +147,7 @@ const zoneVilles = [
           <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)] h-full min-h-[300px]">
             <iframe
               title="Localisation du showroom Fenêtres sur Loir à Seiches-sur-le-Loir"
-              src="https://www.google.com/maps?q=287+Rue+de+l'Innovation,+49140+Seiches-sur-le-Loir&output=embed"
+              src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               class="w-full h-full min-h-[300px] border-0"

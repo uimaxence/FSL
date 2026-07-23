@@ -1,8 +1,10 @@
 ---
-const phone = "02 41 77 04 08";
-const phoneE164 = "+33241770408";
-const email = "contacts@fenetres-sur-loir.fr";
-const cityShort = "Seiches-sur-le-Loir";
+import { business, mainAgence, toE164 } from "../../config/business";
+
+const phone = mainAgence.telephone;
+const phoneE164 = toE164(mainAgence.telephone);
+const email = business.email;
+const cityShort = mainAgence.ville;
 ---
 
 <div
