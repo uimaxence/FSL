@@ -1,0 +1,16 @@
+---
+// Bloc « réponse directe » : 2-3 phrases factuelles et citables telles quelles
+// par un LLM, en tête de page. Pas de marketing, que du vérifiable.
+// On passe le texte via `texte` (string) ou via le slot par défaut.
+interface Props {
+  texte?: string;
+  class?: string;
+}
+const { texte, class: className } = Astro.props;
+---
+
+<div class:list={["not-prose rounded-2xl border-l-4 border-[var(--color-accent)] bg-[var(--color-tint)] px-5 py-4 sm:px-6 sm:py-5", className]}>
+  <p class="text-[16px] sm:text-[17px] leading-relaxed text-[var(--color-fg)]">
+    {texte ?? <slot />}
+  </p>
+</div>

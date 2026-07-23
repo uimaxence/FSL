@@ -9,6 +9,7 @@ import CommuneRealisations from "../components/sections/CommuneRealisations.astr
 import CommuneFaq from "../components/sections/CommuneFaq.astro";
 import { communes, AGENCES } from "../data/communes";
 import { getCommuneMedia } from "../lib/commune-media";
+import ReponseDirecte from "../components/ui/ReponseDirecte.astro";
 import { communeGraph } from "../lib/schema";
 import { communesVoisines } from "../lib/maillage";
 
@@ -23,6 +24,12 @@ const { commune } = Astro.props;
 const agence = AGENCES[commune.agence];
 const media = getCommuneMedia(commune.slug);
 const voisines = communesVoisines(commune.slug, 4);
+
+// Bloc réponse directe (GEO) — factuel, citable tel quel par un LLM.
+const reponseDirecte =
+  commune.distanceKm === 0
+    ? `Fenêtres sur Loir pose fenêtres, portes, volets et baies vitrées à ${commune.nom} (${commune.codePostal}) depuis 2003. Artisan certifié RGE Qualibat, l'entreprise dispose d'une agence à ${commune.nom} même. Devis gratuit sous 48 h.`
+    : `Fenêtres sur Loir pose fenêtres, portes, volets et baies vitrées à ${commune.nom} (${commune.codePostal}) depuis 2003. Artisan certifié RGE Qualibat, l'entreprise intervient depuis son agence de ${agence.ville}, à environ ${commune.distanceKm} km. Devis gratuit sous 48 h.`;
 
 // FAQ : questions uniques de la commune + 3 questions localisées (interpolées
 // avec le nom de la commune) communes à toutes les pages, pour densifier le
@@ -158,6 +165,7 @@ const schema = communeGraph(commune, faqAll);
   <!-- Corps rédactionnel -->
   <section class="section-tight">
     <Container width="default">
+      <ReponseDirecte texte={reponseDirecte} class="max-w-3xl mb-8" />
       <div class="prose-fsl max-w-3xl">
         <p class="lead">
           Vous cherchez un <strong>menuisier à {commune.nom}</strong> pour la pose ou le
