@@ -4,7 +4,15 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: "https://www.fenetres-sur-loir.fr",
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // lastmod = date du build (à défaut d'un historique par page).
+      serialize(item) {
+        item.lastmod = new Date().toISOString();
+        return item;
+      },
+    }),
+  ],
   redirects: {
     "/nos-portes": "/solutions/portes-fenetres",
     "/confort-interieur": "/solutions/confort-interieur",
