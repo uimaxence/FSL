@@ -3,7 +3,10 @@ title: "Menuisier à Cholet : fenêtres & fermetures sur mesure (RGE)"
 description: "Menuisier à Cholet et dans les Mauges : Fenêtres sur Loir pose fenêtres, portes, volets et portails sur mesure. Artisan certifié RGE, sans sous-traitance. Devis gratuit."
 date: 2026-07-15
 tags: ["Cholet", "menuisier", "Mauges", "Maine-et-Loire", "RGE", "fenêtres sur mesure"]
-draft: false
+# Dépublié (juil. 2026) : cet article cannibalisait la page /menuisier-cholet sur
+# le même mot-clé. Son contenu a été fusionné dans la page ville et son URL est
+# redirigée (301) vers /menuisier-cholet (voir astro.config.mjs).
+draft: true
 schema:
   - "@context": https://schema.org
     "@type":

@@ -22,6 +22,11 @@ export function getStaticPaths() {
 
 const { commune } = Astro.props;
 const agence = AGENCES[commune.agence];
+
+// Balise <title> courte (≤ ~60 car.) : mot-clé « menuisier à {ville} » en tête,
+// marque ajoutée par Google via og:site_name. Évite la troncature SERP
+// constatée sur les anciens metaTitle (72-84 car.).
+const pageTitle = `Menuisier à ${commune.nom} (49) — Fenêtres sur mesure`;
 const media = getCommuneMedia(commune.slug);
 const voisines = communesVoisines(commune.slug, 4);
 
@@ -111,7 +116,7 @@ const schema = communeGraph(commune, faqAll);
 ---
 
 <BaseLayout
-  title={commune.metaTitle}
+  title={pageTitle}
   description={commune.metaDescription}
   breadcrumb={breadcrumb}
   schemaJsonLd={schema}

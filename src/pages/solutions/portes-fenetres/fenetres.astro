@@ -15,14 +15,61 @@ const breadcrumb = [
   { label: "Fenêtres" },
 ];
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  name: "Fenêtres sur mesure bois, aluminium, PVC et mixte bois-alu",
-  brand: { "@type": "Brand", name: "MéO" },
-  description,
-  areaServed: ["Angers", "Maine-et-Loire", "Doué-en-Anjou", "Seiches-sur-le-Loir"],
-};
+// FAQ : source unique alimentant le bloc visible ET le FAQPage JSON-LD.
+// Cible les longues traînes « prix fenêtre sur mesure », « quelle fenêtre
+// choisir », « double ou triple vitrage » — fortes en AEO / réponses IA.
+const faq = [
+  {
+    question: "Quelle fenêtre sur mesure choisir : PVC, aluminium, bois ou bois-alu ?",
+    reponse:
+      "Le PVC offre le meilleur rapport qualité-prix et une isolation remarquable pour les rénovations de pavillons. L'aluminium, à profils fins, convient aux grandes ouvertures et aux maisons contemporaines. Le bois est privilégié en zone ABF et sur les maisons anciennes. Le bois-alu MéO combine l'aluminium sans entretien à l'extérieur et la chaleur du bois à l'intérieur : c'est notre solution haut de gamme, idéale en construction RE2020.",
+  },
+  {
+    question: "Combien coûte une fenêtre sur mesure posée ?",
+    reponse:
+      "Le prix d'une fenêtre sur mesure dépend du matériau, des dimensions, du vitrage et de la complexité de la pose. Comptez en général entre 400 et 1 500 € par fenêtre, pose comprise. Avec notre certification RGE et la TVA à 5,5 %, une partie du coût peut être couverte par les aides. Nous établissons un devis gratuit et détaillé après une prise de mesures à domicile.",
+  },
+  {
+    question: "Faut-il choisir un double ou un triple vitrage ?",
+    reponse:
+      "Le double vitrage 4/16/4 à argon (Uw ≤ 1,3 W/m².K) suffit dans la grande majorité des cas et reste le meilleur compromis performance/prix. Le triple vitrage (Uw jusqu'à 0,8 W/m².K) se justifie sur les façades nord très exposées, les maisons passives ou les zones froides. Nous vous conseillons selon l'orientation et l'exposition de chaque ouverture.",
+  },
+  {
+    question: "Le changement de fenêtres est-il éligible à MaPrimeRénov' en 2026 ?",
+    reponse:
+      "Oui, à condition que la pose soit réalisée par un artisan certifié RGE — ce qui est notre cas (RGE Qualibat 8112). Vos fenêtres peuvent ouvrir droit à MaPrimeRénov', aux primes CEE, à l'éco-PTZ et à la TVA à 5,5 %. Nous montons le dossier d'aides gratuitement et fournissons les justificatifs techniques.",
+  },
+  {
+    question: "Intervenez-vous pour les fenêtres en copropriété ou en secteur ABF ?",
+    reponse:
+      "Oui. Nous accompagnons les démarches en copropriété (respect de l'aspect extérieur, autorisation d'assemblée) et en secteur protégé soumis à l'avis de l'Architecte des Bâtiments de France, notamment dans le centre historique d'Angers et les secteurs sauvegardés du département. Le bois et certains alu teintés sont alors privilégiés.",
+  },
+  {
+    question: "Combien de temps dure la pose de fenêtres ?",
+    reponse:
+      "La pose d'une fenêtre prend généralement de 1 à 3 heures selon le type de dépose (rénovation ou dépose totale). Un chantier complet de maison se déroule le plus souvent sur 1 à 2 jours, réalisé par nos équipes salariées sans sous-traitance, avec nettoyage et évacuation des anciennes menuiseries.",
+  },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Fenêtres sur mesure bois, aluminium, PVC et mixte bois-alu",
+    brand: { "@type": "Brand", name: "MéO" },
+    description,
+    areaServed: ["Angers", "Maine-et-Loire", "Doué-en-Anjou", "Seiches-sur-le-Loir"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.reponse },
+    })),
+  },
+];
 ---
 
 <BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
@@ -88,6 +135,30 @@ const schema = {
       </li>
     </ul>
 
+    <h2>Fenêtres PVC sur mesure : le meilleur rapport qualité-prix</h2>
+    <p>
+      La <strong>fenêtre PVC sur mesure</strong> reste le choix le plus demandé en rénovation.
+      Elle allie une <strong>excellente isolation thermique et phonique</strong>, un entretien
+      quasi nul et une durée de vie de plus de 25 ans, pour un budget maîtrisé. Nos profils PVC
+      multi-chambres accueillent le double ou le triple vitrage et existent en blanc, gris
+      anthracite, ainsi qu'en <strong>teintes bois plaxées</strong> qui imitent le chêne ou le
+      chêne doré. C'est la solution idéale pour rénover les fenêtres d'un pavillon des années
+      1970-1990 tout en profitant des aides à la rénovation énergétique.
+    </p>
+
+    <h2>Fenêtres bois-alu MéO : le haut de gamme sans entretien</h2>
+    <p>
+      La <strong>fenêtre bois-alu</strong> est notre signature en tant que
+      <a href="/partenaires/meo">Menuisier d'Excellence MéO</a>. Elle réunit deux matériaux
+      là où chacun est le meilleur : une coque <strong>aluminium à l'extérieur</strong>
+      (aucun entretien, aucune reprise de peinture, tenue parfaite face aux intempéries) et
+      un <strong>parement bois à l'intérieur</strong> (chaleur du grain, confort visuel,
+      isolation naturelle). Particulièrement adaptée aux <strong>constructions RE2020</strong>,
+      aux maisons BBC et aux belles rénovations, elle offre des performances thermiques de très
+      haut niveau et une esthétique durable. Découvrez notre guide dédié aux
+      <a href="/blog/fenetres-bois-alu-meo">fenêtres bois-alu MéO</a>.
+    </p>
+
     <h2>Performance thermique et acoustique</h2>
     <p>
       Toutes nos fenêtres répondent aux exigences de la <strong>Réglementation Environnementale
@@ -131,6 +202,25 @@ const schema = {
       une <strong>seconde agence à Doué-en-Anjou</strong> ouvrira prochainement pour mieux couvrir
       le sud du département.
     </p>
+
+    <h2>Combien coûte une fenêtre sur mesure ?</h2>
+    <p>
+      Le prix d'une <strong>fenêtre sur mesure posée</strong> se situe généralement entre
+      <strong>400 et 1 500 €</strong>, pose comprise. Trois facteurs font varier ce montant : le
+      <strong>matériau</strong> (le PVC est le plus économique, le bois-alu le plus haut de gamme),
+      les <strong>dimensions et le type d'ouverture</strong> (battant, oscillo-battant, coulissant),
+      et le <strong>vitrage</strong> (double, triple, acoustique renforcé). Après une prise de mesures
+      gratuite à domicile, nous vous remettons un <strong>devis détaillé sous 48 h</strong>, aides
+      déduites lorsque vous y êtes éligible.
+    </p>
+
+    <h2>Questions fréquentes sur les fenêtres sur mesure</h2>
+    {faq.map((f) => (
+      <>
+        <h3>{f.question}</h3>
+        <p>{f.reponse}</p>
+      </>
+    ))}
   </PageProduit>
 
   <section class="pb-20">

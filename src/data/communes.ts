@@ -77,7 +77,32 @@ export const AGENCES: Record<AgenceRattachement, Agence> = {
   },
 };
 
-export const communes: Commune[] = [
+// Élagage SEO (juil. 2026) — communes SANS page dédiée /menuisier-<slug>.
+// Trop faible volume de recherche « menuisier + ville » et éloignées des deux
+// agences : leurs pages quasi-dupliquées diluaient l'autorité locale sans
+// potentiel. Elles restent DESSERVIES (visibles sur la carte du département)
+// et leur ancienne URL est redirigée (301) vers /zones-intervention
+// (voir astro.config.mjs). Le secteur des Mauges est couvert par la page Cholet.
+const COMMUNES_SANS_PAGE: ReadonlySet<string> = new Set([
+  "brissac-loire-aubance",
+  "segre-en-anjou-bleu",
+  "chalonnes-sur-loire",
+  "saint-georges-sur-loire",
+  "mauges-sur-loire",
+  "montrevault-sur-evre",
+  "oree-d-anjou",
+  "le-lion-d-angers",
+  "les-hauts-d-anjou",
+  "ombree-d-anjou",
+  "noyant-villages",
+  "chemille-en-anjou",
+  "beaupreau-en-mauges",
+  "sevremoine",
+  "longue-jumelles",
+  "allonnes",
+]);
+
+const communesToutes: Commune[] = [
   {
     slug: "angers",
     nom: "Angers",
@@ -873,19 +898,40 @@ export const communes: Commune[] = [
     distanceKm: 55,
     metaTitle: "Menuisier à Cholet (49) — Fenêtres, portes & volets sur mesure | Fenêtres sur Loir",
     metaDescription:
-      "Artisan menuisier à Cholet : fenêtres, portes d'entrée, volets et baies vitrées sur mesure, pose RGE. Rénovation énergétique des pavillons choletais. Devis gratuit.",
+      "Menuisier à Cholet et dans les Mauges : fenêtres, portes, volets et portails sur mesure, pose RGE sans sous-traitance. Rénovation énergétique des pavillons choletais. Devis gratuit.",
     intro:
-      "Deuxième ville du département, au sud des Mauges, Cholet est une cité largement reconstruite et entourée de vastes quartiers pavillonnaires. C'est un terrain de choix pour la rénovation énergétique des fenêtres et volets.",
+      "Deuxième ville du département, au sud des Mauges, Cholet est une cité largement reconstruite et entourée de vastes quartiers pavillonnaires. C'est un terrain de choix pour la rénovation énergétique des fenêtres et volets, que nous menons sans jamais sous-traiter la pose.",
     body: [
-      "Sur les pavillons choletais des années 1950-1990, nous remplaçons les menuiseries d'origine par des fenêtres PVC ou aluminium à haute performance, souvent éligibles aux aides à la rénovation.",
-      "Dans les programmes neufs et les extensions, nous installons de larges baies coulissantes et des portes d'entrée contemporaines, avec vitrage à contrôle solaire pour le confort d'été.",
+      "À Cholet comme dans les bourgs des Mauges, chaque maison a ses contraintes : maison de ville en centre, pavillon des années 1970 à réisoler, longère en pierre à rénover. Notre métier est d'y répondre avec des menuiseries fabriquées en France et posées dans les règles de l'art.",
+      "Sur les pavillons choletais des années 1950-1990, nous remplaçons les menuiseries d'origine par des fenêtres PVC ou aluminium à haute performance, souvent éligibles aux aides à la rénovation. Dans les programmes neufs et les extensions, nous installons de larges baies coulissantes et des portes d'entrée contemporaines, avec vitrage à contrôle solaire pour le confort d'été.",
+      "Ce qui nous distingue à Cholet : aucune sous-traitance — 100 % des poses sont assurées par nos propres salariés —, la certification RGE qui ouvre droit aux aides, et un interlocuteur unique du devis gratuit jusqu'au service après-vente.",
+      "Pour les maisons de caractère des Mauges, où l'on veut préserver le cachet intérieur tout en modernisant la façade, nous sommes Menuisier d'Excellence MéO : le charme du bois à l'intérieur, la résistance de l'aluminium à l'extérieur, sans entretien. Nous posons aussi portes de garage sectionnelles et portails motorisés assortis à votre clôture.",
+      "Au-delà de Cholet, nos équipes se déplacent dans toutes les Mauges — Sèvremoine, Beaupréau-en-Mauges, Chemillé-en-Anjou, Montrevault-sur-Èvre, Mauges-sur-Loire — et rayonnent depuis notre agence de Doué-en-Anjou, à environ 55 km, où vous pouvez aussi visiter notre showroom.",
     ],
-    quartiers: ["Centre-ville", "Le Bordage", "La Girardière", "Le Val de Moine"],
+    quartiers: [
+      "Centre-ville",
+      "Le Bordage",
+      "La Girardière",
+      "Le Val de Moine",
+      "Sèvremoine",
+      "Beaupréau-en-Mauges",
+      "Chemillé-en-Anjou",
+    ],
     faq: [
       {
         question: "Le remplacement de mes fenêtres à Cholet est-il éligible aux aides ?",
         reponse:
-          "Selon votre situation, le passage à des menuiseries performantes peut ouvrir droit à certains dispositifs d'aide à la rénovation énergétique. Étant certifiés RGE, nous faisons le point précis lors du devis.",
+          "Selon votre situation, le passage à des menuiseries performantes peut ouvrir droit à certains dispositifs d'aide à la rénovation énergétique (primes CEE, éco-PTZ, TVA à 5,5 %, MaPrimeRénov'). Étant certifiés RGE, nous faisons le point précis lors du devis et nous vous aidons à monter le dossier.",
+      },
+      {
+        question: "Faites-vous appel à des sous-traitants à Cholet ?",
+        reponse:
+          "Non. 100 % de nos poses sont réalisées par nos propres salariés, jamais par des sous-traitants. Vous gardez le même interlocuteur du devis à la fin du chantier, à Cholet comme dans le reste des Mauges.",
+      },
+      {
+        question: "Proposez-vous un showroom près de Cholet ?",
+        reponse:
+          "Nos showrooms se trouvent à Seiches-sur-le-Loir et à Doué-en-Anjou. Un conseiller peut aussi se déplacer chez vous, à Cholet, pour choisir menuiseries, matériaux et coloris.",
       },
     ],
   },
@@ -1078,6 +1124,16 @@ export const communes: Commune[] = [
     ],
   },
 ];
+
+/**
+ * Communes AVEC une page dédiée /menuisier-<slug> (après élagage).
+ * Source unique consommée par la génération des pages, le maillage interne,
+ * le hub /zones-intervention, la carte (pins cliquables), le JSON-LD areaServed
+ * et llms.txt. Les communes élaguées (COMMUNES_SANS_PAGE) en sont exclues.
+ */
+export const communes: Commune[] = communesToutes.filter(
+  (c) => !COMMUNES_SANS_PAGE.has(c.slug),
+);
 
 export const getCommune = (slug: string): Commune | undefined =>
   communes.find((c) => c.slug === slug);

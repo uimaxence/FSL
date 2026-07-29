@@ -15,14 +15,55 @@ const breadcrumb = [
   { label: "Baies vitrées" },
 ];
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  name: "Baies vitrées sur mesure — coulissantes, à galandage, à levage",
-  brand: { "@type": "Brand", name: "MéO" },
-  description,
-  areaServed: ["Angers", "Maine-et-Loire", "Doué-en-Anjou", "Seiches-sur-le-Loir"],
-};
+// FAQ : source unique (bloc visible + FAQPage JSON-LD). Cible « prix baie vitrée »,
+// « baie coulissante ou galandage », « largeur maxi baie vitrée ».
+const faq = [
+  {
+    question: "Quelle différence entre une baie coulissante et une baie à galandage ?",
+    reponse:
+      "Sur une baie coulissante, les vantaux glissent devant la partie fixe : c'est la solution la plus économique et fiable. Sur une baie à galandage, les vantaux disparaissent entièrement dans le mur à l'ouverture, ce qui ouvre totalement la pièce sur l'extérieur. Le galandage est plus spectaculaire mais nécessite une réservation dans la maçonnerie, étudiée lors de la visite technique.",
+  },
+  {
+    question: "Combien coûte une baie vitrée sur mesure posée ?",
+    reponse:
+      "Le prix dépend des dimensions, du matériau (alu, bois-alu ou PVC), du type d'ouverture et du vitrage. À titre indicatif, une baie coulissante alu sur mesure posée démarre autour de 2 000 € et un galandage grand format haut de gamme peut dépasser 6 000 €. Nous établissons un devis gratuit et précis après prise de mesures à domicile.",
+  },
+  {
+    question: "Quelle largeur maximale pour une baie vitrée ?",
+    reponse:
+      "Nous concevons des baies sur mesure jusqu'à environ 6 mètres de large. Pour les très grandes dimensions et les vitrages lourds (jusqu'à 400 kg par vantail), la baie à levage-coulissant garantit une étanchéité parfaite. La faisabilité dépend de la portée et de la structure : nous la validons lors de l'étude technique.",
+  },
+  {
+    question: "Une baie vitrée peut-elle avoir un seuil accessible PMR ?",
+    reponse:
+      "Oui. Nos baies sont compatibles avec les seuils encastrés PMR (norme NF P 98-351) pour une circulation sans ressaut entre l'intérieur et la terrasse. C'est idéal pour les maisons de plain-pied, les projets d'accessibilité et le confort au quotidien.",
+  },
+  {
+    question: "L'installation d'une baie vitrée est-elle éligible aux aides ?",
+    reponse:
+      "Le remplacement d'une ancienne porte-fenêtre par une baie performante ouvre droit aux mêmes aides que les fenêtres (MaPrimeRénov', primes CEE, éco-PTZ, TVA à 5,5 %), à condition d'une pose par un artisan RGE — notre cas. Nous montons le dossier gratuitement.",
+  },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Baies vitrées sur mesure — coulissantes, à galandage, à levage",
+    brand: { "@type": "Brand", name: "MéO" },
+    description,
+    areaServed: ["Angers", "Maine-et-Loire", "Doué-en-Anjou", "Seiches-sur-le-Loir"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.reponse },
+    })),
+  },
+];
 ---
 
 <BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
@@ -137,6 +178,14 @@ const schema = {
       et leurs alentours. Venez voir les baies fonctionner grandeur nature dans notre showroom
       de 300 m² à <strong>Seiches-sur-le-Loir</strong>.
     </p>
+
+    <h2>Questions fréquentes sur les baies vitrées</h2>
+    {faq.map((f) => (
+      <>
+        <h3>{f.question}</h3>
+        <p>{f.reponse}</p>
+      </>
+    ))}
   </PageProduit>
 
   <section class="pb-20">
