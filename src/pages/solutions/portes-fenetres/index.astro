@@ -95,7 +95,7 @@ const schema = {
   provider: { "@type": "LocalBusiness", name: "Fenêtres sur Loir" },
   itemListElement: [...portes, ...fenetres].map((p) => ({
     "@type": "Offer",
-    itemOffered: { "@type": "Product", name: p.title, description: p.description },
+    itemOffered: { "@type": "Service", name: p.title, description: p.description },
     url: `https://www.fenetres-sur-loir.fr${p.href}`,
   })),
 };
