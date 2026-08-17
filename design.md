@@ -184,6 +184,16 @@ Tailwind v4 par défaut :
 - Scroll listener `passive` + `requestAnimationFrame` + `IntersectionObserver` (rootMargin 50%) pour économiser les frames hors-écran.
 - Réutilisable via `data-cinema` + `data-cinema-bg|-frame|-caption`.
 
+### ZonesMap (`src/components/sections/ZonesMap.astro`)
+- **Carte SVG build-time** (desktop ≥ lg) + liste recherchable (mobile). Données : `src/data/communes-geo.ts`, généré par `scripts/gen-geo.mjs` (france-geojson, projection viewBox 1000×782).
+- **Fond en cantons** (~22 grandes formes) et non en communes (~180) — carte apaisée, façon choroplèthe.
+- **Teinte signature** : chaque canton est teinté selon sa distance à l'agence la plus proche — le bleu **rayonne depuis Seiches-sur-le-Loir et Doué-en-Anjou** (4 paliers `color-mix` accent/blanc : 44 → 19 %). Encode « tout le département desservi depuis nos deux agences ».
+- **Communes desservies** (celles avec page `/menuisier-*`) : zones cliquables **invisibles au repos**, révélées en bleu accent plein + contour blanc au survol/focus.
+- **Labels** : ~9 permanents seulement (agences + villes repères bien réparties), les autres au survol. Au survol d'une commune, les autres labels s'estompent à 10 % (classe `zm-hovering` sur le svg) — zéro collision de textes.
+- **Agences** : point blanc cerclé accent + halo pulsant (3,2 s, désactivé si `prefers-reduced-motion`) + eyebrow « AGENCE ».
+- Ombre portée bleutée sur tout le svg (`drop-shadow` dérivé de l'accent) — la carte flotte.
+- Pas de lib de carto (Leaflet…) : SVG statique généré au build, zéro JS de carte côté client.
+
 ### TopBar (`src/components/layout/TopBar.astro`)
 - Bandeau fin (h-9) **sticky top-0 z-50** au-dessus du header. **Desktop uniquement** (`hidden sm:flex`).
 - Header sous-jacent en `sticky sm:top-9 z-40` pour rester sous la TopBar lors du scroll.

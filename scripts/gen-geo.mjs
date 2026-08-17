@@ -31,6 +31,7 @@ const featuresOf = (g) =>
 
 const communesGeo = featuresOf(await getJSON(`${BASE}/communes-49-maine-et-loire.geojson`));
 const depGeo = featuresOf(await getJSON(`${BASE}/departement-49-maine-et-loire.geojson`));
+const cantonsRaw = featuresOf(await getJSON(`${BASE}/cantons-49-maine-et-loire.geojson`));
 
 // --- bbox global (sur le contour départemental) -------------------------
 let lonMin = Infinity, lonMax = -Infinity, latMin = Infinity, latMax = -Infinity;
@@ -102,6 +103,16 @@ const depPath = depGeo
   .map((f) => geomToPath(f.geometry, 0.8).d)
   .join(" ");
 
+// --- cantons (fond de carte "grandes formes", façon choroplèthe) --------
+// eps plus large : les cantons servent de fond décoratif, on veut des
+// lignes douces, pas du détail cadastral.
+const cantons = cantonsRaw
+  .map((f) => {
+    const { d, cx, cy } = geomToPath(f.geometry, 1.6);
+    return { nom: f.properties?.nom ?? "", d, cx, cy };
+  })
+  .sort((a, b) => a.nom.localeCompare(b.nom));
+
 // --- communes -----------------------------------------------------------
 const entries = communesGeo
   .map((f) => {
@@ -125,6 +136,15 @@ export interface CommuneGeo { nom: string; d: string; cx: number; cy: number; }
 /** Contour complet du Maine-et-Loire, même projection que les communes. */
 export const depPath =
   "${esc(depPath)}";
+
+/** Cantons du 49 — fond de carte en grandes formes (plus lisible que les
+ *  ~180 communes). Même projection. */
+export const cantonsGeo: CommuneGeo[] = [
+`;
+for (const c of cantons) {
+  out += `  { nom: "${esc(c.nom)}", cx: ${c.cx}, cy: ${c.cy}, d: "${esc(c.d)}" },\n`;
+}
+out += `];
 
 export const communesGeo: Record<string, CommuneGeo> = {
 `;

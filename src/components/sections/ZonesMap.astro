@@ -2,7 +2,7 @@
 import Container from "../ui/Container.astro";
 import { communes, communesParAgence, AGENCES } from "../../data/communes";
 import type { AgenceRattachement } from "../../data/communes";
-import { communesGeo, depPath } from "../../data/communes-geo";
+import { communesGeo, cantonsGeo, depPath } from "../../data/communes-geo";
 
 // Recherche insensible aux accents/casse (utilisé pour le data-attr mobile).
 const normalize = (s: string) =>
@@ -25,60 +25,58 @@ interface Props {
 const { variant = "full", class: className = "" } = Astro.props;
 
 // --- Carte --------------------------------------------------------------
-// Contour du Maine-et-Loire + polygones de TOUTES les communes du 49, issus
-// de l'open data (france-geojson), simplifiés et projetés sur la MÊME grille
-// (viewBox 0 0 1000 782). Voir src/data/communes-geo.ts (généré).
+// Fond de carte : les CANTONS du 49 (~22 grandes formes, façon choroplèthe)
+// plutôt que les ~180 communes — beaucoup moins découpé, plus élégant.
+// Chaque canton est teinté selon sa distance à l'agence la plus proche :
+// le bleu rayonne depuis Seiches-sur-le-Loir et Doué-en-Anjou.
+// Les communes desservies restent des zones cliquables invisibles qui se
+// révèlent en bleu plein au survol. Voir src/data/communes-geo.ts (généré).
 const VIEW_W = 1000;
 const VIEW_H = 782;
 
 const agenceSlugs = new Set(["seiches-sur-le-loir", "doue-en-anjou"]);
-// Labels affichés en permanence : agences + communes isolées (pas de
-// chevauchement). Les autres (cluster angevin) n'apparaissent qu'au survol.
+// Labels affichés en permanence : volontairement peu nombreux (aération).
+// Les autres communes desservies apparaissent au survol.
 const labelsToujours = new Set([
   "seiches-sur-le-loir",
   "doue-en-anjou",
   "angers",
+  "cholet",
   "saumur",
   "bauge-en-anjou",
   "durtal",
-  "brissac-loire-aubance",
-  "segre-en-anjou-bleu",
-  "cholet",
-  "chemille-en-anjou",
-  "beaupreau-en-mauges",
-  "sevremoine",
-  "montrevault-sur-evre",
-  "mauges-sur-loire",
-  "oree-d-anjou",
-  "ombree-d-anjou",
-  "le-lion-d-angers",
-  "les-hauts-d-anjou",
-  "noyant-villages",
-  "gennes-val-de-loire",
-  "longue-jumelles",
   "montreuil-bellay",
-  "chalonnes-sur-loire",
+  "gennes-val-de-loire",
 ]);
 
-// Communes desservies (avec page dédiée) indexées par slug.
-const servedBySlug = new Map(communes.map((c) => [c.slug, c]));
+// Teinte des cantons : 4 paliers, du plus soutenu (proche d'une agence) au
+// plus clair (confins du département). Palier = distance au plus proche des
+// deux points d'agence, normalisée. Les valeurs sont des % d'accent dans un
+// color-mix avec du blanc (cf. <style>).
+const A1 = communesGeo["seiches-sur-le-loir"];
+const A2 = communesGeo["doue-en-anjou"];
+const distAgence = (x: number, y: number) =>
+  Math.min(Math.hypot(x - A1.cx, y - A1.cy), Math.hypot(x - A2.cx, y - A2.cy));
+const distances = cantonsGeo.map((c) => distAgence(c.cx, c.cy));
+const maxDist = Math.max(...distances);
+const cantons = cantonsGeo.map((c, i) => ({
+  d: c.d,
+  shade: Math.min(3, Math.floor((distances[i] / maxDist) * 4)),
+}));
 
-// On dessine TOUTES les communes du département (découpe complète, plus
-// aucune grande zone vide). Celles qui ont une page dédiée sont cliquables
-// et reconnaissables à leur libellé.
-const zones = Object.entries(communesGeo).map(([slug, geo]) => {
-  const c = servedBySlug.get(slug);
+// Communes desservies (avec page dédiée) : zones cliquables + labels.
+const zones = communes.map((c) => {
+  const geo = communesGeo[c.slug];
   return {
-    slug,
-    nom: c?.nom ?? geo.nom,
-    d: geo.d,
-    cx: geo.cx,
-    cy: geo.cy,
-    served: !!c,
-    isAgence: agenceSlugs.has(slug),
-    permanent: !!c && labelsToujours.has(slug),
+    slug: c.slug,
+    nom: c.nom,
+    d: geo?.d,
+    cx: geo?.cx ?? 0,
+    cy: geo?.cy ?? 0,
+    isAgence: agenceSlugs.has(c.slug),
+    permanent: labelsToujours.has(c.slug),
   };
-});
+}).filter((z) => z.d);
 ---
 
 <section class:list={["section", className]}>
@@ -101,7 +99,7 @@ const zones = Object.entries(communesGeo).map(([slug, geo]) => {
       <div class="relative hidden lg:block">
         <svg
           viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
-          class="w-full h-auto overflow-visible"
+          class="zm-svg w-full h-auto overflow-visible"
           role="img"
           aria-labelledby="zonesmap-title zonesmap-desc"
           data-zonesmap
@@ -112,27 +110,20 @@ const zones = Object.entries(communesGeo).map(([slug, geo]) => {
             deux agences à Seiches-sur-le-Loir et à Doué-en-Anjou.
           </desc>
 
-          <!-- Fond : contour du département, d'un bleu uni — tout le
-               Maine-et-Loire est desservi, aucune zone blanche. -->
-          <path
-            d={depPath}
-            class="zm-fill"
-            stroke="var(--color-accent)"
-            stroke-width="2"
-            stroke-linejoin="round"
-          />
-
-          <!-- COUCHE 1 — polygones de TOUTES les communes (même bleu uni,
-               découpées par un fin trait blanc). Les desservies sont
-               cliquables. Aucun libellé ici : ils sont dans la couche 2 pour
-               ne jamais passer sous une commune voisine. -->
+          <!-- COUCHE 0 — fond : département + cantons teintés selon leur
+               proximité à l'agence la plus proche (le bleu rayonne depuis
+               Seiches et Doué). Grandes formes = carte apaisée. -->
+          <path d={depPath} class="zm-shade-3" />
           <g>
-            {zones.filter((z) => !z.served).map((z) => (
-              <path d={z.d} class="zm-fill zm-border">
-                <title>{z.nom}</title>
-              </path>
+            {cantons.map((c) => (
+              <path d={c.d} class:list={["zm-canton", `zm-shade-${c.shade}`]} />
             ))}
-            {zones.filter((z) => z.served).map((z) => (
+          </g>
+
+          <!-- COUCHE 1 — communes desservies : zones cliquables invisibles,
+               révélées en bleu plein au survol / focus. -->
+          <g>
+            {zones.map((z) => (
               <a
                 href={`/menuisier-${z.slug}`}
                 class="group"
@@ -140,27 +131,34 @@ const zones = Object.entries(communesGeo).map(([slug, geo]) => {
                 aria-label={`Menuisier à ${z.nom}`}
               >
                 <title>{z.nom}</title>
-                <path d={z.d} class="zm-commune zm-border" />
+                <path d={z.d} class="zm-commune" />
               </a>
             ))}
           </g>
+
+          <!-- Contour du département, net, au-dessus des remplissages. -->
+          <path d={depPath} class="zm-outline pointer-events-none" />
 
           <!-- COUCHE 2 — marqueurs des agences + libellés, toujours au-dessus
                des polygones (jamais tronqués). Les libellés non permanents
                apparaissent au survol/focus de leur commune (voir script). -->
           <g class="pointer-events-none">
             {zones.filter((z) => z.isAgence).map((z) => (
-              <circle cx={z.cx} cy={z.cy} r="6" fill="white" stroke="var(--color-accent)" stroke-width="3" />
+              <g class="zm-agence">
+                <circle cx={z.cx} cy={z.cy} r="15" class="zm-halo" />
+                <circle cx={z.cx} cy={z.cy} r="5.5" class="zm-dot" />
+                <text x={z.cx} y={z.cy - 33} text-anchor="middle" class="zm-eyebrow">Agence</text>
+              </g>
             ))}
-            {zones.filter((z) => z.served).map((z) => (
+            {zones.map((z) => (
               <text
                 data-zone-label={z.slug}
                 x={z.cx}
-                y={z.isAgence ? z.cy - 14 : z.cy}
+                y={z.isAgence ? z.cy - 16 : z.cy}
                 text-anchor="middle"
-                class:list={["zm-label", z.permanent && "is-permanent"]}
-                font-size={z.isAgence ? 19 : 16}
-                font-weight={z.isAgence ? 700 : 600}
+                class:list={["zm-label", z.permanent && "is-permanent", z.isAgence && "is-agence"]}
+                font-size={z.isAgence ? 19 : 15}
+                font-weight={z.isAgence ? 700 : 500}
               >{z.nom}</text>
             ))}
           </g>
@@ -245,29 +243,83 @@ const zones = Object.entries(communesGeo).map(([slug, geo]) => {
 </section>
 
 <style>
-  /* Bleu uni partout : le fond du département et les communes partagent
-     exactement la même couleur (solide, donc aucune surimpression ne
-     fonce les zones). Les communes ne se distinguent que par leur découpe ;
-     la commune survolée passe en bleu plein. */
-  .zm-fill,
-  .zm-commune {
-    fill: color-mix(in srgb, var(--color-accent) 34%, white);
+  /* Ombre portée douce et bleutée : la carte "flotte" sur la page. */
+  .zm-svg {
+    filter: drop-shadow(
+      0 24px 44px color-mix(in srgb, var(--color-accent) 24%, transparent)
+    );
   }
-  /* Découpe fine et discrète entre communes (un peu transparente pour ne
-     pas créer une grille trop dure). */
-  .zm-border {
-    stroke: rgba(255, 255, 255, 0.85);
-    stroke-width: 1;
+
+  /* Choroplèthe : 4 paliers de bleu, du plus soutenu (autour des agences)
+     au plus clair (confins du département). Toujours dérivés de l'accent. */
+  .zm-shade-0 { fill: color-mix(in srgb, var(--color-accent) 44%, white); }
+  .zm-shade-1 { fill: color-mix(in srgb, var(--color-accent) 34%, white); }
+  .zm-shade-2 { fill: color-mix(in srgb, var(--color-accent) 26%, white); }
+  .zm-shade-3 { fill: color-mix(in srgb, var(--color-accent) 19%, white); }
+
+  /* Découpe des cantons : trait blanc fin, doux (pas de grille dure). */
+  .zm-canton {
+    stroke: rgba(255, 255, 255, 0.9);
+    stroke-width: 1.4;
     stroke-linejoin: round;
   }
-  .zm-commune {
-    transition: fill 0.15s ease;
+
+  /* Contour départemental net, par-dessus les remplissages. */
+  .zm-outline {
+    fill: none;
+    stroke: color-mix(in srgb, var(--color-accent) 75%, white);
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
   }
-  /* La commune cliquable survolée se démarque : bleu plein + contour net. */
-  .group:hover .zm-commune {
+
+  /* Communes desservies : invisibles au repos (la carte reste calme),
+     bleu plein + contour blanc au survol / focus clavier. */
+  .zm-commune {
     fill: var(--color-accent);
+    fill-opacity: 0;
     stroke: #fff;
     stroke-width: 1.5;
+    stroke-opacity: 0;
+    stroke-linejoin: round;
+    transition: fill-opacity 0.18s ease, stroke-opacity 0.18s ease;
+  }
+  .group:hover .zm-commune,
+  .group:focus-visible .zm-commune {
+    fill-opacity: 1;
+    stroke-opacity: 1;
+  }
+
+  /* Marqueurs d'agence : point blanc cerclé d'accent + halo qui respire. */
+  .zm-dot {
+    fill: #fff;
+    stroke: var(--color-accent);
+    stroke-width: 3;
+  }
+  .zm-halo {
+    fill: var(--color-accent);
+    opacity: 0.18;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: zm-pulse 3.2s ease-in-out infinite;
+  }
+  @keyframes zm-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.18; }
+    50% { transform: scale(1.35); opacity: 0.08; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .zm-halo { animation: none; }
+  }
+  .zm-eyebrow {
+    fill: color-mix(in srgb, var(--color-accent) 80%, var(--color-fg));
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    paint-order: stroke;
+    stroke: #fff;
+    stroke-width: 3px;
+    stroke-linejoin: round;
   }
 
   /* Libellés (couche du dessus) : halo blanc pour rester lisibles sur le
@@ -276,7 +328,7 @@ const zones = Object.entries(communesGeo).map(([slug, geo]) => {
     fill: var(--color-fg);
     paint-order: stroke;
     stroke: #fff;
-    stroke-width: 4.5px;
+    stroke-width: 4px;
     stroke-linejoin: round;
     opacity: 0;
     transition: opacity 0.15s ease;
@@ -286,20 +338,44 @@ const zones = Object.entries(communesGeo).map(([slug, geo]) => {
   .zm-label.is-permanent {
     opacity: 1;
   }
+  .zm-label:not(.is-agence) {
+    fill: color-mix(in srgb, var(--color-fg) 78%, var(--color-accent));
+  }
+
+  /* Focus au survol : la commune survolée prend la lumière, les autres
+     libellés s'estompent (évite toute collision de textes). */
+  svg.zm-hovering .zm-label.is-permanent:not(.is-hover) {
+    opacity: 0.1;
+  }
+  .zm-eyebrow {
+    transition: opacity 0.15s ease;
+  }
+  svg.zm-hovering .zm-eyebrow {
+    opacity: 0.1;
+  }
 </style>
 
 <script>
-  // Révèle le libellé d'une commune cliquable au survol / focus (les
-  // libellés permanents restent toujours visibles).
+  // Révèle le libellé d'une commune au survol / focus, et estompe les
+  // autres libellés pendant ce temps (classe zm-hovering sur le svg) pour
+  // que le nom survolé reste seul et lisible.
   for (const svg of document.querySelectorAll<SVGSVGElement>("[data-zonesmap]")) {
     for (const link of svg.querySelectorAll<SVGAElement>("[data-zone]")) {
       const slug = link.getAttribute("data-zone");
       const label = svg.querySelector<SVGTextElement>(
         `[data-zone-label="${slug}"]`
       );
-      if (!label || label.classList.contains("is-permanent")) continue;
-      const show = () => (label.style.opacity = "1");
-      const hide = () => (label.style.opacity = "");
+      if (!label) continue;
+      const show = () => {
+        label.style.opacity = "1";
+        label.classList.add("is-hover");
+        svg.classList.add("zm-hovering");
+      };
+      const hide = () => {
+        label.style.opacity = "";
+        label.classList.remove("is-hover");
+        svg.classList.remove("zm-hovering");
+      };
       link.addEventListener("mouseenter", show);
       link.addEventListener("mouseleave", hide);
       link.addEventListener("focus", show);
