@@ -18,8 +18,11 @@ const items = [
   { src: g4, alt: "Mur de lumière bois-alu MéO" },
   { src: g5, alt: "Pose de menuiserie par l'équipe Fenêtres sur Loir", wide: true },
   { src: g6, alt: "Rénovation de menuiseries à Précigné" },
-  { src: g7, alt: "Carport aluminium sur mesure" },
-  { src: g8, alt: "Conseillère Fenêtres sur Loir en showroom" },
+  // `wide` sur les deux derniers : la grille fait 4 colonnes et les items
+  // larges comptent double — il faut un total d'unités multiple de 4,
+  // sinon la dernière rangée reste trouée.
+  { src: g7, alt: "Carport aluminium sur mesure", wide: true },
+  { src: g8, alt: "Conseillère Fenêtres sur Loir en showroom", wide: true },
 ];
 ---
 
