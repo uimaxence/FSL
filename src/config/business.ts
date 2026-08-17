@@ -34,6 +34,30 @@ export const business = {
   brands: ["MéO", "Bubendorff", "Arcades & Baies"],
 } as const;
 
+/**
+ * Fiches Google Business Profile par agence.
+ * Place IDs relevés le 31/07/2026 (fiches revendiquées, actives).
+ * Ces IDs alimentent le script `npm run avis:fetch` et les liens avis du site.
+ */
+export const googleBusiness = {
+  seiches: {
+    placeId: "ChIJ4Vy4HMByCEgRhAhUQ-jXGtQ",
+    cid: "15283765677997164676",
+    /** Fiche Google Maps (tous les avis). */
+    mapsUrl: "https://www.google.com/maps?cid=15283765677997164676",
+    /** Formulaire « Laisser un avis » pré-ouvert. */
+    writeReviewUrl:
+      "https://search.google.com/local/writereview?placeid=ChIJ4Vy4HMByCEgRhAhUQ-jXGtQ",
+  },
+  doue: {
+    placeId: "ChIJ4d1u_CPrB0gR5lxdDvuOcyU",
+    cid: "2698657810653994214",
+    mapsUrl: "https://www.google.com/maps?cid=2698657810653994214",
+    writeReviewUrl:
+      "https://search.google.com/local/writereview?placeid=ChIJ4d1u_CPrB0gR5lxdDvuOcyU",
+  },
+} as const;
+
 /** Profils sociaux. `null` = pas de profil réel → non rendu, non injecté en sameAs. */
 export const social = {
   facebook: "https://www.facebook.com/fenetressurloir",

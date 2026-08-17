@@ -8,6 +8,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "avis:fetch": "node scripts/fetch-avis-google.mjs",
     "astro": "astro"
   },
   "dependencies": {

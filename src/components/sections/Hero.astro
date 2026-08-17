@@ -8,6 +8,7 @@ import arcadesLogo from "../../assets/arcades-baies-logo.png";
 import dcLogo from "../../assets/DC-logo.png";
 import bubendorffLogo from "../../assets/bubendorff-logo.png";
 import qualibatLogo from "../../assets/qualibat-logo.png";
+import { avisGlobal } from "../../lib/avis";
 
 const partners = [
   { name: "MéO", logo: meoLogo, href: "/partenaires/meo" },
@@ -17,7 +18,7 @@ const partners = [
   { name: "Qualibat RGE", logo: qualibatLogo, href: "/contact" },
 ];
 
-const googleRating = { score: "4,8", count: 132 };
+const googleRating = { score: avisGlobal.noteAffichee, count: avisGlobal.total };
 ---
 
 <section
@@ -47,7 +48,7 @@ const googleRating = { score: "4,8", count: 132 };
     <!-- Pastille Google — juste au-dessus du H1 (sans grand espace) -->
     <div class="flex justify-start mb-5 sm:mb-7">
       <a
-        href="https://share.google/ipcmWXJaTR5UoZX3I"
+        href={avisGlobal.mapsUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2.5 rounded-full bg-white/95 backdrop-blur-sm pl-2 pr-4 py-1.5 text-[12px] font-medium text-[var(--color-fg)] shadow-md hover:bg-white transition-all"

@@ -17,6 +17,8 @@ import {
 } from "../config/business";
 import { communes, type Commune } from "../data/communes";
 import { AGENCES_CONTENU } from "../data/agences-contenu";
+import { avisAgence } from "./avis";
+import { googleBusiness } from "../config/business";
 
 export const ORG_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -89,6 +91,11 @@ export function agencyNode(cle: AgenceRattachement) {
   const communesAgence = communes.filter(
     (c) => c.agence === cle && c.slug !== AGENCES_CONTENU[cle].slug,
   );
+  // Note Google réelle de la fiche (src/data/avis-google.json).
+  // Google n'affiche plus d'étoiles en SERP pour les avis « self-serving »
+  // sur LocalBusiness, mais l'agrégat reste lu par Bing et les LLM (GEO)
+  // et consolide l'entité. La fiche Google Maps est ajoutée en sameAs.
+  const avis = avisAgence(cle);
   return {
     "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
     "@id": agencyId(cle),
@@ -106,7 +113,16 @@ export function agencyNode(cle: AgenceRattachement) {
     openingHoursSpecification,
     areaServed: communesAgence.map((c) => ({ "@type": "City", name: c.nom })),
     hasCredential: rgeCredential,
-    sameAs,
+    sameAs: [...sameAs, googleBusiness[cle].mapsUrl],
+    ...(avis && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: avis.note,
+        reviewCount: avis.total,
+        bestRating: 5,
+        worstRating: 1,
+      },
+    }),
   };
 }
 
