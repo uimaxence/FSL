@@ -40,14 +40,22 @@ if (!process.env.GOOGLE_PLACES_API_KEY) {
   }
 }
 
+// --soft (utilisé par `npm run build`) : en cas de clé absente ou d'erreur
+// API, on garde le JSON existant et on sort en succès pour ne jamais
+// bloquer un déploiement — les avis seront simplement ceux du build précédent.
+const SOFT = process.argv.includes("--soft");
+
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 if (!API_KEY) {
   console.error(
-    "✗ GOOGLE_PLACES_API_KEY manquante.\n" +
-      "  Ajoutez-la dans .env (racine du projet) ou dans l'environnement :\n" +
-      "  GOOGLE_PLACES_API_KEY=xxx npm run avis:fetch",
+    (SOFT ? "⚠ " : "✗ ") +
+      "GOOGLE_PLACES_API_KEY manquante" +
+      (SOFT
+        ? " — avis non rafraîchis, on garde src/data/avis-google.json tel quel."
+        : ".\n  Ajoutez-la dans .env (racine du projet) ou dans l'environnement :\n" +
+          "  GOOGLE_PLACES_API_KEY=xxx npm run avis:fetch"),
   );
-  process.exit(1);
+  process.exit(SOFT ? 0 : 1);
 }
 
 async function fetchPlace(cle, placeId) {
@@ -56,6 +64,10 @@ async function fetchPlace(cle, placeId) {
     headers: {
       "X-Goog-Api-Key": API_KEY,
       "X-Goog-FieldMask": "rating,userRatingCount,reviews",
+      // La clé API est restreinte au domaine du site (console Google Cloud).
+      // Ce script tournant hors navigateur, on déclare le domaine en Referer
+      // pour passer la restriction sans avoir à ouvrir la clé à tous.
+      Referer: "https://www.fenetres-sur-loir.fr/",
     },
   });
   if (!res.ok) {
@@ -83,23 +95,31 @@ async function fetchPlace(cle, placeId) {
   };
 }
 
-console.log("→ Récupération des avis Google (2 fiches)…");
-const [seiches, doue] = await Promise.all([
-  fetchPlace("seiches", PLACES.seiches),
-  fetchPlace("doue", PLACES.doue),
-]);
+try {
+  console.log("→ Récupération des avis Google (2 fiches)…");
+  const [seiches, doue] = await Promise.all([
+    fetchPlace("seiches", PLACES.seiches),
+    fetchPlace("doue", PLACES.doue),
+  ]);
 
-const data = {
-  fetchedAt: new Date().toISOString().slice(0, 10),
-  note: "Généré par scripts/fetch-avis-google.mjs — ne pas éditer à la main.",
-  agences: { seiches, doue },
-};
+  const data = {
+    fetchedAt: new Date().toISOString().slice(0, 10),
+    note: "Généré par scripts/fetch-avis-google.mjs — ne pas éditer à la main.",
+    agences: { seiches, doue },
+  };
 
-await writeFile(OUT, JSON.stringify(data, null, 2) + "\n", "utf8");
+  await writeFile(OUT, JSON.stringify(data, null, 2) + "\n", "utf8");
 
-const total = seiches.count + doue.count;
-console.log(
-  `✓ ${OUT.split("/").pop()} mis à jour : Seiches ${seiches.rating}/5 (${seiches.count} avis, ` +
-    `${seiches.reviews.length} textes), Doué ${doue.rating}/5 (${doue.count} avis, ` +
-    `${doue.reviews.length} textes) — ${total} avis au total.`,
-);
+  const total = seiches.count + doue.count;
+  console.log(
+    `✓ ${OUT.split("/").pop()} mis à jour : Seiches ${seiches.rating}/5 (${seiches.count} avis, ` +
+      `${seiches.reviews.length} textes), Doué ${doue.rating}/5 (${doue.count} avis, ` +
+      `${doue.reviews.length} textes) — ${total} avis au total.`,
+  );
+} catch (err) {
+  if (SOFT) {
+    console.error(`⚠ Récupération des avis échouée (${err.message}) — on garde le JSON existant.`);
+    process.exit(0);
+  }
+  throw err;
+}

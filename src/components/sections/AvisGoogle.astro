@@ -11,10 +11,12 @@ import meoLogo from "../../assets/meo-logo.png";
 // 2 colonnes quand il y a peu d'avis, 3 dès que l'API en fournit assez —
 // et répartition « au plus court » (pondérée par la longueur du texte)
 // pour que les colonnes finissent à peu près à la même hauteur.
-const nbColonnes = avisGoogle.length >= 6 ? 3 : 2;
+// Au plus 12 cartes (les avis API, plus récents, passent en premier).
+const avisAffiches = avisGoogle.slice(0, 12);
+const nbColonnes = avisAffiches.length >= 6 ? 3 : 2;
 const colonnes: (typeof avisGoogle)[] = Array.from({ length: nbColonnes }, () => []);
 const hauteurs = new Array(nbColonnes).fill(0);
-for (const avis of avisGoogle) {
+for (const avis of avisAffiches) {
   const i = hauteurs.indexOf(Math.min(...hauteurs));
   colonnes[i].push(avis);
   // ~120 « caractères équivalents » de hauteur fixe par carte (étoiles + pied).

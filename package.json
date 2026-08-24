@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/fetch-avis-google.mjs --soft && astro build",
     "preview": "astro preview",
     "avis:fetch": "node scripts/fetch-avis-google.mjs",
     "astro": "astro"
