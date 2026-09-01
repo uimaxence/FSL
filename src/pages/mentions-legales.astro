@@ -5,7 +5,7 @@ import { business, mainAgence, addressOneLine, toE164 } from "../config/business
 ---
 
 <BaseLayout
-  title="Mentions légales — Fenêtres-sur-Loir"
+  title="Mentions légales — Fenêtres sur Loir"
   description="Mentions légales du site fenetres-sur-loir.fr."
 >
   <section class="section pt-16 lg:pt-20">
@@ -16,16 +16,21 @@ import { business, mainAgence, addressOneLine, toE164 } from "../config/business
         <div>
           <h2 class="text-2xl font-semibold text-[var(--color-fg)]">Éditeur</h2>
           <p class="mt-3">
-            {business.legalName}<br />
+            {business.legalName} ({business.legalForm}), exploitant l'enseigne « {business.name} »<br />
             {addressOneLine(mainAgence)}<br />
-            {/* TODO client : SIRET, forme juridique et capital social pour compléter les mentions légales. */}
+            SIREN : {business.siren} — SIRET : {business.siret}<br />
+            {/* TODO client : capital social pour compléter les mentions légales. */}
             Téléphone : <a href={`tel:${toE164(mainAgence.telephone)}`} class="text-[var(--color-accent)] hover:underline">{mainAgence.telephone}</a>
           </p>
         </div>
 
         <div>
           <h2 class="text-2xl font-semibold text-[var(--color-fg)]">Hébergement</h2>
-          <p class="mt-3">À compléter (hébergeur, adresse, contact).</p>
+          <p class="mt-3">
+            Vercel Inc.<br />
+            440 N Barranca Ave #4133, Covina, CA 91723, États-Unis<br />
+            <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" class="text-[var(--color-accent)] hover:underline">vercel.com</a>
+          </p>
         </div>
 
         <div>

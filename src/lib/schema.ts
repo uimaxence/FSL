@@ -44,6 +44,11 @@ export function organizationNode() {
     "@id": ORG_ID,
     name: business.name,
     legalName: business.legalName,
+    // SIRET : désambiguïse l'entité pour Google et les LLM (le nom commercial
+    // « Fenêtres sur Loir » diffère de la raison sociale JERELI).
+    ...(business.siret && {
+      identifier: { "@type": "PropertyValue", propertyID: "SIRET", value: business.siret },
+    }),
     url: business.url,
     logo: { "@type": "ImageObject", url: business.logo },
     image: business.image,

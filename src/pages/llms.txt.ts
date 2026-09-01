@@ -50,9 +50,9 @@ export const GET: APIRoute = () => {
   const identite = [
     `- Nom commercial : ${business.name}`,
     business.legalName && business.legalName !== business.name
-      ? `- Raison sociale : ${business.legalName}`
+      ? `- Raison sociale : ${business.legalName} (${business.legalForm})`
       : null,
-    business.siret ? `- SIRET : ${business.siret}` : null,
+    business.siret ? `- SIREN : ${business.siren} — SIRET : ${business.siret}` : null,
     `- Fondée en : ${business.foundingDate}`,
     `- Certification : ${business.certification}`,
     `- Partenaires : ${business.brands.join(", ")} (MéO — Menuisier d'Excellence, Bubendorff — Point Conseil)`,

@@ -20,16 +20,18 @@ export function toE164(fr: string): string {
 /** Identité de l'entreprise (niveau Organization). */
 export const business = {
   name: "Fenêtres sur Loir",
-  // TODO client : raison sociale exacte (forme juridique + dénomination).
-  legalName: "Fenêtres sur Loir",
+  // Registre (vérifié le 01/09/2026 sur recherche-entreprises.api.gouv.fr) :
+  // « Fenêtres sur Loir » est le nom commercial de la SARL JERELI.
+  legalName: "JERELI",
+  legalForm: "SARL",
   url: SITE_URL,
   foundingDate: "2003",
   email: "contacts@fenetres-sur-loir.fr",
   priceRange: "€€",
   logo: `${SITE_URL}/logo-FSL.png`,
   image: `${SITE_URL}/og.jpg`,
-  // TODO client : numéro SIRET.
-  siret: null as string | null,
+  siren: "444792618",
+  siret: "44479261800035" as string | null,
   certification: "RGE Qualibat",
   brands: ["MéO", "Bubendorff", "Arcades & Baies"],
 } as const;

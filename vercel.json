@@ -1,0 +1,11 @@
+{
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "fsl-iota.vercel.app" }],
+      "destination": "https://www.fenetres-sur-loir.fr/$1",
+      "permanent": true
+    }
+  ]
+}
