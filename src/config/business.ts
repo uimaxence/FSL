@@ -63,10 +63,8 @@ export const googleBusiness = {
 /** Profils sociaux. `null` = pas de profil réel → non rendu, non injecté en sameAs. */
 export const social = {
   facebook: "https://www.facebook.com/fenetressurloir",
-  // TODO client : URL exacte du profil Instagram.
-  instagram: null as string | null,
-  // TODO client : URL exacte de la page LinkedIn.
-  linkedin: null as string | null,
+  instagram: "https://www.instagram.com/fenetressurloir/" as string | null,
+  linkedin: "https://www.linkedin.com/company/fen%C3%AAtres-sur-loir/" as string | null,
 } as const;
 
 /** URLs de profils réellement renseignés — pour le champ `sameAs` des schémas. */

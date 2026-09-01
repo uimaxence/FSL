@@ -1,7 +1,7 @@
 // /llms.txt — description non ambiguë de l'entité pour les LLM.
 // Généré dynamiquement pour rester synchronisé avec la config et les données.
 import type { APIRoute } from "astro";
-import { business, AGENCES, openingHoursHuman, addressOneLine } from "../config/business";
+import { business, social, AGENCES, openingHoursHuman, addressOneLine } from "../config/business";
 import { communes } from "../data/communes";
 import { AGENCES_CONTENU } from "../data/agences-contenu";
 import { avisGlobal } from "../lib/avis";
@@ -59,7 +59,9 @@ export const GET: APIRoute = () => {
     `- Avis clients : ${avisGlobal.noteAffichee}/5 sur ${avisGlobal.total} avis Google (deux fiches établissement)`,
     `- Site : ${SITE}`,
     `- Email : ${business.email}`,
-    `- Facebook : https://www.facebook.com/fenetressurloir`,
+    social.facebook ? `- Facebook : ${social.facebook}` : null,
+    social.instagram ? `- Instagram : ${social.instagram}` : null,
+    social.linkedin ? `- LinkedIn : ${social.linkedin}` : null,
   ].filter(Boolean);
 
   const body = `# ${business.name}
