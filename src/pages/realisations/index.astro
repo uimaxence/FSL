@@ -49,7 +49,7 @@ const schema = {
             const media = getRealisationMedia(r.id);
             return (
               <li>
-                <a href={`/realisations/${r.id}`} class="group block rounded-2xl overflow-hidden bg-white ring-1 ring-[var(--color-border)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <a href={`/realisations/${r.id}/`} class="group block rounded-2xl overflow-hidden bg-white ring-1 ring-[var(--color-border)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                   <div class="relative aspect-[4/3] overflow-hidden">
                     <Image
                       src={media.cover}
@@ -102,6 +102,6 @@ const schema = {
     title="Et si votre maison était la prochaine ?"
     text="Vous avez un projet de rénovation, d'aménagement ou de construction neuve ? Venez nous parler de vos envies — devis gratuit sous 48 h."
     secondaryLabel="Visiter le showroom"
-    secondaryHref="/entreprise/notre-histoire#showroom"
+    secondaryHref="/entreprise/notre-histoire/#showroom"
   />
 </BaseLayout>

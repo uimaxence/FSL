@@ -82,7 +82,7 @@ Ses limites : des **profils un peu plus épais** que l'aluminium (moins de surfa
 L'**aluminium** séduit par son esthétique contemporaine et sa capacité à ouvrir grand sur l'extérieur :
 
 - **Profils très fins** : plus de lumière et de vitrage à surface égale ;
-- **idéal pour les grandes [baies vitrées](/solutions/portes-fenetres/baies-vitrees)** et le neuf ;
+- **idéal pour les grandes [baies vitrées](/solutions/portes-fenetres/baies-vitrees/)** et le neuf ;
 - **résistance et durabilité** exceptionnelles, matériau recyclable ;
 - **sans entretien**, avec un choix de teintes RAL quasi illimité.
 
@@ -97,7 +97,7 @@ Le **bois-alu** ne fait aucun compromis : du **bois noble à l'intérieur** (cha
 - **aucun entretien extérieur** : pas de lasure à refaire ;
 - solution privilégiée pour les **maisons de caractère** et la rénovation en centre ancien.
 
-C'est le positionnement haut de gamme que nous portons en tant que **[Menuisier d'Excellence MéO](/partenaires/meo)**. Pour tout savoir, lisez notre guide **[fenêtres bois-alu MéO](/blog/fenetres-bois-alu-meo)**.
+C'est le positionnement haut de gamme que nous portons en tant que **[Menuisier d'Excellence MéO](/partenaires/meo/)**. Pour tout savoir, lisez notre guide **[fenêtres bois-alu MéO](/blog/fenetres-bois-alu-meo/)**.
 
 ## Tableau comparatif : PVC, alu, bois-alu
 
@@ -132,7 +132,7 @@ C'est le positionnement haut de gamme que nous portons en tant que **[Menuisier 
 - **Vous rénovez une maison de caractère à Angers, dans le Saumurois ou les Mauges, sans vouloir entretenir vos menuiseries** → le **bois-alu**.
 - **Vous construisez du neuf performant** → alu ou bois-alu selon l'esthétique recherchée.
 
-Quel que soit le matériau, deux points font toute la différence : la **qualité du vitrage** et la **qualité de la pose**. C'est pourquoi nous réalisons 100 % de nos poses sans sous-traitance, et pourquoi nos fenêtres sont **éligibles aux [aides à la rénovation](/blog/aides-changer-fenetres-2026)** grâce à notre certification **RGE**.
+Quel que soit le matériau, deux points font toute la différence : la **qualité du vitrage** et la **qualité de la pose**. C'est pourquoi nous réalisons 100 % de nos poses sans sous-traitance, et pourquoi nos fenêtres sont **éligibles aux [aides à la rénovation](/blog/aides-changer-fenetres-2026/)** grâce à notre certification **RGE**.
 
 ## FAQ — Choisir le matériau de ses fenêtres
 
@@ -152,4 +152,4 @@ Non. Un simple nettoyage à l'eau savonneuse suffit — comme pour le PVC et pou
 
 Le meilleur moyen de choisir, c'est d'en parler avec un menuisier qui pose les trois matériaux. Fenêtres sur Loir, artisan **certifié RGE** en Maine-et-Loire, vous conseille sans engagement.
 
-**[Demandez votre devis gratuit](/contact)** ou appelez-nous au **02 41 77 04 08**.
+**[Demandez votre devis gratuit](/contact/)** ou appelez-nous au **02 41 77 04 08**.

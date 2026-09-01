@@ -51,7 +51,7 @@ const breadcrumb = [
         <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((p, i) => (
             <li>
-              <a href={`/blog/${p.id}`} class="group block">
+              <a href={`/blog/${p.id}/`} class="group block">
                 <div class="rounded-xl overflow-hidden ring-1 ring-[var(--color-border)] mb-5 aspect-video">
                   <Image
                     src={blogCovers[i % blogCovers.length]}

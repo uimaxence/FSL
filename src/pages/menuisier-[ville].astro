@@ -23,10 +23,11 @@ export function getStaticPaths() {
 const { commune } = Astro.props;
 const agence = AGENCES[commune.agence];
 
-// Balise <title> courte (≤ ~60 car.) : mot-clé « menuisier à {ville} » en tête,
+// Balise <title> courte (≤ ~62 car.) : mot-clé « menuisier à {ville} » en tête,
 // marque ajoutée par Google via og:site_name. Évite la troncature SERP
-// constatée sur les anciens metaTitle (72-84 car.).
-const pageTitle = `Menuisier à ${commune.nom} (49) — Fenêtres sur mesure`;
+// constatée sur les anciens metaTitle (72-84 car.). « fenêtres, portes &
+// volets » couvre les requêtes « pose fenêtre / porte / volet + ville ».
+const pageTitle = `Menuisier à ${commune.nom} (49) — Fenêtres, portes & volets`;
 const media = getCommuneMedia(commune.slug);
 const voisines = communesVoisines(commune.slug, 4);
 
@@ -58,32 +59,32 @@ const faqAll = [...(commune.faq ?? []), ...faqLocalisees];
 const services = [
   {
     label: "Fenêtres",
-    href: "/solutions/portes-fenetres/fenetres",
+    href: "/solutions/portes-fenetres/fenetres/",
     desc: "Fenêtres PVC, aluminium, bois ou mixte bois-alu, en double ou triple vitrage : des menuiseries sur mesure parfaitement isolées et adaptées à chaque ouverture.",
   },
   {
     label: "Portes d'entrée",
-    href: "/solutions/portes-fenetres/portes-entree",
+    href: "/solutions/portes-fenetres/portes-entree/",
     desc: "Portes d'entrée alu ou bois-alu, serrures multipoints A2P : sécurité, isolation et design pour valoriser votre façade.",
   },
   {
     label: "Baies vitrées",
-    href: "/solutions/portes-fenetres/baies-vitrees",
+    href: "/solutions/portes-fenetres/baies-vitrees/",
     desc: "Baies coulissantes, à galandage ou à levage, avec seuil plat accessible : un maximum de lumière et d'ouverture vers le jardin.",
   },
   {
     label: "Volets & stores",
-    href: "/solutions/portes-fenetres/volets",
+    href: "/solutions/portes-fenetres/volets/",
     desc: "Volets roulants, battants ou solaires Bubendorff, motorisés et connectés : confort, occultation et sécurité au quotidien.",
   },
   {
     label: "Verrières",
-    href: "/solutions/confort-interieur/verrieres",
+    href: "/solutions/confort-interieur/verrieres/",
     desc: "Verrières d'atelier sur mesure pour séparer les espaces sans perdre de luminosité, en acier ou aluminium.",
   },
   {
     label: "Carports & pergolas",
-    href: "/solutions/confort-exterieur/carports-marquises",
+    href: "/solutions/confort-exterieur/carports-marquises/",
     desc: "Carports, marquises et pergolas bioclimatiques en aluminium pour aménager et protéger vos extérieurs.",
   },
 ];
@@ -106,7 +107,7 @@ const atouts = [
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
-  { label: "Zones d'intervention", href: "/zones-intervention" },
+  { label: "Zones d'intervention", href: "/zones-intervention/" },
   { label: commune.nom },
 ];
 
@@ -148,7 +149,7 @@ const schema = communeGraph(commune, faqAll);
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a
-            href="/contact"
+            href="/contact/"
             class="inline-flex items-center rounded-full px-7 py-3 text-[14px] font-medium text-white shadow-sm transition-colors"
             style="background: var(--color-accent);"
             onmouseover="this.style.background='var(--color-accent-hover)'"
@@ -157,7 +158,7 @@ const schema = communeGraph(commune, faqAll);
             Demander un devis gratuit
           </a>
           <a
-            href="/realisations"
+            href="/realisations/"
             class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white border border-white/50 hover:bg-white hover:text-[var(--color-fg)] transition-colors"
           >
             Voir nos réalisations
@@ -279,7 +280,7 @@ const schema = communeGraph(commune, faqAll);
             mobiliser les dispositifs en vigueur et nous nous occupons des démarches.
           </p>
           <div class="mt-6">
-            <Button href="/contact" variant="primary">Estimer mon projet à {commune.nom}</Button>
+            <Button href="/contact/" variant="primary">Estimer mon projet à {commune.nom}</Button>
           </div>
         </div>
         <ul class="grid sm:grid-cols-2 gap-4">
@@ -354,7 +355,7 @@ const schema = communeGraph(commune, faqAll);
           {voisines.map((v) => (
             <li>
               <a
-                href={`/menuisier-${v.slug}`}
+                href={`/menuisier-${v.slug}/`}
                 class="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
               >
                 Menuisier à {v.nom}
@@ -366,7 +367,7 @@ const schema = communeGraph(commune, faqAll);
           ))}
           <li>
             <a
-              href="/zones-intervention"
+              href="/zones-intervention/"
               class="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-[var(--color-accent)] hover:underline"
             >
               Toutes nos communes →
@@ -384,6 +385,6 @@ const schema = communeGraph(commune, faqAll);
     title={`Votre devis de menuiserie à ${commune.nom}`}
     text="Devis gratuit sous 48 h, visite du showroom ou rendez-vous chez vous : nos équipes vous accompagnent du premier croquis à la pose finale."
     secondaryLabel="Toutes nos zones"
-    secondaryHref="/zones-intervention"
+    secondaryHref="/zones-intervention/"
   />
 </BaseLayout>

@@ -114,19 +114,19 @@ Certains signes ne trompent pas :
 - **cadres froids ou humides**, joints noircis, moisissures récurrentes autour des fenêtres ;
 - **sensation de paroi froide** quand on s'approche de la fenêtre, courants d'air le long des ouvrants.
 
-Les [fenêtres](/solutions/portes-fenetres/fenetres) actuelles changent radicalement la donne : double vitrage à isolation renforcée avec gaz argon, intercalaire « warm edge » qui supprime le pont thermique en bord de vitrage, cadres PVC, aluminium à rupture de pont thermique ou [bois-alu MéO](/blog/fenetres-bois-alu-meo). Résultat : la face intérieure du vitrage reste proche de la température de la pièce — la condensation n'a plus de paroi froide où se déposer. Les ouvrants **oscillo-battants** facilitent en prime l'aération quotidienne en toute sécurité.
+Les [fenêtres](/solutions/portes-fenetres/fenetres/) actuelles changent radicalement la donne : double vitrage à isolation renforcée avec gaz argon, intercalaire « warm edge » qui supprime le pont thermique en bord de vitrage, cadres PVC, aluminium à rupture de pont thermique ou [bois-alu MéO](/blog/fenetres-bois-alu-meo/). Résultat : la face intérieure du vitrage reste proche de la température de la pièce — la condensation n'a plus de paroi froide où se déposer. Les ouvrants **oscillo-battants** facilitent en prime l'aération quotidienne en toute sécurité.
 
-Pour choisir le matériau adapté à votre maison, consultez notre comparatif **[PVC, alu ou bois-alu](/blog/fenetre-pvc-alu-bois-alu)**.
+Pour choisir le matériau adapté à votre maison, consultez notre comparatif **[PVC, alu ou bois-alu](/blog/fenetre-pvc-alu-bois-alu/)**.
 
 ## Des aides pour financer le remplacement
 
-Remplacer des fenêtres anciennes par des menuiseries performantes relève de la **rénovation énergétique** : en passant par un artisan **certifié RGE** comme Fenêtres sur Loir, vous pouvez mobiliser les **primes CEE**, la **TVA à 5,5 %**, l'**éco-PTZ** et, selon votre situation, **MaPrimeRénov'**. Tous les dispositifs et conditions sont détaillés dans notre guide **[Aides pour changer ses fenêtres en 2026](/blog/aides-changer-fenetres-2026)**.
+Remplacer des fenêtres anciennes par des menuiseries performantes relève de la **rénovation énergétique** : en passant par un artisan **certifié RGE** comme Fenêtres sur Loir, vous pouvez mobiliser les **primes CEE**, la **TVA à 5,5 %**, l'**éco-PTZ** et, selon votre situation, **MaPrimeRénov'**. Tous les dispositifs et conditions sont détaillés dans notre guide **[Aides pour changer ses fenêtres en 2026](/blog/aides-changer-fenetres-2026/)**.
 
 ## Un diagnostic à domicile, partout en Maine-et-Loire
 
-Condensation persistante, buée entre les vitres, moisissures autour des cadres ? Nos équipes se déplacent chez vous — à Angers, Seiches-sur-le-Loir, Doué-en-Anjou et dans tout le [Maine-et-Loire](/zones-intervention) — pour un **diagnostic gratuit** : état des vitrages et des joints, ventilation, points froids. Nous vous disons honnêtement si un simple entretien suffit ou si le remplacement s'impose, vitrage seul ou fenêtre complète.
+Condensation persistante, buée entre les vitres, moisissures autour des cadres ? Nos équipes se déplacent chez vous — à Angers, Seiches-sur-le-Loir, Doué-en-Anjou et dans tout le [Maine-et-Loire](/zones-intervention/) — pour un **diagnostic gratuit** : état des vitrages et des joints, ventilation, points froids. Nous vous disons honnêtement si un simple entretien suffit ou si le remplacement s'impose, vitrage seul ou fenêtre complète.
 
-Vous pouvez aussi venir comparer les vitrages et matériaux dans notre [showroom de 300 m²](/entreprise/notre-histoire#showroom) à Seiches-sur-le-Loir.
+Vous pouvez aussi venir comparer les vitrages et matériaux dans notre [showroom de 300 m²](/entreprise/notre-histoire/#showroom) à Seiches-sur-le-Loir.
 
 ## Questions fréquentes
 
@@ -148,6 +148,6 @@ Des menuiseries récentes suppriment les parois froides, principale surface de c
 
 ## Faites vérifier vos fenêtres avant l'hiver
 
-Ne laissez pas la buée s'installer un hiver de plus. Et si vos fenêtres sont en cause, c'est le bon moment pour agir : découvrez pourquoi dans notre article **[Changer ses fenêtres avant l'hiver](/blog/changer-fenetres-avant-hiver)**.
+Ne laissez pas la buée s'installer un hiver de plus. Et si vos fenêtres sont en cause, c'est le bon moment pour agir : découvrez pourquoi dans notre article **[Changer ses fenêtres avant l'hiver](/blog/changer-fenetres-avant-hiver/)**.
 
-**[Demandez votre diagnostic gratuit](/contact)** ou appelez-nous au **02 41 77 04 08**.
+**[Demandez votre diagnostic gratuit](/contact/)** ou appelez-nous au **02 41 77 04 08**.

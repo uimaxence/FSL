@@ -131,7 +131,7 @@ Pour ouvrir droit aux aides, une fenêtre doit atteindre un niveau de performanc
 - un **coefficient thermique Uw ≤ 1,3 W/m².K** (plus il est bas, meilleure est l'isolation) ;
 - un **facteur solaire Sw ≥ 0,3** (capacité à laisser entrer la chaleur du soleil).
 
-Nos menuiseries **[fenêtres](/solutions/portes-fenetres/fenetres)** en PVC, aluminium ou **[bois-alu MéO](/blog/fenetres-bois-alu-meo)** répondent à ces exigences. Hésitant sur le matériau ? Consultez notre comparatif **[PVC, alu ou bois-alu](/blog/fenetre-pvc-alu-bois-alu)**.
+Nos menuiseries **[fenêtres](/solutions/portes-fenetres/fenetres/)** en PVC, aluminium ou **[bois-alu MéO](/blog/fenetres-bois-alu-meo/)** répondent à ces exigences. Hésitant sur le matériau ? Consultez notre comparatif **[PVC, alu ou bois-alu](/blog/fenetre-pvc-alu-bois-alu/)**.
 
 ## Comment en bénéficier avec Fenêtres sur Loir
 
@@ -164,4 +164,4 @@ Oui. Une prime CEE, l'éco-PTZ et la TVA à 5,5 % se cumulent couramment. Le cum
 
 Vous souhaitez savoir **combien vous pouvez économiser** sur le remplacement de vos fenêtres en Maine-et-Loire ? Fenêtres sur Loir, artisan **certifié RGE**, vous accompagne du conseil au dossier d'aides.
 
-**[Demandez votre devis gratuit](/contact)** ou appelez-nous au **02 41 77 04 08**.
+**[Demandez votre devis gratuit](/contact/)** ou appelez-nous au **02 41 77 04 08**.

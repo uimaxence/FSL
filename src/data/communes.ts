@@ -119,6 +119,7 @@ const communesToutes: Commune[] = [
     body: [
       "Angers conjugue un cœur de ville classé et de larges secteurs pavillonnaires de la seconde moitié du XXᵉ siècle. Cette double réalité guide nos préconisations : menuiseries aluminium fines et vitrages à contrôle solaire pour les immeubles, blocs bois-alu MéO pour les maisons de caractère de la Doutre.",
       "Nous gérons l'ensemble des démarches, y compris les déclarations préalables de travaux auprès de la Ville d'Angers et la coordination avec l'Architecte des Bâtiments de France dans le périmètre du site patrimonial remarquable.",
+      "Notre entreprise de menuiserie intervient chaque semaine sur Angers et sa première couronne pour la pose de fenêtres en rénovation : remplacement de menuiseries d'origine dans les pavillons des années 1960-1990 de Belle-Beille, Monplaisir ou des Justices, menuiserie aluminium sur mesure pour les extensions contemporaines, portes d'entrée et volets roulants Bubendorff dans toute l'agglomération. La prise de cotes se fait chez vous, la fabrication est française (MéO, Arcades & Baies) et la pose est assurée par nos propres équipes.",
     ],
     quartiers: ["La Doutre", "La Madeleine", "Belle-Beille", "Monplaisir", "Saint-Léonard", "Justices"],
     abf: true,
@@ -135,6 +136,16 @@ const communesToutes: Commune[] = [
         question: "Quel délai pour un devis fenêtres à Angers ?",
         reponse:
           "Nous nous déplaçons sous quelques jours pour la prise de mesures et remettons un devis gratuit sous 48 h. Depuis notre agence de Seiches-sur-le-Loir, Angers est à une vingtaine de minutes.",
+      },
+      {
+        question: "Quel est le prix de pose d'une fenêtre à Angers ?",
+        reponse:
+          "Comptez en général entre 400 et 1 500 € par fenêtre posée à Angers, selon le matériau (PVC, aluminium, bois ou bois-alu), les dimensions et le vitrage. La TVA à 5,5 % et les aides (MaPrimeRénov', CEE) réduisent la facture lorsque la pose est réalisée par un artisan RGE comme Fenêtres sur Loir. Le devis détaillé est gratuit.",
+      },
+      {
+        question: "Couvrez-vous toute l'agglomération d'Angers ?",
+        reponse:
+          "Oui : Angers et l'ensemble d'Angers Loire Métropole, dont Avrillé, Beaucouzé, Trélazé, Saint-Barthélemy-d'Anjou, Bouchemaine, Les Ponts-de-Cé, Mûrs-Érigné et Verrières-en-Anjou. Chaque commune dispose de sa propre page avec nos réalisations à proximité.",
       },
     ],
   },
@@ -422,6 +433,7 @@ const communesToutes: Commune[] = [
     body: [
       "Dans le centre de Saumur et les abords des monuments, chaque menuiserie est étudiée pour respecter les prescriptions de l'Architecte des Bâtiments de France : matériaux, teintes, petits-bois et systèmes d'ouverture.",
       "Sur les coteaux et le bâti troglodytique du Saumurois, nous proposons des solutions sur mesure adaptées à des ouvertures rarement standard.",
+      "Notre agence de Doué-en-Anjou se trouve à 18 km de Saumur : un menuisier réellement local, capable de se déplacer rapidement pour la prise de mesures comme pour le SAV. Nous posons dans tout le Saumurois des fenêtres PVC, aluminium et bois, des portes d'entrée, des volets roulants et des baies vitrées, en rénovation comme en remplacement à l'identique sur le bâti de tuffeau.",
     ],
     quartiers: ["Centre-ville", "Bagneux", "Saint-Hilaire-Saint-Florent", "Nantilly", "Les Ponts"],
     abf: true,
@@ -437,6 +449,11 @@ const communesToutes: Commune[] = [
         question: "Travaillez-vous sur des ouvertures non standard du bâti troglodytique ?",
         reponse:
           "Oui. Le sur-mesure est notre métier : nous relevons précisément chaque ouverture atypique des coteaux saumurois pour fabriquer des menuiseries parfaitement ajustées.",
+      },
+      {
+        question: "Quel menuisier choisir près de Saumur pour changer ses fenêtres ?",
+        reponse:
+          "Privilégiez un artisan certifié RGE (condition des aides), qui pose avec ses propres équipes et connaît les contraintes ABF du Saumurois. Fenêtres sur Loir répond à ces trois critères depuis 2003, avec une agence à Doué-en-Anjou à 18 km et un devis gratuit remis sous 48 h.",
       },
     ],
   },

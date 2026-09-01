@@ -78,7 +78,7 @@ Faire appel à un fenêtrier RGE vous ouvre droit à plusieurs dispositifs d'aid
 - **MaPrimeRénov'** : aide versée par l'Anah (Agence nationale de l'habitat) selon vos revenus et le gain énergétique attendu.
 - **Éco-prêt à taux zéro (Éco-PTZ)** : prêt sans intérêts pour financer des travaux de rénovation énergétique.
 - **TVA à taux réduit à 5,5 %** : applicable sur la fourniture et la pose de fenêtres améliorant la performance énergétique.
-- **Aides locales** : certaines collectivités du Maine-et-Loire proposent des compléments d'aide. N'hésitez pas à nous interroger lors de votre [rendez-vous](/contact).
+- **Aides locales** : certaines collectivités du Maine-et-Loire proposent des compléments d'aide. N'hésitez pas à nous interroger lors de votre [rendez-vous](/contact/).
 
 ## Fenêtres sur Loir : votre fenêtrier de confiance en Anjou
 
@@ -86,11 +86,11 @@ Faire appel à un fenêtrier RGE vous ouvre droit à plusieurs dispositifs d'aid
 
 Implantés depuis plus de deux décennies à **Seiches-sur-le-Loir**, nous avons accompagné des centaines de familles et de professionnels dans leurs projets de rénovation de menuiseries en Anjou. Entreprise familiale à taille humaine, nous accordons une importance particulière à la relation de confiance avec nos clients : de la première prise de contact jusqu'à la réception du chantier, notre équipe reste à votre écoute.
 
-Avec **plus de 2 000 chantiers réalisés** dans tout le Maine-et-Loire, nous connaissons les spécificités architecturales de la région — des longères angevines aux maisons contemporaines — et saurons vous proposer des menuiseries qui s'intègrent parfaitement à votre cadre de vie. Découvrez quelques-unes de [nos réalisations](/realisations).
+Avec **plus de 2 000 chantiers réalisés** dans tout le Maine-et-Loire, nous connaissons les spécificités architecturales de la région — des longères angevines aux maisons contemporaines — et saurons vous proposer des menuiseries qui s'intègrent parfaitement à votre cadre de vie. Découvrez quelques-unes de [nos réalisations](/realisations/).
 
 ### Un showroom de 300 m² pour choisir vos menuiseries
 
-Pour vous aider à visualiser et à choisir vos futures menuiseries, nous disposons d'un [**showroom de 300 m²**](/entreprise/notre-histoire#showroom) à Seiches-sur-le-Loir. Vous y trouverez des dizaines de modèles de fenêtres, portes d'entrée, baies vitrées et volets exposés en situation réelle. Nos conseillers vous accompagnent dans votre visite pour répondre à toutes vos questions et vous orienter vers la solution la mieux adaptée à votre projet et à votre budget.
+Pour vous aider à visualiser et à choisir vos futures menuiseries, nous disposons d'un [**showroom de 300 m²**](/entreprise/notre-histoire/#showroom) à Seiches-sur-le-Loir. Vous y trouverez des dizaines de modèles de fenêtres, portes d'entrée, baies vitrées et volets exposés en situation réelle. Nos conseillers vous accompagnent dans votre visite pour répondre à toutes vos questions et vous orienter vers la solution la mieux adaptée à votre projet et à votre budget.
 
 <div class="not-prose my-10 grid grid-cols-3 gap-3 sm:gap-4 text-center">
   <div class="rounded-xl bg-[var(--color-tint)] p-4 sm:p-5">
@@ -111,7 +111,7 @@ Pour vous aider à visualiser et à choisir vos futures menuiseries, nous dispos
 
 ### Fenêtres PVC, aluminium et bois-alu
 
-En tant que fenêtrier, nous vous proposons une large gamme de [fenêtres sur mesure](/solutions/portes-fenetres) dans les principaux matériaux :
+En tant que fenêtrier, nous vous proposons une large gamme de [fenêtres sur mesure](/solutions/portes-fenetres/) dans les principaux matériaux :
 
 - **Fenêtres PVC** : excellent rapport qualité-prix, très performantes thermiquement, faciles d'entretien.
 - **Fenêtres aluminium** : design élancé, grande robustesse, idéal pour les baies vitrées et grandes ouvertures.
@@ -121,7 +121,7 @@ Chaque fenêtre est fabriquée sur mesure et équipée du double ou triple vitra
 
 ### Portes d'entrée, baies vitrées et volets
 
-Notre expertise de fenêtrier s'étend à l'ensemble des ouvertures de votre logement : [portes d'entrée](/solutions/portes-fenetres/portes-entree) sécurisées, portes-fenêtres, baies vitrées coulissantes, verrières intérieures, volets roulants motorisés et volets battants. Nous intervenons aussi bien en rénovation qu'en construction neuve, sur des chantiers particuliers comme professionnels.
+Notre expertise de fenêtrier s'étend à l'ensemble des ouvertures de votre logement : [portes d'entrée](/solutions/portes-fenetres/portes-entree/) sécurisées, portes-fenêtres, baies vitrées coulissantes, verrières intérieures, volets roulants motorisés et volets battants. Nous intervenons aussi bien en rénovation qu'en construction neuve, sur des chantiers particuliers comme professionnels.
 
 ## Zone d'intervention : où intervient notre fenêtrier ?
 
@@ -129,7 +129,7 @@ Basés à **Seiches-sur-le-Loir** et bientôt **Doué-la-Fontaine** (49), nous i
 
 Angers, Brissac-Quincé, Doué-en-Anjou, Baugé-en-Anjou, Segré-en-Anjou, Les Ponts-de-Cé, Saint-Barthélemy-d'Anjou, Trélazé, Avrillé… et dans toutes les communes du département 49.
 
-Vous êtes en dehors de cette zone ? [Contactez-nous](/contact) : nous étudions chaque demande selon la localisation et le volume du chantier.
+Vous êtes en dehors de cette zone ? [Contactez-nous](/contact/) : nous étudions chaque demande selon la localisation et le volume du chantier.
 
 ## FAQ — Vos questions sur le fenêtrier
 
@@ -139,7 +139,7 @@ Un menuisier est un artisan généraliste du bois et des matériaux de construct
 
 ### Combien coûte le remplacement de fenêtres par un fenêtrier ?
 
-Le prix de remplacement d'une fenêtre varie en fonction du matériau (PVC, aluminium, bois-alu), des dimensions, du vitrage choisi et de la complexité de la pose. Comptez en général entre **400 et 1 500 €** par fenêtre, pose comprise. Chez Fenêtres sur Loir, nous réalisons un [devis gratuit](/contact) et personnalisé pour chaque projet.
+Le prix de remplacement d'une fenêtre varie en fonction du matériau (PVC, aluminium, bois-alu), des dimensions, du vitrage choisi et de la complexité de la pose. Comptez en général entre **400 et 1 500 €** par fenêtre, pose comprise. Chez Fenêtres sur Loir, nous réalisons un [devis gratuit](/contact/) et personnalisé pour chaque projet.
 
 ### Quelles aides peut-on obtenir pour le remplacement de fenêtres en 2025 ?
 
@@ -153,4 +153,4 @@ Oui, notre équipe de fenêtriers intervient dans tout le département du Maine-
 
 Vous recherchez un **fenêtrier sérieux, qualifié et local** pour votre projet en Maine-et-Loire ? Fenêtres sur Loir met à votre service plus de 20 ans d'expérience, une certification RGE et une équipe passionnée par la qualité de ses réalisations. Que vous souhaitiez remplacer une fenêtre ancienne, agrandir une ouverture ou créer une baie vitrée, nous avons la solution adaptée.
 
-**[Contactez-nous dès aujourd'hui](/contact)** pour bénéficier d'un devis gratuit et sans engagement. Notre équipe se déplace chez vous dans tout le Maine-et-Loire pour évaluer votre projet.
+**[Contactez-nous dès aujourd'hui](/contact/)** pour bénéficier d'un devis gratuit et sans engagement. Notre équipe se déplace chez vous dans tout le Maine-et-Loire pour évaluer votre projet.

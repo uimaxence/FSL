@@ -43,7 +43,7 @@ const cards = [
       <div class="grid md:grid-cols-2 gap-8">
         {cards.map(({ contenu, agence, img }) => (
           <a
-            href={`/agences/${contenu.slug}`}
+            href={`/agences/${contenu.slug}/`}
             class="group flex flex-col rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)] bg-white hover:ring-[var(--color-accent)] transition-colors"
           >
             <div class="aspect-[16/10] overflow-hidden">
@@ -91,6 +91,6 @@ const cards = [
     title="Parlons de votre projet"
     text="Devis gratuit sous 48 h, quel que soit votre secteur en Maine-et-Loire."
     secondaryLabel="Nous contacter"
-    secondaryHref="/contact"
+    secondaryHref="/contact/"
   />
 </BaseLayout>

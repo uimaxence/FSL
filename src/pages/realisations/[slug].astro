@@ -26,7 +26,7 @@ const media = getRealisationMedia(item.id);
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
-  { label: "Réalisations", href: "/realisations" },
+  { label: "Réalisations", href: "/realisations/" },
   { label: title },
 ];
 
@@ -135,7 +135,7 @@ const schema = {
             <p class="text-[15px] text-[var(--color-muted)] leading-relaxed">
               Cette réalisation a été menée à <strong class="text-[var(--color-fg)]">{location}</strong>.
               Découvrez toutes nos prestations de
-              <a href={`/menuisier-${commune.slug}`} class="text-[var(--color-accent)] font-medium hover:underline"> menuisier à {commune.nom}</a>.
+              <a href={`/menuisier-${commune.slug}/`} class="text-[var(--color-accent)] font-medium hover:underline"> menuisier à {commune.nom}</a>.
             </p>
           </div>
         </Container>
@@ -147,7 +147,7 @@ const schema = {
       title="Et votre maison, à quoi ressemblera-t-elle ?"
       text="Discutons-en autour d'un café, en showroom ou directement chez vous. Devis gratuit sous 48 h."
       secondaryLabel="Toutes les réalisations"
-      secondaryHref="/realisations"
+      secondaryHref="/realisations/"
     />
   </article>
 </BaseLayout>

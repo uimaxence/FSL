@@ -13,9 +13,12 @@ import ZonesMap from "../components/sections/ZonesMap.astro";
 import ContactForm from "../components/sections/ContactForm.astro";
 import { siteGraph } from "../lib/schema";
 
-const title = "Fenêtres sur Loir — Menuisier RGE à Seiches-sur-le-Loir, près d'Angers";
+// Title : marque en tête (les requêtes marque dominent les clics), puis le
+// mot-clé département — la home classe pos. ~3 sur « fenêtre maine et loire »
+// avec un CTR très faible : le libellé doit dire fenêtres + 49 + sur mesure.
+const title = "Fenêtres sur Loir — Fenêtres sur mesure en Maine-et-Loire (49)";
 const description =
-  "Fenêtres sur Loir, artisan menuisier à Seiches-sur-le-Loir (49). Fenêtres, portes, volets, verrières et aménagements extérieurs sur mesure. Partenaire MéO, Bubendorff, Arcades & Baies.";
+  "Fenêtres, portes, volets et baies vitrées sur mesure, posés par nos équipes certifiées RGE Qualibat à Angers, Saumur et dans tout le Maine-et-Loire. Devis gratuit sous 48 h.";
 
 // Graphe d'entité unique et relié (Organization + WebSite + 2 agences).
 const schema = siteGraph();

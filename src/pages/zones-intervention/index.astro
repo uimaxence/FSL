@@ -57,7 +57,7 @@ const groupes = [
               {g.communes.map((c) => (
                 <li>
                   <a
-                    href={`/menuisier-${c.slug}`}
+                    href={`/menuisier-${c.slug}/`}
                     class="group flex items-center justify-between gap-2 rounded-xl bg-white ring-1 ring-[var(--color-border)] px-4 py-3 text-sm font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
                   >
                     <span>
@@ -77,7 +77,7 @@ const groupes = [
 
       <p class="mt-10 text-sm text-[var(--color-muted)] max-w-3xl">
         Votre commune n'apparaît pas dans la liste ? Nous intervenons bien au-delà :
-        <a href="/contact" class="text-[var(--color-accent)] underline underline-offset-2">contactez-nous</a>
+        <a href="/contact/" class="text-[var(--color-accent)] underline underline-offset-2">contactez-nous</a>
         pour vérifier la couverture de votre secteur.
       </p>
     </Container>
@@ -87,6 +87,6 @@ const groupes = [
     eyebrow="Un projet de menuiserie ?"
     title="Trouvons la solution adaptée à votre commune"
     secondaryLabel="Voir nos réalisations"
-    secondaryHref="/realisations"
+    secondaryHref="/realisations/"
   />
 </BaseLayout>

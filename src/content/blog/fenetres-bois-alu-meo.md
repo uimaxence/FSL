@@ -52,7 +52,7 @@ schema:
           text: "Oui. Fenêtres sur Loir intervient à Angers et sa périphérie ainsi qu'à Doué-en-Anjou et dans tout le Maine-et-Loire, depuis ses agences de Seiches-sur-le-Loir et de Doué-en-Anjou. Nous proposons un diagnostic gratuit et un devis sur mesure pour chaque projet de menuiseries bois-alu."
 ---
 
-Vous hésitez entre le charme intemporel du bois et la modernité sans entretien de l'aluminium pour vos fenêtres et portes d'entrée ? Ne faites plus de compromis. Chez **Fenêtres sur Loir**, nous avons choisi de vous offrir le meilleur de l'innovation française en devenant partenaire de **[MéO](/partenaires/meo)**, le pionnier de la menuiserie **bois-aluminium**.
+Vous hésitez entre le charme intemporel du bois et la modernité sans entretien de l'aluminium pour vos fenêtres et portes d'entrée ? Ne faites plus de compromis. Chez **Fenêtres sur Loir**, nous avons choisi de vous offrir le meilleur de l'innovation française en devenant partenaire de **[MéO](/partenaires/meo/)**, le pionnier de la menuiserie **bois-aluminium**.
 
 Mieux encore : notre entreprise familiale a décroché le label très sélectif de **Menuisier d'Excellence MéO**. Une distinction qui garantit une maîtrise parfaite des produits et une pose dans les règles de l'art, que vous soyez à **Angers**, à **Doué-en-Anjou** ou ailleurs en **Maine-et-Loire**.
 
@@ -67,7 +67,7 @@ Résultat : vous conservez à l'intérieur l'authenticité et la chaleur du bois
 
 ## Quels sont les avantages des menuiseries MéO ?
 
-Investir dans les [fenêtres](/solutions/portes-fenetres/fenetres), [baies vitrées](/solutions/portes-fenetres/baies-vitrees) ou [portes d'entrée](/solutions/portes-fenetres/portes-entree) MéO, c'est s'assurer un confort de vie inégalé :
+Investir dans les [fenêtres](/solutions/portes-fenetres/fenetres/), [baies vitrées](/solutions/portes-fenetres/baies-vitrees/) ou [portes d'entrée](/solutions/portes-fenetres/portes-entree/) MéO, c'est s'assurer un confort de vie inégalé :
 
 - **Performances thermiques et acoustiques records** : grâce à l'alliance naturelle du bois et de la technicité de l'alu, vous réalisez de vraies économies d'énergie en éliminant les ponts thermiques.
 - **Durabilité et éco-conception** : les menuiseries sont fabriquées en France avec des bois 100 % certifiés (PEFC ou FSC) et de l'aluminium entièrement recyclable.
@@ -96,7 +96,7 @@ La gamme MéO s'adapte absolument à tous les projets en Maine-et-Loire :
 - **En rénovation** : pour remplacer de vieilles fenêtres en conservant le cachet authentique d'une maison en **pierre d'Anjou** ou d'une longère angevine — grâce au bois intérieur — tout en modernisant la façade. Une solution idéale dans les centres anciens d'Angers comme dans les bourgs du Saumurois autour de Doué-en-Anjou.
 - **En construction neuve** : pour les projets contemporains ou les maisons passives exigeant des performances thermiques optimales et des designs épurés.
 
-Quel que soit votre projet, nous vous accompagnons du conseil à la pose. Découvrez quelques-unes de [nos réalisations](/realisations) en bois-alu dans tout le département.
+Quel que soit votre projet, nous vous accompagnons du conseil à la pose. Découvrez quelques-unes de [nos réalisations](/realisations/) en bois-alu dans tout le département.
 
 ## Fenêtres bois-alu MéO à Angers, Doué-en-Anjou et dans tout le 49
 
@@ -104,7 +104,7 @@ Implantés depuis plus de 20 ans à **Seiches-sur-le-Loir** et désormais à **D
 
 **Angers**, **Doué-en-Anjou** (ex-Doué-la-Fontaine), Brissac-Quincé, Baugé-en-Anjou, Segré-en-Anjou, Les Ponts-de-Cé, Saint-Barthélemy-d'Anjou, Trélazé, Avrillé, Saumur et les communes du Layon… et partout dans le département 49.
 
-Que vous habitiez une maison de ville à Angers ou une demeure de caractère à Doué-en-Anjou, nous adaptons l'essence du bois, la teinte de l'aluminium et le type de vitrage aux spécificités de votre habitat. [Contactez-nous](/contact) pour étudier votre projet.
+Que vous habitiez une maison de ville à Angers ou une demeure de caractère à Doué-en-Anjou, nous adaptons l'essence du bois, la teinte de l'aluminium et le type de vitrage aux spécificités de votre habitat. [Contactez-nous](/contact/) pour étudier votre projet.
 
 ## Pourquoi choisir Fenêtres sur Loir, « Menuisier d'Excellence MéO » ?
 
@@ -138,4 +138,4 @@ Oui. Nous intervenons à **Angers** et sa périphérie ainsi qu'à **Doué-en-An
 
 Vous recherchez un **menuisier qualifié, local et spécialiste du bois-aluminium** pour votre projet en Maine-et-Loire ? Fenêtres sur Loir met à votre service plus de 20 ans d'expérience, le label **Menuisier d'Excellence MéO**, la certification **RGE** et une équipe passionnée par la qualité de ses poses.
 
-**Demandez votre [diagnostic gratuit et votre devis sur mesure](/contact)**, ou venez nous rencontrer dans nos agences de **Seiches-sur-le-Loir** et de **Doué-en-Anjou** !
+**Demandez votre [diagnostic gratuit et votre devis sur mesure](/contact/)**, ou venez nous rencontrer dans nos agences de **Seiches-sur-le-Loir** et de **Doué-en-Anjou** !

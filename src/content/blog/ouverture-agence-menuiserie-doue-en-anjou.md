@@ -42,21 +42,21 @@ Nous sommes particulièrement fiers de vous annoncer l'ouverture de notre **nouv
 
 ## Un nouveau showroom pour donner vie à vos projets
 
-Que vous envisagiez de mener à bien des travaux de rénovation énergétique ou de concevoir les ouvertures d'une construction neuve, ce nouvel espace a été pensé pour vous inspirer. Vous pourrez y découvrir, en situation réelle, la qualité de nos finitions et la diversité de nos gammes : [fenêtres](/solutions/portes-fenetres/fenetres), [portes d'entrée](/solutions/portes-fenetres/portes-entree), [baies vitrées](/solutions/portes-fenetres/baies-vitrees), [volets](/solutions/portes-fenetres/volets), pergolas et [solutions de fermetures extérieures](/solutions/confort-exterieur).
+Que vous envisagiez de mener à bien des travaux de rénovation énergétique ou de concevoir les ouvertures d'une construction neuve, ce nouvel espace a été pensé pour vous inspirer. Vous pourrez y découvrir, en situation réelle, la qualité de nos finitions et la diversité de nos gammes : [fenêtres](/solutions/portes-fenetres/fenetres/), [portes d'entrée](/solutions/portes-fenetres/portes-entree/), [baies vitrées](/solutions/portes-fenetres/baies-vitrees/), [volets](/solutions/portes-fenetres/volets/), pergolas et [solutions de fermetures extérieures](/solutions/confort-exterieur/).
 
 ## Les plus grands fabricants français à l'honneur
 
-Parce que la réussite d'un projet repose avant tout sur la confiance et la durabilité, nous continuons de nous entourer des plus grands fabricants français, reconnus pour leur sens de l'innovation et leur rigueur technique. Notre agence de Doué-en-Anjou mettra ainsi à l'honneur nos [partenaires historiques](/partenaires) :
+Parce que la réussite d'un projet repose avant tout sur la confiance et la durabilité, nous continuons de nous entourer des plus grands fabricants français, reconnus pour leur sens de l'innovation et leur rigueur technique. Notre agence de Doué-en-Anjou mettra ainsi à l'honneur nos [partenaires historiques](/partenaires/) :
 
-- **[MéO](/partenaires/meo)** : le pionnier et leader de la menuiserie Bois-Aluminium, idéal pour combiner le confort thermique et l'authenticité du bois à l'intérieur, avec la modernité et la résistance de l'aluminium à l'extérieur. En savoir plus sur le [site officiel MéO](https://www.fenetremeo.com/).
-- **[Arcades et Baies](/partenaires/arcades-et-baies)** : spécialiste des fenêtres et portes en PVC et Aluminium, offrant des lignes élégantes et des performances d'isolation de premier ordre, parfaitement adaptées au patrimoine architectural de l'Anjou. Découvrez le [site officiel Arcades et Baies](https://www.arcadesetbaies.com/).
-- **[Bubendorff](/partenaires/bubendorff)** : le leader européen du volet roulant électrique et solaire, garantissant des solutions connectées, durables et éco-responsables pour optimiser le confort thermique de votre habitat en toute saison. Rendez-vous sur le [site officiel Bubendorff](https://www.bubendorff.com/).
+- **[MéO](/partenaires/meo/)** : le pionnier et leader de la menuiserie Bois-Aluminium, idéal pour combiner le confort thermique et l'authenticité du bois à l'intérieur, avec la modernité et la résistance de l'aluminium à l'extérieur. En savoir plus sur le [site officiel MéO](https://www.fenetremeo.com/).
+- **[Arcades et Baies](/partenaires/arcades-et-baies/)** : spécialiste des fenêtres et portes en PVC et Aluminium, offrant des lignes élégantes et des performances d'isolation de premier ordre, parfaitement adaptées au patrimoine architectural de l'Anjou. Découvrez le [site officiel Arcades et Baies](https://www.arcadesetbaies.com/).
+- **[Bubendorff](/partenaires/bubendorff/)** : le leader européen du volet roulant électrique et solaire, garantissant des solutions connectées, durables et éco-responsables pour optimiser le confort thermique de votre habitat en toute saison. Rendez-vous sur le [site officiel Bubendorff](https://www.bubendorff.com/).
 
 ## La pose certifiée RGE : la garantie d'un travail bien fait
 
 Chez Fenêtres sur Loir, nous sommes convaincus qu'une excellente menuiserie n'est rien sans une pose irréprochable. C'est pourquoi toutes nos installations sont réalisées par **nos propres équipes de poseurs qualifiés, sans aucune sous-traitance**.
 
-Notre entreprise bénéficie de la certification **RGE (Reconnu Garant de l'Environnement)**. Pour vous, c'est l'assurance d'un chantier mené dans les règles de l'art, mais aussi la possibilité de prétendre aux **aides financières de l'État** (telles que MaPrimeRénov') pour la rénovation de vos fenêtres et fermetures. Découvrez également nos [réalisations](/realisations) dans tout le Maine-et-Loire.
+Notre entreprise bénéficie de la certification **RGE (Reconnu Garant de l'Environnement)**. Pour vous, c'est l'assurance d'un chantier mené dans les règles de l'art, mais aussi la possibilité de prétendre aux **aides financières de l'État** (telles que MaPrimeRénov') pour la rénovation de vos fenêtres et fermetures. Découvrez également nos [réalisations](/realisations/) dans tout le Maine-et-Loire.
 
 ## Venez nous rencontrer et échanger sur vos projets
 
@@ -70,7 +70,7 @@ Toute l'équipe se réjouit d'avance de vous accueillir dans ce nouveau point de
 
 Vous souhaitez planifier votre visite ou obtenir un itinéraire en un clic ? Découvrez notre toute nouvelle **[Fiche Google Business Profile Fenêtres sur Loir - Doué-en-Anjou](https://share.google/BFyBXSMuxjDl0Yxk8)** pour retrouver nos actualités locales et nous laisser vos premiers messages d'encouragement !
 
-Pour toute demande de devis, vous pouvez également nous contacter directement via notre site internet : **[Demander un rendez-vous personnalisé](/contact)**.
+Pour toute demande de devis, vous pouvez également nous contacter directement via notre site internet : **[Demander un rendez-vous personnalisé](/contact/)**.
 
 À très bientôt à Doué-en-Anjou !
 </content>

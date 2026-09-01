@@ -125,7 +125,7 @@ const zones = communes.map((c) => {
           <g>
             {zones.map((z) => (
               <a
-                href={`/menuisier-${z.slug}`}
+                href={`/menuisier-${z.slug}/`}
                 class="group"
                 data-zone={z.slug}
                 aria-label={`Menuisier à ${z.nom}`}
@@ -199,7 +199,7 @@ const zones = communes.map((c) => {
                 {groupe.communes.map((c) => (
                   <li data-zones-item data-zones-name={normalize(c.nom)}>
                     <a
-                      href={`/menuisier-${c.slug}`}
+                      href={`/menuisier-${c.slug}/`}
                       class="flex items-center justify-between gap-1 rounded-xl border border-[var(--color-border)] bg-white px-3.5 py-3 text-sm font-medium text-[var(--color-fg)] transition-colors active:bg-[var(--color-tint)]"
                     >
                       <span class="truncate">{c.nom}</span>
@@ -214,7 +214,7 @@ const zones = communes.map((c) => {
           ))}
           <p class="hidden py-6 text-center text-sm text-[var(--color-muted)]" data-zones-empty>
             Aucune commune ne correspond. Tout le Maine-et-Loire est desservi —
-            <a href="/contact" class="text-[var(--color-accent)] underline underline-offset-2">contactez-nous</a>.
+            <a href="/contact/" class="text-[var(--color-accent)] underline underline-offset-2">contactez-nous</a>.
           </p>
         </div>
       </div>
@@ -229,7 +229,7 @@ const zones = communes.map((c) => {
           <span class="lg:hidden">Sélectionnez votre commune dans la liste ci-dessus pour ouvrir sa page.</span>
         </p>
         <a
-          href="/zones-intervention"
+          href="/zones-intervention/"
           class="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white shadow-sm transition-colors"
           style="background: var(--color-accent);"
           onmouseover="this.style.background='var(--color-accent-hover)'"

@@ -12,63 +12,63 @@ const isActive = (href: string) =>
   href === "/" ? pathname === "/" : pathname.startsWith(href);
 
 const entrepriseLinks = [
-  { label: "Notre histoire", href: "/entreprise/notre-histoire" },
-  { label: "Notre showroom", href: "/entreprise/notre-histoire#showroom" },
+  { label: "Notre histoire", href: "/entreprise/notre-histoire/" },
+  { label: "Notre showroom", href: "/entreprise/notre-histoire/#showroom" },
 ];
 
 const solutionsColumns = [
   {
     title: "Confort intérieur",
-    href: "/solutions/confort-interieur",
+    href: "/solutions/confort-interieur/",
     image: interieurImg,
     alt: "Confort intérieur murs de lumière verrières par Fenêtres sur Loir",
     items: [
-      { label: "Murs de lumière", href: "/solutions/confort-interieur/murs-de-lumiere" },
-      { label: "Puits de lumière", href: "/solutions/confort-interieur/puits-de-lumiere" },
-      { label: "Verrières", href: "/solutions/confort-interieur/verrieres" },
+      { label: "Murs de lumière", href: "/solutions/confort-interieur/murs-de-lumiere/" },
+      { label: "Puits de lumière", href: "/solutions/confort-interieur/puits-de-lumiere/" },
+      { label: "Verrières", href: "/solutions/confort-interieur/verrieres/" },
     ],
   },
   {
     title: "Confort extérieur",
-    href: "/solutions/confort-exterieur",
+    href: "/solutions/confort-exterieur/",
     image: exterieurImg,
     alt: "Aménagements extérieurs carports marquises sur mesure Fenêtres sur Loir",
     items: [
-      { label: "Portails & Portillons", href: "/solutions/confort-exterieur/portails-portillons" },
-      { label: "Carports & Marquises", href: "/solutions/confort-exterieur/carports-marquises" },
-      { label: "Brise-vues & Claustras", href: "/solutions/confort-exterieur/brise-vues-claustras" },
+      { label: "Portails & Portillons", href: "/solutions/confort-exterieur/portails-portillons/" },
+      { label: "Carports & Marquises", href: "/solutions/confort-exterieur/carports-marquises/" },
+      { label: "Brise-vues & Claustras", href: "/solutions/confort-exterieur/brise-vues-claustras/" },
     ],
   },
   {
     title: "Portes",
-    href: "/solutions/portes-fenetres",
+    href: "/solutions/portes-fenetres/",
     image: portesImg,
     alt: "Portes d'entrée bois-aluminium MéO par Fenêtres sur Loir",
     items: [
-      { label: "Porte d'entrée", href: "/solutions/portes-fenetres/portes-entree" },
-      { label: "Porte-fenêtre", href: "/solutions/portes-fenetres/porte-fenetre" },
-      { label: "Porte de garage", href: "/solutions/portes-fenetres/porte-garage" },
-      { label: "Portes intérieures", href: "/solutions/portes-fenetres/portes-interieures" },
+      { label: "Porte d'entrée", href: "/solutions/portes-fenetres/portes-entree/" },
+      { label: "Porte-fenêtre", href: "/solutions/portes-fenetres/porte-fenetre/" },
+      { label: "Porte de garage", href: "/solutions/portes-fenetres/porte-garage/" },
+      { label: "Portes intérieures", href: "/solutions/portes-fenetres/portes-interieures/" },
     ],
   },
   {
     title: "Fenêtres",
-    href: "/solutions/portes-fenetres",
+    href: "/solutions/portes-fenetres/",
     image: fenetresImg,
     alt: "Fenêtres et baies vitrées sur mesure MéO Arcades & Baies par Fenêtres sur Loir",
     items: [
-      { label: "Fenêtres", href: "/solutions/portes-fenetres/fenetres" },
-      { label: "Baies vitrées", href: "/solutions/portes-fenetres/baies-vitrees" },
-      { label: "Volets", href: "/solutions/portes-fenetres/volets" },
+      { label: "Fenêtres", href: "/solutions/portes-fenetres/fenetres/" },
+      { label: "Baies vitrées", href: "/solutions/portes-fenetres/baies-vitrees/" },
+      { label: "Volets", href: "/solutions/portes-fenetres/volets/" },
     ],
   },
 ];
 
 const partenairesLinks = [
-  { label: "MéO — Menuisier d'Excellence", href: "/partenaires/meo" },
-  { label: "Bubendorff — Point Conseil", href: "/partenaires/bubendorff" },
-  { label: "Arcades & Baies", href: "/partenaires/arcades-et-baies" },
-  { label: "Nos fournisseurs", href: "/partenaires/nos-fournisseurs" },
+  { label: "MéO — Menuisier d'Excellence", href: "/partenaires/meo/" },
+  { label: "Bubendorff — Point Conseil", href: "/partenaires/bubendorff/" },
+  { label: "Arcades & Baies", href: "/partenaires/arcades-et-baies/" },
+  { label: "Nos fournisseurs", href: "/partenaires/nos-fournisseurs/" },
 ];
 
 type NavEntry =
@@ -76,12 +76,12 @@ type NavEntry =
   | { label: string; href: string; menu: "entreprise" | "solutions" | "partenaires" };
 
 const navItems: NavEntry[] = [
-  { label: "L'entreprise", href: "/entreprise/notre-histoire", menu: "entreprise" },
-  { label: "Nos solutions", href: "/solutions/confort-interieur", menu: "solutions" },
-  { label: "Nos partenaires", href: "/partenaires", menu: "partenaires" },
-  { label: "Réalisations", href: "/realisations" },
-  { label: "Zones d'intervention", href: "/zones-intervention" },
-  { label: "Conseils & Services", href: "/conseils-services" },
+  { label: "L'entreprise", href: "/entreprise/notre-histoire/", menu: "entreprise" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur/", menu: "solutions" },
+  { label: "Nos partenaires", href: "/partenaires/", menu: "partenaires" },
+  { label: "Réalisations", href: "/realisations/" },
+  { label: "Zones d'intervention", href: "/zones-intervention/" },
+  { label: "Conseils & Services", href: "/conseils-services/" },
 ];
 ---
 
@@ -145,7 +145,7 @@ const navItems: NavEntry[] = [
 
     <div class="flex items-center gap-3 shrink-0">
       <a
-        href="/contact"
+        href="/contact/"
         class="hidden sm:inline-flex items-center rounded-full px-5 py-2.5 text-[14px] font-medium text-white transition-colors shadow-sm"
         style="background: var(--color-accent);"
         onmouseover="this.style.background='var(--color-accent-hover)'"
@@ -357,23 +357,23 @@ const navItems: NavEntry[] = [
         </li>
 
         <li>
-          <a href="/realisations" class="block px-3 py-3 text-base font-medium text-[var(--color-fg)] rounded-md hover:bg-[var(--color-tint)] hover:text-[var(--color-accent)]">
+          <a href="/realisations/" class="block px-3 py-3 text-base font-medium text-[var(--color-fg)] rounded-md hover:bg-[var(--color-tint)] hover:text-[var(--color-accent)]">
             Réalisations
           </a>
         </li>
         <li>
-          <a href="/zones-intervention" class="block px-3 py-3 text-base font-medium text-[var(--color-fg)] rounded-md hover:bg-[var(--color-tint)] hover:text-[var(--color-accent)]">
+          <a href="/zones-intervention/" class="block px-3 py-3 text-base font-medium text-[var(--color-fg)] rounded-md hover:bg-[var(--color-tint)] hover:text-[var(--color-accent)]">
             Zones d'intervention
           </a>
         </li>
         <li>
-          <a href="/conseils-services" class="block px-3 py-3 text-base font-medium text-[var(--color-fg)] rounded-md hover:bg-[var(--color-tint)] hover:text-[var(--color-accent)]">
+          <a href="/conseils-services/" class="block px-3 py-3 text-base font-medium text-[var(--color-fg)] rounded-md hover:bg-[var(--color-tint)] hover:text-[var(--color-accent)]">
             Conseils & Services
           </a>
         </li>
         <li class="pt-2">
           <a
-            href="/contact"
+            href="/contact/"
             class="inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-[15px] font-medium text-white shadow-sm"
             style="background: var(--color-accent);"
           >

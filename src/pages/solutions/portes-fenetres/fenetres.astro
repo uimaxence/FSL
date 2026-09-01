@@ -4,14 +4,16 @@ import PageProduit from "../../../components/templates/PageProduit.astro";
 import Container from "../../../components/ui/Container.astro";
 import fenetreHero from "../../../assets/porte-fenetre-1.png";
 
-const title = "Fenêtres sur mesure à Angers — Bois, Alu, PVC | Fenêtres sur Loir";
+// GSC : la page classe déjà sur « fenêtre pvc maine et loire » (pos. ~6) et
+// « fenêtre pvc 49 » (pos. ~10) — le title doit couvrir Angers ET le 49 + PVC.
+const title = "Fenêtres sur mesure PVC, alu, bois — Angers & Maine-et-Loire";
 const description =
-  "Pose de fenêtres sur mesure à Angers et dans tout le Maine-et-Loire. Bois, alu, PVC ou bois-alu. Menuisier MéO, certifié RGE Qualibat. Éligible MaPrimeRénov'.";
+  "Pose de fenêtres sur mesure PVC, aluminium, bois et bois-alu à Angers et dans tout le Maine-et-Loire (49). Artisan RGE Qualibat, fabrication française MéO. Devis gratuit sous 48 h.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
-  { label: "Nos solutions", href: "/solutions/confort-interieur" },
-  { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur/" },
+  { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres/" },
   { label: "Fenêtres" },
 ];
 
@@ -49,6 +51,11 @@ const faq = [
     reponse:
       "La pose d'une fenêtre prend généralement de 1 à 3 heures selon le type de dépose (rénovation ou dépose totale). Un chantier complet de maison se déroule le plus souvent sur 1 à 2 jours, réalisé par nos équipes salariées sans sous-traitance, avec nettoyage et évacuation des anciennes menuiseries.",
   },
+  {
+    question: "Quel est le prix d'une fenêtre PVC posée en Maine-et-Loire ?",
+    reponse:
+      "Une fenêtre PVC sur mesure posée coûte généralement entre 400 et 800 € selon les dimensions, le type d'ouverture et le vitrage — c'est le matériau le plus économique. La TVA à 5,5 % et les aides (MaPrimeRénov', primes CEE) s'appliquent lorsque la pose est réalisée par un artisan RGE comme Fenêtres sur Loir. Le devis détaillé est gratuit, partout dans le 49.",
+  },
 ];
 
 const schema = [
@@ -76,7 +83,7 @@ const schema = [
 <BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
   <PageProduit
     eyebrow="Portes & Fenêtres"
-    title="Fenêtres sur mesure à Angers : bois, aluminium, PVC et bois-alu"
+    title="Fenêtres sur mesure à Angers et en Maine-et-Loire : bois, aluminium, PVC et bois-alu"
     heroPlaceholderLabel="Fenêtre bois-alu MéO en gros plan"
     heroImage={fenetreHero}
     heroImageAlt="Fenêtre bois-aluminium MéO sur mesure installée par Fenêtres sur Loir près d'Angers"
@@ -136,7 +143,7 @@ const schema = [
       </li>
     </ul>
 
-    <h2>Fenêtres PVC sur mesure : le meilleur rapport qualité-prix</h2>
+    <h2>Fenêtres PVC en Maine-et-Loire : le meilleur rapport qualité-prix</h2>
     <p>
       La <strong>fenêtre PVC sur mesure</strong> reste le choix le plus demandé en rénovation.
       Elle allie une <strong>excellente isolation thermique et phonique</strong>, un entretien
@@ -150,14 +157,14 @@ const schema = [
     <h2>Fenêtres bois-alu MéO : le haut de gamme sans entretien</h2>
     <p>
       La <strong>fenêtre bois-alu</strong> est notre signature en tant que
-      <a href="/partenaires/meo">Menuisier d'Excellence MéO</a>. Elle réunit deux matériaux
+      <a href="/partenaires/meo/">Menuisier d'Excellence MéO</a>. Elle réunit deux matériaux
       là où chacun est le meilleur : une coque <strong>aluminium à l'extérieur</strong>
       (aucun entretien, aucune reprise de peinture, tenue parfaite face aux intempéries) et
       un <strong>parement bois à l'intérieur</strong> (chaleur du grain, confort visuel,
       isolation naturelle). Particulièrement adaptée aux <strong>constructions RE2020</strong>,
       aux maisons BBC et aux belles rénovations, elle offre des performances thermiques de très
       haut niveau et une esthétique durable. Découvrez notre guide dédié aux
-      <a href="/blog/fenetres-bois-alu-meo">fenêtres bois-alu MéO</a>.
+      <a href="/blog/fenetres-bois-alu-meo/">fenêtres bois-alu MéO</a>.
     </p>
 
     <h2>Performance thermique et acoustique</h2>
@@ -227,10 +234,10 @@ const schema = [
   <section class="pb-20">
     <Container width="default">
       <div class="max-w-3xl mx-auto flex flex-wrap gap-3 justify-center">
-        <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+        <a href="/contact/" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
           Demander un devis gratuit
         </a>
-        <a href="/partenaires/meo" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
+        <a href="/partenaires/meo/" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
           Découvrir MéO
         </a>
       </div>

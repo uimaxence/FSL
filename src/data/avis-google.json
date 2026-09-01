@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-24",
+  "fetchedAt": "2026-09-01",
   "note": "Généré par scripts/fetch-avis-google.mjs — ne pas éditer à la main.",
   "agences": {
     "seiches": {
@@ -18,7 +18,7 @@
           "auteur": "Eric",
           "note": 5,
           "texte": "Nous avons confié le changement de notre vieille porte d'entrée de 45 ans à Fenêtres sur Loir, entreprise familiale qui nous a réservé un très bel accueil.\nLe résultat est au-delà de nos attentes !\nMerci à Rosa pour ses précieux conseils, sa disponibilité, son dynamisme... Sans oublier Manon, Caroline, l'équipe des poseurs pour leur sérieux travail, leur gentillesse...\nDes prix raisonnables, un service de proximité sont un vrai +\nEntreprise à recommander sans hésiter !",
-          "dateRelative": "il y a 2 mois",
+          "dateRelative": "il y a 3 mois",
           "date": "2026-05-27",
           "agence": "seiches"
         },
@@ -26,7 +26,7 @@
           "auteur": "Sebastien Mottier",
           "note": 5,
           "texte": "Nous avons fait appel à Rosa et son entreprise fenetre sur Loir pour le remplacement de nos menuiseries qui ne dataient pas d’hier dans notre maison qui elle aussi ne date pas d’hier. Nous avons été parfaitement accueilli et conseillé et notre maison a retrouvé un look moderne tout en gardant son authenticité.\n\nUne super équipe\nUne super entreprise\n\nLe plus : la proximité et le côté familial",
-          "dateRelative": "il y a un mois",
+          "dateRelative": "il y a 2 mois",
           "date": "2026-07-03",
           "agence": "seiches"
         },
@@ -72,7 +72,7 @@
           "auteur": "Elina Gaudilliere",
           "note": 5,
           "texte": "Super accueil, équipe très chaleureuse et à l'écoute. Les conseils sont clairs, professionnels et parfaitement adaptés à nos besoins. Une entreprise sérieuse que je recommande sans hésiter.",
-          "dateRelative": "il y a un mois",
+          "dateRelative": "il y a 2 mois",
           "date": "2026-06-29",
           "agence": "doue"
         },
@@ -88,7 +88,7 @@
           "auteur": "Emma Audiau",
           "note": 5,
           "texte": "Accueil chaleureux et professionnel avec une équipe à l’écoute et de bon conseil. Travail de qualité et soigné. Je recommande ! 👍🏼",
-          "dateRelative": "il y a un mois",
+          "dateRelative": "il y a 2 mois",
           "date": "2026-06-29",
           "agence": "doue"
         }

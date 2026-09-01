@@ -42,7 +42,7 @@ const mapsQuery = encodeURIComponent(
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
-  { label: "Nos agences", href: "/agences" },
+  { label: "Nos agences", href: "/agences/" },
   { label: agence.ville },
 ];
 
@@ -156,7 +156,7 @@ const schema = {
           {communesAgence.map((c) => (
             <li>
               <a
-                href={`/menuisier-${c.slug}`}
+                href={`/menuisier-${c.slug}/`}
                 class="inline-flex items-center rounded-full bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] px-3.5 py-1.5 text-sm text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
               >
                 Menuisier à {c.nom}
@@ -201,6 +201,6 @@ const schema = {
     title={`Rencontrons-nous à ${agence.ville}`}
     text="Devis gratuit sous 48 h, visite de l'agence ou rendez-vous chez vous : nos équipes vous accompagnent du premier croquis à la pose finale."
     secondaryLabel="Toutes nos agences"
-    secondaryHref="/agences"
+    secondaryHref="/agences/"
   />
 </BaseLayout>

@@ -14,28 +14,75 @@ import porteAlu from "../../../assets/porte-4-alu.png";
 import porteAlu2 from "../../../assets/porte-5-alu.png";
 import porteBois from "../../../assets/porte-6-bois.png";
 
-const title = "Fenêtres sur Loir : un large choix pour vos portes d'entrée près d'Angers";
-const description = "Fenêtres sur Loir, menuiserie d'Excellence MéO, et magasin Arcades & Baies vous conseille et installe vos portes d'entrée sur Angers et ses environs. Bois, alu, PVC, mixte.";
+// Mot-clé en tête de title (l'ancien libellé commençait par la marque, le
+// mot-clé arrivait au 46ᵉ caractère — page bloquée pos. ~27 sur
+// « porte d'entrée angers »).
+const title = "Porte d'entrée sur mesure à Angers — Alu, bois, PVC & mixte";
+const description =
+  "Portes d'entrée sur mesure aluminium, bois, PVC et bois-alu à Angers et en Maine-et-Loire. Serrures multipoints, isolation renforcée, marques françaises MéO et Arcades & Baies. Devis gratuit.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
-  { label: "Nos solutions", href: "/solutions/confort-interieur" },
-  { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres" },
+  { label: "Nos solutions", href: "/solutions/confort-interieur/" },
+  { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres/" },
   { label: "Porte d'entrée" },
 ];
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  provider: { "@id": "https://www.fenetres-sur-loir.fr/#organization" },
-  name: "Porte d'entrée sur mesure",
-  brand: [
-    { "@type": "Brand", name: "MéO" },
-    { "@type": "Brand", name: "Arcades & Baies" },
-  ],
-  description,
-  image: porteHero.src,
-};
+// FAQ : source unique alimentant le bloc visible ET le FAQPage JSON-LD.
+// Cible « prix porte d'entrée », « alu ou pvc », sécurité, délais — requêtes
+// PAA constatées sur la SERP et fortes en réponses IA (GEO).
+const faq = [
+  {
+    question: "Combien coûte une porte d'entrée sur mesure posée ?",
+    reponse:
+      "Comptez généralement de 1 500 à 3 000 € pour une porte PVC ou aluminium d'entrée de gamme posée, et de 3 000 à 6 000 € et plus pour une porte aluminium, bois ou mixte bois-alu haut de gamme MéO. Le prix dépend du matériau, du vitrage, du niveau de sécurité et des dimensions. Nous remettons un devis gratuit et détaillé après prise de mesures à domicile.",
+  },
+  {
+    question: "Porte d'entrée aluminium, PVC ou bois : que choisir ?",
+    reponse:
+      "L'aluminium domine le marché : rigide, sans entretien, disponible dans de nombreux designs contemporains. Le PVC est le plus économique et convient aux budgets maîtrisés. Le bois reste incontournable en secteur protégé (ABF) et pour les maisons de caractère. Le mixte bois-alu combine chaleur intérieure du bois et résistance extérieure de l'aluminium : c'est notre solution haut de gamme MéO.",
+  },
+  {
+    question: "Une porte d'entrée sur mesure est-elle plus sûre ?",
+    reponse:
+      "Oui. Nos portes sont équipées de série de serrures multipoints (3 à 5 points), de paumelles renforcées et, en option, de vitrages feuilletés retardateurs d'effraction 44.6. Une porte bien posée, sans jeu dans le dormant, est le premier facteur de résistance à l'effraction — c'est pourquoi la pose est réalisée par nos propres équipes.",
+  },
+  {
+    question: "Quelles aides pour changer sa porte d'entrée en 2026 ?",
+    reponse:
+      "Les aides à la rénovation énergétique (MaPrimeRénov', CEE) ciblent aujourd'hui en priorité les fenêtres ; la porte d'entrée seule n'y est plus éligible. En rénovation d'un logement de plus de deux ans, vous bénéficiez en revanche de la TVA réduite sur la fourniture et la pose. Nous faisons le point sur les dispositifs applicables à votre projet lors du devis.",
+  },
+  {
+    question: "Quel délai entre la commande et la pose d'une porte d'entrée ?",
+    reponse:
+      "Une porte sur mesure MéO ou Arcades & Baies est fabriquée en France en 6 à 10 semaines selon la gamme et les options. La pose elle-même prend une demi-journée à une journée, dépose de l'ancienne porte et finitions comprises, dans tout le Maine-et-Loire.",
+  },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    provider: { "@id": "https://www.fenetres-sur-loir.fr/#organization" },
+    name: "Porte d'entrée sur mesure",
+    brand: [
+      { "@type": "Brand", name: "MéO" },
+      { "@type": "Brand", name: "Arcades & Baies" },
+    ],
+    description,
+    image: porteHero.src,
+    areaServed: ["Angers", "Maine-et-Loire", "Doué-en-Anjou", "Seiches-sur-le-Loir", "Saumur"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.reponse },
+    })),
+  },
+];
 ---
 
 <BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
@@ -48,16 +95,16 @@ const schema = {
             Portes & Fenêtres → Porte d'entrée
           </p>
           <h1 class="text-balance">
-            Conseils et accompagnement pour vos <strong class="font-bold">portes d'entrée</strong> avec Fenêtres sur Loir sur Angers
+            <strong class="font-bold">Porte d'entrée sur mesure à Angers</strong> : aluminium, bois, PVC et mixte
           </h1>
           <p class="mt-5 text-[15px] leading-relaxed text-[var(--color-muted)]">
-            Chez Fenêtres sur Loir, chaque porte est une promesse de qualité et de style. Imaginez entrer dans votre maison et sentir immédiatement la chaleur de l'accueil, la sécurité de l'intérieur et l'élégance du design.
+            Fenêtres sur Loir conseille, fournit et pose vos portes d'entrée sur mesure à Angers, Saumur et dans tout le Maine-et-Loire. Sécurité, isolation et design : chaque porte est une promesse de qualité, choisie en showroom et posée par nos propres équipes.
           </p>
           <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
-            Nous avons fait le choix de grandes marques françaises — <a href="/partenaires/meo" class="text-[var(--color-accent)] underline underline-offset-4">MéO</a> et <a href="/partenaires/arcades-et-baies" class="text-[var(--color-accent)] underline underline-offset-4">Arcades & Baies</a> — pour leur qualité et leurs possibilités de personnalisation sur-mesure. Certifiés <strong class="text-[var(--color-fg)]">RGE Qualibat</strong>, nous vous accompagnons à chaque étape depuis plus de 20 ans.
+            Nous avons fait le choix de grandes marques françaises — <a href="/partenaires/meo/" class="text-[var(--color-accent)] underline underline-offset-4">MéO</a> et <a href="/partenaires/arcades-et-baies/" class="text-[var(--color-accent)] underline underline-offset-4">Arcades & Baies</a> — pour leur qualité et leurs possibilités de personnalisation sur-mesure. Certifiés <strong class="text-[var(--color-fg)]">RGE Qualibat</strong>, nous vous accompagnons à chaque étape depuis plus de 20 ans.
           </p>
           <div class="mt-7 flex flex-wrap gap-3">
-            <a href="/contact" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+            <a href="/contact/" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
               Demander un devis
             </a>
             <a href="#modeles" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
@@ -281,7 +328,7 @@ const schema = {
         </p>
         <h2>Quelques modèles à la Une</h2>
         <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
-          Trois portes signature de notre partenaire <a href="/partenaires/meo" class="text-[var(--color-accent)] underline underline-offset-4">MéO</a> que vous pouvez découvrir en showroom.
+          Trois portes signature de notre partenaire <a href="/partenaires/meo/" class="text-[var(--color-accent)] underline underline-offset-4">MéO</a> que vous pouvez découvrir en showroom.
         </p>
       </div>
 
@@ -351,11 +398,28 @@ const schema = {
         Découvrir aussi
       </p>
       <ul class="flex flex-wrap items-center justify-center gap-3">
-        <li><a href="/solutions/portes-fenetres/porte-fenetre" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Porte-fenêtre</a></li>
-        <li><a href="/solutions/portes-fenetres/porte-garage" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Porte de garage</a></li>
-        <li><a href="/solutions/portes-fenetres/portes-interieures" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Portes intérieures</a></li>
-        <li><a href="/partenaires/meo" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Notre partenariat MéO</a></li>
+        <li><a href="/solutions/portes-fenetres/porte-fenetre/" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Porte-fenêtre</a></li>
+        <li><a href="/solutions/portes-fenetres/porte-garage/" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Porte de garage</a></li>
+        <li><a href="/solutions/portes-fenetres/portes-interieures/" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Portes intérieures</a></li>
+        <li><a href="/partenaires/meo/" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Notre partenariat MéO</a></li>
       </ul>
+    </Container>
+  </section>
+
+  <!-- FAQ — même source que le FAQPage JSON-LD -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto">
+        <h2>Questions fréquentes sur les portes d'entrée</h2>
+        <div class="mt-8 space-y-8">
+          {faq.map((f) => (
+            <div>
+              <h3 class="text-base">{f.question}</h3>
+              <p class="mt-2 text-[15px] text-[var(--color-muted)] leading-relaxed">{f.reponse}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </Container>
   </section>
 
@@ -363,6 +427,6 @@ const schema = {
     title="Transformez votre entrée en un espace qui reflète votre goût"
     text="Contactez-nous pour découvrir comment nous pouvons vous aider à choisir et installer la porte d'entrée parfaite pour votre maison."
     secondaryLabel="Visiter le showroom"
-    secondaryHref="/entreprise/notre-histoire#showroom"
+    secondaryHref="/entreprise/notre-histoire/#showroom"
   />
 </BaseLayout>

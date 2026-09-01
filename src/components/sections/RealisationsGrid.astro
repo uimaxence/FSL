@@ -28,7 +28,7 @@ const items = all.slice(0, limit);
           title="Des chantiers qui parlent <br/>plus que les mots"
           subtitle="Découvrez quelques-uns de nos projets récents : rénovations, extensions, constructions neuves — chaque réalisation raconte une histoire."
         />
-        <Button href="/realisations" variant="outline">Toutes les réalisations</Button>
+        <Button href="/realisations/" variant="outline">Toutes les réalisations</Button>
       </div>
     )}
 
@@ -37,7 +37,7 @@ const items = all.slice(0, limit);
         const media = getRealisationMedia(r.id);
         return (
           <li>
-            <a href={`/realisations/${r.id}`} class="group block">
+            <a href={`/realisations/${r.id}/`} class="group block">
               <div class="relative aspect-[3/4] overflow-hidden rounded-xl ring-1 ring-[var(--color-border)] mb-4">
                 <Image
                   src={media.cover}

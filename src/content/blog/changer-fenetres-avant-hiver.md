@@ -81,7 +81,7 @@ L'automne offre des températures encore douces, parfaites pour la pose : les jo
 
 ### 3. Des aides à mobiliser avant la fin de l'année
 
-Grâce à notre certification **RGE**, vos travaux ouvrent droit aux **primes CEE**, à la **TVA à 5,5 %**, à l'**éco-PTZ** et, selon vos revenus, à **MaPrimeRénov'**. Lancer le projet à la rentrée laisse le temps d'instruire les dossiers et de réaliser les travaux **sur l'exercice en cours**. Tous les montants et conditions sont détaillés dans notre guide **[Aides pour changer ses fenêtres en 2026](/blog/aides-changer-fenetres-2026)**.
+Grâce à notre certification **RGE**, vos travaux ouvrent droit aux **primes CEE**, à la **TVA à 5,5 %**, à l'**éco-PTZ** et, selon vos revenus, à **MaPrimeRénov'**. Lancer le projet à la rentrée laisse le temps d'instruire les dossiers et de réaliser les travaux **sur l'exercice en cours**. Tous les montants et conditions sont détaillés dans notre guide **[Aides pour changer ses fenêtres en 2026](/blog/aides-changer-fenetres-2026/)**.
 
 ### 4. Le confort dès le premier hiver
 
@@ -93,7 +93,7 @@ Quelques tests simples, à faire dès les premières fraîcheurs de septembre :
 
 - **La flamme de bougie** : approchez une flamme du pourtour de l'ouvrant fermé ; si elle vacille, l'air passe.
 - **La main sur la vitre** : une vitre franchement froide au toucher trahit un simple vitrage ou un double vitrage en fin de vie.
-- **La buée matinale** : une condensation récurrente sur ou entre les vitres est un signal fort — nous lui avons consacré un article complet : **[Condensation sur les fenêtres : causes et solutions](/blog/condensation-fenetres-causes-solutions)**.
+- **La buée matinale** : une condensation récurrente sur ou entre les vitres est un signal fort — nous lui avons consacré un article complet : **[Condensation sur les fenêtres : causes et solutions](/blog/condensation-fenetres-causes-solutions/)**.
 - **Les joints** : écrasés, durcis ou fendillés, ils n'assurent plus l'étanchéité.
 - **La facture** : les fenêtres représentent de l'ordre de **10 à 15 % des déperditions de chaleur** d'un logement mal isolé.
 
@@ -103,15 +103,15 @@ Deux ou trois signes cochés ? Il est temps de faire évaluer vos menuiseries.
 
 ### Des fenêtres à isolation renforcée
 
-Nos [fenêtres sur mesure](/solutions/portes-fenetres/fenetres) associent double vitrage à isolation renforcée (gaz argon, intercalaire « warm edge ») et cadres performants — PVC, aluminium à rupture de pont thermique ou **[bois-alu MéO](/blog/fenetres-bois-alu-meo)**, dont nous sommes **Menuisier d'Excellence**. Pour choisir le matériau adapté à votre maison et à votre budget, consultez notre comparatif **[PVC, alu ou bois-alu](/blog/fenetre-pvc-alu-bois-alu)**.
+Nos [fenêtres sur mesure](/solutions/portes-fenetres/fenetres/) associent double vitrage à isolation renforcée (gaz argon, intercalaire « warm edge ») et cadres performants — PVC, aluminium à rupture de pont thermique ou **[bois-alu MéO](/blog/fenetres-bois-alu-meo/)**, dont nous sommes **Menuisier d'Excellence**. Pour choisir le matériau adapté à votre maison et à votre budget, consultez notre comparatif **[PVC, alu ou bois-alu](/blog/fenetre-pvc-alu-bois-alu/)**.
 
 ### Des volets pour renforcer l'isolation la nuit
 
-Des [volets roulants ou battants](/solutions/portes-fenetres/volets) fermés à la nuit tombée créent une lame d'air isolante devant le vitrage : un complément simple et efficace, motorisable et programmable pour se fermer automatiquement au crépuscule.
+Des [volets roulants ou battants](/solutions/portes-fenetres/volets/) fermés à la nuit tombée créent une lame d'air isolante devant le vitrage : un complément simple et efficace, motorisable et programmable pour se fermer automatiquement au crépuscule.
 
 ### Une porte d'entrée qui ne fuit plus
 
-Souvent oubliée, la [porte d'entrée](/solutions/portes-fenetres/portes-entree) est une source majeure de courants d'air dans les maisons anciennes. Les modèles actuels en aluminium ou acier combinent isolation, sécurité et design.
+Souvent oubliée, la [porte d'entrée](/solutions/portes-fenetres/portes-entree/) est une source majeure de courants d'air dans les maisons anciennes. Les modèles actuels en aluminium ou acier combinent isolation, sécurité et design.
 
 ## Votre rétroplanning avant l'hiver
 
@@ -121,7 +121,7 @@ Souvent oubliée, la [porte d'entrée](/solutions/portes-fenetres/portes-entree)
 
 ## Un menuisier local, d'Angers à Saumur
 
-Depuis Seiches-sur-le-Loir et Doué-en-Anjou, nos équipes interviennent à **Angers** et dans tout le [Maine-et-Loire](/zones-intervention) — retrouvez le détail de nos services sur notre page **[menuisier à Angers](/menuisier-angers)**. Avec **plus de 2 000 chantiers réalisés**, une pose **100 % en interne** et deux [showrooms](/agences) pour comparer matériaux et vitrages en situation réelle, nous vous accompagnons du diagnostic à la pose. Découvrez [nos réalisations](/realisations) dans la région.
+Depuis Seiches-sur-le-Loir et Doué-en-Anjou, nos équipes interviennent à **Angers** et dans tout le [Maine-et-Loire](/zones-intervention/) — retrouvez le détail de nos services sur notre page **[menuisier à Angers](/menuisier-angers/)**. Avec **plus de 2 000 chantiers réalisés**, une pose **100 % en interne** et deux [showrooms](/agences/) pour comparer matériaux et vitrages en situation réelle, nous vous accompagnons du diagnostic à la pose. Découvrez [nos réalisations](/realisations/) dans la région.
 
 ## Questions fréquentes
 
@@ -145,4 +145,4 @@ Primes **CEE**, **TVA à 5,5 %**, **éco-PTZ** et **MaPrimeRénov'** selon votre
 
 Septembre est le mois idéal : les délais sont encore courts, les aides mobilisables, et vos nouvelles fenêtres seront posées avant les premiers grands froids.
 
-**[Demandez votre devis gratuit](/contact)** ou appelez-nous au **02 41 77 04 08**. Vous pouvez aussi pousser la porte de nos showrooms de **Seiches-sur-le-Loir** et **Doué-en-Anjou**.
+**[Demandez votre devis gratuit](/contact/)** ou appelez-nous au **02 41 77 04 08**. Vous pouvez aussi pousser la porte de nos showrooms de **Seiches-sur-le-Loir** et **Doué-en-Anjou**.

@@ -24,7 +24,8 @@ export const ORG_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 
 export function agencyUrl(cle: AgenceRattachement): string {
-  return `${SITE_URL}/agences/${AGENCES_CONTENU[cle].slug}`;
+  // Trailing slash : forme canonique des URL du build Astro (format directory).
+  return `${SITE_URL}/agences/${AGENCES_CONTENU[cle].slug}/`;
 }
 export function agencyId(cle: AgenceRattachement): string {
   return `${agencyUrl(cle)}#business`;
@@ -145,7 +146,7 @@ export interface FaqEntry {
  * Service (provider → l'agence, areaServed → la ville) + FAQPage éventuel.
  */
 export function communeGraph(commune: Commune, faq: FaqEntry[] = []) {
-  const communeUrl = `${SITE_URL}/menuisier-${commune.slug}`;
+  const communeUrl = `${SITE_URL}/menuisier-${commune.slug}/`;
   const service = {
     "@type": "Service",
     "@id": `${communeUrl}#service`,

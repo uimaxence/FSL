@@ -86,7 +86,7 @@ Ce qui nous distingue :
 
 - **Aucune sous-traitance** : 100 % des poses sont assurées par nos propres salariés ;
 - **La certification RGE**, qui ouvre droit aux aides à la rénovation énergétique ;
-- le label **[Menuisier d'Excellence MéO](/partenaires/meo)**, gage d'une maîtrise parfaite du bois-aluminium ;
+- le label **[Menuisier d'Excellence MéO](/partenaires/meo/)**, gage d'une maîtrise parfaite du bois-aluminium ;
 - un **interlocuteur unique**, du devis gratuit jusqu'au service après-vente.
 
 <div class="not-prose my-10 grid grid-cols-3 gap-3 sm:gap-4 text-center">
@@ -108,21 +108,21 @@ Ce qui nous distingue :
 
 Nous couvrons l'ensemble des besoins en menuiserie, en neuf comme en rénovation :
 
-- **[Fenêtres](/solutions/portes-fenetres/fenetres) et [baies vitrées](/solutions/portes-fenetres/baies-vitrees)** en PVC, aluminium ou bois-alu, pour gagner en isolation et en luminosité ;
-- **[Portes d'entrée](/solutions/portes-fenetres/portes-entree)** sécurisées et design, en aluminium ou acier ;
-- **[Volets](/solutions/portes-fenetres/volets)** roulants, battants ou solaires, avec motorisation ;
-- **[Portes de garage](/solutions/portes-fenetres/porte-garage)** sectionnelles ou enroulables ;
-- **[Portails et portillons](/solutions/confort-exterieur/portails-portillons)** assortis à votre clôture, motorisables.
+- **[Fenêtres](/solutions/portes-fenetres/fenetres/) et [baies vitrées](/solutions/portes-fenetres/baies-vitrees/)** en PVC, aluminium ou bois-alu, pour gagner en isolation et en luminosité ;
+- **[Portes d'entrée](/solutions/portes-fenetres/portes-entree/)** sécurisées et design, en aluminium ou acier ;
+- **[Volets](/solutions/portes-fenetres/volets/)** roulants, battants ou solaires, avec motorisation ;
+- **[Portes de garage](/solutions/portes-fenetres/porte-garage/)** sectionnelles ou enroulables ;
+- **[Portails et portillons](/solutions/confort-exterieur/portails-portillons/)** assortis à votre clôture, motorisables.
 
 Chaque projet démarre par une **visite technique gratuite** à votre domicile : prise de mesures, conseils sur les matériaux, les coloris et le type de vitrage adaptés à votre habitation choletaise.
 
 ## Le bois-alu MéO : le haut de gamme sans entretien
 
-Pour conjuguer le charme du bois à l'intérieur et la résistance de l'aluminium en façade, nous sommes **Menuisier d'Excellence MéO**. Une solution particulièrement adaptée aux maisons de caractère des Mauges, où l'on souhaite préserver le cachet intérieur tout en modernisant l'extérieur. Découvrez notre guide dédié aux **[fenêtres bois-alu MéO](/blog/fenetres-bois-alu-meo)**.
+Pour conjuguer le charme du bois à l'intérieur et la résistance de l'aluminium en façade, nous sommes **Menuisier d'Excellence MéO**. Une solution particulièrement adaptée aux maisons de caractère des Mauges, où l'on souhaite préserver le cachet intérieur tout en modernisant l'extérieur. Découvrez notre guide dédié aux **[fenêtres bois-alu MéO](/blog/fenetres-bois-alu-meo/)**.
 
 ## Changer ses fenêtres à Cholet : quelles aides ?
 
-Parce que nous sommes **certifiés RGE**, vos travaux de rénovation énergétique à Cholet peuvent être financés par plusieurs dispositifs : **primes CEE**, **éco-PTZ**, **TVA à 5,5 %** et **MaPrimeRénov'** selon votre projet et vos revenus. Nous vous aidons à monter votre dossier. Pour tout comprendre, consultez notre guide **[Aides pour changer ses fenêtres en 2026](/blog/aides-changer-fenetres-2026)**.
+Parce que nous sommes **certifiés RGE**, vos travaux de rénovation énergétique à Cholet peuvent être financés par plusieurs dispositifs : **primes CEE**, **éco-PTZ**, **TVA à 5,5 %** et **MaPrimeRénov'** selon votre projet et vos revenus. Nous vous aidons à monter votre dossier. Pour tout comprendre, consultez notre guide **[Aides pour changer ses fenêtres en 2026](/blog/aides-changer-fenetres-2026/)**.
 
 ## Cholet et les Mauges : notre zone d'intervention
 
@@ -130,7 +130,7 @@ Au-delà de Cholet, nos équipes se déplacent dans toutes les communes des Maug
 
 **Sèvremoine**, **Beaupréau-en-Mauges**, **Chemillé-en-Anjou**, **Montrevault-sur-Èvre**, **Mauges-sur-Loire**, Cholet et leurs communes déléguées… et partout dans le **Maine-et-Loire** (49).
 
-Retrouvez le détail de nos services sur notre page dédiée **[menuisier à Cholet](/menuisier-cholet)**, ou parcourez l'ensemble de nos **[zones d'intervention](/zones-intervention)**.
+Retrouvez le détail de nos services sur notre page dédiée **[menuisier à Cholet](/menuisier-cholet/)**, ou parcourez l'ensemble de nos **[zones d'intervention](/zones-intervention/)**.
 
 ## FAQ — Menuisier à Cholet
 
@@ -154,4 +154,4 @@ Nos showrooms se situent à Seiches-sur-le-Loir et à Doué-en-Anjou. Un conseil
 
 Fenêtres sur Loir met à votre service plus de 20 ans d'expérience, la certification **RGE** et une équipe qui ne sous-traite jamais ses poses.
 
-**[Demandez votre devis gratuit](/contact)** pour votre projet à Cholet, ou appelez-nous au **02 41 77 04 08**.
+**[Demandez votre devis gratuit](/contact/)** pour votre projet à Cholet, ou appelez-nous au **02 41 77 04 08**.

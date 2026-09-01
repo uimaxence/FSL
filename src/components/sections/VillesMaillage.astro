@@ -22,7 +22,7 @@ const intro = produit
       {grandesVilles.map((v) => (
         <li>
           <a
-            href={`/menuisier-${v.slug}`}
+            href={`/menuisier-${v.slug}/`}
             class="inline-flex items-center gap-1.5 rounded-full bg-white ring-1 ring-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
           >
             Menuisier à {v.nom}
@@ -34,7 +34,7 @@ const intro = produit
       ))}
       <li>
         <a
-          href="/zones-intervention"
+          href="/zones-intervention/"
           class="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-[var(--color-accent)] hover:underline"
         >
           Toutes nos zones →
