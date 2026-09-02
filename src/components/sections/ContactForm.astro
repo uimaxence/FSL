@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import Container from "../ui/Container.astro";
 import qualibatLogo from "../../assets/qualibat-logo.png";
+import { AGENCES } from "../../config/business";
 
 interface Props {
   withHeading?: boolean;
@@ -13,6 +14,13 @@ const { withHeading = true } = Astro.props;
 // Définie dans le fichier .env : PUBLIC_WEB3FORMS_KEY=xxxx-xxxx-...
 // Sur Vercel : à ajouter dans Settings → Environment Variables.
 const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? "";
+
+// Biais géographique pour l'autocomplétion d'adresse (API Adresse / BAN) :
+// point médian entre les deux agences, pour remonter d'abord les adresses locales.
+const biaisAdresse = {
+  lat: ((AGENCES.seiches.lat + AGENCES.doue.lat) / 2).toFixed(4),
+  lon: ((AGENCES.seiches.lng + AGENCES.doue.lng) / 2).toFixed(4),
+};
 
 const inputBase =
   "w-full rounded-md border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm placeholder:text-[var(--color-muted)]/60 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/30 focus:border-[var(--color-accent)] transition-colors";
@@ -114,10 +122,36 @@ const bullets = [
           </label>
         </div>
 
-        <label class="block">
-          <span class={labelBase}>Adresse <span class="text-[var(--color-accent)]">*</span></span>
-          <input type="text" name="adresse" required class={inputBase} placeholder="Adresse postale" autocomplete="street-address" />
-        </label>
+        <!--
+          Adresse avec autocomplétion via l'API Adresse (Base Adresse Nationale) :
+          service public, gratuit, sans clé ni cookie, France uniquement.
+          Amélioration progressive : sans JS ou si l'API ne répond pas, le champ
+          reste une saisie libre classique.
+        -->
+        <div class="relative">
+          <label for="contact-adresse" class={labelBase}>Adresse <span class="text-[var(--color-accent)]">*</span></label>
+          <input
+            type="text"
+            id="contact-adresse"
+            name="adresse"
+            required
+            class={inputBase}
+            placeholder="Adresse postale"
+            autocomplete="street-address"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-expanded="false"
+            aria-controls="contact-adresse-suggestions"
+            data-lat={biaisAdresse.lat}
+            data-lon={biaisAdresse.lon}
+          />
+          <ul
+            id="contact-adresse-suggestions"
+            role="listbox"
+            aria-label="Suggestions d'adresses"
+            class="hidden absolute left-0 right-0 top-full z-20 mt-1 max-h-64 overflow-y-auto rounded-md border border-[var(--color-border)] bg-white py-1 text-sm shadow-lg"
+          ></ul>
+        </div>
 
         <div class="grid sm:grid-cols-2 gap-5">
           <label class="block">
@@ -226,5 +260,145 @@ const bullets = [
         button.textContent = defaultLabel;
       }
     });
+  }
+</script>
+
+<script>
+  // Autocomplétion d'adresse via l'API Adresse (Base Adresse Nationale).
+  // Doc : https://adresse.data.gouv.fr/outils/api-doc/adresse
+  // Aucune clé, aucun cookie ; seule la saisie du champ est envoyée à l'API.
+  const adresseInput = document.getElementById("contact-adresse") as HTMLInputElement | null;
+  const adresseListe = document.getElementById("contact-adresse-suggestions") as HTMLUListElement | null;
+
+  if (adresseInput && adresseListe) {
+    const ENDPOINT = "https://api-adresse.data.gouv.fr/search/";
+    const MIN_CARACTERES = 3;
+    const DELAI_MS = 250;
+    const LIMITE = 5;
+
+    let minuteur: ReturnType<typeof setTimeout> | undefined;
+    let controleur: AbortController | null = null;
+    let suggestions: string[] = [];
+    let actif = -1;
+
+    const fermer = () => {
+      controleur?.abort();
+      suggestions = [];
+      actif = -1;
+      adresseListe.innerHTML = "";
+      adresseListe.classList.add("hidden");
+      adresseInput.setAttribute("aria-expanded", "false");
+      adresseInput.removeAttribute("aria-activedescendant");
+    };
+
+    const surligner = (index: number) => {
+      actif = index;
+      adresseListe.querySelectorAll<HTMLLIElement>("li").forEach((li, i) => {
+        const courant = i === index;
+        li.setAttribute("aria-selected", courant ? "true" : "false");
+        if (courant) {
+          adresseInput.setAttribute("aria-activedescendant", li.id);
+          li.scrollIntoView({ block: "nearest" });
+        }
+      });
+    };
+
+    const choisir = (index: number) => {
+      const label = suggestions[index];
+      if (!label) return;
+      adresseInput.value = label;
+      fermer();
+    };
+
+    const afficher = () => {
+      if (suggestions.length === 0) {
+        fermer();
+        return;
+      }
+      adresseListe.innerHTML = "";
+      suggestions.forEach((label, i) => {
+        const li = document.createElement("li");
+        li.id = `contact-adresse-option-${i}`;
+        li.setAttribute("role", "option");
+        li.setAttribute("aria-selected", "false");
+        li.dataset.index = String(i);
+        li.textContent = label;
+        li.className =
+          "cursor-pointer px-4 py-2 text-[var(--color-fg)] hover:bg-[var(--color-tint)] aria-selected:bg-[var(--color-tint)]";
+        adresseListe.appendChild(li);
+      });
+      actif = -1;
+      adresseListe.classList.remove("hidden");
+      adresseInput.setAttribute("aria-expanded", "true");
+    };
+
+    const chercher = async (q: string) => {
+      controleur?.abort();
+      controleur = new AbortController();
+      const params = new URLSearchParams({ q, limit: String(LIMITE), autocomplete: "1" });
+      if (adresseInput.dataset.lat && adresseInput.dataset.lon) {
+        params.set("lat", adresseInput.dataset.lat);
+        params.set("lon", adresseInput.dataset.lon);
+      }
+      try {
+        const reponse = await fetch(`${ENDPOINT}?${params}`, { signal: controleur.signal });
+        if (!reponse.ok) throw new Error(String(reponse.status));
+        const data = (await reponse.json()) as { features?: { properties?: { label?: string } }[] };
+        // La saisie a pu changer pendant la requête : on ignore un résultat périmé.
+        if (adresseInput.value.trim() !== q) return;
+        suggestions = (data.features ?? [])
+          .map((f) => f.properties?.label ?? "")
+          .filter((label, i, tous) => label !== "" && tous.indexOf(label) === i);
+        afficher();
+      } catch (err) {
+        if ((err as Error).name === "AbortError") return;
+        // API indisponible : on laisse la saisie libre, sans message.
+        fermer();
+      }
+    };
+
+    adresseInput.addEventListener("input", () => {
+      clearTimeout(minuteur);
+      const q = adresseInput.value.trim();
+      if (q.length < MIN_CARACTERES) {
+        fermer();
+        return;
+      }
+      minuteur = setTimeout(() => chercher(q), DELAI_MS);
+    });
+
+    adresseInput.addEventListener("keydown", (event) => {
+      if (adresseListe.classList.contains("hidden")) return;
+      switch (event.key) {
+        case "ArrowDown":
+          event.preventDefault();
+          surligner((actif + 1) % suggestions.length);
+          break;
+        case "ArrowUp":
+          event.preventDefault();
+          surligner((actif - 1 + suggestions.length) % suggestions.length);
+          break;
+        case "Enter":
+          if (actif >= 0) {
+            event.preventDefault();
+            choisir(actif);
+          }
+          break;
+        case "Escape":
+          event.preventDefault();
+          fermer();
+          break;
+      }
+    });
+
+    // mousedown + preventDefault : le champ garde le focus, sinon le blur
+    // fermerait la liste avant que le clic sur l'option n'arrive.
+    adresseListe.addEventListener("mousedown", (event) => event.preventDefault());
+    adresseListe.addEventListener("click", (event) => {
+      const li = (event.target as HTMLElement).closest<HTMLLIElement>("li[data-index]");
+      if (li) choisir(Number(li.dataset.index));
+    });
+
+    adresseInput.addEventListener("blur", fermer);
   }
 </script>
