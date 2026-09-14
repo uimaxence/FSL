@@ -4,9 +4,16 @@ import PageProduit from "../../../components/templates/PageProduit.astro";
 import Container from "../../../components/ui/Container.astro";
 import voletHero from "../../../assets/realisation-pontsdece-1.png";
 
-const title = "Volets roulants Bubendorff à Angers — Solaires, électriques, connectés | Fenêtres sur Loir";
+// SEO (14/09/2026) : « volet roulant angers » / « volets roulants angers »
+// (90 rech./mois chacun, KD 0) + « volet roulant maine et loire ». La page ne
+// sortait que sur 27 impressions/12 mois. La SERP locale mêle installateurs et
+// réparateurs (Repar'Stores, Removo, Dokteur Store), et les « autres questions »
+// portent sur le prix, la durée de vie et la déductibilité → title/H1 avec
+// ville + département, section dépannage/SAV reliée au guide « volet bloqué »,
+// FAQ visible + FAQPage.
+const title = "Volets roulants à Angers & Maine-et-Loire — Solaires, électriques, battants | Point Conseil Bubendorff";
 const description =
-  "Pose de volets roulants solaires, électriques et connectés à Angers et dans le Maine-et-Loire. Point Conseil Bubendorff, volets battants. Certifié RGE Qualibat.";
+  "Pose de volets roulants solaires, électriques, connectés et de volets battants à Angers et dans tout le Maine-et-Loire (49). Point Conseil Bubendorff, SAV direct, garantie 7 ans. Certifié RGE Qualibat, devis gratuit.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -15,25 +22,71 @@ const breadcrumb = [
   { label: "Volets" },
 ];
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  provider: { "@id": "https://www.fenetres-sur-loir.fr/#organization" },
-  name: "Volets roulants solaires, électriques et connectés Bubendorff",
-  brand: { "@type": "Brand", name: "Bubendorff" },
-  description,
-  areaServed: ["Angers", "Maine-et-Loire", "Doué-en-Anjou", "Seiches-sur-le-Loir"],
-};
+// FAQ : source unique pour le bloc visible ET le FAQPage JSON-LD.
+const faq = [
+  {
+    question: "De quoi dépend le prix d'un volet roulant posé ?",
+    reponse:
+      "Des dimensions de la baie, du type de coffre (rénovation, tunnel ou bloc-baie), du matériau des lames, de la motorisation — filaire, radio ou solaire — et des options de commande (télécommande, connecté). Le solaire Bubendorff évite tout travail électrique, pas de saignée ni de raccordement au tableau, ce qui compense en grande partie son surcoût à l'achat. Le devis avec prise de mesures à domicile est gratuit.",
+  },
+  {
+    question: "Quelle est la durée de vie d'un volet roulant électrique ?",
+    reponse:
+      "Un volet roulant motorisé de qualité dure 15 à 25 ans. Les volets Bubendorff sont testés sur 30 000 cycles d'ouverture-fermeture et garantis 7 ans, moteur et batterie compris. Les pièces d'usure — attaches de tablier, condensateur sur les moteurs filaires, batterie sur les solaires — se remplacent sans changer le volet, ce qui prolonge encore sa durée de vie.",
+  },
+  {
+    question: "Les volets roulants sont-ils éligibles aux aides ou déductibles des impôts ?",
+    reponse:
+      "Posés seuls, non : les volets roulants ne sont plus couverts par MaPrimeRénov' ni par les primes CEE, et le crédit d'impôt a disparu depuis 2021. Dans un logement de plus de deux ans, la fourniture et la pose bénéficient de la TVA réduite à 10 %. Posés en même temps que des fenêtres éligibles par un artisan RGE, ils peuvent sous conditions entrer dans le périmètre de la TVA à 5,5 % au titre des travaux induits et s'intégrer à un éco-prêt à taux zéro : nous étudions le montage financier global de votre projet.",
+  },
+  {
+    question: "Volet roulant solaire ou électrique : lequel choisir ?",
+    reponse:
+      "En rénovation, le solaire s'impose dans la grande majorité des cas : aucun câblage ni saignée, pose en quelques heures par fenêtre, fonctionnement maintenu en cas de coupure de courant. L'électrique filaire reste pertinent en construction neuve, où les gaines sont prévues, et pour les centralisations complexes. Dans les deux cas, la commande radio et le pilotage par application sont possibles.",
+  },
+  {
+    question: "Mon volet roulant est bloqué, que faire ?",
+    reponse:
+      "Commencez par les vérifications simples, sans jamais forcer : piles de la télécommande, disjoncteur des volets, protection thermique du moteur (il repart de lui-même après 15 à 30 minutes), lame sortie de sa coulisse. Notre guide « Volet roulant bloqué : que faire ? » détaille le diagnostic panne par panne. Pour les volets Bubendorff que nous avons posés, appelez directement notre SAV à Seiches-sur-le-Loir.",
+  },
+  {
+    question: "Combien de temps dure la pose d'un volet roulant ?",
+    reponse:
+      "Une demi-journée par fenêtre pour un volet roulant en rénovation, coffre compris ; une maison complète se pose en général en une à deux journées. Nos équipes salariées réalisent la pose, le raccordement ou la mise en service solaire, le paramétrage des télécommandes et le test de chaque commande avec vous.",
+  },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    provider: { "@id": "https://www.fenetres-sur-loir.fr/#organization" },
+    name: "Volets roulants solaires, électriques et connectés Bubendorff",
+    serviceType: "Installation de volets roulants",
+    brand: { "@type": "Brand", name: "Bubendorff" },
+    description,
+    areaServed: ["Angers", "Maine-et-Loire", "Saumur", "Doué-en-Anjou", "Seiches-sur-le-Loir"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.reponse },
+    })),
+  },
+];
 ---
 
 <BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
   <PageProduit
     eyebrow="Portes & Fenêtres"
-    title="Volets roulants Bubendorff à Angers : solaires, électriques et connectés"
+    title="Volets roulants à Angers et en Maine-et-Loire : solaires, électriques, connectés et battants"
     heroPlaceholderLabel="Volet roulant Bubendorff en façade"
     heroImage={voletHero}
     heroImageAlt="Façade équipée de menuiseries et volets roulants posés par Fenêtres sur Loir près d'Angers"
-    lead="Point Conseil Bubendorff officiel à Seiches-sur-le-Loir, Fenêtres sur Loir installe vos volets roulants, battants et connectés à Angers, Doué-en-Anjou et partout dans le Maine-et-Loire — avec SAV direct sans intermédiaire."
+    lead="Point Conseil Bubendorff officiel à Seiches-sur-le-Loir et Doué-en-Anjou, Fenêtres sur Loir installe vos volets roulants, battants et connectés à Angers, Saumur et partout dans le Maine-et-Loire — avec SAV direct, sans intermédiaire."
   >
     <p>
       Le volet est <strong>l'allié quotidien</strong> de votre maison : il protège du froid, du
@@ -43,7 +96,7 @@ const schema = {
       à Angers, Doué-en-Anjou, Tiercé, Baugé-en-Anjou et dans tout le Maine-et-Loire.
     </p>
 
-    <h2>Tous les types de volets, posés près d'Angers</h2>
+    <h2>Tous les types de volets, posés à Angers et dans le 49</h2>
     <ul>
       <li>
         <strong>Volets roulants solaires Bubendorff</strong> — <strong>Aucun raccordement
@@ -122,33 +175,59 @@ const schema = {
       Saumur ou de Tiercé nous recommandent depuis plus de 20 ans.
     </p>
 
+    <h2>Volet roulant bloqué ou en panne : que faire ?</h2>
+    <p>
+      Un volet qui ne remonte plus, qui ne descend plus ou qui se bloque à mi-hauteur n'est pas
+      forcément à remplacer. Piles de télécommande, disjoncteur, protection thermique du moteur,
+      lame sortie de sa coulisse : une partie des pannes se règle en quelques minutes, à condition
+      de <strong>ne jamais forcer</strong>. Nous avons rassemblé le diagnostic complet, panne par
+      panne, dans notre guide
+      <a href="/blog/volet-roulant-bloque-que-faire/">Volet roulant bloqué : que faire ?</a>
+    </p>
+    <p>
+      Pour les <strong>volets Bubendorff posés par Fenêtres sur Loir</strong>, notre SAV prend le
+      relais : diagnostic, pièces, batterie ou moteur sous garantie 7 ans. Pour un volet ancien
+      d'une autre marque, nous vous disons honnêtement si une réparation vaut le coup ou si un
+      remplacement — souvent par un volet solaire, sans travaux électriques — est plus raisonnable.
+    </p>
+
     <h2>Aides à la rénovation pour vos volets</h2>
     <p>
-      Le remplacement de volets seul n'est en général pas éligible à MaPrimeRénov' (qui cible
-      principalement les menuiseries vitrées). En revanche, un <strong>changement combiné
-      fenêtres + volets</strong> permet de cumuler plusieurs avantages :
+      Le remplacement de volets seul n'est pas éligible à MaPrimeRénov' ni aux primes CEE, qui
+      ciblent les menuiseries vitrées et l'isolation. Il bénéficie en revanche de la
+      <strong>TVA réduite à 10 %</strong> dans un logement de plus de deux ans. Et un
+      <strong>changement combiné fenêtres + volets</strong> permet d'aller plus loin :
     </p>
     <ul>
-      <li><strong>TVA à 5,5 %</strong> sur la fourniture et la pose des volets quand ils sont posés en même temps que vos fenêtres dans une logique d'amélioration énergétique.</li>
-      <li><strong>Certificats d'Économies d'Énergie (CEE)</strong> sur l'opération globale.</li>
+      <li><strong>TVA à 5,5 %</strong>, sous conditions, sur la fourniture et la pose des volets réalisées en même temps que vos fenêtres dans une logique d'amélioration énergétique (travaux induits).</li>
+      <li><strong>Certificats d'Économies d'Énergie (CEE)</strong> sur les fenêtres de l'opération globale.</li>
       <li>Éco-prêt à taux zéro inclus dans un bouquet de travaux RGE.</li>
     </ul>
     <p>
       Nous étudions votre projet dans son ensemble pour optimiser le montage financier — n'hésitez
-      pas à demander un devis combiné.
+      pas à demander un devis combiné, et consultez notre
+      <a href="/blog/aides-changer-fenetres-2026/">guide des aides 2026</a>.
     </p>
 
     <h2>Notre zone d'intervention</h2>
     <p>
-      Nos équipes interviennent à <strong>Angers</strong> et dans son agglomération (Avrillé,
-      Beaucouzé, Trélazé, Saint-Barthélemy-d'Anjou, Les Ponts-de-Cé), <strong>Doué-en-Anjou</strong>,
-      <strong>Saumur</strong>, <strong>Tiercé</strong>, <strong>Baugé-en-Anjou</strong>,
+      Nos équipes interviennent à <a href="/menuisier-angers/">Angers</a> et dans son agglomération (Avrillé,
+      Beaucouzé, Trélazé, Saint-Barthélemy-d'Anjou, Les Ponts-de-Cé), à <strong>Doué-en-Anjou</strong>,
+      <a href="/menuisier-saumur/">Saumur</a>, <strong>Tiercé</strong>, <strong>Baugé-en-Anjou</strong>,
       <strong>Durtal</strong>, <strong>Châteauneuf-sur-Sarthe</strong>,
       <strong>Le Lion-d'Angers</strong>, <strong>Beaufort-en-Anjou</strong>,
-      <strong>La Flèche</strong> et toutes les communes du Maine-et-Loire et du sud-Sarthe.
-      Une agence ouvrira prochainement à <strong>Doué-en-Anjou</strong> pour mieux couvrir le sud
-      du département.
+      <strong>La Flèche</strong> et dans toutes les communes du <a href="/zones-intervention/">Maine-et-Loire</a>
+      et du sud-Sarthe. Notre <a href="/agences/doue-en-anjou/">agence de Doué-en-Anjou</a> couvre le sud
+      du département et le Saumurois.
     </p>
+
+    <h2>Questions fréquentes sur les volets roulants</h2>
+    {faq.map((f) => (
+      <>
+        <h3>{f.question}</h3>
+        <p>{f.reponse}</p>
+      </>
+    ))}
   </PageProduit>
 
   <section class="pb-20">

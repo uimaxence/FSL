@@ -29,7 +29,7 @@ export const GET: APIRoute = () => {
     ["Portes d'entrée", "/solutions/portes-fenetres/portes-entree/", "Portes d'entrée alu, bois, PVC et bois-alu, serrures multipoints."],
     ["Baies vitrées", "/solutions/portes-fenetres/baies-vitrees/", "Baies coulissantes, à galandage, à levage."],
     ["Volets & stores", "/solutions/portes-fenetres/volets/", "Volets roulants, battants et solaires Bubendorff."],
-    ["Portes de garage", "/solutions/portes-fenetres/porte-garage/", "Portes de garage sectionnelles et enroulables."],
+    ["Portes de garage", "/solutions/portes-fenetres/porte-garage/", "Portes de garage sectionnelles, latérales et enroulables, motorisées, à Angers et en Maine-et-Loire."],
     ["Verrières", "/solutions/confort-interieur/verrieres/", "Verrières d'atelier acier ou aluminium sur mesure."],
     ["Carports & pergolas", "/solutions/confort-exterieur/carports-marquises/", "Carports, marquises et pergolas bioclimatiques."],
     ["Portails & portillons", "/solutions/confort-exterieur/portails-portillons/", "Portails et portillons aluminium."],
@@ -37,7 +37,7 @@ export const GET: APIRoute = () => {
     ["Nos agences", "/agences/", "Seiches-sur-le-Loir et Doué-en-Anjou."],
     ["Zones d'intervention", "/zones-intervention/", "Toutes les communes desservies en Maine-et-Loire."],
     ["Réalisations", "/realisations/", "Chantiers de menuiserie réalisés en Maine-et-Loire."],
-    ["Conseils & blog", "/conseils-services/", "Guides : choisir ses fenêtres, condensation, aides à la rénovation."],
+    ["Conseils & blog", "/conseils-services/", "Guides : choisir ses fenêtres, condensation, aides à la rénovation, volet roulant bloqué."],
     ["Contact & devis", "/contact/", "Devis gratuit sous 48 h."],
   ];
 

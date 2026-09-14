@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-01",
+  "fetchedAt": "2026-09-14",
   "note": "Généré par scripts/fetch-avis-google.mjs — ne pas éditer à la main.",
   "agences": {
     "seiches": {
@@ -42,7 +42,7 @@
           "auteur": "Evelyne Tesson",
           "note": 5,
           "texte": "Je suis très satisfait(e) de la pose de mon portail. Le travail a été réalisé avec sérieux, soin et professionnalisme. L’équipe est ponctuelle, à l’écoute et de bon conseil. Le résultat est conforme à mes attentes, voire au-delà. Les finitions sont propres et le chantier a été laissé très propre après intervention.\nJe recommande vivement cette entreprise pour la qualité de son travail et son professionnalisme.",
-          "dateRelative": "il y a 4 mois",
+          "dateRelative": "il y a 5 mois",
           "date": "2026-04-16",
           "agence": "seiches"
         }
