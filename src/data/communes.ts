@@ -138,9 +138,9 @@ const communesToutes: Commune[] = [
           "Nous nous déplaçons sous quelques jours pour la prise de mesures et remettons un devis gratuit sous 48 h. Depuis notre agence de Seiches-sur-le-Loir, Angers est à une vingtaine de minutes.",
       },
       {
-        question: "Quel est le prix de pose d'une fenêtre à Angers ?",
+        question: "De quoi dépend le prix de pose d'une fenêtre à Angers ?",
         reponse:
-          "Comptez en général entre 400 et 1 500 € par fenêtre posée à Angers, selon le matériau (PVC, aluminium, bois ou bois-alu), les dimensions et le vitrage. La TVA à 5,5 % et les aides (MaPrimeRénov', CEE) réduisent la facture lorsque la pose est réalisée par un artisan RGE comme Fenêtres sur Loir. Le devis détaillé est gratuit.",
+          "Du matériau (PVC, aluminium, bois ou bois-alu), des dimensions, du vitrage et du type de pose — en rénovation sur le dormant existant ou en dépose totale, fréquente dans les maisons anciennes du centre d'Angers. La TVA à 5,5 % et les aides (MaPrimeRénov', CEE) réduisent la facture lorsque la pose est réalisée par un artisan RGE comme Fenêtres sur Loir. Le devis détaillé est gratuit.",
       },
       {
         question: "Couvrez-vous toute l'agglomération d'Angers ?",

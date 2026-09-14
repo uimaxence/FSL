@@ -27,10 +27,10 @@ schema:
           "@type": Answer
           text: "Un menuisier est un artisan généraliste du bois et des matériaux de construction (parquet, agencement, escaliers…), tandis qu'un fenêtrier est un menuisier spécialisé exclusivement dans la pose et la fourniture de fenêtres, portes et menuiseries extérieures. Cette spécialisation lui confère une expertise plus pointue sur les performances énergétiques, les vitrages et les systèmes de fermeture."
       - "@type": Question
-        name: "Combien coûte le remplacement de fenêtres par un fenêtrier ?"
+        name: "De quoi dépend le prix d'un remplacement de fenêtres par un fenêtrier ?"
         acceptedAnswer:
           "@type": Answer
-          text: "Le prix de remplacement d'une fenêtre varie en fonction du matériau (PVC, aluminium, bois-alu), des dimensions, du vitrage choisi et de la complexité de la pose. Comptez en général entre 400 et 1 500 € par fenêtre, pose comprise. Chez Fenêtres sur Loir, nous réalisons un devis gratuit et personnalisé pour chaque projet."
+          text: "Le prix de remplacement d'une fenêtre varie en fonction du matériau (PVC, aluminium, bois-alu), des dimensions, du vitrage choisi et de la complexité de la pose (rénovation sur dormant existant ou dépose totale). Chez Fenêtres sur Loir, nous réalisons un devis gratuit et personnalisé pour chaque projet, aides déduites lorsque vous y êtes éligible."
       - "@type": Question
         name: "Quelles aides peut-on obtenir pour le remplacement de fenêtres en 2025 ?"
         acceptedAnswer:
@@ -137,9 +137,9 @@ Vous êtes en dehors de cette zone ? [Contactez-nous](/contact/) : nous étudion
 
 Un menuisier est un artisan généraliste du bois et des matériaux de construction (parquet, agencement, escaliers…), tandis qu'un fenêtrier est un menuisier spécialisé exclusivement dans la pose et la fourniture de fenêtres, portes et menuiseries extérieures. Cette spécialisation lui confère une expertise plus pointue sur les performances énergétiques, les vitrages et les systèmes de fermeture.
 
-### Combien coûte le remplacement de fenêtres par un fenêtrier ?
+### De quoi dépend le prix d'un remplacement de fenêtres par un fenêtrier ?
 
-Le prix de remplacement d'une fenêtre varie en fonction du matériau (PVC, aluminium, bois-alu), des dimensions, du vitrage choisi et de la complexité de la pose. Comptez en général entre **400 et 1 500 €** par fenêtre, pose comprise. Chez Fenêtres sur Loir, nous réalisons un [devis gratuit](/contact/) et personnalisé pour chaque projet.
+Le prix de remplacement d'une fenêtre varie en fonction du **matériau** (PVC, aluminium, bois-alu), des **dimensions**, du **vitrage** choisi et de la **complexité de la pose** — rénovation sur dormant existant ou dépose totale. Chez Fenêtres sur Loir, nous réalisons un [devis gratuit](/contact/) et personnalisé pour chaque projet, aides déduites lorsque vous y êtes éligible.
 
 ### Quelles aides peut-on obtenir pour le remplacement de fenêtres en 2025 ?
 
