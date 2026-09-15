@@ -1,0 +1,94 @@
+---
+// Bandeau d'annonce temporaire, placé AU-DESSUS de la TopBar et hors du bloc
+// sticky : il défile avec la page, la TopBar et le Header restent collés en
+// haut comme avant. Le hero de la home (-mt-[116px]) n'est pas impacté :
+// il se glisse sous TopBar + Header, le bandeau reste visible au-dessus.
+//
+// Retiré automatiquement après la fin de l'événement (au build et côté
+// client) ; mémorisé fermé en localStorage si l'internaute le ferme.
+import Container from "../ui/Container.astro";
+import { SALON_HABITAT_ANGERS_2026 as salon, evenementEnCours } from "../../config/evenements";
+
+const visible = evenementEnCours(salon) && Astro.url.pathname !== salon.path;
+---
+
+{
+  visible && (
+    <div
+      class="relative bg-[var(--color-accent)] text-white"
+      data-annonce
+      data-annonce-id={salon.id}
+      data-annonce-fin={salon.fin}
+      role="region"
+      aria-label={`Annonce : ${salon.nom}`}
+    >
+      <Container
+        width="wide"
+        class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 py-2 pr-10 sm:pr-12 text-[13px] leading-snug text-center"
+      >
+        <span class="hidden sm:inline-flex items-center rounded-full bg-white/20 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em]">
+          Événement
+        </span>
+        <p class="text-white">
+          <strong class="font-semibold">{salon.nomCourt}</strong>
+          <span class="mx-1.5 text-white/60" aria-hidden="true">·</span>
+          {salon.datesCourt}
+          <span class="hidden md:inline">
+            <span class="mx-1.5 text-white/60" aria-hidden="true">·</span>
+            {salon.jeuConcours.titre} sur notre stand
+          </span>
+        </p>
+        <a
+          href={salon.path}
+          class="inline-flex items-center gap-1 whitespace-nowrap font-semibold underline underline-offset-4 decoration-white/50 hover:decoration-white transition-colors"
+        >
+          Prendre rendez-vous sur le stand
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="7" y1="17" x2="17" y2="7" />
+            <polyline points="7 7 17 7 17 17" />
+          </svg>
+        </a>
+      </Container>
+      <button
+        type="button"
+        class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-8 h-8 rounded-full text-white/80 hover:bg-white/15 hover:text-white transition-colors"
+        data-annonce-fermer
+        aria-label="Fermer l'annonce"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+  )
+}
+
+<script>
+  const bandeau = document.querySelector<HTMLElement>("[data-annonce]");
+  if (bandeau) {
+    const cle = `fsl-annonce-${bandeau.dataset.annonceId}-fermee`;
+    const fin = Date.parse(bandeau.dataset.annonceFin ?? "");
+
+    let ferme = false;
+    try {
+      ferme = localStorage.getItem(cle) === "1";
+    } catch {
+      /* stockage indisponible : on affiche */
+    }
+
+    // Événement terminé (déploiement antérieur à la fin) ou bandeau déjà fermé.
+    if (ferme || (Number.isFinite(fin) && Date.now() > fin)) {
+      bandeau.remove();
+    } else {
+      bandeau.querySelector("[data-annonce-fermer]")?.addEventListener("click", () => {
+        bandeau.remove();
+        try {
+          localStorage.setItem(cle, "1");
+        } catch {
+          /* ignoré */
+        }
+      });
+    }
+  }
+</script>

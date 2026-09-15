@@ -5,6 +5,7 @@ import { business, social, AGENCES, openingHoursHuman, addressOneLine } from "..
 import { communes } from "../data/communes";
 import { AGENCES_CONTENU } from "../data/agences-contenu";
 import { avisGlobal } from "../lib/avis";
+import { SALON_HABITAT_ANGERS_2026 as salon, evenementEnCours } from "../config/evenements";
 
 const SITE = business.url;
 
@@ -39,6 +40,10 @@ export const GET: APIRoute = () => {
     ["Réalisations", "/realisations/", "Chantiers de menuiserie réalisés en Maine-et-Loire."],
     ["Conseils & blog", "/conseils-services/", "Guides : choisir ses fenêtres, condensation, aides à la rénovation, volet roulant bloqué."],
     ["Contact & devis", "/contact/", "Devis gratuit sous 48 h."],
+    // Événement en cours : retiré automatiquement une fois le salon terminé.
+    ...(evenementEnCours(salon)
+      ? [[salon.nom, salon.path, `Stand Fenêtres sur Loir ${salon.datesHumain} au ${salon.lieu.nom} : une porte d'entrée à gagner sur place, prise de rendez-vous en ligne, horaires et billetterie.`]]
+      : []),
   ];
 
   // Pages locales « menuisier à <ville> » — utile pour qu'un LLM cite la bonne

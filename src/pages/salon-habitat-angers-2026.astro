@@ -1,0 +1,602 @@
+---
+// Page événement : présence de Fenêtres sur Loir au Salon Habitat Angers 2026.
+// Une seule URL vers laquelle pointent le bandeau, les posts réseaux, les
+// fiches Google Business et le QR code du stand. Après le salon : garder la
+// page en compte-rendu quelques semaines, puis 301 vers /solutions/portes-fenetres/portes-entree/.
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import porteImg from "../assets/porte-4-alu.png";
+import { SALON_HABITAT_ANGERS_2026 as salon } from "../config/evenements";
+import { business, mainAgence, toE164, SITE_URL } from "../config/business";
+import { organizationGraph, ORG_ID, type FaqEntry } from "../lib/schema";
+
+const web3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? "";
+const phoneE164 = toE164(mainAgence.telephone);
+const pageUrl = `${SITE_URL}${salon.path}`;
+
+const title = `Fenêtres sur Loir au ${salon.nom} — ${salon.datesHumain}`;
+const description = `Retrouvez Fenêtres sur Loir au ${salon.nom}, ${salon.datesHumain} au ${salon.lieu.nom}. Une porte d'entrée à gagner sur notre stand, prise de rendez-vous en ligne, horaires, tarifs et billetterie.`;
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: salon.nom },
+];
+
+// Ce que l'on présente sur le stand : maillage interne vers les pages produit.
+const surLeStand = [
+  { label: "Fenêtres bois-alu, PVC et aluminium", href: "/solutions/portes-fenetres/fenetres/", detail: "MéO et Arcades & Baies, sur mesure" },
+  { label: "Portes d'entrée", href: "/solutions/portes-fenetres/portes-entree/", detail: "Alu, bois, PVC et bois-alu" },
+  { label: "Volets roulants et solaires", href: "/solutions/portes-fenetres/volets/", detail: "Point Conseil Bubendorff" },
+  { label: "Baies vitrées et coulissants", href: "/solutions/portes-fenetres/baies-vitrees/", detail: "Galandage, levage, coulissant" },
+  { label: "Verrières", href: "/solutions/confort-interieur/verrieres/", detail: "Acier ou aluminium, style atelier" },
+  { label: "Carports et pergolas", href: "/solutions/confort-exterieur/carports-marquises/", detail: "Aluminium, bioclimatique" },
+];
+
+const faq: FaqEntry[] = [
+  {
+    question: "Faut-il un billet pour venir sur le stand Fenêtres sur Loir ?",
+    reponse:
+      "L'entrée du salon est gratuite le vendredi 25 et le lundi 28 septembre. Le samedi et le dimanche, un billet du salon est nécessaire, en vente sur la billetterie en ligne. Aucun billet spécifique n'est demandé pour notre stand.",
+  },
+  {
+    question: "Comment participer au jeu-concours pour gagner une porte d'entrée ?",
+    reponse:
+      "La participation se fait uniquement sur place, sur notre stand, pendant les quatre jours du salon. Il n'y a pas de participation en ligne. Les modalités et le règlement sont disponibles sur le stand.",
+  },
+  {
+    question: "Faut-il prendre rendez-vous pour venir nous voir ?",
+    reponse:
+      "Non, vous pouvez venir librement. Le rendez-vous vous garantit un conseiller disponible à l'heure choisie, ce qui est utile le week-end quand le stand est très fréquenté. Apportez si possible vos dimensions ou des photos de vos ouvertures.",
+  },
+  {
+    question: "Où se trouve le Parc des Expositions d'Angers ?",
+    reponse:
+      "Au 3520 route de Paris, à Saint-Sylvain-d'Anjou (49480 Verrières-en-Anjou), à quelques minutes du centre d'Angers par l'A11. Le plan et la liste des exposants sont remis à l'entrée du salon.",
+  },
+  {
+    question: "Je ne suis pas disponible pendant le salon, comment faire ?",
+    reponse:
+      "Nos deux showrooms vous accueillent toute l'année, à Seiches-sur-le-Loir et à Doué-en-Anjou. Vous pouvez aussi demander un devis gratuit en ligne : notre équipe vous recontacte sous 48 h ouvrées.",
+  },
+];
+
+// JSON-LD : Organization + Event (notre présence, sous-événement du salon) + FAQPage.
+const schema = organizationGraph([
+  {
+    "@type": "Event",
+    "@id": `${pageUrl}#event`,
+    name: `Fenêtres sur Loir au ${salon.nom}`,
+    description,
+    url: pageUrl,
+    image: `${SITE_URL}/og.jpg`,
+    startDate: salon.debut,
+    endDate: salon.fin,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: {
+      "@type": "Place",
+      name: salon.lieu.nom,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: salon.lieu.adresse,
+        postalCode: salon.lieu.codePostal,
+        addressLocality: salon.lieu.ville,
+        addressRegion: "Maine-et-Loire",
+        addressCountry: "FR",
+      },
+    },
+    organizer: { "@id": ORG_ID },
+    superEvent: {
+      "@type": "Event",
+      name: salon.nom,
+      url: salon.siteUrl,
+      startDate: salon.debut,
+      endDate: salon.fin,
+      location: { "@type": "Place", name: salon.lieu.nom },
+    },
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Entrée gratuite le vendredi 25 et le lundi 28 septembre",
+        price: "0",
+        priceCurrency: "EUR",
+        url: salon.billetterieUrl,
+        availability: "https://schema.org/InStock",
+        validFrom: "2026-09-01",
+      },
+      {
+        "@type": "Offer",
+        name: "Billet 1 jour, samedi 26 ou dimanche 27 septembre (billetterie en ligne)",
+        price: "3",
+        priceCurrency: "EUR",
+        url: salon.billetterieUrl,
+        availability: "https://schema.org/InStock",
+        validFrom: "2026-09-01",
+      },
+    ],
+  },
+  {
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.reponse },
+    })),
+  },
+]);
+
+const inputBase =
+  "w-full rounded-md border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm placeholder:text-[var(--color-muted)]/60 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/30 focus:border-[var(--color-accent)] transition-colors";
+const labelBase = "block text-[13px] font-semibold text-[var(--color-fg)] mb-1.5";
+
+const creneaux = ["Matin (10h – 13h)", "Après-midi (13h – 17h)", "Fin de journée (après 17h)"];
+const projets = [
+  "Fenêtres",
+  "Porte d'entrée",
+  "Volets roulants",
+  "Baie vitrée / coulissant",
+  "Porte de garage",
+  "Verrière",
+  "Carport / pergola",
+  "Autre projet",
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <!-- En-tête -->
+  <section class="section-tight">
+    <Container width="default">
+      <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+        Événement · {salon.datesHumain}
+      </p>
+      <h1 class="text-balance max-w-3xl">
+        Retrouvez Fenêtres sur Loir au {salon.nom}
+      </h1>
+      <p class="mt-6 max-w-2xl text-[16px] text-[var(--color-fg)] leading-relaxed">
+        Pendant quatre jours, notre équipe vous accueille au <strong>{salon.lieu.nom}</strong>.
+        Venez voir et toucher nos menuiseries, poser vos questions sur votre projet et sur les aides à la
+        rénovation, et <strong>tenter de gagner une porte d'entrée</strong>.
+      </p>
+      <p class="mt-3 max-w-2xl text-[15px] text-[var(--color-muted)] leading-relaxed">
+        Entrée gratuite le vendredi et le lundi. Prenez rendez-vous pour être sûr d'avoir un conseiller
+        disponible à l'heure qui vous convient.
+      </p>
+
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a
+          href="#rendez-vous"
+          class="inline-flex items-center rounded-full px-7 py-3 text-[15px] font-medium text-white shadow-sm transition-colors"
+          style="background: var(--color-accent);"
+          onmouseover="this.style.background='var(--color-accent-hover)'"
+          onmouseout="this.style.background='var(--color-accent)'"
+        >
+          Prendre rendez-vous sur le stand
+        </a>
+        <a
+          href={salon.billetterieUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)]/15 text-[var(--color-fg)] hover:bg-[var(--color-tint)] transition-colors"
+        >
+          Billetterie du salon
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="7" y1="17" x2="17" y2="7" />
+            <polyline points="7 7 17 7 17 17" />
+          </svg>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Infos pratiques + jeu-concours -->
+  <section class="pb-12 sm:pb-16">
+    <Container width="default">
+      <div class="grid lg:grid-cols-[1.15fr_1fr] gap-6">
+        <!-- Infos pratiques -->
+        <div class="bg-white rounded-2xl ring-1 ring-[var(--color-border)] p-6 sm:p-8">
+          <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)] mb-3">
+            Infos pratiques
+          </p>
+          <h2 class="text-[clamp(1.375rem,2vw,1.625rem)]">Dates, horaires et accès</h2>
+
+          <div class="mt-6 grid sm:grid-cols-2 gap-6">
+            <div>
+              <h3 class="text-base font-body font-semibold">Lieu</h3>
+              <address class="not-italic mt-2 text-[14px] text-[var(--color-muted)] leading-relaxed">
+                <strong class="text-[var(--color-fg)]">{salon.lieu.nom}</strong><br />
+                {salon.lieu.adresse}<br />
+                {salon.lieu.codePostal} {salon.lieu.ville}
+              </address>
+              <a
+                href={salon.lieu.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--color-accent)] hover:underline underline-offset-4"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Itinéraire
+              </a>
+            </div>
+
+            <div>
+              <h3 class="text-base font-body font-semibold">Horaires d'ouverture</h3>
+              <ul class="mt-2 space-y-1.5 text-[14px]">
+                {
+                  salon.horaires.map((h) => (
+                    <li class="flex items-baseline justify-between gap-3 text-[var(--color-muted)]">
+                      <span>
+                        <strong class="text-[var(--color-fg)] font-medium">{h.jour}</strong>
+                        {h.gratuit && (
+                          <span class="ml-1.5 inline-flex items-center rounded-full bg-[var(--color-tint)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-accent)]">
+                            Gratuit
+                          </span>
+                        )}
+                      </span>
+                      <span class="whitespace-nowrap tabular-nums">{h.heures}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-7 pt-6 border-t border-[var(--color-border)]">
+            <h3 class="text-base font-body font-semibold">Tarifs d'entrée du salon</h3>
+            <ul class="mt-2 divide-y divide-[var(--color-border)] text-[14px]">
+              {
+                salon.tarifs.map((t) => (
+                  <li class="flex items-baseline justify-between gap-4 py-2">
+                    <span>
+                      <span class="text-[var(--color-fg)]">{t.libelle}</span>
+                      <span class="block text-[12px] text-[var(--color-muted)]">{t.detail}</span>
+                    </span>
+                    <span class="font-semibold text-[var(--color-fg)] whitespace-nowrap">{t.prix}</span>
+                  </li>
+                ))
+              }
+            </ul>
+            <p class="mt-3 text-[12px] text-[var(--color-muted)]">{salon.tarifSurPlace}</p>
+            <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[13px] font-medium">
+              <a href={salon.billetterieUrl} target="_blank" rel="noopener noreferrer" class="text-[var(--color-accent)] hover:underline underline-offset-4">
+                Acheter un billet en ligne
+              </a>
+              <a href={salon.siteUrl} target="_blank" rel="noopener noreferrer" class="text-[var(--color-accent)] hover:underline underline-offset-4">
+                Site officiel du salon
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jeu-concours -->
+        <div class="relative overflow-hidden rounded-2xl bg-[var(--color-fg)] text-white">
+          <div class="relative aspect-[16/10] lg:aspect-[4/3]">
+            <Image
+              src={porteImg}
+              alt="Porte d'entrée aluminium contemporaine — le lot à gagner sur le stand Fenêtres sur Loir"
+              widths={[480, 720, 960]}
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+              quality={78}
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-fg)] via-[var(--color-fg)]/30 to-transparent" aria-hidden="true"></div>
+            <span
+              class="absolute top-4 left-4 inline-flex items-center px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white rounded-full"
+              style="background: var(--color-accent);"
+            >
+              Jeu-concours
+            </span>
+          </div>
+          <div class="relative p-6 sm:p-8 -mt-10">
+            <h2 class="text-white text-[clamp(1.5rem,2.4vw,1.875rem)]">{salon.jeuConcours.titre}</h2>
+            <p class="mt-3 text-[14px] text-white/80 leading-relaxed">
+              Pendant toute la durée du salon, tentez de remporter <strong class="text-white">{salon.jeuConcours.lot}</strong>.
+              La participation se fait <strong class="text-white">uniquement sur notre stand</strong>, pas en ligne.
+            </p>
+            <ol class="mt-5 space-y-3 text-[14px]">
+              {
+                [
+                  "Passez sur le stand Fenêtres sur Loir",
+                  "Remplissez votre bulletin de participation",
+                  "Le gagnant est tiré au sort parmi les bulletins déposés",
+                ].map((etape, i) => (
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="inline-flex items-center justify-center w-6 h-6 rounded-full text-[12px] font-semibold text-white shrink-0"
+                      style="background: var(--color-accent);"
+                      aria-hidden="true"
+                    >
+                      {i + 1}
+                    </span>
+                    <span class="text-white/90">{etape}</span>
+                  </li>
+                ))
+              }
+            </ol>
+            <p class="mt-5 text-[12px] text-white/60">
+              Jeu gratuit. Modalités et règlement disponibles sur le stand.
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Sur le stand -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="max-w-3xl">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+          Sur notre stand
+        </p>
+        <h2 class="text-balance">Toutes les ouvertures de la maison, à voir en vrai</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Menuisier d'Excellence MéO, Point Conseil Bubendorff et certifié RGE Qualibat : nos conseillers
+          vous présentent les gammes, les finitions et les motorisations, et répondent à vos questions sur les
+          <a href="/blog/aides-changer-fenetres-2026/" class="text-[var(--color-accent)] underline underline-offset-4 decoration-[var(--color-accent)]/40 hover:decoration-[var(--color-accent)]">aides à la rénovation énergétique</a>.
+        </p>
+      </div>
+      <ul class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {
+          surLeStand.map((s) => (
+            <li>
+              <a
+                href={s.href}
+                class="group flex items-start justify-between gap-3 h-full rounded-xl bg-white ring-1 ring-[var(--color-border)] p-5 hover:ring-[var(--color-accent)] transition-colors"
+              >
+                <span>
+                  <span class="block text-[15px] font-medium text-[var(--color-fg)] group-hover:text-[var(--color-accent)] transition-colors">
+                    {s.label}
+                  </span>
+                  <span class="block mt-1 text-[13px] text-[var(--color-muted)]">{s.detail}</span>
+                </span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mt-1 shrink-0 text-[var(--color-muted)] group-hover:text-[var(--color-accent)] transition-colors">
+                  <line x1="7" y1="17" x2="17" y2="7" />
+                  <polyline points="7 7 17 7 17 17" />
+                </svg>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <!-- Prise de rendez-vous -->
+  <section id="rendez-vous" class="section-tight bg-[var(--color-tint)] scroll-mt-28">
+    <Container width="wide">
+      <div class="max-w-3xl mx-auto text-center mb-10">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+          Rendez-vous sur le stand
+        </p>
+        <h2 class="text-[var(--color-fg)]">Réservez un créneau avec un conseiller</h2>
+        <p class="mt-4 text-[15px] text-[var(--color-muted)] leading-relaxed">
+          Indiquez le jour et le moment qui vous arrangent : nous vous confirmons le créneau par téléphone ou par email avant le salon.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-[1fr_2fr] gap-6">
+        <aside class="bg-white rounded-2xl shadow-sm p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)] mb-3">
+              Pourquoi réserver
+            </p>
+            <h3 class="font-display text-[clamp(1.375rem,2vw,1.625rem)] leading-tight text-[var(--color-fg)]">
+              Un conseiller <strong class="font-bold">rien que pour vous</strong>, sans attendre.
+            </h3>
+            <ul class="mt-6 space-y-3">
+              {
+                [
+                  "Un créneau garanti, même le week-end",
+                  "Un conseiller dédié à votre projet",
+                  "Apportez vos mesures ou des photos : on chiffre plus vite",
+                ].map((b) => (
+                  <li class="flex items-start gap-3 text-[14px] text-[var(--color-fg)]">
+                    <span class="mt-1.5 inline-block w-3 h-3 rounded-full shrink-0" style="background: var(--color-accent);" aria-hidden="true"></span>
+                    {b}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-[var(--color-border)] text-[13px] text-[var(--color-muted)] leading-relaxed">
+            <p>
+              Pas disponible pendant le salon ? Nos showrooms de
+              <a href="/agences/" class="text-[var(--color-accent)] hover:underline underline-offset-4">Seiches-sur-le-Loir et Doué-en-Anjou</a>
+              vous accueillent toute l'année, ou
+              <a href="/contact/" class="text-[var(--color-accent)] hover:underline underline-offset-4">demandez un devis gratuit</a>.
+            </p>
+            <p class="mt-3">
+              Une question ? <a href={`tel:${phoneE164}`} class="font-medium text-[var(--color-fg)] hover:text-[var(--color-accent)]">{mainAgence.telephone}</a>
+            </p>
+          </div>
+        </aside>
+
+        <form
+          id="salon-rdv-form"
+          method="post"
+          action="https://api.web3forms.com/submit"
+          class="bg-white rounded-2xl shadow-sm p-6 sm:p-10 space-y-5"
+        >
+          <input type="hidden" name="access_key" value={web3formsKey} />
+          <input type="hidden" name="subject" value={`Rendez-vous ${salon.nom} — fenetres-sur-loir.fr`} />
+          <input type="hidden" name="from_name" value="Site Fenêtres sur Loir" />
+          <input type="hidden" name="evenement" value={salon.nom} />
+          <!-- Honeypot anti-spam : laissé vide, masqué aux humains -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <label class="block">
+              <span class={labelBase}>Prénom <span class="text-[var(--color-accent)]">*</span></span>
+              <input type="text" name="prenom" required class={inputBase} placeholder="Prénom" autocomplete="given-name" />
+            </label>
+            <label class="block">
+              <span class={labelBase}>Nom <span class="text-[var(--color-accent)]">*</span></span>
+              <input type="text" name="nom" required class={inputBase} placeholder="Nom" autocomplete="family-name" />
+            </label>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <label class="block">
+              <span class={labelBase}>Téléphone <span class="text-[var(--color-accent)]">*</span></span>
+              <input type="tel" name="telephone" required class={inputBase} placeholder="Téléphone" autocomplete="tel" />
+            </label>
+            <label class="block">
+              <span class={labelBase}>Email <span class="text-[var(--color-accent)]">*</span></span>
+              <input type="email" name="email" required class={inputBase} placeholder="exemple@email.fr" autocomplete="email" />
+            </label>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <label class="block">
+              <span class={labelBase}>Jour souhaité <span class="text-[var(--color-accent)]">*</span></span>
+              <select name="jour" required class={inputBase}>
+                <option value="" disabled selected>Choisir un jour</option>
+                {salon.horaires.map((h) => <option value={h.jour}>{h.jour} ({h.heures})</option>)}
+                <option value="Peu importe">Peu importe</option>
+              </select>
+            </label>
+            <label class="block">
+              <span class={labelBase}>Moment de la journée</span>
+              <select name="creneau" class={inputBase}>
+                <option value="Peu importe">Peu importe</option>
+                {creneaux.map((c) => <option value={c}>{c}</option>)}
+              </select>
+            </label>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <label class="block">
+              <span class={labelBase}>Votre projet <span class="text-[var(--color-accent)]">*</span></span>
+              <select name="projet" required class={inputBase}>
+                <option value="" disabled selected>Choisir</option>
+                {projets.map((p) => <option value={p}>{p}</option>)}
+              </select>
+            </label>
+            <label class="block">
+              <span class={labelBase}>Commune</span>
+              <input type="text" name="commune" class={inputBase} placeholder="Ex. Angers" autocomplete="address-level2" />
+            </label>
+          </div>
+
+          <label class="block">
+            <span class={labelBase}>Précisions (facultatif)</span>
+            <textarea name="message" rows="3" class={inputBase} placeholder="Nombre d'ouvertures, maison neuve ou rénovation, délais…"></textarea>
+          </label>
+
+          <p id="salon-rdv-status" role="status" aria-live="polite" class="hidden text-[14px] font-medium rounded-md px-4 py-3"></p>
+
+          <div class="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <p class="text-[11px] text-[var(--color-muted)]">
+              Vos données servent uniquement à organiser ce rendez-vous (RGPD).
+            </p>
+            <button
+              type="submit"
+              data-default-label="Réserver mon créneau"
+              class="inline-flex items-center justify-center rounded-md px-7 py-2.5 text-[14px] font-medium text-white shadow-sm transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              style="background: var(--color-accent);"
+              onmouseover="this.style.background='var(--color-accent-hover)'"
+              onmouseout="this.style.background='var(--color-accent)'"
+            >
+              Réserver mon créneau
+            </button>
+          </div>
+        </form>
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-tight">
+    <Container width="narrow">
+      <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+        Questions fréquentes
+      </p>
+      <h2 class="text-balance">Venir nous voir au salon</h2>
+      <div class="mt-8 divide-y divide-[var(--color-border)]">
+        {
+          faq.map((f) => (
+            <details class="group py-4">
+              <summary class="flex items-start justify-between gap-4 cursor-pointer list-none text-[16px] font-medium text-[var(--color-fg)] hover:text-[var(--color-accent)] transition-colors">
+                {f.question}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mt-1.5 shrink-0 transition-transform group-open:rotate-180">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </summary>
+              <p class="mt-3 text-[15px] text-[var(--color-muted)] leading-relaxed">{f.reponse}</p>
+            </details>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
+
+<script>
+  // Envoi du formulaire de rendez-vous via Web3Forms (même mécanique que
+  // ContactForm.astro : fetch + message de statut, sans rechargement).
+  const form = document.getElementById("salon-rdv-form") as HTMLFormElement | null;
+  const status = document.getElementById("salon-rdv-status") as HTMLElement | null;
+
+  if (form && status) {
+    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    const defaultLabel = button?.dataset.defaultLabel ?? "Réserver mon créneau";
+
+    const showStatus = (message: string, ok: boolean) => {
+      status.textContent = message;
+      status.classList.remove("hidden");
+      status.style.background = ok ? "rgba(34,197,94,0.12)" : "rgba(239,68,68,0.12)";
+      status.style.color = ok ? "#15803d" : "#b91c1c";
+    };
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!button) return;
+
+      const accessKey = (form.elements.namedItem("access_key") as HTMLInputElement)?.value;
+      if (!accessKey) {
+        showStatus(
+          "Le formulaire n'est pas encore configuré. Appelez-nous au 02 41 77 04 08 ou écrivez à contacts@fenetres-sur-loir.fr.",
+          false,
+        );
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Envoi…";
+      status.classList.add("hidden");
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
+        });
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          form.reset();
+          showStatus(
+            "Merci ! Votre demande de rendez-vous est bien enregistrée. Nous vous confirmons le créneau par téléphone ou par email avant le salon.",
+            true,
+          );
+        } else {
+          showStatus("Une erreur est survenue. Réessayez ou appelez-nous au 02 41 77 04 08.", false);
+        }
+      } catch {
+        showStatus("Impossible d'envoyer la demande. Vérifiez votre connexion ou appelez-nous au 02 41 77 04 08.", false);
+      } finally {
+        button.disabled = false;
+        button.textContent = defaultLabel;
+      }
+    });
+  }
+</script>
