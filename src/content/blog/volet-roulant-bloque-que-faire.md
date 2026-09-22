@@ -1,6 +1,6 @@
 ---
 title: "Volet roulant bloqué : que faire ? Causes et solutions"
-description: "Volet roulant bloqué en haut, en bas ou au milieu, qui ne remonte plus ou ne descend plus : un Point Conseil Bubendorff du Maine-et-Loire vous explique comment identifier la panne, ce que vous pouvez débloquer vous-même et quand appeler un professionnel."
+description: "Volet roulant bloqué en haut, en bas ou au milieu, qui ne remonte ou ne descend plus : identifier la panne, débloquer ce qui peut l'être, quand appeler un pro."
 date: 2026-09-14
 tags: ["volet roulant", "dépannage", "Bubendorff", "volet solaire", "SAV", "entretien"]
 draft: false
@@ -173,7 +173,7 @@ Un volet solaire fonctionne sur batterie, rechargée par un panneau intégré au
 
 ### Réinitialiser un volet roulant Bubendorff
 
-Les moteurs radio Bubendorff peuvent perdre leur appairage avec la télécommande après une coupure de courant prolongée ou un changement de commande. Le premier geste consiste à **couper l'alimentation du volet une dizaine de secondes**, puis à la rétablir et à retester avec des piles neuves. Si le volet ne répond toujours pas, la procédure de réinitialisation et de réappairage dépend du modèle de moteur et du type de commande (télécommande, commande murale, application connectée) : elle est décrite pas à pas dans la notice de votre volet, et notre équipe vous guide par téléphone si Fenêtres sur Loir a posé vos volets. Évitez les séquences trouvées au hasard sur Internet : une mauvaise manipulation peut effacer les fins de course, et vous laisser avec un volet qui force en butée.
+Les moteurs radio Bubendorff peuvent perdre leurs repères après une coupure de courant prolongée, un orage ou une manœuvre de secours. Le premier geste consiste à **couper l'alimentation du volet au disjoncteur**, puis à la rétablir et à retester avec des piles neuves. Si le volet ne répond toujours pas ou s'arrête à mi-course, Bubendorff publie des séquences précises de réinitialisation (volet radio bloqué ouvert, fins de course perdues) : nous les détaillons pas à pas dans notre guide [réinitialiser un volet roulant Bubendorff](/blog/reinitialiser-volet-roulant-bubendorff/). La procédure d'appairage d'une nouvelle télécommande, elle, dépend du modèle de moteur et figure dans la notice de votre volet ; notre équipe vous guide par téléphone si Fenêtres sur Loir a posé vos volets. Évitez les séquences trouvées au hasard sur Internet : une mauvaise manipulation peut effacer les fins de course, et vous laisser avec un volet qui force en butée.
 
 ## Quand faire appel à un professionnel ?
 

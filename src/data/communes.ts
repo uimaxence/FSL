@@ -113,7 +113,7 @@ const communesToutes: Commune[] = [
     distanceKm: 22,
     metaTitle: "Menuisier à Angers (49) — Fenêtres, portes & volets sur mesure | Fenêtres sur Loir",
     metaDescription:
-      "Artisan menuisier RGE à Angers : fenêtres, portes d'entrée, volets et baies vitrées sur mesure. Devis gratuit, pose certifiée, intervention dans tous les quartiers angevins.",
+      "Artisan menuisier RGE à Angers : fenêtres, portes d'entrée, volets et baies vitrées sur mesure. Devis gratuit, pose par nos équipes dans tous les quartiers angevins.",
     intro:
       "À Angers, Fenêtres sur Loir accompagne aussi bien les maisons de schiste du centre que les pavillons des quartiers résidentiels. Nos équipes interviennent sur toute l'agglomération, du remplacement de fenêtres en rénovation au neuf.",
     body: [
@@ -186,7 +186,7 @@ const communesToutes: Commune[] = [
     distanceKm: 0,
     metaTitle: "Menuisier à Seiches-sur-le-Loir (49) — Notre showroom 300 m² | Fenêtres sur Loir",
     metaDescription:
-      "Notre showroom de 300 m² est à Seiches-sur-le-Loir : fenêtres, portes, volets et verrières grandeur nature. Conseil sur place et pose RGE dans toute la vallée du Loir.",
+      "Notre showroom de 300 m² est à Seiches-sur-le-Loir : fenêtres, portes, volets et verrières grandeur nature. Conseil sur place, pose RGE dans la vallée du Loir.",
     intro:
       "Seiches-sur-le-Loir, c'est chez nous : notre showroom de 300 m² y présente fenêtres, portes, volets et verrières grandeur nature. Autant dire que nous connaissons chaque rue de la commune et de la vallée du Loir.",
     body: [
@@ -265,7 +265,7 @@ const communesToutes: Commune[] = [
     distanceKm: 28,
     metaTitle: "Menuisier à Beaucouzé (49) — Fenêtres, portes & volets | Fenêtres sur Loir",
     metaDescription:
-      "Menuiseries sur mesure à Beaucouzé : fenêtres, portes et volets posés par un artisan RGE. Rénovation et neuf à l'ouest d'Angers. Devis gratuit et conseil personnalisé.",
+      "Menuiseries sur mesure à Beaucouzé : fenêtres, portes et volets posés par un artisan RGE. Rénovation et neuf à l'ouest d'Angers. Devis gratuit.",
     intro:
       "À l'ouest d'Angers, Beaucouzé est une commune résidentielle dynamique où le pavillon individuel domine. Nous y intervenons surtout pour de la rénovation de confort et de l'amélioration thermique.",
     body: [
@@ -425,35 +425,59 @@ const communesToutes: Commune[] = [
     lng: -0.0769,
     agence: "doue",
     distanceKm: 18,
-    metaTitle: "Menuisier à Saumur (49) — Fenêtres, portes & volets sur mesure | Fenêtres sur Loir",
+    // SEO (22/09/2026) : « menuisier saumur » 210 rech./mois, 640 impressions
+    // GSC / 12 mois sans clic (pos. 13,6), « fenetre saumur » 175 imp. pos. 30.
+    // La fiche Google de Doué (18 km) ne peut pas entrer dans le pack local de
+    // Saumur : l'organique est le seul levier → contenu local renforcé (bâti,
+    // quartiers, communes déléguées, PSMV), FAQ étoffée, liens vers l'agence.
+    metaTitle: "Menuisier à Saumur (49) — Fenêtres, portes & volets",
     metaDescription:
-      "Artisan menuisier à Saumur : fenêtres, portes et volets sur mesure, pose RGE. Expertise du bâti de tuffeau et des contraintes ABF en ville d'art et d'histoire. Devis gratuit.",
+      "Menuisier RGE à Saumur : fenêtres, portes et volets sur mesure adaptés au tuffeau et aux règles ABF du centre ancien. Agence à Doué-en-Anjou, à 18 km. Devis gratuit.",
     intro:
-      "Saumur, ville d'art et d'histoire dominée par son château, est l'un des secteurs les plus exigeants du département sur le plan patrimonial. Le tuffeau y est partout, et l'ABF veille sur les façades.",
+      "Saumur, ville d'art et d'histoire dominée par son château, est l'un des secteurs les plus exigeants du département sur le plan patrimonial. Le tuffeau y est partout, l'ardoise aussi, et l'Architecte des Bâtiments de France veille sur les façades du centre ancien.",
     body: [
-      "Dans le centre de Saumur et les abords des monuments, chaque menuiserie est étudiée pour respecter les prescriptions de l'Architecte des Bâtiments de France : matériaux, teintes, petits-bois et systèmes d'ouverture.",
-      "Sur les coteaux et le bâti troglodytique du Saumurois, nous proposons des solutions sur mesure adaptées à des ouvertures rarement standard.",
-      "Notre agence de Doué-en-Anjou se trouve à 18 km de Saumur : un menuisier réellement local, capable de se déplacer rapidement pour la prise de mesures comme pour le SAV. Nous posons dans tout le Saumurois des fenêtres PVC, aluminium et bois, des portes d'entrée, des volets roulants et des baies vitrées, en rénovation comme en remplacement à l'identique sur le bâti de tuffeau.",
+      "Dans le centre de Saumur, le long des quais de la Loire et aux abords du château, de l'église Saint-Pierre et de l'hôtel de ville, chaque menuiserie est étudiée pour respecter les prescriptions de l'Architecte des Bâtiments de France : bois ou bois-alu, teintes claires, partitions et petits-bois fidèles à l'existant, systèmes d'ouverture à la française. Nous constituons le dossier de déclaration préalable et défendons des menuiseries conformes qui n'abandonnent rien au confort thermique.",
+      "Le Saumurois, c'est aussi les coteaux et les communes déléguées : Saint-Hilaire-Saint-Florent, Dampierre-sur-Loire, Bagneux, Saint-Lambert-des-Levées. On y trouve des maisons de tuffeau adossées au coteau, des habitations troglodytiques et des demeures de vignerons aux ouvertures rarement standard, que nous relevons une à une pour fabriquer des menuiseries parfaitement ajustées, y compris cintrées.",
+      "Les quartiers plus récents, Chemin Vert, Nantilly, les Hauts Quartiers ou les lotissements de Bagneux et de Saint-Lambert, concentrent des pavillons des années 1960 à 1990 aux menuiseries d'origine. C'est là que nous remplaçons le plus de fenêtres PVC et aluminium en rénovation, avec les aides à la rénovation énergétique que permet notre certification RGE Qualibat.",
+      "Notre agence de Doué-en-Anjou se trouve à 18 km de Saumur : un menuisier réellement local, capable de se déplacer rapidement pour la prise de mesures comme pour le SAV. Nous posons dans tout le Saumurois des fenêtres PVC, aluminium, bois et bois-alu MéO, des portes d'entrée, des volets roulants Bubendorff, des baies vitrées, des portails et des portes de garage, en rénovation comme en remplacement à l'identique sur le bâti de tuffeau.",
     ],
-    quartiers: ["Centre-ville", "Bagneux", "Saint-Hilaire-Saint-Florent", "Nantilly", "Les Ponts"],
+    quartiers: [
+      "Centre-ville et quais",
+      "Nantilly",
+      "Chemin Vert",
+      "Bagneux",
+      "Saint-Hilaire-Saint-Florent",
+      "Saint-Lambert-des-Levées",
+      "Dampierre-sur-Loire",
+    ],
     abf: true,
     abfNote:
-      "Saumur est une ville d'art et d'histoire : le château, l'église Saint-Pierre et les nombreux monuments placent une grande partie de la ville en périmètre ABF, avec des prescriptions strictes sur les menuiseries.",
+      "Saumur est une ville d'art et d'histoire : le château, l'église Saint-Pierre, les quais et les nombreux monuments placent une grande partie du centre ancien en site patrimonial remarquable, avec des prescriptions strictes de l'ABF sur les menuiseries (matériaux, teintes, partitions).",
     faq: [
       {
         question: "Mes fenêtres à Saumur doivent-elles respecter des règles ABF ?",
         reponse:
-          "Dans une large partie de Saumur, oui. Nous maîtrisons ces contraintes : nous montons le dossier et proposons des menuiseries conformes aux exigences de l'ABF, sans renoncer au confort thermique.",
+          "Dans une large partie du centre ancien et aux abords des monuments, oui : le remplacement de fenêtres relève d'une déclaration préalable soumise à l'avis de l'Architecte des Bâtiments de France. Nous maîtrisons ces contraintes : nous montons le dossier et proposons des menuiseries bois ou bois-alu conformes aux prescriptions (teintes, partitions, petits-bois), sans renoncer au confort thermique.",
       },
       {
         question: "Travaillez-vous sur des ouvertures non standard du bâti troglodytique ?",
         reponse:
-          "Oui. Le sur-mesure est notre métier : nous relevons précisément chaque ouverture atypique des coteaux saumurois pour fabriquer des menuiseries parfaitement ajustées.",
+          "Oui. Le sur-mesure est notre métier : nous relevons précisément chaque ouverture atypique des coteaux saumurois, à Saint-Hilaire-Saint-Florent, Dampierre ou Souzay, pour fabriquer des menuiseries parfaitement ajustées, y compris cintrées ou de dimensions inhabituelles.",
+      },
+      {
+        question: "Quel matériau pour des fenêtres à Saumur : PVC, aluminium ou bois ?",
+        reponse:
+          "Sur une maison de tuffeau du centre ou des coteaux, le bois ou le bois-alu sont généralement demandés par l'ABF et s'accordent avec la pierre claire. Sur les pavillons de Bagneux, du Chemin Vert ou de Saint-Lambert-des-Levées, le PVC offre le meilleur rapport isolation-prix et l'aluminium convient aux grandes ouvertures et aux extensions. Nous posons les quatre matériaux et vous conseillons ouverture par ouverture.",
       },
       {
         question: "Quel menuisier choisir près de Saumur pour changer ses fenêtres ?",
         reponse:
           "Privilégiez un artisan certifié RGE (condition des aides), qui pose avec ses propres équipes et connaît les contraintes ABF du Saumurois. Fenêtres sur Loir répond à ces trois critères depuis 2003, avec une agence à Doué-en-Anjou à 18 km et un devis gratuit remis sous 48 h.",
+      },
+      {
+        question: "Intervenez-vous aussi autour de Saumur, dans les communes voisines ?",
+        reponse:
+          "Oui : depuis Doué-en-Anjou, nous couvrons tout le Saumurois, dont Distré, Varrains, Chacé, Souzay-Champigny, Allonnes, Vivy, Brain-sur-Allonnes, Montreuil-Bellay, Gennes-Val-de-Loire et Longué-Jumelles. Les communes de Montreuil-Bellay et de Gennes-Val-de-Loire disposent de leur propre page.",
       },
     ],
   },
@@ -574,7 +598,7 @@ const communesToutes: Commune[] = [
     distanceKm: 16,
     metaTitle: "Menuisier à Loire-Authion (49) — Fenêtres & portes sur mesure | Fenêtres sur Loir",
     metaDescription:
-      "Fenêtres, portes et baies vitrées sur mesure à Loire-Authion (Andard, Brain-sur-l'Authion, La Daguenière…). Artisan RGE en vallée de l'Authion. Devis gratuit sous 48 h.",
+      "Fenêtres, portes et baies vitrées sur mesure à Loire-Authion (Andard, Brain-sur-l'Authion, La Daguenière). Artisan RGE en vallée de l'Authion. Devis gratuit.",
     intro:
       "Entre Loire et Authion, à l'est d'Angers, Loire-Authion regroupe plusieurs bourgs maraîchers : Andard, Brain-sur-l'Authion, La Bohalle, La Daguenière, Bauné, Corné. Un territoire plat et bien exposé, idéal pour les grandes ouvertures.",
     body: [
@@ -915,7 +939,7 @@ const communesToutes: Commune[] = [
     distanceKm: 55,
     metaTitle: "Menuisier à Cholet (49) — Fenêtres, portes & volets sur mesure | Fenêtres sur Loir",
     metaDescription:
-      "Menuisier à Cholet et dans les Mauges : fenêtres, portes, volets et portails sur mesure, pose RGE sans sous-traitance. Rénovation énergétique des pavillons choletais. Devis gratuit.",
+      "Menuisier à Cholet et dans les Mauges : fenêtres, portes, volets et portails sur mesure, pose RGE sans sous-traitance. Devis gratuit sous 48 h.",
     intro:
       "Deuxième ville du département, au sud des Mauges, Cholet est une cité largement reconstruite et entourée de vastes quartiers pavillonnaires. C'est un terrain de choix pour la rénovation énergétique des fenêtres et volets, que nous menons sans jamais sous-traiter la pose.",
     body: [

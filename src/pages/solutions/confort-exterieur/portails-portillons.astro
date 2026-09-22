@@ -3,11 +3,17 @@ import { Image } from "astro:assets";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import PageProduit from "../../../components/templates/PageProduit.astro";
 import Container from "../../../components/ui/Container.astro";
+import CTASection from "../../../components/sections/CTASection.astro";
 import portail1 from "../../../assets/portail_1.jpg";
 import portail2 from "../../../assets/portail_2.jpg";
 
-const title = "Portails & Portillons aluminium sur mesure | Fenêtres sur Loir — Angers & Doué-en-Anjou";
-const description = "Fenêtres sur Loir conçoit et pose vos portails et portillons sur mesure : aluminium, battant ou coulissant, motorisé, avec visiophone. Pose certifiée RGE à Angers, Doué-en-Anjou et dans tout le Maine-et-Loire.";
+// SEO (22/09/2026) : « portail angers » 140 rech./mois (le CPC le plus élevé du
+// dossier), « installation portail angers » 70, « portail alu maine et
+// loire » 172 impressions GSC en pos. 25. Les pages qui sortent (AL Menuiseries
+// 6ᵉ, Ateliers Michel 14ᵉ) sont des pages service localisées → ville en tête de
+// title/H1, section zone d'intervention, FAQ visible + FAQPage. Pas de prix.
+const title = "Portail aluminium sur mesure à Angers (49) — Portillons";
+const description = "Portails et portillons aluminium sur mesure, battants ou coulissants, motorisés, posés à Angers et en Maine-et-Loire par un artisan RGE Qualibat. Devis gratuit.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -16,32 +22,74 @@ const breadcrumb = [
   { label: "Portails & Portillons" },
 ];
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  provider: { "@id": "https://www.fenetres-sur-loir.fr/#organization" },
-  name: "Portails et portillons aluminium sur mesure",
-  description,
-  brand: { "@type": "Brand", name: "Fenêtres sur Loir" },
-  category: "Portail, portillon, clôture",
-};
+// FAQ : source unique pour le bloc visible ET le FAQPage JSON-LD.
+const faq = [
+  {
+    question: "De quoi dépend le prix d'un portail aluminium posé à Angers ?",
+    reponse:
+      "De la largeur de passage et de la hauteur, du type d'ouverture (battant ou coulissant), du remplissage (plein, semi-ajouré avec décor, barreaudé), de la motorisation et de ses accessoires (visiophone, digicode, éclairage), ainsi que des travaux de maçonnerie nécessaires : piliers, seuil ou rail de guidage pour un coulissant. Le devis, établi après une visite sur place, est gratuit et détaillé.",
+  },
+  {
+    question: "Portail battant ou coulissant : lequel choisir ?",
+    reponse:
+      "Le battant, à deux vantaux, convient aux entrées disposant d'un recul suffisant et d'un terrain plat ; c'est la solution la plus simple et la plus économique. Le coulissant s'impose quand l'allée est courte, en pente, ou que le stationnement se fait juste derrière le portail : il s'efface le long de la clôture et se motorise très facilement. Nous vérifions sur place la place disponible et la nature du sol avant de vous conseiller.",
+  },
+  {
+    question: "Peut-on motoriser un portail existant ?",
+    reponse:
+      "Souvent, oui, si le portail est en bon état, correctement équilibré et fixé sur des piliers solides. Nous installons des automatismes conformes à la norme en vigueur, avec détection d'obstacle, feu clignotant et déverrouillage manuel. Si le portail est ancien ou déformé, le remplacement complet par un modèle aluminium motorisé est souvent plus fiable et plus durable.",
+  },
+  {
+    question: "Faut-il une autorisation pour installer un portail à Angers ?",
+    reponse:
+      "Cela dépend du plan local d'urbanisme de votre commune. À Angers comme dans la plupart des communes de l'agglomération, la pose ou le remplacement d'un portail et d'une clôture relève d'une déclaration préalable de travaux, et le règlement peut fixer une hauteur maximale ou des teintes. En secteur protégé, l'avis de l'Architecte des Bâtiments de France s'ajoute. Nous vous indiquons les règles applicables lors de la visite et fournissons les plans nécessaires au dossier.",
+  },
+  {
+    question: "Quels sont les délais pour un portail sur mesure ?",
+    reponse:
+      "Comptez en général de 6 à 10 semaines entre la validation du devis et la pose, le temps de la fabrication sur mesure en France et, le cas échéant, des travaux de maçonnerie. La pose du portail, de son portillon et de la motorisation prend une à deux journées, réalisée par nos équipes salariées.",
+  },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    provider: { "@id": "https://www.fenetres-sur-loir.fr/#organization" },
+    name: "Portails et portillons aluminium sur mesure",
+    serviceType: "Installation de portails et portillons",
+    description,
+    brand: { "@type": "Brand", name: "Fenêtres sur Loir" },
+    category: "Portail, portillon, clôture",
+    areaServed: ["Angers", "Maine-et-Loire", "Saumur", "Cholet", "Doué-en-Anjou", "Seiches-sur-le-Loir"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.reponse },
+    })),
+  },
+];
 ---
 
 <BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
   <PageProduit
     eyebrow="Confort extérieur"
-    title="Portails et portillons sur mesure : l'entrée qui donne le ton"
+    title="Portail aluminium sur mesure à Angers et en Maine-et-Loire : battant, coulissant, motorisé"
     heroPlaceholderLabel="Portail aluminium coulissant anthracite installé par Fenêtres sur Loir"
     heroImage={portail1}
     heroImageAlt="Portail aluminium coulissant anthracite avec décor ajouré et pilier visiophone installé par Fenêtres sur Loir près d'Angers"
     heroStyle="wide"
-    lead="Premier regard sur votre maison, votre portail conjugue sécurité, esthétique et confort au quotidien. Nous le concevons et le posons sur mesure, avec son portillon assorti."
+    lead="Premier regard sur votre maison, votre portail conjugue sécurité, esthétique et confort au quotidien. Nous le concevons et le posons sur mesure à Angers et dans tout le département, avec son portillon assorti."
   >
     <p>
-      Menuisier depuis <strong>2003</strong> à Seiches-sur-le-Loir et désormais à <strong>Doué-en-Anjou</strong>, Fenêtres sur Loir installe des <strong>portails et portillons sur mesure</strong> à Angers et dans tout le Maine-et-Loire. Bien plus qu'une simple entrée, votre portail participe à la <strong>sécurité de votre propriété</strong>, à son <strong>intimité</strong> et à l'<strong>allure de votre façade</strong>.
+      Menuisier depuis <strong>2003</strong> à Seiches-sur-le-Loir et à <strong>Doué-en-Anjou</strong>, Fenêtres sur Loir installe des <strong>portails et portillons sur mesure à Angers</strong>, dans son agglomération et dans tout le Maine-et-Loire. Bien plus qu'une simple entrée, votre portail participe à la <strong>sécurité de votre propriété</strong>, à son <strong>intimité</strong> et à l'<strong>allure de votre façade</strong>.
     </p>
     <p>
-      Nous dessinons chaque projet à partir de vos contraintes réelles — largeur de passage, pente, style de la maison, motorisation — pour une réalisation <strong>parfaitement intégrée</strong> et durable.
+      Nous dessinons chaque projet à partir de vos contraintes réelles — largeur de passage, pente, style de la maison, motorisation, règles d'urbanisme — pour une réalisation <strong>parfaitement intégrée</strong> et durable.
     </p>
 
     <h2>Portail battant ou portail coulissant : lequel choisir ?</h2>
@@ -62,7 +110,7 @@ const schema = {
       Le <strong>portail battant</strong>, composé de deux vantaux qui s'ouvrent vers l'intérieur, reste le grand classique : élégant et économique, il convient à la plupart des entrées disposant d'un recul suffisant.
     </p>
     <p>
-      Le <strong>portail coulissant</strong>, qui s'efface le long de votre clôture, est idéal lorsque l'espace manque ou en présence d'une pente. Facile à motoriser, il offre un confort d'usage optimal au quotidien, comme sur le modèle coulissant motorisé ci-dessus.
+      Le <strong>portail coulissant</strong>, qui s'efface le long de votre clôture, est idéal lorsque l'espace manque ou en présence d'une pente, situation fréquente sur les terrains en coteau de l'agglomération angevine. Facile à motoriser, il offre un confort d'usage optimal au quotidien, comme sur le modèle coulissant motorisé ci-dessus.
     </p>
 
     <h2>L'aluminium : le meilleur matériau pour un portail durable</h2>
@@ -70,7 +118,7 @@ const schema = {
       Nous privilégions l'<strong>aluminium thermolaqué</strong> pour vos portails et portillons : <strong>inaltérable, sans entretien et garanti dans le temps</strong>. Il ne rouille pas, ne se déforme pas et conserve sa teinte des années durant, même exposé à la pluie et aux UV de l'Anjou.
     </p>
     <p>
-      Portail <strong>plein</strong> pour une intimité totale, <strong>semi-ajouré</strong> avec décor découpé au laser, ou <strong>barreaudé</strong> pour un style plus traditionnel : chaque configuration est déclinable dans une large palette de <strong>coloris RAL</strong> — anthracite, gris, blanc, noir sablé… — assortie à vos fenêtres, volets et à votre porte d'entrée.
+      Portail <strong>plein</strong> pour une intimité totale, <strong>semi-ajouré</strong> avec décor découpé au laser, ou <strong>barreaudé</strong> pour un style plus traditionnel : chaque configuration est déclinable dans une large palette de <strong>coloris RAL</strong> — anthracite, gris, blanc, noir sablé… — assortie à vos <a href="/solutions/portes-fenetres/fenetres/">fenêtres</a>, volets et à votre <a href="/solutions/portes-fenetres/portes-entree/">porte d'entrée</a>.
     </p>
 
     <h2>Un portillon assorti pour un ensemble cohérent</h2>
@@ -86,22 +134,47 @@ const schema = {
       Tous nos automatismes sont posés dans les règles de l'art, avec les <strong>sécurités anti-écrasement</strong> conformes à la réglementation, pour protéger votre famille comme vos véhicules.
     </p>
 
-    <h2>Une pose sur mesure par nos équipes, à Angers et Doué-en-Anjou</h2>
+    <h2>Portail à Angers : urbanisme et bon sens</h2>
     <p>
-      De l'<strong>étude à domicile</strong> à la mise en service de la motorisation, votre portail est <strong>fabriqué en France</strong> et posé par <strong>nos équipes qualifiées</strong>, jamais par sous-traitance. Cette maîtrise complète du chantier et notre <strong>certification RGE Qualibat</strong> vous garantissent une installation durable et un interlocuteur unique, disponible toute l'année dans tout le Maine-et-Loire.
+      Avant de dessiner votre portail, nous vérifions avec vous ce qu'autorise le <strong>plan local d'urbanisme</strong> de votre commune : hauteur maximale, teintes, recul par rapport à la voirie. À Angers et dans la plupart des communes de l'agglomération, un portail ou une clôture relève d'une <strong>déclaration préalable de travaux</strong> ; dans le périmètre du site patrimonial remarquable, l'Architecte des Bâtiments de France donne son avis. Nous fournissons les plans et l'insertion nécessaires au dossier.
     </p>
+    <p>
+      Sur le terrain, nous vérifions la solidité des piliers, la nature du sol pour le rail d'un coulissant, l'arrivée électrique pour la motorisation et le sens d'ouverture le plus pratique au quotidien.
+    </p>
+
+    <h2>Installateur de portails à Angers et dans tout le Maine-et-Loire</h2>
+    <p>
+      De l'<strong>étude à domicile</strong> à la mise en service de la motorisation, votre portail est <strong>fabriqué en France</strong> et posé par <strong>nos équipes qualifiées</strong>, jamais par sous-traitance. Depuis nos agences de <strong>Seiches-sur-le-Loir</strong> et de <strong>Doué-en-Anjou</strong>, nous posons des portails à <a href="/menuisier-angers/">Angers</a> et dans toute son agglomération (Avrillé, Beaucouzé, Trélazé, Saint-Barthélemy-d'Anjou, Les Ponts-de-Cé, Bouchemaine), à <a href="/menuisier-saumur/">Saumur</a>, <a href="/menuisier-cholet/">Cholet</a>, Baugé-en-Anjou, Durtal et dans tout le <a href="/zones-intervention/">Maine-et-Loire</a>. Cette maîtrise complète du chantier et notre <strong>certification RGE Qualibat</strong> vous garantissent une installation durable et un interlocuteur unique, disponible toute l'année.
+    </p>
+
+    <h2>Questions fréquentes sur les portails</h2>
+    {faq.map((f) => (
+      <>
+        <h3>{f.question}</h3>
+        <p>{f.reponse}</p>
+      </>
+    ))}
   </PageProduit>
 
-  <section class="pb-20">
+  <!-- Découvrir aussi -->
+  <section class="section-tight bg-[var(--color-subtle)]">
     <Container width="default">
-      <div class="max-w-3xl mx-auto text-center">
-        <p class="text-[15px] text-[var(--color-muted)] mb-6">
-          Envie d'une entrée à votre image, <strong class="text-[var(--color-fg)]">sécurisée, motorisée et sur mesure</strong> ? Parlons-en.
-        </p>
-        <a href="/contact/" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
-          Demander un devis personnalisé
-        </a>
-      </div>
+      <p class="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)] mb-4">
+        Découvrir aussi
+      </p>
+      <ul class="flex flex-wrap items-center justify-center gap-3">
+        <li><a href="/solutions/confort-exterieur/carports-marquises/" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Carports & pergolas</a></li>
+        <li><a href="/solutions/confort-exterieur/brise-vues-claustras/" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Brise-vues & claustras</a></li>
+        <li><a href="/solutions/portes-fenetres/porte-garage/" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Porte de garage</a></li>
+        <li><a href="/solutions/portes-fenetres/portes-entree/" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Porte d'entrée</a></li>
+      </ul>
     </Container>
   </section>
+
+  <CTASection
+    title="Un portail à votre image, sécurisé et motorisé"
+    text="Visite sur place, conseils sur l'ouverture et la motorisation, devis gratuit : nos conseillers étudient votre entrée à Angers et dans tout le Maine-et-Loire."
+    secondaryLabel="Visiter le showroom"
+    secondaryHref="/entreprise/notre-histoire/#showroom"
+  />
 </BaseLayout>

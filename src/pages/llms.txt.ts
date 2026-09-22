@@ -27,6 +27,7 @@ export const GET: APIRoute = () => {
 
   const pages = [
     ["Fenêtres", "/solutions/portes-fenetres/fenetres/", "Fenêtres PVC, aluminium, bois et mixte bois-alu sur mesure."],
+    ["Fenêtres à Angers", "/fenetres-angers/", "Pose et remplacement de fenêtres à Angers et dans l'agglomération : matériaux adaptés au bâti angevin, démarches ABF, aides, devis gratuit."],
     ["Portes d'entrée", "/solutions/portes-fenetres/portes-entree/", "Portes d'entrée alu, bois, PVC et bois-alu, serrures multipoints."],
     ["Baies vitrées", "/solutions/portes-fenetres/baies-vitrees/", "Baies coulissantes, à galandage, à levage."],
     ["Volets & stores", "/solutions/portes-fenetres/volets/", "Volets roulants, battants et solaires Bubendorff."],
@@ -38,7 +39,7 @@ export const GET: APIRoute = () => {
     ["Nos agences", "/agences/", "Seiches-sur-le-Loir et Doué-en-Anjou."],
     ["Zones d'intervention", "/zones-intervention/", "Toutes les communes desservies en Maine-et-Loire."],
     ["Réalisations", "/realisations/", "Chantiers de menuiserie réalisés en Maine-et-Loire."],
-    ["Conseils & blog", "/conseils-services/", "Guides : choisir ses fenêtres, condensation, aides à la rénovation, volet roulant bloqué."],
+    ["Conseils & blog", "/conseils-services/", "Guides : fenêtre PVC ou alu, condensation, aides à la rénovation, volet roulant bloqué, réinitialiser un volet Bubendorff, régler une fenêtre PVC qui ferme mal."],
     ["Contact & devis", "/contact/", "Devis gratuit sous 48 h."],
     // Événement en cours : retiré automatiquement une fois le salon terminé.
     ...(evenementEnCours(salon)

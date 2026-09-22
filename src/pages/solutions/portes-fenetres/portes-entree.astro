@@ -5,6 +5,7 @@ import Container from "../../../components/ui/Container.astro";
 import CTASection from "../../../components/sections/CTASection.astro";
 import CertificationsBanner from "../../../components/sections/CertificationsBanner.astro";
 import AidsBox from "../../../components/sections/AidsBox.astro";
+import ConseilsLies from "../../../components/sections/ConseilsLies.astro";
 
 import porteHero from "../../../assets/porte-1-boisalu.png";
 import porteMixte from "../../../assets/porte-1-boisalu.png";
@@ -19,7 +20,7 @@ import porteBois from "../../../assets/porte-6-bois.png";
 // « porte d'entrée angers »).
 const title = "Porte d'entrée sur mesure à Angers — Alu, bois, PVC & mixte";
 const description =
-  "Portes d'entrée sur mesure aluminium, bois, PVC et bois-alu à Angers et en Maine-et-Loire. Serrures multipoints, isolation renforcée, marques françaises MéO et Arcades & Baies. Devis gratuit.";
+  "Portes d'entrée sur mesure aluminium, bois, PVC et bois-alu à Angers et en Maine-et-Loire. Serrures multipoints, isolation renforcée, MéO et Arcades & Baies.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -32,6 +33,11 @@ const breadcrumb = [
 // Cible « prix porte d'entrée », « alu ou pvc », sécurité, délais — requêtes
 // PAA constatées sur la SERP et fortes en réponses IA (GEO).
 const faq = [
+  {
+    question: "Qu'est-ce qu'une porte d'entrée sur mesure, et quand en a-t-on besoin ?",
+    reponse:
+      "Une porte d'entrée sur mesure est fabriquée aux dimensions exactes de votre baie, contrairement aux portes de dimensions standard vendues en magasin. Elle s'impose dès que l'ouverture sort des cotes courantes : maison ancienne aux passages étroits ou très hauts, baie cintrée, porte avec tierce (partie fixe latérale) ou imposte vitrée au-dessus, ou simplement lorsque vous voulez choisir librement le design, le vitrage, la teinte et les accessoires. En rénovation, elle évite les reprises de maçonnerie et garantit l'étanchéité à l'air.",
+  },
   {
     question: "De quoi dépend le prix d'une porte d'entrée sur mesure posée ?",
     reponse:
@@ -132,6 +138,28 @@ const schema = [
   </section>
 
   <CertificationsBanner />
+
+  <!-- Porte d'entrée sur mesure : pourquoi (requête nationale « porte d'entrée
+       sur mesure », 1 900 rech./mois, KD 1) -->
+  <section class="section-tight">
+    <Container width="default">
+      <div class="prose-fsl max-w-3xl mx-auto">
+        <h2>Pourquoi une porte d'entrée sur mesure ?</h2>
+        <p>
+          Une <strong>porte d'entrée sur mesure</strong> est fabriquée aux dimensions exactes de votre baie, au millimètre, alors qu'une porte standard impose de reprendre la maçonnerie ou de combler avec des tapées. En rénovation, c'est ce qui garantit une pose propre, sans jeu, étanche à l'air et à l'eau : la première condition de l'isolation et de la sécurité.
+        </p>
+        <ul>
+          <li><strong>Dimensions hors standard</strong> : passages étroits ou très hauts des maisons anciennes d'Angers et du Saumurois, baies cintrées, portes de plus de 2,15 m.</li>
+          <li><strong>Compositions</strong> : porte avec tierce (partie latérale fixe ou ouvrante), imposte vitrée au-dessus, double vantail, semi-fixe.</li>
+          <li><strong>Personnalisation</strong> : design du panneau, vitrage clair, dépoli ou décoratif, teinte RAL assortie aux fenêtres et au portail, poignée, bâton de maréchal, serrure motorisée.</li>
+          <li><strong>Secteur protégé</strong> : dessin, partitions et teintes conformes aux prescriptions de l'Architecte des Bâtiments de France.</li>
+        </ul>
+        <p>
+          Nos portes sur mesure sont fabriquées en France par <a href="/partenaires/meo/">MéO</a> et <a href="/partenaires/arcades-et-baies/">Arcades &amp; Baies</a>, puis posées par nos équipes à Angers, Saumur, Cholet et dans tout le Maine-et-Loire.
+        </p>
+      </div>
+    </Container>
+  </section>
 
   <!-- Quelle porte d'entrée choisir ? -->
   <section class="section-tight bg-[var(--color-subtle)]">
@@ -422,6 +450,11 @@ const schema = [
       </div>
     </Container>
   </section>
+
+  <ConseilsLies
+    slugs={["fenetres-bois-alu-meo", "aides-changer-fenetres-2026", "changer-fenetres-avant-hiver"]}
+    titre="Nos conseils pour votre projet de porte d'entrée"
+  />
 
   <CTASection
     title="Transformez votre entrée en un espace qui reflète votre goût"

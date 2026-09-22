@@ -3,11 +3,19 @@ import { Image } from "astro:assets";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import PageProduit from "../../../components/templates/PageProduit.astro";
 import Container from "../../../components/ui/Container.astro";
+import CTASection from "../../../components/sections/CTASection.astro";
 import carportImg from "../../../assets/carport-1.png";
 import marquiseImg from "../../../assets/marquise-1.png";
 
-const title = "Carports & Marquises sur mesure | Fenêtres sur Loir — Protégez-vous des intempéries près d'Angers";
-const description = "Menuisier depuis 2003 à Seiches-sur-le-Loir, Fenêtres sur Loir installe carports et marquises sur mesure pour protéger votre véhicule et votre entrée.";
+// SEO (22/09/2026) : « carport angers » 70 rech./mois, « pergola angers » 140,
+// « pergola bioclimatique angers » 70 ; la page ne sortait que sur 246
+// impressions/12 mois en pos. 28,6. La SERP est tenue par des pages service
+// localisées (AL Menuiseries « installation-pergolas » 7ᵉ). Les pergolas
+// bioclimatiques sont déjà posées (réalisation « Villa contemporaine » à Angers)
+// → ville en tête de title/H1, section pergolas, zone d'intervention, FAQ
+// visible + FAQPage. Pas de prix.
+const title = "Carports, marquises et pergolas sur mesure à Angers (49)";
+const description = "Carports aluminium, marquises et pergolas sur mesure posés à Angers et en Maine-et-Loire par Fenêtres sur Loir, artisan depuis 2003. Devis gratuit.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -16,33 +24,75 @@ const breadcrumb = [
   { label: "Carports & Marquises" },
 ];
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  provider: { "@id": "https://www.fenetres-sur-loir.fr/#organization" },
-  name: "Carports et marquises sur mesure",
-  description,
-};
+// FAQ : source unique pour le bloc visible ET le FAQPage JSON-LD.
+const faq = [
+  {
+    question: "Faut-il un permis pour installer un carport à Angers ?",
+    reponse:
+      "Un carport est une construction : en règle générale, une déclaration préalable suffit jusqu'à 20 m² d'emprise au sol (seuil porté à 40 m² dans les zones urbaines couvertes par un plan local d'urbanisme, sous conditions), et un permis de construire est requis au-delà. Les règles de recul, de hauteur et d'aspect dépendent du PLU de votre commune ; en secteur protégé, l'Architecte des Bâtiments de France donne son avis. Nous vous indiquons la démarche applicable et fournissons les plans.",
+  },
+  {
+    question: "Carport aluminium ou bois : que choisir ?",
+    reponse:
+      "L'aluminium thermolaqué ne demande aucun entretien, ne se déforme pas et se décline dans les mêmes teintes que vos menuiseries : c'est notre solution de référence, pour un style contemporain assorti à la maison. Le bois apporte un aspect plus chaleureux mais réclame un traitement régulier. Dans les deux cas, la structure est dimensionnée pour les charges de vent et de neige du Maine-et-Loire.",
+  },
+  {
+    question: "Pergola bioclimatique ou pergola à toile : quelle différence ?",
+    reponse:
+      "La pergola bioclimatique est équipée de lames orientables en aluminium, motorisées : ouvertes, elles laissent passer le soleil et l'air ; fermées, elles forment un toit étanche. Elle s'utilise toute l'année et peut recevoir des stores verticaux, un éclairage ou un chauffage. La pergola à toile rétractable protège du soleil à moindre coût mais ne fait pas office de toit. Nous posons des pergolas bioclimatiques sur mesure, adossées à la maison ou autoportées.",
+  },
+  {
+    question: "Quelles dimensions pour un carport ?",
+    reponse:
+      "Pour une voiture, comptez au minimum 3 m de largeur sur 5 m de longueur ; pour deux véhicules côte à côte, 5,50 à 6 m de largeur. La hauteur de passage se situe en général entre 2,10 et 2,50 m. Tout est fabriqué sur mesure : nous adaptons la structure à la place disponible, à la pente du terrain et au sens d'accès.",
+  },
+  {
+    question: "Comment est fixée une marquise au-dessus d'une porte d'entrée ?",
+    reponse:
+      "Une marquise se fixe dans la maçonnerie de la façade par des consoles ou des tirants en aluminium ou en inox, avec un vitrage feuilleté ou un polycarbonate. Nous vérifions la nature du mur (pierre, brique, parpaing, isolation par l'extérieur) pour choisir la fixation adaptée et garantir l'étanchéité au droit de la porte.",
+  },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    provider: { "@id": "https://www.fenetres-sur-loir.fr/#organization" },
+    name: "Carports, marquises et pergolas bioclimatiques sur mesure",
+    serviceType: "Installation de carports, marquises et pergolas",
+    description,
+    areaServed: ["Angers", "Maine-et-Loire", "Saumur", "Cholet", "Doué-en-Anjou", "Seiches-sur-le-Loir"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.reponse },
+    })),
+  },
+];
 ---
 
 <BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
   <PageProduit
     eyebrow="Confort extérieur"
-    title="Carports et marquises sur mesure : protégez ce qui compte"
+    title="Carports, marquises et pergolas sur mesure à Angers et en Maine-et-Loire"
     heroPlaceholderLabel="Carport aluminium devant une maison contemporaine"
     heroImage={carportImg}
     heroImageAlt="Carport aluminium contemporain installé par Fenêtres sur Loir près d'Angers"
     heroStyle="wide"
-    lead="Protégez votre véhicule et votre entrée des intempéries avec des structures aluminium sur mesure, élégantes et durables."
+    lead="Protégez votre véhicule, votre entrée et votre terrasse avec des structures aluminium sur mesure, élégantes et durables, posées par nos équipes à Angers et dans tout le département."
   >
     <p>
-      Menuisier depuis <strong>2003</strong> à Seiches-sur-le-Loir, intervenant sur Angers et ses environs, les équipes de Fenêtres sur Loir vous proposent des solutions <strong>esthétiques, fonctionnelles et sur mesure</strong> pour protéger votre voiture ou votre entrée des intempéries.
+      Menuisier depuis <strong>2003</strong> à Seiches-sur-le-Loir, à vingt minutes d'Angers, et à Doué-en-Anjou, Fenêtres sur Loir conçoit et pose des <strong>carports, marquises et pergolas bioclimatiques sur mesure</strong> dans toute l'agglomération angevine et le Maine-et-Loire.
     </p>
     <p>
-      Ces abris apportent une <strong>protection efficace contre la pluie, la grêle et les rayons UV</strong>, tout en ajoutant une touche d'élégance à votre extérieur.
+      Ces structures apportent une <strong>protection efficace contre la pluie, la grêle et les rayons UV</strong>, tout en ajoutant une touche d'élégance à votre extérieur — et se coordonnent avec vos <a href="/solutions/portes-fenetres/fenetres/">fenêtres</a>, votre <a href="/solutions/confort-exterieur/portails-portillons/">portail</a> et votre <a href="/solutions/portes-fenetres/porte-garage/">porte de garage</a> dans une même teinte.
     </p>
 
-    <h2>Carports : abritez votre véhicule en toute sérénité</h2>
+    <h2>Carport à Angers : abritez votre véhicule en toute sérénité</h2>
     <figure>
       <Image
         src={carportImg}
@@ -57,10 +107,15 @@ const schema = {
       />
     </figure>
     <p>
-      Un <strong>carport</strong> est la solution idéale pour protéger votre véhicule sans avoir à construire un garage complet. En plus de préserver votre voiture des aléas climatiques, il améliore la <strong>longévité de votre peinture et de vos équipements</strong>.
+      Un <strong>carport</strong> est la solution idéale pour protéger votre véhicule sans construire un garage complet. En plus de préserver votre voiture des aléas climatiques, il améliore la <strong>longévité de votre peinture et de vos équipements</strong> et libère de la place : rangement de vélos, abri de terrasse, espace couvert pour recevoir.
     </p>
     <p>
-      Nos carports sont conçus pour s'intégrer harmonieusement à votre maison et vous sont proposés dans une <strong>gamme de matériaux et de finitions variées</strong>.
+      Nos carports en <strong>aluminium thermolaqué</strong> sont conçus pour s'intégrer harmonieusement à votre maison : simple ou double, adossé ou autoporté, toiture plate ou à faible pente, couverture en panneaux aluminium, polycarbonate ou verre. Ils sont proposés dans une <strong>large gamme de finitions et de coloris</strong>, assortis à vos menuiseries.
+    </p>
+
+    <h2>Pergolas bioclimatiques : la terrasse toute l'année</h2>
+    <p>
+      La <strong>pergola bioclimatique</strong> prolonge la maison vers le jardin. Ses <strong>lames orientables motorisées</strong> dosent l'ombre et la ventilation, se ferment pour former un toit étanche et se complètent de stores verticaux, d'un éclairage intégré ou d'un chauffage. Adossée à la façade ou autoportée, elle est fabriquée sur mesure aux dimensions de votre terrasse, comme la pergola bioclimatique motorisée de 5 × 4 m posée sur notre <a href="/realisations/angers/">villa contemporaine à Angers</a>.
     </p>
 
     <h2>Marquises : protégez et embellissez votre entrée</h2>
@@ -78,33 +133,50 @@ const schema = {
       />
     </figure>
     <p>
-      Les <strong>marquises</strong> apportent une double fonction : protéger votre porte d'entrée des intempéries tout en sublimant l'esthétique de votre façade.
+      Les <strong>marquises</strong> ont une double fonction : protéger votre <a href="/solutions/portes-fenetres/portes-entree/">porte d'entrée</a> des intempéries tout en sublimant l'esthétique de votre façade.
     </p>
     <p>
-      Choisissez parmi nos nombreuses finitions, que vous préfériez un style contemporain ou plus classique : <strong>vitrage ou plexiglas</strong>, avec ou sans <strong>option d'éclairage</strong>, et de <strong>nombreux coloris disponibles</strong>.
+      Choisissez parmi nos nombreuses finitions, que vous préfériez un style contemporain ou plus classique : <strong>vitrage feuilleté ou polycarbonate</strong>, avec ou sans <strong>éclairage intégré</strong>, et de <strong>nombreux coloris disponibles</strong>.
     </p>
 
     <h2>Des matériaux durables et résistants</h2>
     <p>
-      Chez Fenêtres sur Loir, la <strong>durabilité</strong> est au cœur de nos préoccupations. Tous nos carports et marquises sont fabriqués à partir de matériaux <strong>robustes et durables</strong>, comme l'<strong>aluminium traité</strong> ou le <strong>verre trempé</strong>.
+      Chez Fenêtres sur Loir, la <strong>durabilité</strong> est au cœur de nos préoccupations. Tous nos carports, pergolas et marquises sont fabriqués à partir de matériaux <strong>robustes et durables</strong>, comme l'<strong>aluminium thermolaqué</strong> ou le <strong>verre feuilleté</strong>, et dimensionnés pour les charges de vent et de neige de la région.
     </p>
 
-    <h2>Installation sur mesure par nos experts</h2>
+    <h2>Installateur de carports et pergolas à Angers et en Maine-et-Loire</h2>
     <p>
-      L'installation de votre carport ou de votre marquise est réalisée par <strong>nos équipes spécialisées</strong>, pour une pose professionnelle, rapide et soignée.
+      L'installation de votre carport, de votre pergola ou de votre marquise est réalisée par <strong>nos équipes salariées</strong>, sans sous-traitance : étude sur place, plans pour la déclaration préalable, fixation adaptée au sol et à la façade, mise en service de la motorisation. Depuis nos agences de <strong>Seiches-sur-le-Loir</strong> et de <strong>Doué-en-Anjou</strong>, nous intervenons à <a href="/menuisier-angers/">Angers</a> et dans toute son agglomération (Avrillé, Beaucouzé, Trélazé, Saint-Barthélemy-d'Anjou, Les Ponts-de-Cé, Verrières-en-Anjou), à <a href="/menuisier-saumur/">Saumur</a>, <a href="/menuisier-cholet/">Cholet</a>, Baugé-en-Anjou, Durtal et dans tout le <a href="/zones-intervention/">Maine-et-Loire</a>.
     </p>
+
+    <h2>Questions fréquentes sur les carports, pergolas et marquises</h2>
+    {faq.map((f) => (
+      <>
+        <h3>{f.question}</h3>
+        <p>{f.reponse}</p>
+      </>
+    ))}
   </PageProduit>
 
-  <section class="pb-20">
+  <!-- Découvrir aussi -->
+  <section class="section-tight bg-[var(--color-subtle)]">
     <Container width="default">
-      <div class="max-w-3xl mx-auto text-center">
-        <p class="text-[15px] text-[var(--color-muted)] mb-6">
-          Découvrez nos solutions de carports et marquises pensées pour allier <strong class="text-[var(--color-fg)]">protection, design et durabilité</strong>.
-        </p>
-        <a href="/contact/" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
-          Demander un devis personnalisé
-        </a>
-      </div>
+      <p class="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)] mb-4">
+        Découvrir aussi
+      </p>
+      <ul class="flex flex-wrap items-center justify-center gap-3">
+        <li><a href="/solutions/confort-exterieur/portails-portillons/" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Portails & portillons</a></li>
+        <li><a href="/solutions/confort-exterieur/brise-vues-claustras/" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Brise-vues & claustras</a></li>
+        <li><a href="/solutions/portes-fenetres/porte-garage/" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Porte de garage</a></li>
+        <li><a href="/realisations/angers/" class="inline-flex items-center px-4 py-2 text-sm bg-white ring-1 ring-[var(--color-border)] rounded-full hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors">Réalisation : villa à Angers</a></li>
+      </ul>
     </Container>
   </section>
+
+  <CTASection
+    title="Un carport ou une pergola pensés pour votre maison"
+    text="Visite sur place, plans pour la déclaration préalable, devis gratuit : nos conseillers étudient votre projet à Angers et dans tout le Maine-et-Loire."
+    secondaryLabel="Voir nos réalisations"
+    secondaryHref="/realisations/"
+  />
 </BaseLayout>

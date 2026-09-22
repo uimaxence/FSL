@@ -59,7 +59,8 @@ const faqAll = [...(commune.faq ?? []), ...faqLocalisees];
 const services = [
   {
     label: "Fenêtres",
-    href: "/solutions/portes-fenetres/fenetres/",
+    // Angers dispose d'une page produit localisée (audit du 22/09/2026).
+    href: commune.slug === "angers" ? "/fenetres-angers/" : "/solutions/portes-fenetres/fenetres/",
     desc: "Fenêtres PVC, aluminium, bois ou mixte bois-alu, en double ou triple vitrage : des menuiseries sur mesure parfaitement isolées et adaptées à chaque ouverture.",
   },
   {
@@ -181,6 +182,19 @@ const schema = communeGraph(commune, faqAll);
         </p>
         {commune.body.map((p) => <p>{p}</p>)}
       </div>
+
+      {commune.slug === "angers" && (
+        <div class="max-w-3xl mt-8 rounded-xl ring-1 ring-[var(--color-border)] bg-white p-5 sm:p-6">
+          <p class="text-sm text-[var(--color-muted)] leading-relaxed">
+            <strong class="text-[var(--color-fg)]">Un projet de fenêtres à Angers ?</strong>
+            {" "}Matériaux adaptés au bâti angevin, démarches ABF, pose en rénovation ou dépose totale,
+            aides : consultez notre page dédiée{" "}
+            <a href="/fenetres-angers/" class="font-medium text-[var(--color-accent)] underline underline-offset-4">
+              fenêtres à Angers
+            </a>.
+          </p>
+        </div>
+      )}
 
       {commune.quartiers && commune.quartiers.length > 0 && (
         <div class="max-w-3xl mt-8">

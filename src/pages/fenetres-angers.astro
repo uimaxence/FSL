@@ -1,0 +1,389 @@
+---
+// Page produit localisée « fenêtres à Angers ».
+//
+// SEO (audit du 22/09/2026) : ≈ 2 400 impressions/an de requêtes « fenêtre /
+// pose / devis / pvc / alu + Angers » atterrissaient sur la page ville
+// /menuisier-angers/ en positions 9-27, faute de page dédiée. Les deux premiers
+// résultats organiques sur « fenetre angers » sont des pages produit locales
+// (Atlantique Ouvertures /fenetre-angers/, ACB /fenetre-pvc-angers/). La page
+// fenêtres des solutions reste la page « Maine-et-Loire » ; celle-ci prend
+// l'agglomération angevine. Aucun prix affiché (choix client).
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import ReponseDirecte from "../components/ui/ReponseDirecte.astro";
+import CTASection from "../components/sections/CTASection.astro";
+import AgenceProche from "../components/sections/AgenceProche.astro";
+import CommuneRealisations from "../components/sections/CommuneRealisations.astro";
+import ConseilsLies from "../components/sections/ConseilsLies.astro";
+import { organizationNode, agencyNode, agencyId } from "../lib/schema";
+import { SITE_URL } from "../config/business";
+import { communesVoisines } from "../lib/maillage";
+import heroImg from "../assets/porte-fenetre-3.png";
+import bandImg from "../assets/porte-fenetre-1.png";
+
+const title = "Fenêtres à Angers — Pose et remplacement sur mesure (PVC, alu)";
+const description =
+  "Pose et remplacement de fenêtres sur mesure à Angers : PVC, alu, bois et bois-alu MéO. Artisan RGE Qualibat à 22 km, démarches ABF, aides. Devis gratuit.";
+
+const PAGE_URL = `${SITE_URL}/fenetres-angers/`;
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres/" },
+  { label: "Fenêtres", href: "/solutions/portes-fenetres/fenetres/" },
+  { label: "Angers" },
+];
+
+const reponseDirecte =
+  "Fenêtres sur Loir pose et remplace des fenêtres sur mesure à Angers depuis 2003 : PVC, aluminium, bois et bois-alu MéO. Artisan certifié RGE Qualibat, l'entreprise intervient depuis son agence de Seiches-sur-le-Loir, à 22 km d'Angers, avec ses propres poseurs. Devis gratuit sous 48 h après prise de mesures à domicile.";
+
+// Communes de l'agglomération ayant une page dédiée (maillage géographique).
+const agglo = communesVoisines("angers", 6);
+
+// FAQ : source unique pour le bloc visible ET le FAQPage JSON-LD. Questions
+// calquées sur les requêtes GSC (« devis / pose / changer fenêtre angers »,
+// « fenetre pvc angers », « fenetre aluminium à angers ») et les « autres
+// questions » de la SERP (coût, inconvénient PVC, durée de vie).
+const faq = [
+  {
+    question: "De quoi dépend le prix de fenêtres posées à Angers ?",
+    reponse:
+      "Du matériau (PVC, aluminium, bois ou bois-alu), des dimensions et du type d'ouverture, du vitrage (double, triple, acoustique) et du mode de pose : rénovation sur le dormant existant, la plus courante dans les pavillons angevins, ou dépose totale, fréquente dans les maisons anciennes du centre. Le devis est gratuit et détaillé, remis sous 48 h après une prise de mesures à domicile ; les aides et la TVA à 5,5 % s'y appliquent lorsque vous y êtes éligible.",
+  },
+  {
+    question: "Quel délai pour remplacer des fenêtres à Angers ?",
+    reponse:
+      "Nous nous déplaçons sous quelques jours pour la prise de cotes et remettons le devis sous 48 h. Les fenêtres sont ensuite fabriquées sur mesure en France, puis posées par nos équipes : comptez 1 à 3 heures par fenêtre et, le plus souvent, 1 à 2 jours pour une maison complète, nettoyage et évacuation des anciennes menuiseries compris.",
+  },
+  {
+    question: "Faut-il une autorisation pour changer ses fenêtres à Angers ?",
+    reponse:
+      "Oui dans la plupart des cas : le remplacement de fenêtres modifie l'aspect extérieur et relève d'une déclaration préalable de travaux auprès de la Ville d'Angers. Dans le site patrimonial remarquable (centre historique, abords du château et de la cathédrale, la Doutre), l'Architecte des Bâtiments de France donne son avis sur les matériaux, teintes et partitions. Nous préparons le dossier et proposons des menuiseries conformes.",
+  },
+  {
+    question: "Fenêtre PVC ou aluminium : que choisir à Angers ?",
+    reponse:
+      "Pour rénover un pavillon des années 1960-1990 de Belle-Beille, Monplaisir ou des Justices, le PVC offre le meilleur rapport isolation-prix et un entretien nul. L'aluminium, aux profils fins, s'impose pour les grandes ouvertures, les extensions contemporaines et les immeubles. En secteur protégé ou sur une maison de caractère, le bois ou le bois-alu MéO sont privilégiés. Nous posons les quatre matériaux et vous conseillons ouverture par ouverture.",
+  },
+  {
+    question: "Intervenez-vous en copropriété à Angers ?",
+    reponse:
+      "Oui. Nous fournissons les éléments techniques nécessaires à l'accord de la copropriété (aspect extérieur identique, teintes, partitions) et posons les menuiseries d'un appartement en une journée en général, avec une attention particulière à la protection des parties communes.",
+  },
+  {
+    question: "Quelle garantie sur des fenêtres posées par Fenêtres sur Loir ?",
+    reponse:
+      "La pose est couverte par notre garantie décennale et les menuiseries par la garantie du fabricant (MéO, Arcades & Baies). Nos poseurs sont salariés, sans sous-traitance : en cas de réglage à faire après la pose, c'est la même équipe qui revient, depuis Seiches-sur-le-Loir, à vingt minutes d'Angers.",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    organizationNode(),
+    agencyNode("seiches"),
+    {
+      "@type": "Service",
+      "@id": `${PAGE_URL}#service`,
+      serviceType: "Pose et remplacement de fenêtres sur mesure",
+      name: "Fenêtres sur mesure à Angers",
+      description,
+      provider: { "@id": agencyId("seiches") },
+      brand: [
+        { "@type": "Brand", name: "MéO" },
+        { "@type": "Brand", name: "Arcades & Baies" },
+      ],
+      areaServed: {
+        "@type": "City",
+        name: "Angers",
+        address: {
+          "@type": "PostalAddress",
+          postalCode: "49000",
+          addressLocality: "Angers",
+          addressRegion: "Maine-et-Loire",
+          addressCountry: "FR",
+        },
+        geo: { "@type": "GeoCoordinates", latitude: 47.4784, longitude: -0.5632 },
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${PAGE_URL}#faq`,
+      mainEntity: faq.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.reponse },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <!-- Hero -->
+  <section class="relative">
+    <div class="relative min-h-[420px] sm:min-h-[520px] flex items-end overflow-hidden">
+      <Image
+        src={heroImg}
+        alt="Fenêtres sur mesure posées par Fenêtres sur Loir dans une maison de l'agglomération d'Angers"
+        widths={[640, 960, 1280, 1920]}
+        sizes="100vw"
+        loading="eager"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+      <Container width="default" class="relative pb-12 sm:pb-16 pt-24">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-white/85">
+          Fenêtres · Angers (49000) et agglomération
+        </p>
+        <h1 class="text-white text-balance max-w-3xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
+          Fenêtres à Angers : pose et remplacement sur mesure en PVC, aluminium, bois et bois-alu
+        </h1>
+        <p class="mt-5 max-w-2xl text-[17px] leading-relaxed text-white/90">
+          Artisan menuisier RGE Qualibat depuis 2003, Fenêtres sur Loir remplace vos fenêtres à
+          Angers avec ses propres poseurs, du pavillon de Belle-Beille à la maison de schiste de
+          la Doutre.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="/contact/"
+            class="inline-flex items-center rounded-full px-7 py-3 text-[14px] font-medium text-white shadow-sm transition-colors"
+            style="background: var(--color-accent);"
+            onmouseover="this.style.background='var(--color-accent-hover)'"
+            onmouseout="this.style.background='var(--color-accent)'"
+          >
+            Demander un devis gratuit
+          </a>
+          <a
+            href="/solutions/portes-fenetres/fenetres/"
+            class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white border border-white/50 hover:bg-white hover:text-[var(--color-fg)] transition-colors"
+          >
+            Nos gammes de fenêtres
+          </a>
+        </div>
+      </Container>
+    </div>
+  </section>
+
+  <!-- Corps rédactionnel -->
+  <section class="section-tight">
+    <Container width="default">
+      <ReponseDirecte texte={reponseDirecte} class="max-w-3xl mb-8" />
+      <div class="prose-fsl max-w-3xl">
+        <p class="lead">
+          Vous cherchez un professionnel pour <strong>changer vos fenêtres à Angers</strong> ?
+          Fenêtres sur Loir conseille, fabrique sur mesure et pose des fenêtres dans toute
+          l'agglomération angevine depuis plus de vingt ans. Un seul interlocuteur du premier
+          relevé de cotes à la pose finale, une équipe salariée, et un showroom de 300 m² à
+          Seiches-sur-le-Loir, à vingt minutes du centre d'Angers, pour comparer les matériaux
+          et les vitrages en situation réelle.
+        </p>
+
+        <h2>Remplacer ses fenêtres à Angers : ce que change le bâti angevin</h2>
+        <p>
+          Angers juxtapose un cœur de ville classé et de vastes quartiers pavillonnaires de la
+          seconde moitié du XX<sup>e</sup> siècle. Cette double réalité guide nos préconisations,
+          ouverture par ouverture.
+        </p>
+        <ul>
+          <li>
+            <strong>Centre historique, la Doutre, abords du château et de la cathédrale</strong> :
+            maisons de schiste et de tuffeau, immeubles anciens, périmètre du site patrimonial
+            remarquable. Le remplacement des fenêtres y est soumis à une déclaration préalable et
+            à l'avis de l'Architecte des Bâtiments de France : partitions, teintes, profils et
+            matériaux (bois, bois-alu ou aluminium teinté) sont adaptés en conséquence.
+          </li>
+          <li>
+            <strong>Belle-Beille, Monplaisir, les Justices, Saint-Léonard, la Madeleine</strong> :
+            pavillons des années 1960 à 1990 aux menuiseries d'origine, souvent en simple vitrage
+            ou en double vitrage de première génération. C'est le terrain naturel de la fenêtre
+            PVC ou aluminium en rénovation, avec un gain immédiat d'isolation thermique et
+            acoustique.
+          </li>
+          <li>
+            <strong>Immeubles et copropriétés</strong> : menuiseries aluminium à profils fins,
+            vitrages à contrôle solaire sur les façades exposées, respect strict de l'aspect
+            extérieur validé par le syndic.
+          </li>
+          <li>
+            <strong>Extensions et constructions récentes</strong> (Verrières-en-Anjou, Avrillé,
+            Beaucouzé, Les Ponts-de-Cé) : grandes ouvertures, baies coulissantes et fenêtres
+            bois-alu MéO conformes à la RE2020.
+          </li>
+        </ul>
+
+        <h2>Quel matériau pour des fenêtres à Angers ?</h2>
+        <p>
+          Nous posons les quatre familles de menuiseries. Le bon choix dépend de votre maison,
+          de son quartier et de votre budget ; il se vérifie en showroom.
+        </p>
+        <ul>
+          <li>
+            <strong>Fenêtres PVC</strong> : le meilleur rapport isolation-prix, aucun entretien,
+            profils multichambres, blanc, gris anthracite ou teintes bois plaxées. Le choix de la
+            majorité des rénovations de pavillons angevins.
+          </li>
+          <li>
+            <strong>Fenêtres aluminium</strong> (Arcades &amp; Baies, MéO) : profils fins à rupture
+            de pont thermique, grandes dimensions, 26 teintes. Idéales pour les maisons
+            contemporaines, les immeubles et les extensions.
+          </li>
+          <li>
+            <strong>Fenêtres bois</strong> : chêne ou pin sylvestre, la référence en secteur
+            protégé et sur les maisons anciennes du centre.
+          </li>
+          <li>
+            <strong>Fenêtres bois-alu MéO</strong> : aluminium sans entretien à l'extérieur,
+            bois chaleureux à l'intérieur. Notre solution haut de gamme de
+            <a href="/partenaires/meo/">Menuisier d'Excellence MéO</a>, adaptée aux maisons de
+            caractère comme aux constructions performantes.
+          </li>
+        </ul>
+        <p>
+          Vous hésitez entre PVC et aluminium ? Notre comparatif
+          <a href="/blog/fenetre-pvc-alu-bois-alu/">fenêtre PVC ou alu</a> détaille isolation,
+          entretien, esthétique et durée de vie.
+        </p>
+
+        <h2>Pose de fenêtres à Angers : rénovation ou dépose totale ?</h2>
+        <p>
+          Deux techniques coexistent. En <strong>pose en rénovation</strong>, la nouvelle fenêtre
+          s'installe sur le dormant existant, sain et bien fixé : intervention rapide, sans
+          reprise de maçonnerie ni de tapisserie, très adaptée aux pavillons. En
+          <strong>dépose totale</strong>, l'ancien dormant est retiré pour poser la menuiserie
+          directement dans la maçonnerie : plus de clair de vitrage et une isolation optimale,
+          au prix de finitions à prévoir. Dans les maisons anciennes d'Angers, où les dormants
+          d'origine sont souvent fatigués, c'est la solution que nous recommandons le plus
+          souvent. Le choix se fait lors du relevé de cotes, en fonction de l'état de chaque
+          ouverture.
+        </p>
+        <p>
+          Dans les deux cas, la pose est réalisée par nos équipes salariées, avec calfeutrement
+          conforme au DTU, réglage des ouvrants, nettoyage et évacuation des anciennes fenêtres.
+        </p>
+
+        <h2>Devis fenêtres à Angers : comment ça se passe</h2>
+        <ul>
+          <li><strong>Premier contact</strong> par téléphone ou via le formulaire, ou visite du showroom de Seiches-sur-le-Loir.</li>
+          <li><strong>Visite à domicile</strong> à Angers sous quelques jours : relevé de cotes, état des dormants, conseils sur les matériaux, les vitrages et les démarches (déclaration préalable, ABF, copropriété).</li>
+          <li><strong>Devis détaillé gratuit sous 48 h</strong>, avec le montant des aides auxquelles vous avez droit.</li>
+          <li><strong>Fabrication sur mesure en France</strong>, puis pose par nos équipes, généralement en 1 à 2 jours pour une maison complète.</li>
+          <li><strong>Suivi et SAV</strong> assurés par la même équipe, depuis notre agence à vingt minutes d'Angers.</li>
+        </ul>
+
+        <h2>Aides pour changer ses fenêtres à Angers</h2>
+        <p>
+          Notre certification <strong>RGE Qualibat</strong> ouvre droit aux dispositifs en
+          vigueur pour le remplacement de fenêtres : <strong>MaPrimeRénov'</strong> selon les
+          revenus du foyer, <strong>primes CEE</strong> des fournisseurs d'énergie,
+          <strong>éco-prêt à taux zéro</strong> et <strong>TVA réduite à 5,5 %</strong> sur la
+          fourniture et la pose dans un logement de plus de deux ans. Nous montons le dossier
+          et fournissons les justificatifs techniques. Notre guide
+          <a href="/blog/aides-changer-fenetres-2026/">des aides 2026</a> détaille les
+          conditions.
+        </p>
+
+        <h2>Quartiers d'Angers et communes de l'agglomération</h2>
+        <p>
+          Nous intervenons dans tous les quartiers d'Angers, dont La Doutre, La Madeleine,
+          Belle-Beille, Monplaisir, Saint-Léonard, les Justices, la Roseraie et Lac de Maine, et
+          dans toute l'agglomération d'Angers Loire Métropole. Chaque commune dispose de sa page
+          avec nos réalisations à proximité :
+        </p>
+      </div>
+
+      <ul class="flex flex-wrap gap-2 mt-4 max-w-3xl">
+        <li>
+          <a
+            href="/menuisier-angers/"
+            class="inline-flex items-center rounded-full bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+          >
+            Menuisier à Angers
+          </a>
+        </li>
+        {agglo.map((v) => (
+          <li>
+            <a
+              href={`/menuisier-${v.slug}/`}
+              class="inline-flex items-center rounded-full bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+            >
+              Menuisier à {v.nom}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a
+            href="/zones-intervention/"
+            class="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-[var(--color-accent)] hover:underline"
+          >
+            Toutes nos communes →
+          </a>
+        </li>
+      </ul>
+    </Container>
+  </section>
+
+  <!-- Bandeau photo -->
+  <section class="relative">
+    <div class="relative aspect-[16/9] sm:aspect-[21/7] overflow-hidden">
+      <Image
+        src={bandImg}
+        alt="Fenêtre bois-aluminium MéO sur mesure installée par Fenêtres sur Loir près d'Angers"
+        widths={[640, 960, 1280, 1920]}
+        sizes="100vw"
+        loading="lazy"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+      <div class="absolute inset-0 flex items-center">
+        <Container width="default">
+          <p class="text-xs font-semibold tracking-[0.18em] uppercase text-white/80 mb-2">
+            Menuisier d'Excellence MéO · RGE Qualibat
+          </p>
+          <p class="font-display text-white text-[clamp(1.5rem,3.5vw,2.5rem)] leading-tight max-w-2xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)]">
+            Des fenêtres fabriquées en France, posées par nos propres équipes à Angers.
+          </p>
+        </Container>
+      </div>
+    </div>
+  </section>
+
+  <CommuneRealisations slugs={["angers", "ponts-de-ce"]} communeNom="Angers" />
+
+  <AgenceProche agence="seiches" communeNom="Angers" distanceKm={22} />
+
+  <!-- FAQ — même source que le FAQPage JSON-LD -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="prose-fsl max-w-3xl mx-auto">
+        <h2>Fenêtres à Angers : vos questions</h2>
+        {faq.map((f) => (
+          <>
+            <h3>{f.question}</h3>
+            <p>{f.reponse}</p>
+          </>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <ConseilsLies
+    slugs={["fenetre-pvc-alu-bois-alu", "aides-changer-fenetres-2026", "regler-fenetre-pvc-qui-ferme-mal"]}
+    titre="Nos conseils avant de changer vos fenêtres"
+  />
+
+  <CTASection
+    eyebrow="Votre projet à Angers"
+    title="Votre devis fenêtres à Angers, gratuit sous 48 h"
+    text="Prise de mesures à domicile, conseil sur les matériaux et les aides, pose par nos équipes salariées : parlons de votre projet."
+    secondaryLabel="Toutes nos fenêtres"
+    secondaryHref="/solutions/portes-fenetres/fenetres/"
+  />
+</BaseLayout>
