@@ -1,10 +1,28 @@
 ---
-title: "Menuiserie à Doué-en-Anjou : Fenêtres sur Loir ouvre sa nouvelle agence !"
-description: "Fenêtres sur Loir s'installe à Doué-en-Anjou ! Découvrez notre nouveau showroom de menuiseries sur-mesure (fenêtres, portes, volets) et profitez d'une pose certifiée RGE."
+title: "Nouvelle agence de menuiserie à Doué-en-Anjou"
+description: "Fenêtres sur Loir ouvre une agence et un showroom à Doué-en-Anjou : fenêtres, portes et volets sur mesure, pose certifiée RGE au plus près du Saumurois et du Layon."
 date: 2026-06-11
 tags: ["Doué-en-Anjou", "agence", "menuiserie", "showroom", "RGE"]
 draft: false
 schema:
+  - "@context": https://schema.org
+    "@type": BlogPosting
+    headline: "Nouvelle agence de menuiserie à Doué-en-Anjou"
+    datePublished: 2026-06-11
+    dateModified: 2026-09-22
+    inLanguage: fr-FR
+    author:
+      "@type": Organization
+      name: Fenêtres sur Loir
+    publisher:
+      "@type": Organization
+      name: Fenêtres sur Loir
+      logo:
+        "@type": ImageObject
+        url: https://www.fenetres-sur-loir.fr/logo-FSL.png
+    mainEntityOfPage:
+      "@type": WebPage
+      "@id": https://www.fenetres-sur-loir.fr/blog/ouverture-agence-menuiserie-doue-en-anjou/
   - "@context": https://schema.org
     "@type":
       - LocalBusiness

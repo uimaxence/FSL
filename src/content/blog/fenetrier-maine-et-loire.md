@@ -1,10 +1,28 @@
 ---
-title: "Fenêtrier à Angers & Maine-et-Loire | Fenêtres sur Loir"
-description: "Fenêtrier artisan certifié RGE depuis +20 ans près d'Angers. Fenêtres sur Loir installe vos menuiseries sur mesure dans tout le Maine-et-Loire. Demandez votre devis gratuit."
+title: "Fenêtrier à Angers et en Maine-et-Loire"
+description: "Fenêtrier artisan certifié RGE depuis plus de 20 ans près d'Angers : Fenêtres sur Loir pose vos menuiseries sur mesure dans tout le Maine-et-Loire. Devis gratuit."
 date: 2026-06-03
 tags: ["fenêtrier", "Maine-et-Loire", "Angers", "RGE"]
 draft: false
 schema:
+  - "@context": https://schema.org
+    "@type": BlogPosting
+    headline: "Fenêtrier à Angers et en Maine-et-Loire"
+    datePublished: 2026-06-03
+    dateModified: 2026-09-22
+    inLanguage: fr-FR
+    author:
+      "@type": Organization
+      name: Fenêtres sur Loir
+    publisher:
+      "@type": Organization
+      name: Fenêtres sur Loir
+      logo:
+        "@type": ImageObject
+        url: https://www.fenetres-sur-loir.fr/logo-FSL.png
+    mainEntityOfPage:
+      "@type": WebPage
+      "@id": https://www.fenetres-sur-loir.fr/blog/fenetrier-maine-et-loire/
   - "@context": https://schema.org
     "@type":
       - LocalBusiness

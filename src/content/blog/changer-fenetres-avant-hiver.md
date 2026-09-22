@@ -1,6 +1,6 @@
 ---
-title: "Changer ses fenêtres avant l'hiver : pourquoi agir dès la rentrée"
-description: "Délais de fabrication, aides à mobiliser avant la fin de l'année, confort dès les premiers froids : un menuisier RGE du Maine-et-Loire explique pourquoi septembre est le meilleur moment pour lancer votre projet de fenêtres."
+title: "Changer ses fenêtres avant l'hiver : agir dès la rentrée"
+description: "Délais de fabrication, aides à mobiliser avant la fin de l'année, confort dès les premiers froids : pourquoi septembre est le bon moment pour changer ses fenêtres."
 date: 2026-08-17
 tags: ["isolation", "hiver", "économies d'énergie", "fenêtres", "volets", "RGE"]
 draft: false
@@ -28,7 +28,7 @@ schema:
       addressCountry: FR
   - "@context": https://schema.org
     "@type": BlogPosting
-    headline: "Changer ses fenêtres avant l'hiver : pourquoi agir dès la rentrée"
+    headline: "Changer ses fenêtres avant l'hiver : agir dès la rentrée"
     datePublished: 2026-08-17
     dateModified: 2026-08-17
     inLanguage: fr-FR

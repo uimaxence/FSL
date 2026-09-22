@@ -2,6 +2,7 @@
 import Container from "../ui/Container.astro";
 import Button from "../ui/Button.astro";
 import { AGENCES, type AgenceRattachement } from "../../data/communes";
+import { AGENCES_CONTENU } from "../../data/agences-contenu";
 
 interface Props {
   agence: AgenceRattachement;
@@ -37,6 +38,16 @@ const proximite =
               <a href={telHref} class="hover:text-[var(--color-accent)]">{a.telephone}</a>
             </p>
           </address>
+          <!-- Maillage : les pages agences (LocalBusiness, fiche Google) n'avaient
+               qu'un ou deux liens contextuels entrants sur tout le site. -->
+          <p class="mt-4 text-sm">
+            <a
+              href={`/agences/${AGENCES_CONTENU[agence].slug}/`}
+              class="font-medium text-[var(--color-accent)] hover:underline underline-offset-4"
+            >
+              Découvrir l'agence de {a.nom} : horaires, plan, showroom →
+            </a>
+          </p>
         </div>
         <div class="flex flex-col gap-3 sm:items-end">
           <Button href="/contact/" variant="primary">Demander un devis gratuit</Button>

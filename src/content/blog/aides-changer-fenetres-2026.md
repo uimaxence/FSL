@@ -1,6 +1,6 @@
 ---
 title: "Aides pour changer ses fenêtres en 2026 : le guide RGE"
-description: "MaPrimeRénov', primes CEE, éco-PTZ, TVA à 5,5 % : quelles aides pour changer ses fenêtres en 2026 et à quelles conditions ? Le guide clair d'un menuisier RGE en Maine-et-Loire."
+description: "MaPrimeRénov', primes CEE, éco-PTZ, TVA à 5,5 % : quelles aides pour changer ses fenêtres en 2026 et à quelles conditions ? Le guide d'un menuisier RGE."
 date: 2026-07-15
 tags: ["aides", "MaPrimeRénov'", "CEE", "éco-PTZ", "RGE", "fenêtres", "rénovation énergétique"]
 draft: false

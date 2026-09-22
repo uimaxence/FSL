@@ -19,7 +19,7 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 const formatDate = (d: Date) =>
   d.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
 
-const title = "Conseils & Services | Fenêtres sur Loir — Guides menuiserie et rénovation";
+const title = "Conseils menuiserie — Guides fenêtres, volets, rénovation";
 const description = "Guides pratiques, retours d'expérience et actualités pour vous aider à mener votre projet de menuiseries — isolation, aides RGE, entretien, tendances déco.";
 
 const breadcrumb = [

@@ -3,39 +3,404 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "fsl-iota.vercel.app" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "fsl-iota.vercel.app"
+        }
+      ],
       "destination": "https://www.fenetres-sur-loir.fr/$1",
       "permanent": true
     },
-
-    { "source": "/fr/16/(.*)", "destination": "/solutions/portes-fenetres/porte-garage/", "permanent": true },
-    { "source": "/fr/17/(.*)", "destination": "/solutions/portes-fenetres/porte-garage/", "permanent": true },
-    { "source": "/fr/20/(.*)", "destination": "/solutions/portes-fenetres/volets/", "permanent": true },
-    { "source": "/fr/21/(.*)", "destination": "/solutions/portes-fenetres/volets/", "permanent": true },
-    { "source": "/fr/11/(.*)", "destination": "/menuisier-angers/", "permanent": true },
-    { "source": "/fr/27/(.*)", "destination": "/solutions/confort-exterieur/", "permanent": true },
-    { "source": "/fr/23/(.*)", "destination": "/solutions/confort-exterieur/", "permanent": true },
-    { "source": "/fr/22/(.*)", "destination": "/solutions/confort-interieur/", "permanent": true },
-    { "source": "/fr/40/(.*)", "destination": "/entreprise/notre-histoire/", "permanent": true },
-    { "source": "/fr/44/(.*)", "destination": "/blog/fenetre-pvc-alu-bois-alu/", "permanent": true },
-    { "source": "/fr/45/(.*)", "destination": "/blog/condensation-fenetres-causes-solutions/", "permanent": true },
-    { "source": "/fr/54/(.*)", "destination": "/conseils-services/", "permanent": true },
-    { "source": "/fr/25/(.*)", "destination": "/conseils-services/", "permanent": true },
-    { "source": "/fr/4/(.*)", "destination": "/mentions-legales/", "permanent": true },
-
-    { "source": "/porte-de-garage", "destination": "/solutions/portes-fenetres/porte-garage/", "permanent": true },
-    { "source": "/porte-de-garage/", "destination": "/solutions/portes-fenetres/porte-garage/", "permanent": true },
-    { "source": "/porte-dentree", "destination": "/solutions/portes-fenetres/portes-entree/", "permanent": true },
-    { "source": "/porte-dentree/", "destination": "/solutions/portes-fenetres/portes-entree/", "permanent": true },
-    { "source": "/porte-dinterieure", "destination": "/solutions/portes-fenetres/portes-interieures/", "permanent": true },
-    { "source": "/porte-dinterieure/", "destination": "/solutions/portes-fenetres/portes-interieures/", "permanent": true },
-    { "source": "/porte-fenetre", "destination": "/solutions/portes-fenetres/porte-fenetre/", "permanent": true },
-    { "source": "/porte-fenetre/", "destination": "/solutions/portes-fenetres/porte-fenetre/", "permanent": true },
-    { "source": "/puits-de-lumieres", "destination": "/solutions/confort-interieur/puits-de-lumiere/", "permanent": true },
-    { "source": "/puits-de-lumieres/", "destination": "/solutions/confort-interieur/puits-de-lumiere/", "permanent": true },
-    { "source": "/verrieres", "destination": "/solutions/confort-interieur/verrieres/", "permanent": true },
-    { "source": "/verrieres/", "destination": "/solutions/confort-interieur/verrieres/", "permanent": true },
-    { "source": "/pieces-a-vivre", "destination": "/solutions/confort-interieur/", "permanent": true },
-    { "source": "/pieces-a-vivre/", "destination": "/solutions/confort-interieur/", "permanent": true }
+    {
+      "source": "/fr/16/(.*)",
+      "destination": "/solutions/portes-fenetres/porte-garage/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/17/(.*)",
+      "destination": "/solutions/portes-fenetres/porte-garage/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/20/(.*)",
+      "destination": "/solutions/portes-fenetres/volets/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/21/(.*)",
+      "destination": "/solutions/portes-fenetres/volets/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/11/(.*)",
+      "destination": "/menuisier-angers/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/27/(.*)",
+      "destination": "/solutions/confort-exterieur/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/23/(.*)",
+      "destination": "/solutions/confort-exterieur/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/22/(.*)",
+      "destination": "/solutions/confort-interieur/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/40/(.*)",
+      "destination": "/entreprise/notre-histoire/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/44/(.*)",
+      "destination": "/blog/fenetre-pvc-alu-bois-alu/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/45/(.*)",
+      "destination": "/blog/condensation-fenetres-causes-solutions/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/54/(.*)",
+      "destination": "/conseils-services/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/25/(.*)",
+      "destination": "/conseils-services/",
+      "permanent": true
+    },
+    {
+      "source": "/fr/4/(.*)",
+      "destination": "/mentions-legales/",
+      "permanent": true
+    },
+    {
+      "source": "/porte-de-garage",
+      "destination": "/solutions/portes-fenetres/porte-garage/",
+      "permanent": true
+    },
+    {
+      "source": "/porte-de-garage/",
+      "destination": "/solutions/portes-fenetres/porte-garage/",
+      "permanent": true
+    },
+    {
+      "source": "/porte-dentree",
+      "destination": "/solutions/portes-fenetres/portes-entree/",
+      "permanent": true
+    },
+    {
+      "source": "/porte-dentree/",
+      "destination": "/solutions/portes-fenetres/portes-entree/",
+      "permanent": true
+    },
+    {
+      "source": "/porte-dinterieure",
+      "destination": "/solutions/portes-fenetres/portes-interieures/",
+      "permanent": true
+    },
+    {
+      "source": "/porte-dinterieure/",
+      "destination": "/solutions/portes-fenetres/portes-interieures/",
+      "permanent": true
+    },
+    {
+      "source": "/porte-fenetre",
+      "destination": "/solutions/portes-fenetres/porte-fenetre/",
+      "permanent": true
+    },
+    {
+      "source": "/porte-fenetre/",
+      "destination": "/solutions/portes-fenetres/porte-fenetre/",
+      "permanent": true
+    },
+    {
+      "source": "/puits-de-lumieres",
+      "destination": "/solutions/confort-interieur/puits-de-lumiere/",
+      "permanent": true
+    },
+    {
+      "source": "/puits-de-lumieres/",
+      "destination": "/solutions/confort-interieur/puits-de-lumiere/",
+      "permanent": true
+    },
+    {
+      "source": "/verrieres",
+      "destination": "/solutions/confort-interieur/verrieres/",
+      "permanent": true
+    },
+    {
+      "source": "/verrieres/",
+      "destination": "/solutions/confort-interieur/verrieres/",
+      "permanent": true
+    },
+    {
+      "source": "/pieces-a-vivre",
+      "destination": "/solutions/confort-interieur/",
+      "permanent": true
+    },
+    {
+      "source": "/pieces-a-vivre/",
+      "destination": "/solutions/confort-interieur/",
+      "permanent": true
+    },
+    {
+      "source": "/nos-portes",
+      "destination": "/solutions/portes-fenetres/",
+      "permanent": true
+    },
+    {
+      "source": "/nos-portes/",
+      "destination": "/solutions/portes-fenetres/",
+      "permanent": true
+    },
+    {
+      "source": "/confort-interieur",
+      "destination": "/solutions/confort-interieur/",
+      "permanent": true
+    },
+    {
+      "source": "/confort-interieur/",
+      "destination": "/solutions/confort-interieur/",
+      "permanent": true
+    },
+    {
+      "source": "/confort-exterieur",
+      "destination": "/solutions/confort-exterieur/",
+      "permanent": true
+    },
+    {
+      "source": "/confort-exterieur/",
+      "destination": "/solutions/confort-exterieur/",
+      "permanent": true
+    },
+    {
+      "source": "/notre-histoire",
+      "destination": "/entreprise/notre-histoire/",
+      "permanent": true
+    },
+    {
+      "source": "/notre-histoire/",
+      "destination": "/entreprise/notre-histoire/",
+      "permanent": true
+    },
+    {
+      "source": "/nos-partenaires",
+      "destination": "/partenaires/",
+      "permanent": true
+    },
+    {
+      "source": "/nos-partenaires/",
+      "destination": "/partenaires/",
+      "permanent": true
+    },
+    {
+      "source": "/nos-realisations",
+      "destination": "/realisations/",
+      "permanent": true
+    },
+    {
+      "source": "/nos-realisations/",
+      "destination": "/realisations/",
+      "permanent": true
+    },
+    {
+      "source": "/nos-realisations/:slug",
+      "destination": "/realisations/:slug/",
+      "permanent": true
+    },
+    {
+      "source": "/nos-realisations/:slug/",
+      "destination": "/realisations/:slug/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/bien-choisir-ses-fenetres",
+      "destination": "/blog/fenetrier-maine-et-loire/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/bien-choisir-ses-fenetres/",
+      "destination": "/blog/fenetrier-maine-et-loire/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/menuisier-cholet",
+      "destination": "/menuisier-cholet/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/menuisier-cholet/",
+      "destination": "/menuisier-cholet/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-brissac-loire-aubance",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-brissac-loire-aubance/",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-segre-en-anjou-bleu",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-segre-en-anjou-bleu/",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-chalonnes-sur-loire",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-chalonnes-sur-loire/",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-saint-georges-sur-loire",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-saint-georges-sur-loire/",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-mauges-sur-loire",
+      "destination": "/menuisier-cholet/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-mauges-sur-loire/",
+      "destination": "/menuisier-cholet/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-montrevault-sur-evre",
+      "destination": "/menuisier-cholet/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-montrevault-sur-evre/",
+      "destination": "/menuisier-cholet/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-oree-d-anjou",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-oree-d-anjou/",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-le-lion-d-angers",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-le-lion-d-angers/",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-les-hauts-d-anjou",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-les-hauts-d-anjou/",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-ombree-d-anjou",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-ombree-d-anjou/",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-noyant-villages",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-noyant-villages/",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-chemille-en-anjou",
+      "destination": "/menuisier-cholet/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-chemille-en-anjou/",
+      "destination": "/menuisier-cholet/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-beaupreau-en-mauges",
+      "destination": "/menuisier-cholet/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-beaupreau-en-mauges/",
+      "destination": "/menuisier-cholet/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-sevremoine",
+      "destination": "/menuisier-cholet/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-sevremoine/",
+      "destination": "/menuisier-cholet/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-longue-jumelles",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-longue-jumelles/",
+      "destination": "/zones-intervention/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-allonnes",
+      "destination": "/menuisier-saumur/",
+      "permanent": true
+    },
+    {
+      "source": "/menuisier-allonnes/",
+      "destination": "/menuisier-saumur/",
+      "permanent": true
+    }
   ]
 }

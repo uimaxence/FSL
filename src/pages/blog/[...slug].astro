@@ -19,10 +19,23 @@ const { title, description, date, tags, schema } = post.data;
 
 const formatDate = (d: Date) =>
   d.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+
+// Liens croisés entre articles : les 3 articles partageant le plus de tags
+// (les plus récents à égalité). Les articles n'avaient que 1 à 4 liens
+// contextuels entrants sur tout le site.
+const autres = (await getCollection("blog", ({ data }) => !data.draft)).filter(
+  (p) => p.id !== post.id,
+);
+const tagsPost = new Set(tags ?? []);
+const aLireAussi = autres
+  .map((p) => ({ p, score: (p.data.tags ?? []).filter((t) => tagsPost.has(t)).length }))
+  .sort((a, b) => b.score - a.score || b.p.data.date.getTime() - a.p.data.date.getTime())
+  .slice(0, 3)
+  .map((o) => o.p);
 ---
 
 <BaseLayout
-  title={`${title} — Fenêtres sur Loir`}
+  title={title.length > 42 ? title : `${title} — Fenêtres sur Loir`}
   description={description}
   schemaJsonLd={schema as any}
 >
@@ -78,5 +91,36 @@ const formatDate = (d: Date) =>
         </div>
       </Container>
     </section>
+
+    {aLireAussi.length > 0 && (
+      <section class="pb-24">
+        <Container width="wide">
+          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+            À lire aussi
+          </p>
+          <h2 class="mb-8 text-balance">Nos autres conseils</h2>
+          <ul class="grid gap-6 md:grid-cols-3">
+            {aLireAussi.map((p) => (
+              <li>
+                <a
+                  href={`/blog/${p.id}/`}
+                  class="group flex flex-col h-full rounded-2xl bg-white ring-1 ring-[var(--color-border)] p-6 hover:ring-[var(--color-accent)] transition-colors"
+                >
+                  <p class="text-xs uppercase tracking-[0.14em] text-[var(--color-muted)] font-semibold">
+                    {formatDate(p.data.date)}
+                  </p>
+                  <h3 class="mt-2 text-lg group-hover:text-[var(--color-accent)] transition-colors">
+                    {p.data.title}
+                  </h3>
+                  <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed line-clamp-3">
+                    {p.data.description}
+                  </p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+    )}
   </article>
 </BaseLayout>

@@ -1,0 +1,68 @@
+---
+// Bloc « Nos conseils » : relie une page solution à 3 articles du blog choisis
+// à la main (ids de la collection "blog"). Maillage produit → guide, dans les
+// deux sens avec les liens que les articles font vers les pages solutions.
+import { getCollection } from "astro:content";
+import Container from "../ui/Container.astro";
+
+interface Props {
+  /** ids d'articles, dans l'ordre d'affichage */
+  slugs: string[];
+  titre?: string;
+  intro?: string;
+}
+
+const {
+  slugs,
+  titre = "Nos conseils pour votre projet",
+  intro = "Guides rédigés par nos équipes : choisir, entretenir, financer vos menuiseries.",
+} = Astro.props;
+
+const all = await getCollection("blog", ({ data }) => !data.draft);
+const items = slugs
+  .map((s) => all.find((p) => p.id === s))
+  .filter((p): p is (typeof all)[number] => Boolean(p));
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+---
+
+{
+  items.length > 0 && (
+    <section class="section-tight">
+      <Container width="wide">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+          Conseils &amp; guides
+        </p>
+        <h2 class="text-balance">{titre}</h2>
+        <p class="mt-3 mb-8 max-w-2xl text-[var(--color-muted)] leading-relaxed">{intro}</p>
+        <ul class="grid gap-6 md:grid-cols-3">
+          {items.map((p) => (
+            <li>
+              <a
+                href={`/blog/${p.id}/`}
+                class="group flex flex-col h-full rounded-2xl bg-white ring-1 ring-[var(--color-border)] p-6 hover:ring-[var(--color-accent)] transition-colors"
+              >
+                <p class="text-xs uppercase tracking-[0.14em] text-[var(--color-muted)] font-semibold">
+                  {formatDate(p.data.date)}
+                </p>
+                <h3 class="mt-2 text-lg group-hover:text-[var(--color-accent)] transition-colors">
+                  {p.data.title}
+                </h3>
+                <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed line-clamp-3">
+                  {p.data.description}
+                </p>
+                <span class="mt-4 text-sm font-medium text-[var(--color-accent)]">Lire le guide →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-6 text-sm">
+          <a href="/conseils-services/" class="font-medium text-[var(--color-accent)] hover:underline underline-offset-4">
+            Tous nos conseils →
+          </a>
+        </p>
+      </Container>
+    </section>
+  )
+}

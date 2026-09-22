@@ -4,6 +4,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Container from "../../../components/ui/Container.astro";
 import CTASection from "../../../components/sections/CTASection.astro";
 import CertificationsBanner from "../../../components/sections/CertificationsBanner.astro";
+import ConseilsLies from "../../../components/sections/ConseilsLies.astro";
 
 import garageHero from "../../../assets/carport-1.png";
 import garageSectionnelle from "../../../assets/porte-1-boisalu.png";
@@ -17,9 +18,9 @@ import garageEnroulable from "../../../assets/porte-4-alu.png";
 // Ateliers Michel…) et les « autres questions » portent toutes sur le prix et
 // les aides → mot-clé + ville en tête de title/H1, section aides/TVA, FAQ visible +
 // FAQPage, zone d'intervention explicite. Pas de prix affichés (choix client).
-const title = "Porte de garage à Angers (49) — Sectionnelle, enroulable, latérale | Fenêtres sur Loir";
+const title = "Porte de garage à Angers (49) — Sectionnelle, enroulable";
 const description =
-  "Pose de portes de garage sectionnelles, enroulables et latérales à Angers et dans tout le Maine-et-Loire. Motorisation, isolation, fabrication sur mesure. Installateur depuis 2003, devis gratuit.";
+  "Portes de garage sectionnelles, enroulables et latérales posées à Angers et en Maine-et-Loire : motorisation, isolation, sur mesure. Installateur depuis 2003.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -331,6 +332,11 @@ const schema = [
       </ul>
     </Container>
   </section>
+
+  <ConseilsLies
+    slugs={["volet-roulant-bloque-que-faire", "changer-fenetres-avant-hiver", "aides-changer-fenetres-2026"]}
+    titre="Nos conseils pour vos fermetures"
+  />
 
   <CTASection
     title="Une porte de garage adaptée à votre maison"

@@ -28,9 +28,9 @@ export const AGENCES_CONTENU: Record<AgenceRattachement, AgenceContenu> = {
     slug: "seiches-sur-le-loir",
     cle: "seiches",
     metaTitle:
-      "Agence & showroom de Seiches-sur-le-Loir (49) | Fenêtres sur Loir — Menuisier près d'Angers",
+      "Showroom de Seiches-sur-le-Loir (49) — Fenêtres sur Loir",
     metaDescription:
-      "Showroom de 300 m² de Fenêtres sur Loir à Seiches-sur-le-Loir (49140), à 22 km d'Angers. Fenêtres, portes, volets et verrières sur mesure, pose RGE Qualibat. Horaires, plan et devis gratuit.",
+      "Showroom de 300 m² à Seiches-sur-le-Loir, à 22 km d'Angers : fenêtres, portes, volets et verrières sur mesure, pose RGE Qualibat. Horaires, plan et devis gratuit.",
     eyebrow: "Siège & showroom historique",
     lead: "Le showroom de Seiches-sur-le-Loir est l'agence historique de Fenêtres sur Loir, ouverte en 2003. Sur 300 m², vous y comparez fenêtres, portes, volets et verrières avant de lancer votre projet. L'agence rayonne sur Angers et le nord du Maine-et-Loire.",
     body: [
@@ -45,9 +45,9 @@ export const AGENCES_CONTENU: Record<AgenceRattachement, AgenceContenu> = {
     slug: "doue-en-anjou",
     cle: "doue",
     metaTitle:
-      "Agence de Doué-en-Anjou (49) | Fenêtres sur Loir — Menuisier RGE Saumurois & Choletais",
+      "Agence de Doué-en-Anjou (49) — Menuisier RGE Saumurois",
     metaDescription:
-      "Agence Fenêtres sur Loir à Doué-en-Anjou (49700), 7 rue Saint François. Menuisier RGE Qualibat au service du Saumurois, du Choletais et des Mauges : fenêtres, portes, volets sur mesure. Horaires, plan et devis gratuit.",
+      "Agence Fenêtres sur Loir à Doué-en-Anjou, 7 rue Saint François : menuisier RGE Qualibat pour le Saumurois, le Choletais et les Mauges. Horaires et plan.",
     eyebrow: "Agence du sud Anjou",
     lead: "L'agence de Doué-en-Anjou rapproche Fenêtres sur Loir du sud du Maine-et-Loire. Elle dessert le Saumurois, le Choletais, les Mauges et le Layon avec la même exigence : pose certifiée RGE Qualibat, sans sous-traitance. Devis gratuit sous 48 h.",
     body: [

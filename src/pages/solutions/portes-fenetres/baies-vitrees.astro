@@ -2,9 +2,10 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import PageProduit from "../../../components/templates/PageProduit.astro";
 import Container from "../../../components/ui/Container.astro";
+import ConseilsLies from "../../../components/sections/ConseilsLies.astro";
 import baieHero from "../../../assets/porte-fenetre-6-gallandage.png";
 
-const title = "Baies vitrées sur mesure à Angers — Coulissantes, galandage | Fenêtres sur Loir";
+const title = "Baies vitrées sur mesure à Angers — Coulissantes, galandage";
 const description =
   "Pose de baies vitrées coulissantes et à galandage à Angers et dans le Maine-et-Loire. Alu, bois-alu ou PVC, seuils PMR. Menuisier MéO, certifié RGE Qualibat.";
 
@@ -211,4 +212,9 @@ const schema = [
       </div>
     </Container>
   </section>
+  <ConseilsLies
+    slugs={["condensation-fenetres-causes-solutions", "fenetre-pvc-alu-bois-alu", "fenetres-bois-alu-meo"]}
+    titre="Nos conseils pour vos baies vitrées"
+  />
+
 </BaseLayout>

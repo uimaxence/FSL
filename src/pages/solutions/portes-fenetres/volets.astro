@@ -2,6 +2,7 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import PageProduit from "../../../components/templates/PageProduit.astro";
 import Container from "../../../components/ui/Container.astro";
+import ConseilsLies from "../../../components/sections/ConseilsLies.astro";
 import voletHero from "../../../assets/realisation-pontsdece-1.png";
 
 // SEO (14/09/2026) : « volet roulant angers » / « volets roulants angers »
@@ -11,9 +12,9 @@ import voletHero from "../../../assets/realisation-pontsdece-1.png";
 // portent sur le prix, la durée de vie et la déductibilité → title/H1 avec
 // ville + département, section dépannage/SAV reliée au guide « volet bloqué »,
 // FAQ visible + FAQPage.
-const title = "Volets roulants à Angers & Maine-et-Loire — Solaires, électriques, battants | Point Conseil Bubendorff";
+const title = "Volets roulants à Angers & 49 — Point Conseil Bubendorff";
 const description =
-  "Pose de volets roulants solaires, électriques, connectés et de volets battants à Angers et dans tout le Maine-et-Loire (49). Point Conseil Bubendorff, SAV direct, garantie 7 ans. Certifié RGE Qualibat, devis gratuit.";
+  "Pose de volets roulants solaires, électriques et battants à Angers et en Maine-et-Loire. Point Conseil Bubendorff, SAV direct, artisan RGE Qualibat. Devis gratuit.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -242,4 +243,9 @@ const schema = [
       </div>
     </Container>
   </section>
+  <ConseilsLies
+    slugs={["volet-roulant-bloque-que-faire", "reinitialiser-volet-roulant-bubendorff", "aides-changer-fenetres-2026"]}
+    titre="Nos conseils sur les volets roulants"
+  />
+
 </BaseLayout>

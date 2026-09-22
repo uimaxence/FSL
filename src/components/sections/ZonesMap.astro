@@ -34,6 +34,12 @@ const { variant = "full", class: className = "" } = Astro.props;
 const VIEW_W = 1000;
 const VIEW_H = 782;
 
+// Poids du HTML : les tracés sont projetés sur 1000×782 avec une décimale,
+// invisible à l'écran (< 1 px). Arrondi à l'entier au build (≈ -30 %), et le
+// contour départemental n'est émis qu'une fois (<defs> + <use>) au lieu de deux.
+const light = (d: string) => d.replace(/(\d+)\.\d+/g, "$1");
+const depLight = light(depPath);
+
 const agenceSlugs = new Set(["seiches-sur-le-loir", "doue-en-anjou"]);
 // Labels affichés en permanence : volontairement peu nombreux (aération).
 // Les autres communes desservies apparaissent au survol.
@@ -60,7 +66,7 @@ const distAgence = (x: number, y: number) =>
 const distances = cantonsGeo.map((c) => distAgence(c.cx, c.cy));
 const maxDist = Math.max(...distances);
 const cantons = cantonsGeo.map((c, i) => ({
-  d: c.d,
+  d: light(c.d),
   shade: Math.min(3, Math.floor((distances[i] / maxDist) * 4)),
 }));
 
@@ -70,7 +76,7 @@ const zones = communes.map((c) => {
   return {
     slug: c.slug,
     nom: c.nom,
-    d: geo?.d,
+    d: geo ? light(geo.d) : undefined,
     cx: geo?.cx ?? 0,
     cy: geo?.cy ?? 0,
     isAgence: agenceSlugs.has(c.slug),
@@ -113,7 +119,10 @@ const zones = communes.map((c) => {
           <!-- COUCHE 0 — fond : département + cantons teintés selon leur
                proximité à l'agence la plus proche (le bleu rayonne depuis
                Seiches et Doué). Grandes formes = carte apaisée. -->
-          <path d={depPath} class="zm-shade-3" />
+          <defs>
+            <path id="zm-dep" d={depLight} />
+          </defs>
+          <use href="#zm-dep" class="zm-shade-3" />
           <g>
             {cantons.map((c) => (
               <path d={c.d} class:list={["zm-canton", `zm-shade-${c.shade}`]} />
@@ -137,7 +146,7 @@ const zones = communes.map((c) => {
           </g>
 
           <!-- Contour du département, net, au-dessus des remplissages. -->
-          <path d={depPath} class="zm-outline pointer-events-none" />
+          <use href="#zm-dep" class="zm-outline pointer-events-none" />
 
           <!-- COUCHE 2 — marqueurs des agences + libellés, toujours au-dessus
                des polygones (jamais tronqués). Les libellés non permanents

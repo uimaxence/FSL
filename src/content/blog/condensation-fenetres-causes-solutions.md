@@ -1,6 +1,6 @@
 ---
 title: "Condensation sur les fenêtres : causes et solutions"
-description: "Buée sur les vitres au réveil, humidité sur les cadres, condensation entre les vitrages ou sur le Velux : un menuisier RGE du Maine-et-Loire vous explique d'où vient le problème, les gestes qui marchent vraiment et les cas où les fenêtres sont en cause."
+description: "Buée au réveil, humidité sur les cadres, condensation entre les vitrages ou sur le Velux : causes, gestes efficaces et cas où les fenêtres sont en cause."
 date: 2026-08-17
 tags: ["condensation", "humidité", "double vitrage", "isolation", "fenêtres", "ventilation"]
 draft: false

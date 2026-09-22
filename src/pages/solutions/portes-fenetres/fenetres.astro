@@ -2,13 +2,14 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import PageProduit from "../../../components/templates/PageProduit.astro";
 import Container from "../../../components/ui/Container.astro";
+import ConseilsLies from "../../../components/sections/ConseilsLies.astro";
 import fenetreHero from "../../../assets/porte-fenetre-1.png";
 
 // GSC : la page classe déjà sur « fenêtre pvc maine et loire » (pos. ~6) et
 // « fenêtre pvc 49 » (pos. ~10) — le title doit couvrir Angers ET le 49 + PVC.
 const title = "Fenêtres sur mesure PVC, alu, bois — Angers & Maine-et-Loire";
 const description =
-  "Pose de fenêtres sur mesure PVC, aluminium, bois et bois-alu à Angers et dans tout le Maine-et-Loire (49). Artisan RGE Qualibat, fabrication française MéO. Devis gratuit sous 48 h.";
+  "Fenêtres sur mesure PVC, aluminium, bois et bois-alu posées à Angers et en Maine-et-Loire. Artisan RGE Qualibat, fabrication française MéO. Devis gratuit.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -206,9 +207,10 @@ const schema = [
       Saumurois, <strong>Tiercé</strong>, <strong>Baugé-en-Anjou</strong>, <strong>Durtal</strong>,
       <strong>Châteauneuf-sur-Sarthe</strong>, <strong>Le Lion-d'Angers</strong>,
       <strong>Beaufort-en-Anjou</strong> et <strong>La Flèche</strong>. Notre showroom de
-      Seiches-sur-le-Loir est ouvert du lundi au vendredi (et le samedi matin sur rendez-vous), et
-      une <strong>seconde agence à Doué-en-Anjou</strong> ouvrira prochainement pour mieux couvrir
-      le sud du département.
+      Seiches-sur-le-Loir est ouvert du lundi au vendredi et le samedi matin, et notre
+      <a href="/agences/doue-en-anjou/">agence de Doué-en-Anjou</a> couvre le sud du département.
+      Pour l'agglomération angevine, consultez notre page dédiée aux
+      <a href="/fenetres-angers/">fenêtres à Angers</a>.
     </p>
 
     <h2>De quoi dépend le prix d'une fenêtre sur mesure ?</h2>
@@ -230,6 +232,11 @@ const schema = [
       </>
     ))}
   </PageProduit>
+
+  <ConseilsLies
+    slugs={["fenetre-pvc-alu-bois-alu", "aides-changer-fenetres-2026", "regler-fenetre-pvc-qui-ferme-mal"]}
+    titre="Nos conseils avant de changer vos fenêtres"
+  />
 
   <section class="pb-20">
     <Container width="default">
