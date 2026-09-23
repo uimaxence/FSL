@@ -97,7 +97,10 @@ const photos = [
 
       <!-- Texte central, sans card -->
       <div class="absolute inset-0 z-10 flex items-center justify-center px-6 pointer-events-none">
-        <div class="text-center pointer-events-auto">
+        <!-- Mobile : les photos (40-46 % de large) passent sous le texte, un
+             voile blanc flouté garde le titre et le lien lisibles. Inchangé
+             à partir de sm: (photos plus étroites, texte dégagé). -->
+        <div class="text-center pointer-events-auto rounded-2xl bg-white/75 px-5 py-5 backdrop-blur-sm sm:rounded-none sm:bg-transparent sm:px-0 sm:py-0 sm:backdrop-blur-none">
           <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)]">
             Depuis 2003
           </p>

@@ -8,13 +8,16 @@ import AidsBox from "../../../components/sections/AidsBox.astro";
 import VillesMaillage from "../../../components/sections/VillesMaillage.astro";
 import AvantApresScrolly from "../../../components/sections/AvantApresScrolly.astro";
 
-import porteEntreeImg from "../../../assets/porte-7-bois.png";
-import porteFenetreImg from "../../../assets/porte-fenetre-3.png";
-import porteGarageImg from "../../../assets/porte-2-boisalu.png";
-import porteInterieureImg from "../../../assets/porte-fenetre-1.png";
-import fenetreImg from "../../../assets/porte-fenetre-2.png";
-import baieImg from "../../../assets/porte-fenetre-7-gallandage.png";
-import voletImg from "../../../assets/porte-fenetre-5-oscillo.png";
+// Photos : une par famille, choisies pour montrer le produit de la carte.
+// TODO client : aucune photo de porte de garage dans les ressources du site,
+// la carte utilise en attendant un carport aluminium (même univers).
+import porteEntreeImg from "../../../assets/porte-1-boisalu.png";
+import porteFenetreImg from "../../../assets/porte-fenetre-2.png";
+import porteGarageImg from "../../../assets/carport-1.png";
+import porteInterieureImg from "../../../assets/porte-2-boisalu.png";
+import fenetreImg from "../../../assets/porte-fenetre-5-oscillo.png";
+import baieImg from "../../../assets/porte-fenetre-6-gallandage.png";
+import voletImg from "../../../assets/hero-3.jpg";
 
 const title = "Portes & fenêtres sur mesure — Angers & Maine-et-Loire (49)";
 const description = "Portes d'entrée, porte-fenêtres, portes de garage, fenêtres, baies vitrées et volets sur mesure. Showroom à Seiches-sur-le-Loir, pose dans tout le Maine-et-Loire.";
@@ -30,25 +33,25 @@ const portes = [
     title: "Porte d'entrée",
     description: "Bois, aluminium, mixte ou PVC — sécurité, isolation et personnalisation infinie.",
     href: "/solutions/portes-fenetres/portes-entree/",
-    placeholderLabel: "Porte d'entrée bois MéO sur mesure",
+    placeholderLabel: "Porte d'entrée bois-alu sur mesure",
     image: porteEntreeImg,
-    imageAlt: "Porte d'entrée bois sur mesure MéO Fenêtres sur Loir",
+    imageAlt: "Porte d'entrée contemporaine bois-aluminium posée par Fenêtres sur Loir",
   },
   {
     title: "Porte-fenêtre",
     description: "Classique, moderne, oscillo-battante ou à galandage. Lumière et accès vers l'extérieur.",
     href: "/solutions/portes-fenetres/porte-fenetre/",
-    placeholderLabel: "Porte-fenêtre à galandage MéO",
+    placeholderLabel: "Porte-fenêtre sur mesure",
     image: porteFenetreImg,
-    imageAlt: "Porte-fenêtre coulissante grande ouverture Fenêtres sur Loir",
+    imageAlt: "Porte-fenêtre à petits carreaux ouvrant sur le jardin, posée par Fenêtres sur Loir",
   },
   {
     title: "Porte de garage",
     description: "Sectionnelle, latérale ou enroulable. Motorisation, sécurité et isolation thermique.",
     href: "/solutions/portes-fenetres/porte-garage/",
-    placeholderLabel: "Porte de garage sectionnelle motorisée",
+    placeholderLabel: "Porte de garage sur mesure",
     image: porteGarageImg,
-    imageAlt: "Porte de garage motorisée sur mesure Fenêtres sur Loir",
+    imageAlt: "Abri aluminium pour véhicule posé par Fenêtres sur Loir",
   },
   {
     title: "Portes intérieures",
@@ -56,7 +59,7 @@ const portes = [
     href: "/solutions/portes-fenetres/portes-interieures/",
     placeholderLabel: "Porte intérieure vitrée moderne",
     image: porteInterieureImg,
-    imageAlt: "Porte intérieure vitrée moderne installée par Fenêtres sur Loir",
+    imageAlt: "Porte intérieure bois vitrée installée par Fenêtres sur Loir",
   },
 ];
 
@@ -65,9 +68,9 @@ const fenetres = [
     title: "Fenêtres",
     description: "Bois, alu, PVC ou mixte. Hautes performances thermiques et acoustiques.",
     href: "/solutions/portes-fenetres/fenetres/",
-    placeholderLabel: "Fenêtre bois-alu MéO",
+    placeholderLabel: "Fenêtre sur mesure",
     image: fenetreImg,
-    imageAlt: "Fenêtre bois-aluminium MéO installée par Fenêtres sur Loir",
+    imageAlt: "Fenêtre d'angle bois oscillo-battante sur mesure posée par Fenêtres sur Loir",
   },
   {
     title: "Baies vitrées",
@@ -75,15 +78,15 @@ const fenetres = [
     href: "/solutions/portes-fenetres/baies-vitrees/",
     placeholderLabel: "Baie vitrée coulissante alu",
     image: baieImg,
-    imageAlt: "Baie vitrée coulissante à galandage Arcades & Baies",
+    imageAlt: "Baie vitrée à galandage grande ouverture sur le jardin, posée par Fenêtres sur Loir",
   },
   {
     title: "Volets",
     description: "Roulants solaires, électriques, connectés ou battants. Partenaire Bubendorff.",
     href: "/solutions/portes-fenetres/volets/",
-    placeholderLabel: "Volet roulant Bubendorff",
+    placeholderLabel: "Volets sur mesure",
     image: voletImg,
-    imageAlt: "Volet roulant Bubendorff installé par Fenêtres sur Loir",
+    imageAlt: "Volets battants sur une maison ancienne, posés par Fenêtres sur Loir",
   },
 ];
 
@@ -167,6 +170,8 @@ const schema = {
               href={c.href}
               placeholderLabel={c.placeholderLabel}
               ratio="4-3"
+              image={c.image}
+              imageAlt={c.imageAlt}
             />
           ))
         }
@@ -192,6 +197,8 @@ const schema = {
               href={c.href}
               placeholderLabel={c.placeholderLabel}
               ratio="4-3"
+              image={c.image}
+              imageAlt={c.imageAlt}
             />
           ))
         }
