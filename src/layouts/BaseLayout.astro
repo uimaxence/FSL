@@ -20,6 +20,8 @@ interface Props {
   ogImage?: string;
   breadcrumb?: BreadcrumbItem[];
   schemaJsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+  /** Pages de test ou brouillons : balise robots noindex, nofollow. */
+  noindex?: boolean;
 }
 
 const {
@@ -28,6 +30,7 @@ const {
   ogImage = "/og.jpg",
   breadcrumb,
   schemaJsonLd,
+  noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
@@ -47,6 +50,7 @@ const showMeoFab =
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Fenêtres sur Loir" />

@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Container from "../../../components/ui/Container.astro";
 import Card from "../../../components/ui/Card.astro";
@@ -7,8 +6,8 @@ import CTASection from "../../../components/sections/CTASection.astro";
 import CertificationsBanner from "../../../components/sections/CertificationsBanner.astro";
 import AidsBox from "../../../components/sections/AidsBox.astro";
 import VillesMaillage from "../../../components/sections/VillesMaillage.astro";
+import AvantApresScrolly from "../../../components/sections/AvantApresScrolly.astro";
 
-import heroPorte from "../../../assets/porte-1-boisalu.png";
 import porteEntreeImg from "../../../assets/porte-7-bois.png";
 import porteFenetreImg from "../../../assets/porte-fenetre-3.png";
 import porteGarageImg from "../../../assets/porte-2-boisalu.png";
@@ -102,44 +101,46 @@ const schema = {
 ---
 
 <BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
-  <!-- Hero -->
+  <!-- Hero : séquence « avant / après » pilotée au défilement (textes
+       modifiables via les props du composant AvantApresScrolly) -->
+  <AvantApresScrolly
+    hero
+    heading="h1"
+    eyebrow="Portes & fenêtres sur mesure · Maine-et-Loire"
+    titrePrefixe="Fenêtres, porte d'entrée, volets, pergola :"
+    titre="redonnez du"
+    titreFort="cachet"
+    titreSuite="à votre maison"
+    sousTitre="Des menuiseries sur mesure qui transforment une façade sans la dénaturer. Fabriquées en France, posées par nos équipes à Angers, Saumur et dans tout le Maine-et-Loire."
+    ctaLabel="Demander un devis gratuit"
+    ctaHref="/contact/"
+    secondaryLabel="Voir nos réalisations"
+    secondaryHref="/realisations/"
+  />
+
+  <!-- Intro -->
   <section class="section-tight">
-    <Container width="wide">
-      <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-        <div>
-          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
-            Portes & Fenêtres
-          </p>
-          <h1 class="text-balance">
-            Fenêtres sur Loir, expert de la menuiserie <strong class="font-bold">sur-mesure</strong> depuis 2003
-          </h1>
-          <p class="mt-5 max-w-xl text-[15px] leading-relaxed text-[var(--color-muted)]">
-            Située à Seiches-sur-le-Loir, notre équipe de passionnés est bien plus qu'une entreprise de menuiserie classique. Nous écoutons, conseillons et installons chaque porte avec un souci du détail qui fait notre signature.
-          </p>
-          <p class="mt-4 max-w-xl text-[15px] leading-relaxed text-[var(--color-muted)]">
-            Nous sélectionnons les meilleures marques françaises — <a href="/partenaires/meo/" class="text-[var(--color-accent)] underline underline-offset-4">MéO</a>, <a href="/partenaires/arcades-et-baies/" class="text-[var(--color-accent)] underline underline-offset-4">Arcades & Baies</a>, <a href="/partenaires/bubendorff/" class="text-[var(--color-accent)] underline underline-offset-4">Bubendorff</a> — pour vous offrir des produits robustes, beaux et durables.
-          </p>
-          <div class="mt-7 flex flex-wrap gap-3">
-            <a href="/contact/" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
-              Demander un devis
-            </a>
-            <a href="/entreprise/notre-histoire/#showroom" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
-              Visiter le showroom
-            </a>
-          </div>
-        </div>
-        <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
-          <Image
-            src={heroPorte}
-            alt="Porte d'entrée bois-aluminium sur mesure installée par Fenêtres sur Loir près d'Angers"
-            widths={[600, 900, 1200]}
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            loading="eager"
-            decoding="async"
-            format="webp"
-            quality={80}
-            class="w-full h-auto aspect-[4/3] object-cover"
-          />
+    <Container width="default">
+      <div class="max-w-3xl">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+          Portes & Fenêtres
+        </p>
+        <h2 class="text-balance">
+          Fenêtres sur Loir, expert de la menuiserie <strong class="font-bold">sur mesure</strong> depuis 2003
+        </h2>
+        <p class="mt-5 text-[15px] leading-relaxed text-[var(--color-muted)]">
+          Depuis Seiches-sur-le-Loir et Doué-en-Anjou, notre équipe écoute, conseille et installe chaque porte et chaque fenêtre avec un souci du détail qui fait notre signature. Une façade, c'est d'abord ses ouvertures : des menuiseries fatiguées vieillissent toute la maison, les remplacer est le geste de rénovation le plus visible et l'un des plus sensibles au quotidien.
+        </p>
+        <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+          Nous sélectionnons les meilleures marques françaises — <a href="/partenaires/meo/" class="text-[var(--color-accent)] underline underline-offset-4">MéO</a>, <a href="/partenaires/arcades-et-baies/" class="text-[var(--color-accent)] underline underline-offset-4">Arcades & Baies</a>, <a href="/partenaires/bubendorff/" class="text-[var(--color-accent)] underline underline-offset-4">Bubendorff</a> — pour vous offrir des produits robustes, beaux et durables, posés par nos propres équipes certifiées RGE Qualibat.
+        </p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="/contact/" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
+            Demander un devis
+          </a>
+          <a href="/entreprise/notre-histoire/#showroom" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
+            Visiter le showroom
+          </a>
         </div>
       </div>
     </Container>

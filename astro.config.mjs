@@ -11,7 +11,10 @@ export default defineConfig({
   integrations: [
     // lastmod volontairement absent : une date de build identique sur toutes
     // les pages est un signal sans valeur (voire trompeur) pour Google.
-    sitemap(),
+    sitemap({
+      // Pages de test (/test-…) : jamais dans le sitemap.
+      filter: (page) => !page.includes("/test-"),
+    }),
   ],
   vite: {
     plugins: [tailwindcss()],
