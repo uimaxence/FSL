@@ -8,6 +8,8 @@ import arcadesLogo from "../../assets/arcades-baies-logo.png";
 import dcLogo from "../../assets/DC-logo.png";
 import bubendorffLogo from "../../assets/bubendorff-logo.png";
 import qualibatLogo from "../../assets/qualibat-logo.png";
+import tropheePortes from "../../assets/trophee-meo-2025-portes-entree.png";
+import tropheePerformance from "../../assets/trophee-meo-2025-performance.png";
 import { avisGlobal } from "../../lib/avis";
 
 const partners = [
@@ -16,6 +18,19 @@ const partners = [
   { name: "Arcades & Baies", logo: arcadesLogo, href: "/partenaires/arcades-et-baies/" },
   { name: "DC Menuiseries", logo: dcLogo, href: "/partenaires/nos-fournisseurs/" },
   { name: "Qualibat RGE", logo: qualibatLogo, href: "/contact/" },
+];
+
+// Distinctions MéO 2025 : visuels blancs sur fond transparent, même hauteur source,
+// affichés à hauteur fixe pour garder les deux trophées à la même échelle.
+const distinctions = [
+  {
+    logo: tropheePortes,
+    alt: "Trophée d'or MéO 2025 — Meilleure vente de portes d'entrée, décerné à Fenêtres sur Loir",
+  },
+  {
+    logo: tropheePerformance,
+    alt: "Trophée d'or MéO 2025 — Meilleure performance, décerné à Fenêtres sur Loir",
+  },
 ];
 
 const googleRating = { score: avisGlobal.noteAffichee, count: avisGlobal.total };
@@ -112,36 +127,68 @@ const googleRating = { score: avisGlobal.noteAffichee, count: avisGlobal.total }
       </div>
     </div>
 
-    <!-- Partenaires — proches du texte en mobile, poussés en bas en desktop -->
-    <div class="mt-12 sm:mt-auto sm:pt-12 lg:pt-16 max-w-2xl">
-      <p class="text-[11px] uppercase tracking-[0.18em] text-white/70 mb-3 sm:mb-4">
-        Nos partenaires de confiance
-      </p>
-      <!-- En mobile : une seule ligne (scroll horizontal si dépassement). En desktop : wrap classique. -->
-      <div class="flex items-center gap-x-5 sm:gap-x-8 lg:gap-x-10 gap-y-4 overflow-x-auto sm:overflow-visible sm:flex-wrap -mx-1 px-1 pb-1 scrollbar-hide">
+    <!-- Ligne du bas : partenaires à gauche, trophées MéO à droite (desktop) — proche du texte en mobile, poussée en bas en desktop -->
+    <div class="mt-12 sm:mt-auto sm:pt-12 lg:pt-16 flex flex-col gap-y-8 lg:flex-row lg:items-end lg:justify-between lg:gap-x-12">
+      <div class="max-w-2xl">
+        <p class="text-[11px] uppercase tracking-[0.18em] text-white/70 mb-3 sm:mb-4">
+          Nos partenaires de confiance
+        </p>
+        <!-- En mobile : une seule ligne (scroll horizontal si dépassement). En desktop : wrap classique. -->
+        <div class="flex items-center gap-x-5 sm:gap-x-8 lg:gap-x-10 gap-y-4 overflow-x-auto sm:overflow-visible sm:flex-wrap -mx-1 px-1 pb-1 scrollbar-hide">
+          {
+            partners.map((p) => (
+              <a
+                href={p.href}
+                class="inline-flex items-center justify-center h-8 sm:h-9 shrink-0 transition-opacity opacity-90 hover:opacity-100"
+                aria-label={`Découvrir notre partenariat ${p.name}`}
+                style="filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));"
+              >
+                <Image
+                  src={p.logo}
+                  alt={`Logo ${p.name}`}
+                  widths={[120, 240]}
+                  sizes="120px"
+                  loading="lazy"
+                  decoding="async"
+                  format="webp"
+                  quality={90}
+                  class="max-h-8 sm:max-h-9 w-auto object-contain"
+                />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Distinctions : deux Trophées d'or MéO 2025, mêmes traitement et échelle que les logos partenaires -->
+      <ul
+        class="flex flex-col gap-y-3 sm:flex-row sm:items-end sm:gap-x-8 lg:gap-x-10 lg:shrink-0"
+        aria-label="Distinctions MéO 2025"
+      >
         {
-          partners.map((p) => (
-            <a
-              href={p.href}
-              class="inline-flex items-center justify-center h-8 sm:h-9 shrink-0 transition-opacity opacity-90 hover:opacity-100"
-              aria-label={`Découvrir notre partenariat ${p.name}`}
-              style="filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));"
-            >
-              <Image
-                src={p.logo}
-                alt={`Logo ${p.name}`}
-                widths={[120, 240]}
-                sizes="120px"
-                loading="lazy"
-                decoding="async"
-                format="webp"
-                quality={90}
-                class="max-h-8 sm:max-h-9 w-auto object-contain"
-              />
-            </a>
+          distinctions.map((d) => (
+            <li class="shrink-0">
+              <a
+                href="/partenaires/meo/"
+                class="inline-flex items-center transition-opacity opacity-95 hover:opacity-100"
+                style="filter: drop-shadow(0 1px 6px rgba(0,0,0,0.55));"
+              >
+                <Image
+                  src={d.logo}
+                  alt={d.alt}
+                  widths={[300, 600]}
+                  sizes="300px"
+                  loading="eager"
+                  decoding="async"
+                  format="webp"
+                  quality={90}
+                  class="h-14 sm:h-16 xl:h-[4.5rem] w-auto object-contain"
+                />
+              </a>
+            </li>
           ))
         }
-      </div>
+      </ul>
     </div>
   </Container>
 </section>
