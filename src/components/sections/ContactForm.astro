@@ -240,6 +240,8 @@ const bullets = [
 
         if (response.ok && data.success) {
           form.reset();
+          // Conversion comptée sans aucune donnée du formulaire (voir Analytics.astro).
+          (window as any).posthog?.capture("formulaire_envoye");
           showStatus(
             "Merci ! Votre demande a bien été envoyée. Notre équipe vous recontacte sous 48 h ouvrées.",
             true,

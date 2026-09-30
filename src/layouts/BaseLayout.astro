@@ -6,6 +6,7 @@ import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import Breadcrumb from "../components/ui/Breadcrumb.astro";
 import SchemaJsonLd from "../components/ui/SchemaJsonLd.astro";
+import Analytics from "../components/layout/Analytics.astro";
 import DevisPopup from "../components/sections/DevisPopup.astro";
 import MeoConfiguratorFAB from "../components/sections/MeoConfiguratorFAB.astro";
 
@@ -76,6 +77,7 @@ const showMeoFab =
     <link rel="apple-touch-icon" href="/logo-FSL.png" />
 
     {schemaJsonLd && <SchemaJsonLd data={schemaJsonLd} />}
+    <Analytics />
   </head>
   <body class="min-h-screen flex flex-col">
     <a

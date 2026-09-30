@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Container from "../components/ui/Container.astro";
+import { business } from "../config/business";
 ---
 
 <BaseLayout
   title="Politique de cookies — Fenêtres sur Loir"
-  description="Politique de cookies du site fenetres-sur-loir.fr."
+  description="Politique de cookies de fenetres-sur-loir.fr : aucun cookie publicitaire ni de mesure d'audience, fréquentation mesurée de façon anonyme."
 >
   <section class="section pt-16 lg:pt-20">
     <Container width="narrow">
@@ -13,25 +14,31 @@ import Container from "../components/ui/Container.astro";
 
       <div class="mt-10 space-y-8 text-[var(--color-muted)] leading-relaxed">
         <p>
-          Nous utilisons des cookies pour mesurer l'audience du site, améliorer son fonctionnement et, le cas échéant, vous proposer des contenus personnalisés.
+          Ce site ne dépose aucun cookie publicitaire ni aucun cookie de mesure d'audience. C'est la raison pour laquelle il n'affiche pas de bandeau de consentement.
         </p>
 
         <div>
-          <h2 class="text-2xl font-semibold text-[var(--color-fg)]">Cookies techniques</h2>
-          <p class="mt-3">Strictement nécessaires au fonctionnement du site. Ils ne nécessitent pas de consentement.</p>
-        </div>
-
-        <div>
-          <h2 class="text-2xl font-semibold text-[var(--color-fg)]">Cookies de mesure d'audience</h2>
+          <h2 class="text-2xl font-semibold text-[var(--color-fg)]">Stockage technique</h2>
           <p class="mt-3">
-            Nous utilisons un outil d'analyse pour comprendre l'usage anonyme du site et l'améliorer. Vous pouvez les refuser à tout moment.
+            Deux informations sont conservées dans votre navigateur, uniquement pour ne pas vous réafficher un message que vous avez déjà fermé : la fermeture du bandeau d'annonce et celle de la fenêtre de demande de devis. Elles ne quittent pas votre appareil et ne nécessitent pas de consentement.
           </p>
         </div>
 
         <div>
-          <h2 class="text-2xl font-semibold text-[var(--color-fg)]">Gestion des préférences</h2>
+          <h2 class="text-2xl font-semibold text-[var(--color-fg)]">Mesure d'audience sans cookie</h2>
           <p class="mt-3">
-            Vous pouvez à tout moment modifier vos préférences depuis les réglages de votre navigateur ou via le bandeau dédié.
+            Nous mesurons la fréquentation du site avec PostHog, dont les données sont hébergées dans l'Union européenne. L'outil est configuré sans cookie : rien n'est écrit ni lu sur votre appareil. Les visites sont comptées à partir d'un identifiant anonyme calculé sur les serveurs de PostHog, votre adresse IP n'est pas conservée et votre navigation n'est pas enregistrée en vidéo.
+          </p>
+          <p class="mt-3">
+            Nous recueillons les pages consultées, la provenance de la visite, le type d'appareil, la zone géographique approximative et les clics effectués sur les pages, notamment sur les boutons d'appel, d'e-mail et d'envoi du formulaire. Le contenu du formulaire de contact n'est jamais transmis à cet outil.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-semibold text-[var(--color-fg)]">Une question ?</h2>
+          <p class="mt-3">
+            Ces mesures sont anonymes et ne permettent pas de vous identifier. Pour toute question sur vos données, écrivez-nous à
+            <a href={`mailto:${business.email}`} class="text-[var(--color-accent)] underline underline-offset-4">{business.email}</a>.
           </p>
         </div>
       </div>
