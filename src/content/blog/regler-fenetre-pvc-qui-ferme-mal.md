@@ -151,7 +151,7 @@ Vous avez tourné la poignée vers le haut (position soufflet) alors que la fen�
 3. Poussez le haut de l'ouvrant pour que le **compas** se réengage dans son logement, puis tournez la poignée en position **fermée**.
 4. Ouvrez à nouveau en battant, puis en soufflet, pour vérifier.
 
-Si l'ouvrant ne se réengage pas ou si le compas est tordu, n'insistez pas : une ferrure faussée se remplace, et forcer risque de casser le vitrage.
+Si l'ouvrant ne se réengage pas ou si le compas est tordu, n'insistez pas : une ferrure faussée se remplace, et forcer risque de casser le vitrage. Poignée bloquée, fenêtre coincée en soufflet ou poignée qui tourne dans le vide : tous les cas sont détaillés dans notre guide [fenêtre oscillo-battant bloquée](/blog/fenetre-oscillo-battant-bloquee/).
 
 ## Ce qu'un réglage ne corrige pas
 

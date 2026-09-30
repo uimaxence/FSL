@@ -39,7 +39,7 @@ export const GET: APIRoute = () => {
     ["Nos agences", "/agences/", "Seiches-sur-le-Loir et Doué-en-Anjou."],
     ["Zones d'intervention", "/zones-intervention/", "Toutes les communes desservies en Maine-et-Loire."],
     ["Réalisations", "/realisations/", "Chantiers de menuiserie réalisés en Maine-et-Loire."],
-    ["Conseils & blog", "/conseils-services/", "Guides : fenêtre PVC ou alu, condensation, aides à la rénovation, volet roulant bloqué, réinitialiser un volet Bubendorff, régler une fenêtre PVC qui ferme mal."],
+    ["Conseils & blog", "/conseils-services/", "Guides : fenêtre PVC ou alu, condensation, aides à la rénovation, volet roulant bloqué, réinitialiser un volet Bubendorff, télécommande Bubendorff, entretien d'un volet roulant, régler une fenêtre PVC qui ferme mal, fenêtre oscillo-battant bloquée, isolation phonique des fenêtres."],
     ["Contact & devis", "/contact/", "Devis gratuit sous 48 h."],
     // Événement en cours : retiré automatiquement une fois le salon terminé.
     ...(evenementEnCours(salon)

@@ -401,6 +401,16 @@
       "source": "/menuisier-allonnes/",
       "destination": "/menuisier-saumur/",
       "permanent": true
+    },
+    {
+      "source": "/salon-habitat-angers-2026",
+      "destination": "/solutions/portes-fenetres/portes-entree/",
+      "permanent": true
+    },
+    {
+      "source": "/salon-habitat-angers-2026/",
+      "destination": "/solutions/portes-fenetres/portes-entree/",
+      "permanent": true
     }
   ]
 }

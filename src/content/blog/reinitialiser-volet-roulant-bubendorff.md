@@ -163,7 +163,7 @@ Laissez le panneau exposé sans solliciter le volet, nettoyez-le à l'eau claire
 
 Bubendorff précise que, pour un volet **fabriqué à partir de janvier 2007** dont le moteur n'a pas été changé, un émetteur cassé ou perdu peut être **reproduit à l'identique** : il suffit de fournir le **numéro de série du volet** à votre installateur ou à un revendeur Bubendorff. Pour un volet **antérieur à 2007**, il faut remplacer le moteur et l'émetteur ensemble. Si seule la **coque** de la télécommande est abîmée, elle se remplace séparément.
 
-Le numéro de série figure sur l'étiquette du volet ; la notice de votre modèle est disponible sur le portail de documentation Bubendorff. Gardez ces deux éléments à portée de main avant d'appeler un SAV : ils font gagner un temps précieux au diagnostic.
+Le numéro de série figure sur l'étiquette du volet ; la notice de votre modèle est disponible sur le portail de documentation Bubendorff. Gardez ces deux éléments à portée de main avant d'appeler un SAV : ils font gagner un temps précieux au diagnostic. Pile, ajout d'un émetteur, commande groupée : voyez notre guide de la [télécommande Bubendorff](/blog/telecommande-bubendorff-pile-programmation/).
 
 ## Quand arrêter et appeler un professionnel
 

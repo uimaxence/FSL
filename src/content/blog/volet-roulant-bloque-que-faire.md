@@ -189,6 +189,8 @@ Réparer ou remplacer ? Une panne isolée sur un volet récent se répare. Pass�
 - **Descendez le volet jusqu'en butée basse** plutôt que de l'arrêter à quelques centimètres : le tablier repose ainsi correctement.
 - **Faites vérifier fins de course et attaches** lors d'une visite d'entretien, surtout sur les volets de plus de dix ans.
 
+Le détail, étape par étape, est dans notre guide d'[entretien d'un volet roulant](/blog/entretien-volet-roulant/).
+
 ## Un volet bloqué à Angers, Seiches-sur-le-Loir ou Doué-en-Anjou ?
 
 Fenêtres sur Loir est **Point Conseil Bubendorff** : nos techniciens salariés assurent le **SAV des volets Bubendorff que nous avons posés** — diagnostic, pièces, batterie, moteur — sans intermédiaire ni centre d'appel. Pour les autres volets, nous vous disons honnêtement si une réparation vaut le coup ou si un remplacement s'impose, et nous vous proposons alors un [volet roulant solaire, électrique ou battant](/solutions/portes-fenetres/volets/) posé par nos équipes et garanti 7 ans. Pour en savoir plus sur la marque, consultez notre [page partenariat Bubendorff](/partenaires/bubendorff/).
