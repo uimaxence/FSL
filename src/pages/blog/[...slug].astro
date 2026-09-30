@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Container from "../../components/ui/Container.astro";
-import defaultCover from "../../assets/histoire-3.jpg";
+import { getBlogCover } from "../../lib/blog-covers";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -16,6 +16,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const { title, description, date, tags, schema } = post.data;
+const cover = getBlogCover(post.id, title);
 
 const formatDate = (d: Date) =>
   d.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
@@ -40,7 +41,9 @@ const aLireAussi = autres
   schemaJsonLd={schema as any}
 >
   <article>
-    <section class="section pt-16 lg:pt-20">
+    <!-- `pb-0!` : `.section` est déclarée après les utilitaires Tailwind et les
+         écrase ; sans le `!`, l'espace avant la photo resterait de 11 rem. -->
+    <section class="section pt-16 lg:pt-20 pb-0!">
       <Container width="narrow">
         <a href="/conseils-services/" class="text-sm text-[var(--color-accent)] hover:underline">
           ← Tous les articles
@@ -66,19 +69,21 @@ const aLireAussi = autres
       </Container>
     </section>
 
+    <!-- Photo à la largeur du texte, en bandeau sur grand écran : l'ancienne
+         version (pleine largeur, 16/9) occupait tout un écran au défilement. -->
     <section class="section-tight">
-      <Container width="wide">
+      <Container width="narrow">
         <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
           <Image
-            src={defaultCover}
-            alt={title}
-            widths={[600, 900, 1280, 1600]}
-            sizes="(max-width: 1280px) 100vw, 1280px"
+            src={cover.image}
+            alt={cover.alt}
+            widths={[480, 800, 1200, 1920]}
+            sizes="(max-width: 1024px) 100vw, 960px"
             loading="lazy"
             decoding="async"
             format="webp"
             quality={82}
-            class="w-full h-auto aspect-video object-cover"
+            class="w-full h-auto aspect-video sm:aspect-[5/2] object-cover"
           />
         </div>
       </Container>

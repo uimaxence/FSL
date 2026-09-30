@@ -3,14 +3,7 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Container from "../components/ui/Container.astro";
-import histoire1 from "../assets/histoire-1.jpg";
-import histoire2 from "../assets/histoire-2.jpg";
-import histoire3 from "../assets/histoire-3.jpg";
-import histoire5 from "../assets/histoire-5.jpg";
-import histoire6 from "../assets/histoire-6.jpg";
-import histoire7 from "../assets/histoire-7.jpg";
-
-const blogCovers = [histoire1, histoire2, histoire3, histoire5, histoire6, histoire7];
+import { getBlogCover } from "../lib/blog-covers";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
@@ -49,13 +42,15 @@ const breadcrumb = [
         </p>
       ) : (
         <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((p, i) => (
+          {posts.map((p) => {
+            const cover = getBlogCover(p.id, p.data.title);
+            return (
             <li>
               <a href={`/blog/${p.id}/`} class="group block">
                 <div class="rounded-xl overflow-hidden ring-1 ring-[var(--color-border)] mb-5 aspect-video">
                   <Image
-                    src={blogCovers[i % blogCovers.length]}
-                    alt={p.data.title}
+                    src={cover.image}
+                    alt={cover.alt}
                     widths={[400, 700, 1000]}
                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                     loading="lazy"
@@ -76,7 +71,8 @@ const breadcrumb = [
                 </p>
               </a>
             </li>
-          ))}
+            );
+          })}
         </ul>
       )}
     </Container>
