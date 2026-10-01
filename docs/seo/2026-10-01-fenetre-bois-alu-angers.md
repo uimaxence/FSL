@@ -157,6 +157,7 @@ Affirmations du site qui ne se retrouvent pas sur fenetremeo.com :
 
 ## État au 01/10/2026
 
-Modifications faites dans le dépôt, non commitées, non déployées. Rien ne change dans Google
-tant que le site n'est pas déployé. Après déploiement, vérifier par `curl -I` que
-`/blog/fenetres-bois-alu-meo/` répond 308 vers `/fenetres-bois-alu-angers/`.
+Commit `c0f11f7`, poussé et déployé le 01/10/2026 au soir. Contrôles en production :
+`/fenetres-bois-alu-angers/` répond 200 (canonique correcte, présente dans le sitemap),
+`/blog/fenetres-bois-alu-meo/` répond 308 vers la page cible, les pages villes et produits
+répondent 200. Reste à demander l'indexation dans la Search Console.
