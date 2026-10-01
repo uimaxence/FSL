@@ -121,7 +121,7 @@ Le **bois-alu** ne fait aucun compromis : du **bois noble à l'intérieur** (cha
 - **aucun entretien extérieur** : pas de lasure à refaire ;
 - solution privilégiée pour les **maisons de caractère**, la rénovation en centre ancien et les constructions RE2020.
 
-C'est le positionnement haut de gamme que nous portons en tant que **[Menuisier d'Excellence MéO](/partenaires/meo/)**. Pour tout savoir, lisez notre guide **[fenêtres bois-alu MéO](/blog/fenetres-bois-alu-meo/)**.
+C'est le positionnement haut de gamme que nous portons en tant que **[Menuisier d'Excellence MéO](/partenaires/meo/)**. Pour tout savoir, consultez notre page **[fenêtres bois-alu à Angers](/fenetres-bois-alu-angers/)**.
 
 ## Tableau comparatif : PVC, alu, bois-alu
 

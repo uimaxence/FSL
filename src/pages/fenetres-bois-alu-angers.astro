@@ -1,0 +1,521 @@
+---
+// Page produit localisée « fenêtres bois-alu à Angers » — page cible UNIQUE du
+// site pour « fenêtre bois alu angers » et ses variantes (menuiserie bois alu,
+// porte d'entrée bois alu, fenêtre mixte).
+//
+// SEO (relevé du 01/10/2026) : sur cette requête, Google classait la page
+// générique /solutions/portes-fenetres/fenetres/ (4ᵉ sur ordinateur, absente
+// sur mobile) et ignorait l'article /blog/fenetres-bois-alu-meo/, dont le
+// contenu est repris ici et l'URL redirigée en 301 (vercel.json). La page MéO
+// reste la page « marque », /fenetres-angers/ la page « fenêtres à Angers »
+// tous matériaux : toutes deux renvoient ici pour le bois-alu.
+//
+// Faits produits : uniquement ce qui est publié sur fenetremeo.com (relevé le
+// 01/10/2026 : fiche fenêtres, fiche baies coulissantes, FAQ, pages « alliance
+// bois-aluminium », « créateur depuis 1983 » et « Menuisiers d'Excellence »).
+// Aucun prix affiché (choix client).
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import ReponseDirecte from "../components/ui/ReponseDirecte.astro";
+import CTASection from "../components/sections/CTASection.astro";
+import AgenceProche from "../components/sections/AgenceProche.astro";
+import ConseilsLies from "../components/sections/ConseilsLies.astro";
+import { organizationNode, agencyNode, agencyId } from "../lib/schema";
+import { SITE_URL } from "../config/business";
+import { communesVoisines } from "../lib/maillage";
+// Illustration générée (voir blog-covers.ts), pas un chantier : le texte
+// alternatif ne doit pas la présenter comme une réalisation.
+import heroImg from "../assets/blog/fenetres-bois-alu-meo.jpg";
+
+const title = "Fenêtre bois-alu à Angers — Menuisier d'Excellence MéO";
+const description =
+  "Fenêtres bois-alu MéO posées à Angers par Fenêtres sur Loir, Menuisier d'Excellence MéO et artisan RGE Qualibat : bois dedans, alu dehors. Devis gratuit.";
+
+const PAGE_URL = `${SITE_URL}/fenetres-bois-alu-angers/`;
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres/" },
+  { label: "Fenêtres", href: "/solutions/portes-fenetres/fenetres/" },
+  { label: "Bois-alu à Angers" },
+];
+
+const reponseDirecte =
+  "Fenêtres sur Loir fournit et pose des fenêtres bois-alu à Angers : bois (pin ou chêne) à l'intérieur, aluminium à l'extérieur, fabriquées en Vendée par MéO. Menuisier d'Excellence MéO et artisan certifié RGE Qualibat, l'entreprise intervient depuis son agence de Seiches-sur-le-Loir, à 22 km d'Angers, avec ses propres poseurs. Devis gratuit sous 48 h après prise de mesures à domicile.";
+
+// Caractéristiques publiées par MéO pour la fenêtre à frappe double vitrage
+// (fenetremeo.com/produit/fenetres-bois-aluminium/, relevé le 01/10/2026).
+const caracteristiques = [
+  ["Performance thermique", "Uw 1,2"],
+  ["Apports solaires", "Sw 0,47"],
+  ["Lumière naturelle", "TLw 0,58"],
+  ["Performance acoustique", "28 dB"],
+  ["Étanchéité air, eau, vent", "A*4 E*7A V*A2"],
+  ["Épaisseur de l'ouvrant", "67 mm (design plat) ou 75 mm (design galbé)"],
+  ["Vitrage de série", "Double vitrage 4/20/4 à très basse émissivité, intercalaire warm-edge ; triple vitrage possible"],
+  ["Bois intérieur", "Pin ou chêne, 13 finitions"],
+  ["Aluminium extérieur", "28 teintes"],
+];
+
+// Chantiers bois-alu réels à Angers et dans l'agglomération.
+// À COMPLÉTER avec des chantiers fournis par le client (lieu, année, description
+// factuelle, photo du chantier). Ne jamais y mettre d'illustration générée ni de
+// chantier supposé : tant que la liste est vide, la section n'est pas affichée.
+interface Chantier {
+  lieu: string;
+  annee: number;
+  titre: string;
+  description: string;
+  photo: ImageMetadata;
+  photoAlt: string;
+  /** Lien vers la fiche /realisations/<slug>/ si elle existe. */
+  href?: string;
+}
+const chantiers: Chantier[] = [];
+
+// Communes de l'agglomération ayant une page dédiée (maillage géographique).
+const agglo = communesVoisines("angers", 6);
+
+// FAQ : source unique pour le bloc visible ET le FAQPage JSON-LD.
+const faq = [
+  {
+    question: "De quoi dépend le prix d'une fenêtre bois-alu à Angers ?",
+    reponse:
+      "De l'essence de bois (pin ou chêne) et de la finition, des dimensions et de la forme de l'ouverture, du vitrage (double ou triple) et du mode de pose, en rénovation sur le dormant existant ou en dépose totale. Le bois-alu se situe au-dessus du PVC et de l'aluminium à dimensions égales. Le devis est gratuit et détaillé, remis sous 48 h après une prise de mesures à domicile.",
+  },
+  {
+    question: "Quelle différence entre une fenêtre bois-alu et une fenêtre aluminium ?",
+    reponse:
+      "Une fenêtre aluminium est en aluminium sur ses deux faces. Une fenêtre bois-alu MéO associe une structure en bois, visible à l'intérieur, et une structure en aluminium à l'extérieur, assemblées par un système de plots que le fabricant décrit comme une rupture totale de pont thermique. Côté rue, l'aspect et l'entretien sont ceux de l'aluminium ; côté pièce, vous gardez le bois.",
+  },
+  {
+    question: "Quel entretien pour des fenêtres bois-alu ?",
+    reponse:
+      "Très peu. Selon MéO, un dépoussiérage du bois avec un chiffon doux suffit à l'intérieur ; à l'extérieur, l'aluminium se nettoie à l'eau claire avec un savon doux, sans produit abrasif. Le bois est protégé par une lasure de finition : il n'y a ni peinture ni lasure à refaire côté façade.",
+  },
+  {
+    question: "Peut-on poser des fenêtres bois-alu dans le centre historique d'Angers ?",
+    reponse:
+      "Dans le site patrimonial remarquable (centre historique, abords du château et de la cathédrale, la Doutre), le remplacement de fenêtres relève d'une déclaration préalable et de l'avis de l'Architecte des Bâtiments de France, qui se prononce sur le matériau visible en façade, les teintes et les partitions. Nous préparons le dossier avec vous ; si le bois est exigé côté rue, nous posons aussi des fenêtres bois.",
+  },
+  {
+    question: "Quelle garantie sur des fenêtres bois-alu MéO posées par Fenêtres sur Loir ?",
+    reponse:
+      "La pose est couverte par notre garantie décennale. Les menuiseries MéO sont garanties jusqu'à 10 ans par le fabricant, selon les conditions de sa notice de garantie. Comme la pose est réalisée par un Menuisier d'Excellence MéO, vous pouvez en plus activer l'extension de garantie gratuite prévue par MéO, dans les 14 jours qui suivent la signature du procès-verbal de fin de chantier.",
+  },
+  {
+    question: "Où voir des fenêtres bois-alu près d'Angers ?",
+    reponse:
+      "Dans notre showroom de 300 m² à Seiches-sur-le-Loir, à vingt minutes d'Angers : vous y comparez les menuiseries MéO, leurs finitions et leurs vitrages. Il est ouvert du lundi au vendredi de 9 h à 12 h et de 14 h à 18 h 30, et le samedi de 9 h à 12 h.",
+  },
+  {
+    question: "Les fenêtres bois-alu ouvrent-elles droit aux aides à la rénovation ?",
+    reponse:
+      "Le remplacement de fenêtres par un artisan RGE peut ouvrir droit aux aides en vigueur (MaPrimeRénov', primes CEE, éco-prêt à taux zéro, TVA à 5,5 %), selon votre situation et le logement. Fenêtres sur Loir est certifié RGE Qualibat : nous vérifions votre éligibilité au moment du devis et fournissons les justificatifs techniques.",
+  },
+  {
+    question: "Posez-vous aussi des portes d'entrée et des baies vitrées bois-alu à Angers ?",
+    reponse:
+      "Oui. MéO fabrique en bois-aluminium des portes d'entrée, des baies coulissantes, des verrières et des murs rideaux, que nous posons à Angers et dans tout le Maine-et-Loire. Les portes d'entrée se composent sur le configurateur MéO, puis nous prenons les mesures chez vous.",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    organizationNode(),
+    agencyNode("seiches"),
+    {
+      "@type": "Service",
+      "@id": `${PAGE_URL}#service`,
+      serviceType: "Fourniture et pose de fenêtres bois-aluminium sur mesure",
+      name: "Fenêtres bois-alu à Angers",
+      description,
+      provider: { "@id": agencyId("seiches") },
+      brand: { "@type": "Brand", name: "MéO" },
+      areaServed: {
+        "@type": "City",
+        name: "Angers",
+        address: {
+          "@type": "PostalAddress",
+          postalCode: "49000",
+          addressLocality: "Angers",
+          addressRegion: "Maine-et-Loire",
+          addressCountry: "FR",
+        },
+        geo: { "@type": "GeoCoordinates", latitude: 47.4784, longitude: -0.5632 },
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${PAGE_URL}#faq`,
+      mainEntity: faq.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.reponse },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <!-- Hero -->
+  <section class="relative">
+    <div class="relative min-h-[420px] sm:min-h-[520px] flex items-end overflow-hidden">
+      <Image
+        src={heroImg}
+        alt="Fenêtres bois-alu vues de l'intérieur : cadres en bois clair dans un séjour"
+        widths={[640, 960, 1280, 1920]}
+        sizes="100vw"
+        loading="eager"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+      <Container width="default" class="relative pb-12 sm:pb-16 pt-24">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-white/85">
+          Fenêtres bois-aluminium · Angers (49000) et agglomération
+        </p>
+        <h1 class="text-white text-balance max-w-3xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
+          Fenêtres bois-alu à Angers : fourniture et pose par un Menuisier d'Excellence MéO
+        </h1>
+        <p class="mt-5 max-w-2xl text-[17px] leading-relaxed text-white/90">
+          Le bois à l'intérieur, l'aluminium à l'extérieur. Fenêtres sur Loir pose les
+          menuiseries bois-alu MéO à Angers avec ses propres équipes, depuis 2003.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="/contact/"
+            class="inline-flex items-center rounded-full px-7 py-3 text-[14px] font-medium text-white shadow-sm transition-colors"
+            style="background: var(--color-accent);"
+            onmouseover="this.style.background='var(--color-accent-hover)'"
+            onmouseout="this.style.background='var(--color-accent)'"
+          >
+            Demander un devis gratuit
+          </a>
+          <a
+            href="/partenaires/meo/"
+            class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white border border-white/50 hover:bg-white hover:text-[var(--color-fg)] transition-colors"
+          >
+            Notre partenariat MéO
+          </a>
+        </div>
+      </Container>
+    </div>
+  </section>
+
+  <!-- Corps rédactionnel -->
+  <section class="section-tight">
+    <Container width="default">
+      <ReponseDirecte texte={reponseDirecte} class="max-w-3xl mb-8" />
+      <div class="prose-fsl max-w-3xl">
+        <p class="lead">
+          Vous cherchez une <strong>fenêtre bois-alu à Angers</strong> ? Aussi appelée fenêtre
+          mixte ou bois-aluminium, elle réunit deux matériaux : le bois, que l'on voit et que
+          l'on touche depuis la pièce, et l'aluminium, qui fait face à la pluie et au soleil.
+          Fenêtres sur Loir est <a href="/partenaires/meo/">Menuisier d'Excellence MéO</a>,
+          fabricant vendéen qui a créé le concept de menuiserie bois-aluminium en 1983. Nous
+          conseillons, mesurons et posons, dans toute l'agglomération angevine.
+        </p>
+
+        <h2>Fenêtre mixte bois-alu : comment elle est faite</h2>
+        <p>
+          Une fenêtre bois-alu MéO n'est pas une fenêtre en bois habillée d'une tôle. Elle
+          assemble une <strong>structure en bois</strong> (lamellé, abouté, collé, avec placage)
+          et une <strong>structure en aluminium</strong>, reliées par un système de plots. Le
+          fabricant parle de rupture totale de pont thermique. Le vitrage est collé au cadre bois.
+        </p>
+        <ul>
+          <li>
+            <strong>À l'intérieur, le bois</strong> : pin ou chêne, protégé par une lasure de
+            finition. Il apporte l'isolation naturelle du matériau et l'aspect d'une menuiserie
+            traditionnelle.
+          </li>
+          <li>
+            <strong>À l'extérieur, l'aluminium</strong> : il protège le bois des intempéries et
+            garde sa teinte. Il n'y a ni peinture ni lasure à refaire côté façade.
+          </li>
+        </ul>
+
+        <h2>Pourquoi le bois-alu convient aux maisons d'Angers</h2>
+        <p>
+          Angers juxtapose un centre ancien protégé, des quartiers pavillonnaires de la seconde
+          moitié du XX<sup>e</sup> siècle et des constructions récentes en première couronne. Le
+          bois-alu répond à trois situations que nous rencontrons souvent.
+        </p>
+        <ul>
+          <li>
+            <strong>Maisons anciennes de schiste et de tuffeau</strong> (centre historique, la
+            Doutre) : le bois reste visible à l'intérieur, en accord avec les parquets et les
+            boiseries, et les formes cintrées sont possibles (plein cintre, cintre surbaissé,
+            anse de panier), avec des petits-bois en applique ou intégrés au vitrage.
+          </li>
+          <li>
+            <strong>Pavillons des années 1960 à 1990</strong> (Belle-Beille, Monplaisir, les
+            Justices) : pour remplacer des fenêtres en bois d'origine sans renoncer au bois dans
+            les pièces, et sans reprendre l'entretien de la façade.
+          </li>
+          <li>
+            <strong>Extensions et maisons neuves</strong> (Avrillé, Beaucouzé, Les Ponts-de-Cé,
+            Verrières-en-Anjou) : teintes aluminium contemporaines dehors, bois clair ou foncé
+            dedans, en double ou en triple vitrage.
+          </li>
+        </ul>
+        <p>
+          Dans le site patrimonial remarquable d'Angers, le matériau visible depuis la rue est
+          soumis à l'avis de l'Architecte des Bâtiments de France. Nous vérifions ce point avant
+          toute commande et préparons la déclaration préalable.
+        </p>
+
+        <h2>Les fenêtres bois-alu MéO en chiffres</h2>
+        <p>
+          Valeurs publiées par le fabricant pour sa fenêtre à frappe en double vitrage.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Caractéristique</th>
+              <th>Fenêtre bois-alu MéO</th>
+            </tr>
+          </thead>
+          <tbody>
+            {caracteristiques.map(([nom, valeur]) => (
+              <tr>
+                <td>{nom}</td>
+                <td>{valeur}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="text-sm text-[var(--color-muted)]">
+          Source : MéO (fenetremeo.com), relevé le 1<sup>er</sup> octobre 2026. Performances
+          thermique et acoustique données pour une fenêtre deux vantaux en pin, double vitrage
+          4/20/4, au format Acotherm. Les valeurs de votre projet dépendent de ses dimensions et
+          de son vitrage : elles figurent sur le devis.
+        </p>
+        <p>
+          Les menuiseries MéO sont fabriquées à Cugand, en Vendée, et portent les certifications
+          Origine France Garantie, NF, PEFC, Qualimarine et CEKAL.
+        </p>
+
+        <h2>Essences, finitions et teintes : ce que vous choisissez</h2>
+        <ul>
+          <li>
+            <strong>Le bois intérieur</strong> : deux essences, le pin et le chêne, et 13 finitions.
+            En pin : naturel, miel, dune, cendré, blanc, ardoise, taupe. En chêne : naturel,
+            moyen, champagne, polaire, ébène, blanchi. La finition pin blanc peut être peinte.
+          </li>
+          <li>
+            <strong>L'aluminium extérieur</strong> : 28 teintes, en aspect satiné, texturé, sablé,
+            métallisé, anodisé ou ton bois.
+          </li>
+          <li>
+            <strong>L'ouverture</strong> : à la française, oscillo-battante, à soufflet, avec
+            entrebâilleur.
+          </li>
+          <li>
+            <strong>La forme</strong> : rectangle, plein cintre, cintre surbaissé, anse de panier,
+            triangle, trapèze ou circulaire.
+          </li>
+          <li>
+            <strong>Le vitrage</strong> : double ou triple, clair, extra-clair, dépoli ou opale. Pour un
+            logement exposé au bruit, voyez notre guide sur
+            l'<a href="/blog/isolation-phonique-fenetre/">isolation phonique des fenêtres</a>.
+          </li>
+        </ul>
+        <p>
+          Tout se compare en vrai dans notre showroom de Seiches-sur-le-Loir, à vingt minutes
+          d'Angers.
+        </p>
+
+        <h2>Menuiserie bois-alu à Angers : portes d'entrée, baies et verrières</h2>
+        <p>
+          Le bois-alu ne s'arrête pas aux fenêtres. MéO fabrique dans les mêmes matériaux toute la
+          menuiserie extérieure d'une maison, ce qui permet d'accorder les teintes et les
+          finitions d'une ouverture à l'autre.
+        </p>
+        <ul>
+          <li>
+            <a href="/solutions/portes-fenetres/portes-entree/"><strong>Portes d'entrée bois-alu</strong></a> :
+            82 modèles au catalogue MéO, pleins, vitrés ou semi-vitrés. Fenêtres sur Loir a reçu
+            le Trophée d'or MéO 2025 de la meilleure vente de portes d'entrée.
+          </li>
+          <li>
+            <a href="/solutions/portes-fenetres/baies-vitrees/"><strong>Baies coulissantes bois-alu</strong></a> :
+            en 2, 3, 4 ou 6 vantaux, ou à galandage. L'assemblage par plots laisse l'aluminium se dilater
+            sans déformer l'ouvrant, ce qui autorise les teintes foncées en exposition sud ou ouest.
+          </li>
+          <li>
+            <a href="/solutions/confort-interieur/verrieres/"><strong>Verrières et murs rideaux bois-alu</strong></a> :
+            pour une extension ou une grande façade vitrée.
+          </li>
+        </ul>
+
+        <h2>Menuisier d'Excellence MéO : ce que cela change pour votre chantier</h2>
+        <p>
+          MéO destine ses menuiseries aux professionnels installateurs : la pose est assurée par
+          son réseau de partenaires. Le Club des Menuisiers d'Excellence, fondé par MéO en 2012,
+          réunit ceux que le fabricant reconnaît pour leur maîtrise de ses produits. Fenêtres sur
+          Loir en fait partie.
+        </p>
+        <ul>
+          <li><strong>Une pose par nos équipes salariées</strong>, sans sous-traitance, couverte par notre garantie décennale.</li>
+          <li><strong>Une garantie fabricant</strong> jusqu'à 10 ans, selon les conditions de la notice MéO.</li>
+          <li><strong>Une extension de garantie gratuite</strong>, réservée aux poses réalisées par un Menuisier d'Excellence, à activer dans les 14 jours qui suivent la signature du procès-verbal de fin de chantier.</li>
+          <li><strong>Un service après-vente</strong> en lien direct avec MéO.</li>
+        </ul>
+        <p>
+          En 2025, MéO nous a décerné deux Trophées d'or : meilleure vente de portes d'entrée et
+          meilleure performance.
+        </p>
+
+        <h2>Pose de fenêtres bois-alu à Angers : les étapes</h2>
+        <ul>
+          <li><strong>Premier échange</strong> par téléphone, par le formulaire ou au showroom de Seiches-sur-le-Loir.</li>
+          <li><strong>Visite à domicile</strong> à Angers : relevé de cotes, état des dormants, choix entre pose en rénovation et dépose totale, démarches éventuelles (déclaration préalable, ABF, copropriété).</li>
+          <li><strong>Devis détaillé gratuit sous 48 h</strong>, avec les performances de chaque menuiserie.</li>
+          <li><strong>Fabrication sur mesure</strong> par MéO, en Vendée.</li>
+          <li><strong>Pose par nos équipes</strong>, réglage des ouvrants, nettoyage et évacuation des anciennes fenêtres.</li>
+        </ul>
+        <p>
+          Notre certification <strong>RGE Qualibat</strong> permet de mobiliser les aides en
+          vigueur lorsque vous y êtes éligible : notre guide des
+          <a href="/blog/aides-changer-fenetres-2026/">aides pour changer ses fenêtres</a> en
+          détaille les conditions.
+        </p>
+
+        <h2>Bois-alu, bois, aluminium ou PVC ?</h2>
+        <p>
+          Le bois-alu n'est pas la réponse à tout. Pour rénover un pavillon au meilleur rapport
+          isolation-prix, le PVC reste le choix le plus courant. Pour de très grandes baies aux
+          profils fins, l'aluminium s'impose. Le bois-alu prend l'avantage quand vous tenez au
+          bois à l'intérieur sans vouloir l'entretenir à l'extérieur. Notre comparatif
+          <a href="/blog/fenetre-pvc-alu-bois-alu/">fenêtre PVC, alu ou bois-alu</a> détaille les
+          critères, et notre page <a href="/fenetres-angers/">fenêtres à Angers</a> présente les
+          quatre matériaux que nous posons.
+        </p>
+
+        <h2>Angers, son agglomération et le reste du Maine-et-Loire</h2>
+        <p>
+          Nous posons des fenêtres bois-alu dans tous les quartiers d'Angers et dans les communes
+          d'Angers Loire Métropole. Depuis notre
+          <a href="/agences/doue-en-anjou/">agence de Doué-en-Anjou</a>, nous intervenons aussi
+          dans le sud du département, autour de <a href="/menuisier-saumur/">Saumur</a> et de
+          <a href="/menuisier-cholet/">Cholet</a>.
+        </p>
+      </div>
+
+      <ul class="flex flex-wrap gap-2 mt-4 max-w-3xl">
+        <li>
+          <a
+            href="/menuisier-angers/"
+            class="inline-flex items-center rounded-full bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+          >
+            Menuisier à Angers
+          </a>
+        </li>
+        {agglo.map((v) => (
+          <li>
+            <a
+              href={`/menuisier-${v.slug}/`}
+              class="inline-flex items-center rounded-full bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+            >
+              Menuisier à {v.nom}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a
+            href="/zones-intervention/"
+            class="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-[var(--color-accent)] hover:underline"
+          >
+            Toutes nos communes →
+          </a>
+        </li>
+      </ul>
+    </Container>
+  </section>
+
+  <!-- Chantiers bois-alu réels : affichés seulement si la liste est renseignée -->
+  {
+    chantiers.length > 0 && (
+      <section class="section-tight bg-[var(--color-subtle)]">
+        <Container width="wide">
+          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)] text-center">
+            Nos chantiers
+          </p>
+          <h2 class="text-center mb-10 text-balance">Fenêtres bois-alu posées à Angers et alentours</h2>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {chantiers.map((c) => {
+              const Carte = c.href ? "a" : "div";
+              return (
+                <li>
+                  <Carte
+                    href={c.href}
+                    class="group block h-full overflow-hidden rounded-2xl ring-1 ring-[var(--color-border)] bg-white"
+                  >
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                      <Image
+                        src={c.photo}
+                        alt={c.photoAlt}
+                        widths={[400, 700, 1000]}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                        format="webp"
+                        quality={78}
+                        class="absolute inset-0 w-full h-full object-cover"
+                      />
+                    </div>
+                    <div class="p-5">
+                      <p class="text-xs font-medium text-[var(--color-accent)]">
+                        {c.lieu} · {c.annee}
+                      </p>
+                      <h3 class="mt-1 text-lg">{c.titre}</h3>
+                      <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">{c.description}</p>
+                    </div>
+                  </Carte>
+                </li>
+              );
+            })}
+          </ul>
+        </Container>
+      </section>
+    )
+  }
+
+  <AgenceProche agence="seiches" communeNom="Angers" distanceKm={22} />
+
+  <!-- FAQ — même source que le FAQPage JSON-LD -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="prose-fsl max-w-3xl mx-auto">
+        <h2>Fenêtres bois-alu à Angers : vos questions</h2>
+        {faq.map((f) => (
+          <>
+            <h3>{f.question}</h3>
+            <p>{f.reponse}</p>
+          </>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <ConseilsLies
+    slugs={["fenetre-pvc-alu-bois-alu", "aides-changer-fenetres-2026", "isolation-phonique-fenetre"]}
+    titre="Nos conseils avant de choisir vos fenêtres"
+  />
+
+  <CTASection
+    eyebrow="Votre projet à Angers"
+    title="Votre devis fenêtres bois-alu à Angers, gratuit sous 48 h"
+    text="Prise de mesures à domicile, choix des essences et des teintes au showroom, pose par nos équipes salariées : parlons de votre projet."
+    secondaryLabel="Toutes nos fenêtres"
+    secondaryHref="/solutions/portes-fenetres/fenetres/"
+  />
+</BaseLayout>

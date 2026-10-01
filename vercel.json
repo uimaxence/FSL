@@ -243,6 +243,16 @@
       "permanent": true
     },
     {
+      "source": "/blog/fenetres-bois-alu-meo",
+      "destination": "/fenetres-bois-alu-angers/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/fenetres-bois-alu-meo/",
+      "destination": "/fenetres-bois-alu-angers/",
+      "permanent": true
+    },
+    {
       "source": "/menuisier-brissac-loire-aubance",
       "destination": "/zones-intervention/",
       "permanent": true

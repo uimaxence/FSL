@@ -3,7 +3,11 @@ title: "Fenêtres bois-alu MéO à Angers : le guide"
 description: "Fenêtres et portes bois-alu MéO posées par Fenêtres sur Loir, Menuisier d'Excellence RGE à Angers et Doué-en-Anjou : performance, design et pose sans sous-traitance."
 date: 2026-06-24
 tags: ["bois-alu", "MéO", "Menuisier d'Excellence", "Angers", "Doué-en-Anjou", "Maine-et-Loire", "RGE"]
-draft: false
+# Dépublié (oct. 2026) : cet article concurrençait la page produit sur
+# « fenêtre bois alu angers » sans se classer. Son contenu a été repris dans
+# /fenetres-bois-alu-angers/ et son URL est redirigée (301) vers cette page
+# (voir vercel.json).
+draft: true
 schema:
   - "@context": https://schema.org
     "@type": BlogPosting
