@@ -1,0 +1,78 @@
+---
+// Bouton flottant « Appeler » (bas droite, toutes pages).
+// Desktop : rond bleu, le libellé se déplie au survol / au focus clavier.
+// Mobile : le libellé est toujours visible (pas de survol possible).
+import { business, mainAgence, toE164 } from "../../config/business";
+
+const phone = mainAgence.telephone;
+const phoneE164 = toE164(phone);
+---
+
+<a
+  href={`tel:${phoneE164}`}
+  class="appel-fab h-12 rounded-full bg-[var(--color-accent)] text-white shadow-2xl ring-1 ring-black/10 transition-all hover:bg-[var(--color-accent-hover)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-fg)] focus-visible:ring-offset-2"
+  aria-label={`Appeler ${business.name} au ${phone} pour demander un devis`}
+  data-appel-fab
+>
+  <span class="inline-flex items-center justify-center w-12 h-12 shrink-0" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </svg>
+  </span>
+  <span class="appel-fab__label" aria-hidden="true">
+    <span class="appel-fab__text">
+      <span class="block text-[13px] font-medium leading-tight">Appeler</span>
+      <span class="block text-[11px] leading-tight text-white/85">pour un devis</span>
+    </span>
+  </span>
+</a>
+
+<style>
+  /* Grille à deux colonnes : icône + libellé. La colonne du libellé passe de
+     0fr à 1fr, ce qui anime l'ouverture exactement à la largeur du texte. */
+  .appel-fab {
+    display: inline-grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    white-space: nowrap;
+  }
+  .appel-fab__label {
+    min-width: 0;
+    overflow: hidden;
+  }
+  .appel-fab__text {
+    display: block;
+    padding-right: 1.125rem;
+  }
+
+  @media (min-width: 640px) {
+    .appel-fab {
+      grid-template-columns: auto 0fr;
+      transition:
+        grid-template-columns 0.3s ease,
+        background-color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+    }
+    .appel-fab__label {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .appel-fab:hover,
+    .appel-fab:focus-visible {
+      grid-template-columns: auto 1fr;
+    }
+    .appel-fab:hover .appel-fab__label,
+    .appel-fab:focus-visible .appel-fab__label {
+      opacity: 1;
+      transition-delay: 0.05s;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .appel-fab,
+    .appel-fab__label {
+      transition: none;
+    }
+  }
+</style>

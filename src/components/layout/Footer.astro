@@ -4,6 +4,18 @@ import Container from "../ui/Container.astro";
 import birdLogo from "../../assets/birdfsl.svg";
 import { business, social, mainAgence, toE164 } from "../../config/business";
 
+interface Props {
+  /** Le module « catalogue MéO » est affiché dans le dock flottant sur cette page. */
+  meoFab?: boolean;
+}
+
+const { meoFab = false } = Astro.props;
+
+// Le dock flottant (BoutonsFlottants) fait 48 px (Appeler seul) ou 106 px (MéO + Appeler),
+// à 16-20 px du bord : on réserve cet espace sous la dernière ligne du footer pour qu'il
+// ne recouvre jamais les liens légaux ni les icônes sociales une fois la page déroulée.
+const bottomPad = meoFab ? "pb-36" : "pb-20";
+
 const year = new Date().getFullYear();
 
 const phoneE164 = toE164(mainAgence.telephone);
@@ -101,7 +113,7 @@ const navColumns = [
     class="pointer-events-none absolute -left-16 sm:-left-24 -bottom-10 sm:-bottom-16 w-[280px] sm:w-[520px] h-auto opacity-[0.05] sm:opacity-[0.07] select-none"
   />
 
-  <Container width="wide" class="relative pt-14 sm:pt-16 pb-10">
+  <Container width="wide" class={`relative pt-14 sm:pt-16 ${bottomPad}`}>
     <!-- Top nav grid (5 cols on desktop) -->
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-10">
       {

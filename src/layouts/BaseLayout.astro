@@ -8,7 +8,7 @@ import Breadcrumb from "../components/ui/Breadcrumb.astro";
 import SchemaJsonLd from "../components/ui/SchemaJsonLd.astro";
 import Analytics from "../components/layout/Analytics.astro";
 import DevisPopup from "../components/sections/DevisPopup.astro";
-import MeoConfiguratorFAB from "../components/sections/MeoConfiguratorFAB.astro";
+import BoutonsFlottants from "../components/layout/BoutonsFlottants.astro";
 
 interface BreadcrumbItem {
   label: string;
@@ -101,8 +101,8 @@ const showMeoFab =
     <main id="main" class="flex-1">
       <slot />
     </main>
-    <Footer />
+    <Footer meoFab={showMeoFab} />
     <DevisPopup />
-    {showMeoFab && <MeoConfiguratorFAB />}
+    <BoutonsFlottants showMeo={showMeoFab} />
   </body>
 </html>

@@ -1,0 +1,39 @@
+---
+// Dock des boutons flottants en bas à droite : bouton « Appeler » sur toutes
+// les pages, module « catalogue MéO » au-dessus sur les pages concernées.
+// Le dock s'efface quand le menu mobile est ouvert ou quand la popup devis
+// (pleine largeur sur mobile) est affichée, pour ne jamais se superposer.
+import AppelFAB from "../sections/AppelFAB.astro";
+import MeoConfiguratorFAB from "../sections/MeoConfiguratorFAB.astro";
+
+interface Props {
+  showMeo?: boolean;
+}
+
+const { showMeo = false } = Astro.props;
+---
+
+<div
+  class="fixed right-4 bottom-4 sm:right-5 sm:bottom-5 z-40 flex flex-col items-end gap-2.5 transition-[opacity,transform] duration-300"
+  data-boutons-flottants
+>
+  {showMeo && <MeoConfiguratorFAB />}
+  <AppelFAB />
+</div>
+
+<style is:global>
+  /* Menu mobile ouvert : le dock passerait au-dessus du panneau blanc du menu. */
+  body:has(header[data-header][data-menu-open]) [data-boutons-flottants] {
+    opacity: 0;
+    transform: translateY(0.5rem);
+    pointer-events: none;
+  }
+  /* Popup devis affichée sur mobile : elle occupe toute la largeur du bas d'écran. */
+  @media (max-width: 639px) {
+    body:has(#devis-popup[aria-hidden="false"]) [data-boutons-flottants] {
+      opacity: 0;
+      transform: translateY(0.5rem);
+      pointer-events: none;
+    }
+  }
+</style>
