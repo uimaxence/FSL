@@ -26,3 +26,8 @@ pnpm-debug.log*
 
 # vidéos sources (reels Instagram bruts) : seules les versions réencodées de public/temoignages sont versionnées
 src/assets/video/
+
+# fichiers de travail locaux, à ne pas publier (dépôt public)
+Export SEO/
+prompt-claude-code-fsl.md
+src/assets/hf_*.mp4
