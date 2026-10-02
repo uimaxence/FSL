@@ -23,3 +23,6 @@ pnpm-debug.log*
 # editor
 .vscode/
 .idea/
+
+# vidéos sources (reels Instagram bruts) : seules les versions réencodées de public/temoignages sont versionnées
+src/assets/video/

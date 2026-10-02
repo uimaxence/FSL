@@ -11,8 +11,9 @@ import meoLogo from "../../assets/meo-logo.png";
 // 2 colonnes quand il y a peu d'avis, 3 dès que l'API en fournit assez —
 // et répartition « au plus court » (pondérée par la longueur du texte)
 // pour que les colonnes finissent à peu près à la même hauteur.
-// Au plus 12 cartes (les avis API, plus récents, passent en premier).
-const avisAffiches = avisGoogle.slice(0, 12);
+// Au plus 6 cartes (les avis API, plus récents, passent en premier) : les
+// témoignages vidéo (TemoignagesVideo) portent désormais le gros de la preuve.
+const avisAffiches = avisGoogle.slice(0, 6);
 const nbColonnes = avisAffiches.length >= 6 ? 3 : 2;
 const colonnes: (typeof avisGoogle)[] = Array.from({ length: nbColonnes }, () => []);
 const hauteurs = new Array(nbColonnes).fill(0);

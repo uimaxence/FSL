@@ -1,0 +1,376 @@
+---
+// Témoignages vidéo — carrousel horizontal de reels Instagram (clients,
+// créateurs de contenu, FSL). Données : src/data/temoignages-video.ts.
+// Au survol (souris), la carte joue un aperçu muet ; au clic, la vidéo
+// s'ouvre en grand avec le son ; un clic à côté (ou Échap) la referme.
+// Aucune vidéo n'est téléchargée avant le survol ou le clic.
+import { Image } from "astro:assets";
+import Container from "../ui/Container.astro";
+import { abonnesInstagram, temoignagesVideo } from "../../data/temoignages-video";
+---
+
+<section class="section bg-[var(--color-subtle)]" aria-labelledby="temoignages-video-titre" data-temoignages>
+  <Container width="wide">
+    <div class="flex items-end justify-between gap-6">
+      <div class="max-w-3xl">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] text-[var(--color-accent)] uppercase">
+          Vu sur Instagram
+        </p>
+        <h2 id="temoignages-video-titre">Ce sont eux qui<br />en parlent le mieux</h2>
+        <p class="mt-4 text-base sm:text-lg text-[var(--color-muted)] leading-relaxed">
+          Clients et créateurs de contenu racontent leur chantier avec nos équipes, en vidéo.
+        </p>
+      </div>
+
+      <!-- Flèches (écrans larges ; au doigt, on fait défiler directement) -->
+      <div class="hidden sm:flex shrink-0 items-center gap-2 pb-1">
+        <button
+          type="button"
+          class="temoignages-fleche"
+          aria-label="Vidéos précédentes"
+          data-fleche="-1"
+          disabled
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+        <button type="button" class="temoignages-fleche" aria-label="Vidéos suivantes" data-fleche="1">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </Container>
+
+  <!-- Piste pleine largeur : les cartes filent jusqu'au bord de l'écran,
+       la première reste alignée sur le conteneur. -->
+  <ul
+    role="list"
+    class="temoignages-piste scrollbar-hide mt-10 md:mt-12 flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory"
+    data-piste
+  >
+    {
+      temoignagesVideo.map((t) => (
+        <li class="snap-start shrink-0 w-[66vw] max-w-[280px] sm:w-[250px] lg:w-[270px]">
+          <figure>
+            <div
+              class="temoignages-carte relative aspect-[9/16] overflow-hidden rounded-2xl bg-black shadow-sm ring-1 ring-black/5"
+              data-carte
+              data-src={`/temoignages/${t.slug}.mp4`}
+              data-titre={t.titre}
+            >
+              <Image
+                src={t.poster}
+                alt=""
+                widths={[280, 420, 560]}
+                sizes="(min-width: 1024px) 270px, (min-width: 640px) 250px, 66vw"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+                quality={78}
+                class="absolute inset-0 h-full w-full object-cover"
+                data-affiche
+              />
+              <!-- L'aperçu muet (<video>) est inséré ici au premier survol. -->
+              <button
+                type="button"
+                class="absolute inset-0 z-10 flex cursor-pointer items-center justify-center bg-gradient-to-t from-black/45 via-black/5 to-black/10"
+                aria-label={`Lire la vidéo avec le son : ${t.titre}`}
+                data-lire
+              >
+                <span class="temoignages-lecture flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-xl ring-1 ring-black/5">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="translate-x-0.5 text-[var(--color-accent)]" aria-hidden="true">
+                    <polygon points="6 4 20 12 6 20 6 4" />
+                  </svg>
+                </span>
+                <span class="absolute bottom-3 right-3 rounded-full bg-black/55 px-2 py-0.5 text-[11px] font-medium text-white tabular-nums">
+                  {t.duree}
+                </span>
+              </button>
+            </div>
+
+            <figcaption class="mt-3.5 px-0.5">
+              {t.citation && (
+                <p class="text-[14px] font-medium leading-snug text-[var(--color-fg)]">
+                  «&nbsp;{t.citation}&nbsp;»
+                </p>
+              )}
+              <p
+                class:list={[
+                  "leading-snug",
+                  t.citation
+                    ? "mt-1.5 text-[12.5px] text-[var(--color-muted)]"
+                    : "text-[14px] font-medium text-[var(--color-fg)]",
+                ]}
+              >
+                {t.titre}
+              </p>
+              {t.compte && (
+                <p class="mt-2 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[12.5px]">
+                  <a
+                    href={`https://www.instagram.com/${t.compte}/`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 font-medium text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors"
+                    aria-label={`@${t.compte} sur Instagram`}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="2" y="2" width="20" height="20" rx="5" />
+                      <circle cx="12" cy="12" r="4" />
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
+                    @{t.compte}
+                  </a>
+                  {abonnesInstagram[t.compte] && (
+                    <span class="text-[var(--color-muted)]">
+                      · {abonnesInstagram[t.compte]}&nbsp;abonnés
+                    </span>
+                  )}
+                </p>
+              )}
+            </figcaption>
+          </figure>
+        </li>
+      ))
+    }
+  </ul>
+
+  <!-- Lecture en grand, avec le son. <dialog> modal : Échap et clic sur le
+       fond (hors de la vidéo) referment. -->
+  <dialog class="temoignages-lightbox" aria-label="Lecture de la vidéo" data-lightbox>
+    <div class="temoignages-lightbox-cadre">
+      <video controls playsinline preload="none" class="h-full w-full bg-black object-contain" data-lightbox-video></video>
+      <button type="button" class="temoignages-fermer" aria-label="Fermer la vidéo" data-fermer>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </dialog>
+</section>
+
+<style>
+  /* Retrait latéral calé sur Container width="wide" (90rem, px-5 / sm:px-8). */
+  .temoignages-piste {
+    padding-inline: 1.25rem;
+    scroll-padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .temoignages-piste {
+      padding-inline: max(2rem, calc((100% - 90rem) / 2 + 2rem));
+      scroll-padding-inline: max(2rem, calc((100% - 90rem) / 2 + 2rem));
+    }
+  }
+
+  .temoignages-fleche {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-border);
+    background: #fff;
+    color: var(--color-fg);
+    transition: border-color 0.2s, color 0.2s, opacity 0.2s;
+  }
+  .temoignages-fleche:hover:not(:disabled) {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+  .temoignages-fleche:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  /* Pendant l'aperçu au survol, le bouton lecture s'efface devant la vidéo. */
+  .temoignages-lecture {
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .temoignages-carte[data-apercu] .temoignages-lecture {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  /* Tailwind remet les marges à zéro : `margin: auto` recentre le dialog. */
+  .temoignages-lightbox {
+    margin: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    max-width: none;
+    max-height: none;
+    overflow: visible;
+  }
+  .temoignages-lightbox::backdrop {
+    background: rgb(0 0 0 / 0.82);
+  }
+  .temoignages-lightbox-cadre {
+    position: relative;
+    /* 9/16, borné par la hauteur comme par la largeur de l'écran. */
+    height: min(88vh, calc(92vw * 16 / 9));
+    height: min(88dvh, calc(92vw * 16 / 9));
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: #000;
+    box-shadow: 0 25px 60px rgb(0 0 0 / 0.5);
+  }
+  .temoignages-fermer {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background: rgb(0 0 0 / 0.55);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .temoignages-fermer:hover {
+    background: rgb(0 0 0 / 0.8);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .temoignages-lightbox[open] .temoignages-lightbox-cadre {
+      animation: temoignages-ouverture 0.2s ease-out;
+    }
+    .temoignages-lightbox[open]::backdrop {
+      animation: temoignages-fond 0.2s ease-out;
+    }
+  }
+  @keyframes temoignages-ouverture {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+  }
+  @keyframes temoignages-fond {
+    from {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  const sections = document.querySelectorAll<HTMLElement>("[data-temoignages]");
+
+  sections.forEach((section) => {
+    const piste = section.querySelector<HTMLElement>("[data-piste]");
+    const lightbox = section.querySelector<HTMLDialogElement>("[data-lightbox]");
+    const grande = section.querySelector<HTMLVideoElement>("[data-lightbox-video]");
+    if (!piste || !lightbox || !grande) return;
+
+    const mouvementReduit = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    // Flèches : avance d'une carte, désactivées en bout de piste.
+    const fleches = section.querySelectorAll<HTMLButtonElement>("[data-fleche]");
+    const majFleches = () => {
+      const max = piste.scrollWidth - piste.clientWidth - 2;
+      fleches.forEach((f) => {
+        f.disabled = f.dataset.fleche === "-1" ? piste.scrollLeft <= 2 : piste.scrollLeft >= max;
+      });
+    };
+    fleches.forEach((f) => {
+      f.addEventListener("click", () => {
+        const carte = piste.querySelector<HTMLElement>("li");
+        const pas = carte ? carte.offsetWidth + parseFloat(getComputedStyle(piste).columnGap || "0") : 280;
+        piste.scrollBy({ left: Number(f.dataset.fleche) * pas, behavior: mouvementReduit.matches ? "auto" : "smooth" });
+      });
+    });
+    piste.addEventListener("scroll", majFleches, { passive: true });
+    window.addEventListener("resize", majFleches);
+    majFleches();
+
+    // Aperçu muet au survol : souris uniquement (au doigt, le toucher ouvre
+    // directement la vidéo en grand), et pas si l'utilisateur limite les animations.
+    const survolPossible = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+    const arreterApercu = (carte: HTMLElement) => {
+      const apercu = carte.querySelector<HTMLVideoElement>("[data-apercu-video]");
+      carte.removeAttribute("data-apercu");
+      if (!apercu) return;
+      apercu.pause();
+      apercu.classList.add("opacity-0");
+    };
+
+    section.querySelectorAll<HTMLElement>("[data-carte]").forEach((carte) => {
+      const bouton = carte.querySelector<HTMLButtonElement>("[data-lire]");
+      const affiche = carte.querySelector<HTMLImageElement>("[data-affiche]");
+      const src = carte.dataset.src;
+      if (!bouton || !src) return;
+
+      let attente: number | undefined;
+
+      carte.addEventListener("mouseenter", () => {
+        if (!survolPossible.matches || mouvementReduit.matches || lightbox.open) return;
+        // Petit délai : traverser le carrousel à la souris ne déclenche aucun téléchargement.
+        attente = window.setTimeout(() => {
+          let apercu = carte.querySelector<HTMLVideoElement>("[data-apercu-video]");
+          if (!apercu) {
+            apercu = document.createElement("video");
+            apercu.src = src;
+            apercu.muted = true;
+            apercu.loop = true;
+            apercu.playsInline = true;
+            apercu.preload = "auto";
+            apercu.tabIndex = -1;
+            apercu.setAttribute("aria-hidden", "true");
+            apercu.setAttribute("data-apercu-video", "");
+            apercu.className =
+              "pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-200";
+            // La vidéo ne recouvre l'affiche qu'une fois la lecture réellement partie.
+            apercu.addEventListener("playing", () => {
+              if (carte.hasAttribute("data-apercu")) apercu?.classList.remove("opacity-0");
+            });
+            bouton.before(apercu);
+          }
+          apercu.currentTime = 0;
+          carte.setAttribute("data-apercu", "");
+          apercu.play().catch(() => arreterApercu(carte));
+        }, 140);
+      });
+
+      carte.addEventListener("mouseleave", () => {
+        window.clearTimeout(attente);
+        arreterApercu(carte);
+      });
+
+      // Clic : ouverture en grand, avec le son, depuis le début.
+      bouton.addEventListener("click", () => {
+        window.clearTimeout(attente);
+        arreterApercu(carte);
+        grande.src = src;
+        grande.poster = affiche?.currentSrc ?? "";
+        grande.muted = false;
+        grande.setAttribute("aria-label", carte.dataset.titre ?? "Vidéo");
+        document.documentElement.style.overflow = "hidden";
+        lightbox.showModal();
+        grande.play().catch(() => {});
+      });
+    });
+
+    // Le dialog a la taille exacte de la vidéo : un clic dont la cible est le
+    // dialog lui-même est donc un clic sur le fond, à côté de la vidéo.
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) lightbox.close();
+    });
+    section.querySelector("[data-fermer]")?.addEventListener("click", () => lightbox.close());
+
+    // Fermeture (clic à côté, croix ou Échap) : on coupe le son et le téléchargement.
+    lightbox.addEventListener("close", () => {
+      grande.pause();
+      grande.removeAttribute("src");
+      grande.removeAttribute("poster");
+      grande.load();
+      document.documentElement.style.overflow = "";
+    });
+  });
+</script>
