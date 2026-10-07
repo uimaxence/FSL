@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import Container from "../ui/Container.astro";
+import BadgeVideo from "../ui/BadgeVideo.astro";
 import { getRealisationMedia } from "../../lib/realisations-media";
 
 interface Props {
@@ -29,7 +30,7 @@ const items = slugs
         <h2 class="text-center mb-10 text-balance">Nos réalisations près de {communeNom}</h2>
         <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((item) => {
-            const media = getRealisationMedia(item.id);
+            const media = getRealisationMedia(item);
             return (
               <li>
                 <a
@@ -48,6 +49,7 @@ const items = slugs
                       quality={78}
                       class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
+                    {media.videos.length > 0 && <BadgeVideo />}
                   </div>
                   <div class="p-5">
                     <p class="text-xs font-medium text-[var(--color-accent)]">

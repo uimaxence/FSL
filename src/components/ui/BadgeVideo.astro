@@ -1,0 +1,21 @@
+---
+// Pastille « Vidéo » posée sur la couverture d'une réalisation filmée.
+// Le parent doit être `relative` ; la pastille ne capte pas les clics.
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<span
+  class:list={[
+    "pointer-events-none absolute left-3 bottom-3 z-10 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-2.5 py-1 text-[11px] font-semibold text-[var(--color-fg)] shadow-md ring-1 ring-black/5",
+    className,
+  ]}
+>
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" class="text-[var(--color-accent)]" aria-hidden="true">
+    <polygon points="6 4 20 12 6 20 6 4" />
+  </svg>
+  Vidéo
+</span>

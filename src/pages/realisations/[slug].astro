@@ -1,9 +1,8 @@
 ---
 import { getCollection, render } from "astro:content";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Container from "../../components/ui/Container.astro";
-import Button from "../../components/ui/Button.astro";
 import CTASection from "../../components/sections/CTASection.astro";
 import { getRealisationMedia } from "../../lib/realisations-media";
 import { communePourLieu } from "../../lib/maillage";
@@ -22,7 +21,22 @@ const { item } = Astro.props;
 const { Content } = await render(item);
 const { title, location, year, gallery, description } = item.data;
 
-const media = getRealisationMedia(item.id);
+const media = getRealisationMedia(item);
+const avecVideo = media.videos.length > 0;
+
+// Réalisation filmée : affiches des vidéos en WebP (attribut poster du lecteur,
+// miniatures de la liste) ; les fichiers vidéo sont ceux du carrousel de l'accueil.
+const affiches = await Promise.all(
+  media.videos.map((v) => getImage({ src: v.poster, width: 720, format: "webp", quality: 80 })),
+);
+const videoUrl = (slug: string) => `/temoignages/${slug}.mp4`;
+const credit = (compte?: string) =>
+  compte === "fenetressurloir" ? "Vidéo Fenêtres sur Loir" : compte ? `Vidéo de @${compte}` : "";
+/** « 1:07 » → « PT1M7S » (schema.org). */
+const dureeIso = (duree: string) => {
+  const [m, s] = duree.split(":").map(Number);
+  return `PT${m}M${s}S`;
+};
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -35,7 +49,8 @@ const commune = communePourLieu(location);
 
 const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
-// JSON-LD : la réalisation comme CreativeWork, créée par l'Organization.
+// JSON-LD : la réalisation comme CreativeWork, créée par l'Organization,
+// avec un VideoObject par vidéo de chantier.
 const schema = {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
@@ -44,9 +59,22 @@ const schema = {
   ...(description ? { description } : {}),
   ...(year ? { dateCreated: String(year) } : {}),
   locationCreated: { "@type": "Place", name: location },
-  image: new URL(media.cover.src, SITE_URL).toString(),
+  image: new URL(avecVideo ? affiches[0].src : media.cover.src, SITE_URL).toString(),
   creator: { "@id": ORG_ID },
   isPartOf: { "@id": `${SITE_URL}/#website` },
+  ...(avecVideo
+    ? {
+        video: media.videos.map((v, i) => ({
+          "@type": "VideoObject",
+          name: v.titre,
+          description: v.citation ?? v.titre,
+          thumbnailUrl: new URL(affiches[i].src, SITE_URL).toString(),
+          contentUrl: new URL(videoUrl(v.slug), SITE_URL).toString(),
+          uploadDate: v.misEnLigne,
+          duration: dureeIso(v.duree),
+        })),
+      }
+    : {}),
 };
 ---
 
@@ -57,47 +85,139 @@ const schema = {
   schemaJsonLd={schema}
 >
   <article>
-    <!-- Hero photo + meta -->
-    <section class="relative">
-      <div class="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden">
-        <Image
-          src={media.cover}
-          alt={`${title} à ${location} — réalisation Fenêtres sur Loir`}
-          widths={[800, 1280, 1920]}
-          sizes="100vw"
-          loading="eager"
-          decoding="async"
-          format="webp"
-          quality={82}
-          class="absolute inset-0 w-full h-full object-cover"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent"></div>
-        <div class="absolute inset-x-0 bottom-0">
-          <Container width="wide" class="pb-10 sm:pb-14">
-            <p class="text-[12px] font-semibold tracking-[0.18em] uppercase text-white/85">
-              {location}{year ? ` · ${year}` : ""}
-            </p>
-            <h1 class="mt-2 text-white text-balance max-w-3xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
-              {title}
-            </h1>
-          </Container>
-        </div>
-      </div>
-    </section>
+    {
+      avecVideo ? (
+        <!-- Réalisation filmée : lecteur vertical + texte, puis la liste des vidéos -->
+        <section class="bg-[var(--color-subtle)] border-b border-[var(--color-border)]" data-realisation-video>
+          <Container width="wide" class="py-10 sm:py-14">
+            <div class="grid gap-10 lg:grid-cols-[minmax(0,400px)_1fr] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-10 lg:items-start">
+              <div class="lg:col-start-2 lg:row-start-1 lg:pt-4">
+                <p class="text-[12px] font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+                  {location}
+                  {year ? ` · ${year}` : ""}
+                </p>
+                <h1 class="mt-3 text-balance">{title}</h1>
+                {description && (
+                  <p class="mt-6 max-w-2xl text-[17px] leading-relaxed text-[var(--color-fg)]">{description}</p>
+                )}
+                {media.videos.length === 1 && (
+                  <div class="prose-fsl mt-10 max-w-2xl">
+                    <Content />
+                  </div>
+                )}
+              </div>
 
-    <!-- Intro / contenu Markdown -->
-    <section class="section-tight">
-      <Container width="default">
-        {description && (
-          <p class="max-w-3xl mx-auto text-[17px] leading-relaxed text-[var(--color-fg)] mb-10">
-            {description}
-          </p>
-        )}
-        <div class="prose-fsl max-w-3xl mx-auto">
-          <Content />
-        </div>
-      </Container>
-    </section>
+              <div class="mx-auto w-full max-w-[400px] lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:mx-0">
+                <div class="relative aspect-[9/16] overflow-hidden rounded-2xl bg-black shadow-xl ring-1 ring-black/5">
+                  <video
+                    controls
+                    playsinline
+                    preload="none"
+                    poster={affiches[0].src}
+                    src={videoUrl(media.videos[0].slug)}
+                    aria-label={media.videos[0].titre}
+                    class="absolute inset-0 h-full w-full object-contain"
+                    data-video
+                  />
+                </div>
+                <p class="mt-3 min-h-[1.25rem] text-[13px] text-[var(--color-muted)]" data-credit-lecteur>
+                  {credit(media.videos[0].compte)}
+                </p>
+              </div>
+
+              {media.videos.length > 1 && (
+                <div class="lg:col-start-2 lg:row-start-2">
+                  <div>
+                    <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-muted)]">
+                      {media.videos.length} vidéos du chantier
+                    </p>
+                    <ul role="list" class="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                      {media.videos.map((v, i) => (
+                        <li>
+                          <button
+                            type="button"
+                            class="realisation-video-choix group flex w-full items-center gap-3 rounded-xl bg-white p-2 pr-4 text-left ring-1 ring-[var(--color-border)] transition-all hover:ring-[var(--color-accent)]"
+                            aria-pressed={i === 0 ? "true" : "false"}
+                            data-choix
+                            data-src={videoUrl(v.slug)}
+                            data-poster={affiches[i].src}
+                            data-titre={v.titre}
+                            data-credit={credit(v.compte)}
+                          >
+                            <span class="relative h-20 w-[45px] shrink-0 overflow-hidden rounded-lg bg-black">
+                              <Image
+                                src={v.poster}
+                                alt=""
+                                widths={[90, 180]}
+                                sizes="45px"
+                                loading="lazy"
+                                decoding="async"
+                                format="webp"
+                                quality={75}
+                                class="absolute inset-0 h-full w-full object-cover"
+                              />
+                            </span>
+                            <span class="min-w-0">
+                              <span class="block text-[14px] font-medium leading-snug text-[var(--color-fg)] group-hover:text-[var(--color-accent)] transition-colors">
+                                {v.titre}
+                              </span>
+                              <span class="mt-1 block text-[12px] text-[var(--color-muted)] tabular-nums">{v.duree}</span>
+                            </span>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
+          </Container>
+        </section>
+      ) : (
+        <!-- Hero photo + meta -->
+        <section class="relative">
+          <div class="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden">
+            <Image
+              src={media.cover}
+              alt={`${title} à ${location} — réalisation Fenêtres sur Loir`}
+              widths={[800, 1280, 1920]}
+              sizes="100vw"
+              loading="eager"
+              decoding="async"
+              format="webp"
+              quality={82}
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+            <div class="absolute inset-x-0 bottom-0">
+              <Container width="wide" class="pb-10 sm:pb-14">
+                <p class="text-[12px] font-semibold tracking-[0.18em] uppercase text-white/85">
+                  {location}
+                  {year ? ` · ${year}` : ""}
+                </p>
+                <h1 class="mt-2 text-white text-balance max-w-3xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">{title}</h1>
+              </Container>
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Intro / contenu Markdown (déjà affiché à côté du lecteur quand il n'y a qu'une vidéo) -->
+    {media.videos.length !== 1 && (
+      <section class="section-tight">
+        <Container width="default">
+          {!avecVideo && description && (
+            <p class="max-w-3xl mx-auto text-[17px] leading-relaxed text-[var(--color-fg)] mb-10">
+              {description}
+            </p>
+          )}
+          <div class="prose-fsl max-w-3xl mx-auto">
+            <Content />
+          </div>
+        </Container>
+      </section>
+    )}
 
     <!-- Galerie -->
     {media.gallery.length > 1 && (
@@ -151,3 +271,38 @@ const schema = {
     />
   </article>
 </BaseLayout>
+
+<style>
+  .realisation-video-choix[aria-pressed="true"] {
+    --tw-ring-color: var(--color-accent);
+    box-shadow: 0 0 0 2px var(--color-accent);
+  }
+</style>
+
+<script>
+  // Plusieurs vidéos : un clic dans la liste change la vidéo du lecteur et la lance.
+  document.querySelectorAll<HTMLElement>("[data-realisation-video]").forEach((section) => {
+    const video = section.querySelector<HTMLVideoElement>("[data-video]");
+    const credit = section.querySelector<HTMLElement>("[data-credit-lecteur]");
+    const choix = section.querySelectorAll<HTMLButtonElement>("[data-choix]");
+    if (!video || choix.length === 0) return;
+
+    choix.forEach((bouton) => {
+      bouton.addEventListener("click", () => {
+        const { src, poster, titre, credit: texteCredit } = bouton.dataset;
+        if (!src || video.getAttribute("src") === src) {
+          video.scrollIntoView({ behavior: "smooth", block: "center" });
+          return;
+        }
+        video.pause();
+        video.poster = poster ?? "";
+        video.src = src;
+        video.setAttribute("aria-label", titre ?? "Vidéo");
+        if (credit) credit.textContent = texteCredit ?? "";
+        choix.forEach((b) => b.setAttribute("aria-pressed", b === bouton ? "true" : "false"));
+        video.scrollIntoView({ behavior: "smooth", block: "center" });
+        video.play().catch(() => {});
+      });
+    });
+  });
+</script>

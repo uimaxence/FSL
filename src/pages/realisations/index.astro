@@ -4,14 +4,13 @@ import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Container from "../../components/ui/Container.astro";
 import CTASection from "../../components/sections/CTASection.astro";
-import { getRealisationMedia } from "../../lib/realisations-media";
+import BadgeVideo from "../../components/ui/BadgeVideo.astro";
+import { getRealisationMedia, trierRealisations } from "../../lib/realisations-media";
 
-const realisations = (await getCollection("realisations")).sort(
-  (a, b) => (b.data.year ?? 0) - (a.data.year ?? 0),
-);
+const realisations = trierRealisations(await getCollection("realisations"));
 
 const title = "Réalisations menuiserie — Angers & Maine-et-Loire";
-const description = "Fenêtres, portes, verrières, volets et carports posés par Fenêtres sur Loir à Angers et en Maine-et-Loire : découvrez nos chantiers en photos.";
+const description = "Fenêtres, portes, volets et baies posés par Fenêtres sur Loir en Maine-et-Loire : nos chantiers en photos et en vidéo, filmés par les clients eux-mêmes.";
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -36,7 +35,7 @@ const schema = {
         Nos plus belles <strong class="font-bold italic">réalisations</strong> en menuiserie sur mesure
       </h1>
       <p class="mt-6 max-w-2xl text-[16px] text-[var(--color-muted)] leading-relaxed">
-        Chaque projet est une rencontre, une histoire et un savoir-faire mis en œuvre. À travers ces photos, découvrez comment Fenêtres sur Loir transforme chaque maison en un lieu unique, lumineux et confortable.
+        Chaque projet est une rencontre, une histoire et un savoir-faire mis en œuvre. À travers ces photos, découvrez comment Fenêtres sur Loir transforme chaque maison en un lieu unique, lumineux et confortable. Plusieurs chantiers ont été filmés par les clients eux-mêmes.
       </p>
     </Container>
   </section>
@@ -46,7 +45,7 @@ const schema = {
       <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {
           realisations.map((r, i) => {
-            const media = getRealisationMedia(r.id);
+            const media = getRealisationMedia(r);
             return (
               <li>
                 <a href={`/realisations/${r.id}/`} class="group block rounded-2xl overflow-hidden bg-white ring-1 ring-[var(--color-border)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
@@ -63,6 +62,7 @@ const schema = {
                       class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                    {media.videos.length > 0 && <BadgeVideo />}
                   </div>
                   <div class="p-6">
                     <p class="text-[11px] uppercase tracking-[0.14em] text-[var(--color-accent)] font-semibold">

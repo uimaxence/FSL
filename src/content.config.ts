@@ -25,6 +25,13 @@ const realisations = defineCollection({
     cover: z.string().optional(),
     gallery: z.array(z.string()).optional(),
     description: z.string().optional(),
+    /**
+     * Vidéos du chantier : slugs de `temoignagesVideo` (src/data/temoignages-video.ts).
+     * La première sert de visuel de couverture quand la réalisation n'a pas de photos.
+     */
+    videos: z.array(z.string()).optional(),
+    /** Ordre d'affichage (le plus petit en premier) ; à défaut, tri par année décroissante. */
+    ordre: z.number().optional(),
   }),
 });
 

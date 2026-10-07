@@ -4,7 +4,8 @@ import { Image } from "astro:assets";
 import Container from "../ui/Container.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 import Button from "../ui/Button.astro";
-import { getRealisationMedia } from "../../lib/realisations-media";
+import BadgeVideo from "../ui/BadgeVideo.astro";
+import { getRealisationMedia, trierRealisations } from "../../lib/realisations-media";
 
 interface Props {
   showHeading?: boolean;
@@ -13,9 +14,7 @@ interface Props {
 
 const { showHeading = true, limit = 4 } = Astro.props;
 
-const all = (await getCollection("realisations")).sort(
-  (a, b) => (b.data.year ?? 0) - (a.data.year ?? 0),
-);
+const all = trierRealisations(await getCollection("realisations"));
 const items = all.slice(0, limit);
 ---
 
@@ -34,7 +33,7 @@ const items = all.slice(0, limit);
 
     <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {items.map((r, i) => {
-        const media = getRealisationMedia(r.id);
+        const media = getRealisationMedia(r);
         return (
           <li>
             <a href={`/realisations/${r.id}/`} class="group block">
@@ -50,6 +49,7 @@ const items = all.slice(0, limit);
                   quality={78}
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+                {media.videos.length > 0 && <BadgeVideo />}
               </div>
               <p class="text-xs uppercase tracking-[0.14em] text-[var(--color-accent)] font-semibold">
                 {r.data.location}
