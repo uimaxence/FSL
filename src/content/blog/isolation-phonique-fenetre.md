@@ -128,6 +128,8 @@ Dans un vitrage feuilleté acoustique, les deux feuilles de verre sont collées 
 
 ### Le malentendu du triple vitrage
 
+Pour les autres critères de choix entre double et triple vitrage (isolation, lumière, poids, aides), voir notre guide [double ou triple vitrage](/blog/double-ou-triple-vitrage/).
+
 On l'imagine plus silencieux parce qu'il a un verre de plus. Ce n'est pas le cas : un triple vitrage classique affiche un affaiblissement **proche de celui d'un double vitrage standard**. Le triple vitrage est un excellent choix **thermique** pour une façade nord ; contre le bruit, un double vitrage asymétrique ou feuilleté fait mieux. Les deux qualités peuvent se combiner, avec un triple vitrage à composition acoustique, mais l'ouvrant est alors plus lourd.
 
 Quant au **gaz** de la lame (argon), il améliore l'isolation thermique mais n'a pas d'effet sensible sur le bruit.

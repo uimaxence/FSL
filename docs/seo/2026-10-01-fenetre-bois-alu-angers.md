@@ -17,8 +17,9 @@ Noter aussi le nombre de résultats organiques renvoyés (voir « Deux jeux de r
 | --- | --- | --- | --- | --- | --- | --- |
 | 01/10/2026 | Mobile (3 mesures) | Absent | — | 33 à 34 | 8ᵉ | Point de départ |
 | 01/10/2026 | Ordinateur (1 mesure) | 4ᵉ | `/solutions/portes-fenetres/fenetres/` | 70 | Absente | Point de départ |
+| 12/10/2026 | Search Console (01→09/10, toutes requêtes) | `/fenetres-bois-alu-angers/` : 145 impressions, position moyenne 20,2, 0 clic | `/fenetres-bois-alu-angers/` | — | — | Page déployée le 01/10, indexée ; SERP DataForSEO en erreur toute la matinée (40101), mesure mobile/ordinateur à refaire |
 
-Prochain relevé : jeudi 8 octobre 2026.
+Prochain relevé : dès que l'API SERP répond, puis jeudi 15 octobre 2026.
 
 ### Détail du 01/10/2026
 

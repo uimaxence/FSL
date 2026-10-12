@@ -26,6 +26,8 @@ const alts: Record<string, string> = {
     "Fenêtre aluminium donnant sur un jardin aux couleurs d'automne",
   "condensation-fenetres-causes-solutions":
     "Gouttes de condensation sur le bas d'un vitrage au petit matin",
+  "double-ou-triple-vitrage":
+    "Échantillons de double et de triple vitrage posés côte à côte sur un établi d'atelier",
   "entretien-volet-roulant":
     "Main gantée nettoyant à l'éponge les lames d'un volet roulant en aluminium",
   "fenetre-oscillo-battant-bloquee":
@@ -36,6 +38,8 @@ const alts: Record<string, string> = {
     "Grandes fenêtres bois-alu à l'intérieur en chêne dans un séjour contemporain",
   "fenetrier-maine-et-loire":
     "Maison angevine en tuffeau et toit d'ardoise aux fenêtres rénovées",
+  "joint-fenetre-pvc":
+    "Main passant un chiffon sur le joint d'étanchéité d'une fenêtre PVC blanche entrouverte",
   "isolation-phonique-fenetre":
     "Séjour calme derrière une grande fenêtre donnant sur un boulevard et son tramway",
   "regler-fenetre-pvc-qui-ferme-mal":
@@ -44,6 +48,8 @@ const alts: Record<string, string> = {
     "Télécommande pointée vers un volet roulant arrêté à mi-hauteur",
   "telecommande-bubendorff-pile-programmation":
     "Télécommande de volet roulant ouverte, pile bouton et petit tournevis",
+  "volet-roulant-qui-grince":
+    "Main gantée nettoyant la coulisse d'un volet roulant aluminium arrêté à mi-hauteur",
   "volet-roulant-bloque-que-faire":
     "Volet roulant bloqué de travers à mi-hauteur sur une façade",
 };

@@ -149,7 +149,7 @@ La question revient à chaque visite, et la réponse surprend : **en règle gén
 - Dans les **coulisses**, la graisse et l'huile font plus de mal que de bien. Elles retiennent la poussière et forment en quelques semaines une pâte abrasive qui freine le tablier et use les joints.
 - Les **dégrippants** sont à proscrire : ils dissolvent, coulent sur les lames et attaquent certains joints.
 
-Sur un **volet ancien** qui grince encore après un nettoyage soigneux des coulisses, la pratique des poseurs est la suivante : un voile de **silicone en spray**, qui sèche sans coller, vaporisé **sur un chiffon** et non directement dans le rail, puis passé dans la coulisse. Pas plus.
+Sur un **volet ancien** qui grince encore après un nettoyage soigneux des coulisses (les autres causes de bruit sont détaillées dans notre guide [volet roulant qui grince](/blog/volet-roulant-qui-grince/)), la pratique des poseurs est la suivante : un voile de **silicone en spray**, qui sèche sans coller, vaporisé **sur un chiffon** et non directement dans le rail, puis passé dans la coulisse. Pas plus.
 
 Seule exception : le **mécanisme d'un volet manuel**. Le treuil d'un volet à manivelle et le cardan de sa tringle acceptent une goutte d'huile fine une fois par an. Une sangle, elle, ne se graisse jamais.
 

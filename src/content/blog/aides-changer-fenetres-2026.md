@@ -129,7 +129,7 @@ Certaines collectivités (agglomérations, communautés de communes) proposent d
 Pour ouvrir droit aux aides, une fenêtre doit atteindre un niveau de performance minimal, généralement :
 
 - un **coefficient thermique Uw ≤ 1,3 W/m².K** (plus il est bas, meilleure est l'isolation) ;
-- un **facteur solaire Sw ≥ 0,3** (capacité à laisser entrer la chaleur du soleil).
+- un **facteur solaire Sw ≥ 0,3** (capacité à laisser entrer la chaleur du soleil). Pour comprendre ces coefficients et choisir entre double et triple vitrage, voir notre guide [double ou triple vitrage](/blog/double-ou-triple-vitrage/).
 
 Nos menuiseries **[fenêtres](/solutions/portes-fenetres/fenetres/)** en PVC, aluminium ou **[bois-alu MéO](/fenetres-bois-alu-angers/)** répondent à ces exigences. Hésitant sur le matériau ? Consultez notre comparatif **[PVC, alu ou bois-alu](/blog/fenetre-pvc-alu-bois-alu/)**.
 

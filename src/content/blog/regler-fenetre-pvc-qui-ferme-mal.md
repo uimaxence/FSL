@@ -138,7 +138,7 @@ La **compression**, c'est la force avec laquelle l'ouvrant écrase le joint sur 
 - **Poignée dure, fenêtre qui force** : diminuez la compression d'un cran.
 - **Courant d'air, sifflement** : augmentez-la d'un cran, puis testez avec la feuille de papier coincée dans le joint : fermée, elle doit **résister** quand on la tire, partout sur le pourtour.
 
-Beaucoup de fenêtres ont deux positions « été » et « hiver » : une compression un peu plus forte en hiver pour l'étanchéité, plus faible en été pour ménager le joint. Si le joint est **écrasé, durci ou fendu**, aucun réglage ne compensera : il se remplace, c'est une pièce d'usure.
+Beaucoup de fenêtres ont deux positions « été » et « hiver » : une compression un peu plus forte en hiver pour l'étanchéité, plus faible en été pour ménager le joint. Si le joint est **écrasé, durci ou fendu**, aucun réglage ne compensera : il se remplace, c'est une pièce d'usure. Notre guide [joint de fenêtre PVC](/blog/joint-fenetre-pvc/) explique comment l'identifier et le changer.
 
 Profitez-en pour **graisser** les galets, les gâches et les paumelles : une goutte de graisse fine une fois par an suffit, et c'est ce qui manque à la plupart des fenêtres « dures ».
 

@@ -1,8 +1,8 @@
 ---
 title: "Condensation sur les fenêtres : causes et solutions"
-description: "Buée au réveil, humidité sur les cadres, condensation entre les vitrages ou sur le Velux : causes, gestes efficaces et cas où les fenêtres sont en cause."
+description: "Condensation à l'intérieur des fenêtres, le matin, dans la chambre ou entre les vitres d'un double vitrage : les causes, les gestes qui marchent dès ce soir, et quand le vitrage est en cause."
 date: 2026-08-17
-tags: ["condensation", "humidité", "double vitrage", "isolation", "fenêtres", "ventilation"]
+tags: ["condensation", "humidité", "double vitrage", "isolation", "fenêtres", "ventilation", "fenêtre PVC", "entretien"]
 draft: false
 schema:
   - "@context": https://schema.org
@@ -29,7 +29,7 @@ schema:
     "@type": BlogPosting
     headline: "Condensation sur les fenêtres : causes et solutions"
     datePublished: 2026-08-17
-    dateModified: 2026-09-14
+    dateModified: 2026-10-12
     inLanguage: fr-FR
     author:
       "@type": Organization
@@ -37,6 +37,12 @@ schema:
     publisher:
       "@type": Organization
       name: Fenêtres sur Loir
+      logo:
+        "@type": ImageObject
+        url: https://www.fenetres-sur-loir.fr/logo-FSL.png
+    mainEntityOfPage:
+      "@type": WebPage
+      "@id": https://www.fenetres-sur-loir.fr/blog/condensation-fenetres-causes-solutions/
   - "@context": https://schema.org
     "@type": FAQPage
     mainEntity:
@@ -76,17 +82,33 @@ schema:
           "@type": Answer
           text: "Oui, dans deux cas. À l'extérieur, une rosée matinale sur la face extérieure est normale et prouve que le vitrage isole très bien. À l'intérieur, une fenêtre neuve et étanche supprime les infiltrations d'air parasites de l'ancienne : si la ventilation du logement n'est pas assurée par ailleurs (VMC, entrées d'air), l'humidité monte et peut condenser sur le vitrage neuf. La ventilation doit être vérifiée en même temps que les menuiseries."
       - "@type": Question
+        name: "Comment enlever la condensation sur les fenêtres ?"
+        acceptedAnswer:
+          "@type": Answer
+          text: "Le matin, essuyez les vitres et le bas des cadres avec une raclette ou un chiffon absorbant pour protéger joints et peintures, puis ouvrez en grand 5 à 10 minutes. Pour qu'elle ne revienne pas, agissez sur l'humidité (aération matin et soir, VMC et entrées d'air dégagées, moins de vapeur produite) et sur la température des vitres (chauffage régulier, rideaux écartés). Si la buée persiste chaque matin ou se forme entre les deux verres, le vitrage est en cause."
+      - "@type": Question
+        name: "La condensation sur les fenêtres est-elle dangereuse ?"
+        acceptedAnswer:
+          "@type": Answer
+          text: "Pas en elle-même, mais ses conséquences le sont : de l'eau qui stagne chaque jour sur les joints et les cadres finit par faire noircir les joints, cloquer les peintures et apparaître des moisissures autour des fenêtres, dont les spores dégradent la qualité de l'air intérieur. Une condensation quotidienne pendant tout l'hiver est le signe d'un logement trop humide ou de vitrages trop froids, à traiter avant l'apparition des moisissures."
+      - "@type": Question
         name: "Changer ses fenêtres suffit-il à supprimer la condensation ?"
         acceptedAnswer:
           "@type": Answer
           text: "Des fenêtres récentes à double ou triple vitrage suppriment la condensation liée aux parois froides, car la face intérieure du vitrage reste proche de la température ambiante. En revanche, si le logement est mal ventilé, l'humidité doit aussi être traitée à la source : aération quotidienne, VMC en bon état, entrées d'air non obstruées. Lors de notre diagnostic à domicile, nous examinons les deux aspects."
 ---
 
-*Article mis à jour le 14 septembre 2026.*
+*Article mis à jour le 12 octobre 2026.*
 
 Chaque automne, c'est le même rituel dans de nombreuses maisons de l'Anjou : de la **buée sur les vitres au réveil**, des gouttelettes qui ruissellent sur les cadres, parfois des taches noires qui apparaissent sur les joints. Entre la proximité de la Loire et du Loir, les brouillards de saison et des logements que l'on aère moins dès que les températures baissent, le Maine-et-Loire cumule les conditions idéales pour la **condensation sur les fenêtres**.
 
 Bonne nouvelle : ce phénomène s'explique simplement, et il existe des solutions durables. Menuisier certifié **RGE** installé à Seiches-sur-le-Loir et Doué-en-Anjou depuis plus de 20 ans, nous vous aidons à faire le bon diagnostic — et à savoir si vos fenêtres sont en cause.
+
+**En résumé**
+
+- La buée se forme quand l'air humide de la maison touche une vitre froide : il faut agir sur l'**humidité** (aérer, ventiler, produire moins de vapeur) et sur la **température des vitres** (chauffage régulier, vitrage isolant).
+- Buée **côté pièce** : d'abord la ventilation, puis l'âge du vitrage. Buée **entre les deux verres** : le double vitrage est mort, il se remplace. Rosée **côté rue** : tout va bien.
+- Si la buée revient chaque matin malgré les bons gestes, ce sont les fenêtres qu'il faut faire vérifier.
 
 ## D'où vient la condensation sur une fenêtre ?
 
@@ -144,15 +166,15 @@ L'objectif est double : **19 °C environ** dans les pièces de vie, **40 à 60 %
 
 Contrairement à une idée reçue, **baisser le chauffage n'assèche pas l'air** : un air plus froid retient moins de vapeur, et le point de rosée est atteint plus vite. Un logement maintenu à température régulière condense moins qu'un logement qu'on laisse refroidir la nuit puis qu'on surchauffe le matin.
 
-## Les bons réflexes pour limiter la condensation au quotidien
+## Condensation à l'intérieur des fenêtres : la solution en cinq gestes, dans l'ordre
 
-Avant tout remplacement, quelques gestes simples réduisent nettement l'humidité intérieure :
+Avant tout remplacement, ces gestes réduisent nettement l'humidité intérieure. Faites-les dans cet ordre : le premier coûte zéro euro et règle la moitié des cas.
 
-- **Aérer 5 à 10 minutes matin et soir**, même en hiver, en créant un courant d'air : c'est le moyen le plus efficace d'évacuer la vapeur d'eau, et la déperdition de chaleur est minime.
-- **Entretenir la ventilation** : bouches de VMC dépoussiérées, entrées d'air des fenêtres jamais obstruées (ne les calfeutrez pas !).
-- **Limiter la vapeur à la source** : couvercles en cuisine, hotte en marche, porte de salle de bain fermée pendant et après la douche, linge séché dans une pièce ventilée ou à l'extérieur.
-- **Chauffer régulièrement** : une maison maintenue autour de 19 °C condense moins qu'un logement qu'on laisse refroidir puis qu'on surchauffe.
-- **Dégager les vitres** : pas de meuble, de plante ni de rideau épais contre la fenêtre, pour que l'air circule.
+1. **Aérer 5 à 10 minutes matin et soir**, même en hiver, en créant un courant d'air : c'est le moyen le plus efficace d'évacuer la vapeur d'eau, et la déperdition de chaleur est minime. Le matin, essuyez d'abord les vitres et le bas des cadres pour protéger les joints.
+2. **Entretenir la ventilation** : bouches de VMC dépoussiérées, entrées d'air des fenêtres jamais obstruées (ne les calfeutrez pas !).
+3. **Limiter la vapeur à la source** : couvercles en cuisine, hotte en marche, porte de salle de bain fermée pendant et après la douche, linge séché dans une pièce ventilée ou à l'extérieur.
+4. **Chauffer régulièrement** : une maison maintenue autour de 19 °C condense moins qu'un logement qu'on laisse refroidir puis qu'on surchauffe.
+5. **Dégager les vitres** : pas de meuble, de plante ni de rideau épais contre la fenêtre, pour que l'air circule.
 
 Si malgré ces réflexes la buée revient chaque matin, le problème vient des menuiseries elles-mêmes — ou de la ventilation du logement.
 
@@ -168,7 +190,7 @@ Trois situations très courantes dans les maisons du département mettent ce sys
 
 Lors d'un remplacement de fenêtres, nous vérifions systématiquement la présence et le dimensionnement des entrées d'air en fonction de votre système de ventilation.
 
-## PVC, aluminium, bois : le matériau du cadre change-t-il quelque chose ?
+## Condensation sur une fenêtre PVC, alu ou bois : le cadre est-il en cause ?
 
 Oui, surtout pour la condensation **sur le cadre** plutôt que sur la vitre :
 
@@ -198,7 +220,7 @@ La hiérarchie des solutions durables reste la même : **ventilation** d'abord, 
 
 Les taches noires sur les joints et dans les angles des murs sont la suite logique d'une condensation répétée. Nettoyez-les avec de l'eau et du vinaigre blanc ou un produit antifongique, en aérant, puis traitez la cause : sinon elles reviendront. Des joints de vitrage noircis et durcis ne sont plus étanches et se remplacent. Au-delà des dégâts matériels — peintures cloquées, cadres bois dégradés, papier peint qui se décolle —, un air trop humide dégrade la qualité de l'air intérieur et favorise allergies et acariens.
 
-## Quand la condensation signale des fenêtres à changer
+## Condensation sur un double vitrage : quand les fenêtres sont à changer
 
 Certains signes ne trompent pas :
 
@@ -208,7 +230,7 @@ Certains signes ne trompent pas :
 - **cadres froids ou humides**, joints noircis, moisissures récurrentes autour des fenêtres ;
 - **sensation de paroi froide** quand on s'approche de la fenêtre, courants d'air le long des ouvrants.
 
-Les [fenêtres](/solutions/portes-fenetres/fenetres/) actuelles changent radicalement la donne : double vitrage à isolation renforcée avec gaz argon, intercalaire « warm edge » qui supprime le pont thermique en bord de vitrage, cadres PVC, aluminium à rupture de pont thermique ou [bois-alu MéO](/fenetres-bois-alu-angers/). Résultat : la face intérieure du vitrage reste proche de la température de la pièce — la condensation n'a plus de paroi froide où se déposer. Les ouvrants **oscillo-battants** facilitent en prime l'aération quotidienne en toute sécurité.
+Les [fenêtres](/solutions/portes-fenetres/fenetres/) actuelles changent radicalement la donne : double vitrage à isolation renforcée avec gaz argon, intercalaire « warm edge » qui supprime le pont thermique en bord de vitrage, cadres PVC, aluminium à rupture de pont thermique ou [bois-alu MéO](/fenetres-bois-alu-angers/). Résultat : la face intérieure du vitrage reste proche de la température de la pièce — la condensation n'a plus de paroi froide où se déposer. Double ou triple vitrage ? Les critères sont dans notre guide [double ou triple vitrage](/blog/double-ou-triple-vitrage/). Les ouvrants **oscillo-battants** facilitent en prime l'aération quotidienne en toute sécurité.
 
 ## Des aides pour financer le remplacement
 
@@ -249,6 +271,14 @@ Oui, mais au prix d'une chambre et de parois froides qui condenseront dès la fe
 ### Une fenêtre neuve peut-elle avoir de la condensation ?
 
 Oui : à l'extérieur, la rosée matinale est normale et prouve que le vitrage isole bien. À l'intérieur, une fenêtre neuve et étanche supprime les fuites d'air de l'ancienne ; si le logement n'a ni VMC ni entrées d'air, l'humidité monte. La ventilation se vérifie en même temps que les menuiseries.
+
+### Comment enlever la condensation sur les fenêtres ?
+
+Le matin, raclette ou chiffon absorbant sur les vitres et le bas des cadres, puis 5 à 10 minutes d'aération en grand. Pour qu'elle ne revienne pas : humidité (aération, VMC, moins de vapeur) et température des vitres (chauffage régulier, rideaux écartés). Buée persistante ou entre les deux verres : le vitrage est en cause.
+
+### La condensation sur les fenêtres est-elle dangereuse ?
+
+Pas en elle-même, mais l'eau qui stagne chaque jour fait noircir les joints, cloquer les peintures et apparaître des moisissures, dont les spores dégradent l'air intérieur. Une buée quotidienne tout l'hiver se traite avant que les moisissures ne s'installent.
 
 ### Changer ses fenêtres suffit-il à supprimer la condensation ?
 
