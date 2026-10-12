@@ -75,7 +75,7 @@ d'IA générative sur 3 mois (`…Generative-AI-Features-2026-10-12`). Comparais
 - Accueil : s'il continue de ressortir à la place de `/menuisier-angers/`, revoir le titre et
   l'intention des deux pages.
 
-## Fait le 12/10/2026 (non commité)
+## Fait le 12/10/2026 (commit `059aeb6`, déployé le jour même, pages vérifiées en 200)
 
 - **Condensation** : bloc « En résumé » en tête, gestes dans l'ordre (liste numérotée), titres de
   sections alignés sur les requêtes (« condensation à l'intérieur des fenêtres », « fenêtre PVC,
