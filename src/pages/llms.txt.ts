@@ -29,6 +29,7 @@ export const GET: APIRoute = () => {
     ["Fenêtres", "/solutions/portes-fenetres/fenetres/", "Fenêtres PVC, aluminium, bois et mixte bois-alu sur mesure."],
     ["Fenêtres à Angers", "/fenetres-angers/", "Pose et remplacement de fenêtres à Angers et dans l'agglomération : matériaux adaptés au bâti angevin, démarches ABF, aides, devis gratuit."],
     ["Fenêtres bois-alu à Angers", "/fenetres-bois-alu-angers/", "Fourniture et pose de fenêtres bois-aluminium MéO à Angers par un Menuisier d'Excellence MéO : caractéristiques fabricant, essences et teintes, garanties, démarches ABF."],
+    ["MéO et le bois-aluminium", "/partenaires/meo/", "Page marque du partenaire MéO (créateur du concept bois-aluminium en 1983, fabricant à Cugand en Vendée) : la fenêtre expliquée en coupe (bois intérieur, aluminium extérieur, plots, vitrage collé, joints), gamme, 13 finitions bois et 28 teintes aluminium, performances publiées, entretien, Club des Menuisiers d'Excellence, FAQ."],
     ["Portes d'entrée", "/solutions/portes-fenetres/portes-entree/", "Portes d'entrée alu, bois, PVC et bois-alu, serrures multipoints."],
     ["Baies vitrées", "/solutions/portes-fenetres/baies-vitrees/", "Baies coulissantes, à galandage, à levage."],
     ["Volets & stores", "/solutions/portes-fenetres/volets/", "Volets roulants, battants et solaires Bubendorff."],

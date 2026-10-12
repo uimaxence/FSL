@@ -1,16 +1,49 @@
 ---
+// Page marque MéO : le partenariat, le concept bois-aluminium expliqué en coupe
+// (animée au défilement), la gamme, les finitions, les performances, le club
+// des Menuisiers d'Excellence, une FAQ et un bloc « transmettre cette page »
+// (lien, e-mail, WhatsApp, impression) : c'est la page à envoyer à un client
+// intéressé par le bois-alu.
+//
+// Faits produits : uniquement ce qui est publié sur fenetremeo.com, relevé le
+// 12/10/2026 (pages « L'alliance bois-aluminium », fiches fenêtres, baies
+// coulissantes, verrières & murs rideaux, portes d'entrée, « Qu'est-ce que
+// l'effet bilame ? », « À quoi correspondent les niveaux de performance »,
+// « Des menuiseries bois-aluminium à la qualité certifiée », « Quel vitrage
+// choisir », FAQ, « MéO, créateur depuis 1983 », « Menuisiers d'Excellence »).
+// Aucun prix (choix client) : le catalogue MéO en affiche, pas cette page.
+//
+// Images : src/assets/meo/* sont des illustrations générées (fal.ai,
+// 12/10/2026), jamais à présenter comme des chantiers ; porte-1-boisalu,
+// porte-2-boisalu et verriere-boisalu-1 sont des visuels MéO.
+//
+// SEO : la requête locale « fenêtre bois alu angers » reste sur
+// /fenetres-bois-alu-angers/ ; cette page est la page marque et y renvoie.
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import PagePartenaire from "../../components/templates/PagePartenaire.astro";
 import Container from "../../components/ui/Container.astro";
+import Breadcrumb from "../../components/ui/Breadcrumb.astro";
+import ReponseDirecte from "../../components/ui/ReponseDirecte.astro";
+import CTASection from "../../components/sections/CTASection.astro";
+import ConseilsLies from "../../components/sections/ConseilsLies.astro";
+import { organizationNode, agencyNode, agencyId } from "../../lib/schema";
+import { SITE_URL } from "../../config/business";
 import meoLogo from "../../assets/meo-logo.png";
-import meoHero from "../../assets/porte-1-boisalu.png";
-import meoGal1 from "../../assets/porte-2-boisalu.png";
-import meoGal2 from "../../assets/porte-6-bois.png";
-import meoGal3 from "../../assets/porte-7-bois.png";
+import tropheePortes from "../../assets/trophee-meo-2025-portes-entree.png";
+import tropheePerformance from "../../assets/trophee-meo-2025-performance.png";
+import heroImg from "../../assets/meo/hero-coin-fenetre.jpg";
+import profilImg from "../../assets/meo/profil-ecorche.jpg";
+import baieImg from "../../assets/meo/baie-coulissante.jpg";
+import facadeImg from "../../assets/meo/facade-tuffeau.jpg";
+import murRideauImg from "../../assets/meo/mur-rideau.jpg";
+import porteExt from "../../assets/porte-1-boisalu.png";
+import porteInt from "../../assets/porte-2-boisalu.png";
 
-const title = "MéO — Menuisier d'Excellence à Angers | Fenêtres sur Loir";
-const description = "Fenêtres sur Loir, Menuisier d'Excellence MéO près d'Angers. Découvrez les menuiseries bois-alu françaises signées MéO : design, performance et durabilité.";
+const title = "MéO : le bois-alu expliqué par votre Menuisier d'Excellence";
+const description =
+  "Bois dedans, aluminium dehors : le concept MéO expliqué en coupe, performances, finitions, garanties. Fenêtres sur Loir, Menuisier d'Excellence MéO près d'Angers.";
+
+const PAGE_URL = `${SITE_URL}/partenaires/meo/`;
 
 const breadcrumb = [
   { label: "Accueil", href: "/" },
@@ -18,116 +51,1376 @@ const breadcrumb = [
   { label: "MéO" },
 ];
 
-const schema = [
+const reponseDirecte =
+  "MéO est le fabricant vendéen qui a créé le concept de menuiserie bois-aluminium en 1983 : une structure en bois, visible à l'intérieur, et une structure en aluminium à l'extérieur, assemblées par plots. Fenêtres sur Loir est Menuisier d'Excellence MéO : l'entreprise conseille, mesure et pose ces fenêtres, baies, portes d'entrée et verrières dans tout le Maine-et-Loire, avec ses propres équipes, depuis ses agences de Seiches-sur-le-Loir et Doué-en-Anjou.";
+
+// Chiffres animés (count-up). Tous publiés par MéO.
+const chiffres = [
+  { target: 40, prefix: "+", suffix: " ans", label: "de bois-aluminium : concept créé en 1983" },
+  { target: 28, label: "teintes d'aluminium à l'extérieur" },
+  { target: 13, label: "finitions de bois à l'intérieur" },
+  { target: 82, label: "modèles de portes d'entrée" },
+  { target: 5, label: "brevets déposés sur la fenêtre" },
+  { target: 10, suffix: " ans", label: "de garantie fabricant, au maximum" },
+];
+
+// Étapes de la coupe animée. `layer` = groupe SVG mis en avant.
+const coupe = [
   {
-    "@context": "https://schema.org",
-    "@type": "Brand",
-    name: "MéO",
-    description: "Fabricant français de menuiseries bois-aluminium haut de gamme",
+    layer: "bois",
+    titre: "Le bois, côté pièce",
+    texte:
+      "La structure porteuse est en bois lamellé, abouté et collé, recouvert d'un placage de pin ou de chêne. Le bois est naturellement le matériau le plus isolant : ses cellules enferment de l'air. C'est lui que vous voyez et que vous touchez, sur le dormant comme sur l'ouvrant.",
+    detail: "2 essences · 13 finitions · lasure en phase aqueuse",
   },
   {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    provider: { "@id": "https://www.fenetres-sur-loir.fr/#organization" },
-    name: "Menuiseries bois-aluminium MéO",
-    brand: { "@type": "Brand", name: "MéO" },
-    description,
+    layer: "alu",
+    titre: "L'aluminium, côté façade",
+    texte:
+      "Un capotage en aluminium thermolaqué habille toute la face extérieure du dormant et de l'ouvrant. Il encaisse la pluie, les UV et les chocs et garde sa teinte dans le temps : il n'y a rien à repeindre ni à lasurer côté rue.",
+    detail: "28 teintes · thermolaquage certifié Qualimarine",
+  },
+  {
+    layer: "plots",
+    titre: "Les plots : deux structures, pas de pont thermique",
+    texte:
+      "Bois et aluminium ne sont pas collés l'un à l'autre : ils sont assemblés par un système de plots, avec une lame d'air entre les deux. MéO parle de rupture totale de pont thermique. Au soleil, l'aluminium se dilate sans déformer l'ouvrant : c'est ce qui écarte l'effet bilame, même en teinte foncée exposée au sud.",
+    detail: "Assemblage par plots · dilatation libre · 5 brevets",
+  },
+  {
+    layer: "vitrage",
+    titre: "Le vitrage, collé au cadre bois",
+    texte:
+      "De série, un double vitrage 4/20/TBE 4 : deux verres de 4 mm, une lame de 20 mm, une couche à très basse émissivité (TBE) et un intercalaire « warm-edge » qui limite le froid en bord de vitre. Le vitrage est collé au cadre bois, ce qui rigidifie l'ouvrant. Triple vitrage possible.",
+    detail: "Double vitrage de série · triple en option · vitrage certifié CEKAL",
+  },
+  {
+    layer: "joints",
+    titre: "Les joints : air, eau, vent",
+    texte:
+      "Des joints d'étanchéité entre dormant et ouvrant arrêtent l'air, l'eau et le vent. La fenêtre à frappe MéO est classée A*4 E*7A V*A2 : A*4 est la classe la plus élevée pour la perméabilité à l'air.",
+    detail: "A*4 · E*7A · V*A2",
+  },
+  {
+    layer: "tout",
+    titre: "Le résultat : Uw 1,2 en double vitrage",
+    texte:
+      "Ouvrant de 67 mm en design plat ou 75 mm en design galbé. Coefficient Uw de 1,2 W/m²·K en double vitrage et 0,7 en triple : plus il est bas, plus la fenêtre isole. Les valeurs de votre projet dépendent de ses dimensions et de son vitrage : elles figurent sur le devis.",
+    detail: "Uw 1,2 · Sw 0,47 · TLw 0,58 · 28 dB",
   },
 ];
+
+const legende = [
+  { layer: "bois", label: "Bois", couleur: "#E4C79A" },
+  { layer: "alu", label: "Aluminium", couleur: "#3A3F45" },
+  { layer: "plots", label: "Plots", couleur: "#1a1b1f" },
+  { layer: "vitrage", label: "Vitrage", couleur: "#9CCDF0" },
+  { layer: "joints", label: "Joints", couleur: "#6b6b6b" },
+];
+
+const avantages = [
+  {
+    titre: "Le bois isole, l'aluminium protège",
+    texte:
+      "Uw 1,2 en double vitrage, 0,7 en triple, pour la fenêtre à frappe. MéO rappelle qu'un Uw inférieur ou égal à 1,3 est devenu le standard d'une rénovation performante.",
+  },
+  {
+    titre: "Un bois sans entretien",
+    texte:
+      "À l'intérieur, le bois reçoit un traitement insecticide et fongicide puis une lasure de finition en phase aqueuse : un dépoussiérage au chiffon doux suffit.",
+  },
+  {
+    titre: "Une façade qui ne bouge pas",
+    texte:
+      "L'aluminium thermolaqué, certifié Qualimarine, résiste aux intempéries, aux chocs et aux UV. Une éponge non abrasive et de l'eau savonneuse pour le nettoyer.",
+  },
+  {
+    titre: "Sur mesure, jusqu'au détail",
+    texte:
+      "13 finitions de bois, 28 teintes d'aluminium, 7 formes d'ouverture, petits-bois en applique ou intégrés, poignées, entrées d'air, volet roulant ou brise-soleil intégrés.",
+  },
+  {
+    titre: "Éco-conçu, fabriqué en Vendée",
+    texte:
+      "Bois certifié PEFC, finitions sans solvant classées A+, fiches environnementales (FDES) publiées. L'usine de Cugand produit 42 % de son électricité et de son gaz.",
+  },
+  {
+    titre: "Des qualités certifiées",
+    texte:
+      "Origine France Garantie, NF (certifiée par le FCBA), CEKAL pour le vitrage, Qualimarine pour le laquage, PEFC pour le bois. Garantie fabricant jusqu'à 10 ans.",
+  },
+];
+
+// Palettes : codes et noms publiés par MéO. Les couleurs affichées sont des
+// repères indicatifs (RAL pour l'aluminium), pas un nuancier contractuel.
+const aluSatine = [
+  ["9016 S", "#F1F0EA"], ["9001 S", "#E9E0D2"], ["8019 S", "#3D3635"], ["7039 S", "#6B695F"],
+  ["7035 S", "#C5C7C4"], ["7024 S", "#45494E"], ["7021 S", "#2F3234"], ["6021 S", "#86A47C"],
+  ["5023 S", "#42698C"], ["Canon", "#4A4E55"],
+];
+const aluTexture = [
+  ["9011 T", "#27292B"], ["9007 T", "#878581"], ["9006 T", "#A1A1A0"], ["8011 T", "#5A3A29"],
+  ["7030 T", "#8B8C7A"], ["7022 T", "#4B4D46"], ["7016 T", "#383E42"], ["6005 T", "#0F4336"],
+  ["5003 T", "#1F3855"], ["3004 T", "#6B1C23"], ["1015 T", "#E6D2B5"],
+];
+const aluSable = [
+  ["Gris 2900 sablé", "#55585C"], ["Gris 2800 sablé", "#75797E"], ["Bleu 2700 sablé", "#3E4C60"],
+  ["Mars 2525 sablé", "#7D3F2A"], ["Noir 2100 sablé", "#1E1F21"],
+];
+const aluAutres = [["Anodisé naturel", "#B9BDC1"], ["Ton bois", "#8A5A32"]];
+const boisPin = [
+  ["Naturel", "#D9B98A"], ["Miel", "#C9924E"], ["Dune", "#C8B493"], ["Cendré", "#A89F94"],
+  ["Blanc", "#F0ECE4"], ["Ardoise", "#5D6268"], ["Taupe", "#8C7B6E"],
+];
+const boisChene = [
+  ["Naturel", "#C9A676"], ["Moyen", "#A87A4A"], ["Champagne", "#D9C7A6"], ["Polaire", "#E7E1D6"],
+  ["Ébène", "#2E2622"], ["Blanchi", "#E2D7C6"],
+];
+
+// Valeurs publiées par MéO (double vitrage, formats Acotherm).
+const performances = [
+  ["Isolation thermique (Uw)", "1,2 W/m²·K", "1,4 W/m²·K"],
+  ["Apports solaires (Sw)", "0,47", "0,53"],
+  ["Lumière naturelle (TLw)", "0,58", "0,65"],
+  ["Affaiblissement acoustique", "28 dB", "27 dB"],
+  ["Étanchéité air, eau, vent", "A*4 E*7A V*A2", "A*4 E*6B V*A2"],
+  ["Épaisseur de l'ouvrant", "67 mm (plat) ou 75 mm (galbé)", "57 mm (plat)"],
+];
+
+const engagements = [
+  ["Installateur certifié", "Reconnu par MéO pour son expertise et la qualité de ses réalisations."],
+  ["Pose dans les règles de l'art", "Installation soignée, conforme aux prescriptions du fabricant et aux normes en vigueur."],
+  ["Spécialiste du bois-aluminium", "Connaissance de toute la gamme MéO, équipes formées régulièrement."],
+  ["Interlocuteur unique", "Devis rapide, suivi du chantier et respect des délais."],
+  ["Service après-vente", "En lien direct avec les équipes MéO."],
+  ["Extension de garantie", "Gratuite, réservée aux poses par un Menuisier d'Excellence, à activer sous 14 jours."],
+];
+
+// FAQ : source unique pour le bloc visible et le FAQPage JSON-LD.
+const faq = [
+  {
+    question: "Qui est MéO ?",
+    reponse:
+      "MéO est un fabricant français de menuiseries bois-aluminium sur mesure, installé à Cugand, en Vendée, à 30 km au sud de Nantes. L'entreprise est née en 1976 sous le nom de Menuiserie Clissonnaise, a créé le concept bois-aluminium en 1983, a rejoint le groupe familial vendéen Liébot en 1990 et porte la marque MéO depuis 2020. Elle fabrique des fenêtres et portes-fenêtres, des baies coulissantes, des portes d'entrée, des verrières et des murs rideaux, vendus et posés par des professionnels installateurs.",
+  },
+  {
+    question: "Pourquoi du bois à l'intérieur et de l'aluminium à l'extérieur ?",
+    reponse:
+      "Chaque matériau est placé là où il est le meilleur. Le bois, naturellement le plus isolant, reste côté pièce : il apporte la chaleur d'une menuiserie traditionnelle et ne demande aucun entretien. L'aluminium, inaltérable, fait face aux intempéries et garde sa teinte : rien à repeindre côté façade. Les deux structures sont assemblées par plots, sans pont thermique.",
+  },
+  {
+    question: "Qu'est-ce que l'effet bilame, et pourquoi les menuiseries MéO n'y sont pas sujettes ?",
+    reponse:
+      "Par forte chaleur, le profilé extérieur d'une menuiserie monte en température et s'allonge alors que le profilé intérieur reste à température ambiante : cette différence peut déformer provisoirement un coulissant et gêner sa fermeture. C'est l'effet bilame, un phénomène réversible. Sur les menuiseries MéO, bois et aluminium sont assemblés par plots : l'aluminium se dilate librement sans déformer l'ouvrant, ce qui permet les grandes baies de teinte foncée, même exposées au sud ou à l'ouest.",
+  },
+  {
+    question: "Double ou triple vitrage ?",
+    reponse:
+      "Le double vitrage 4/20/TBE 4 de série donne un Uw de 1,2 sur la fenêtre à frappe ; le triple vitrage descend à 0,7 mais laisse entrer un peu moins de chaleur solaire gratuite en hiver. MéO conseille de raisonner sur le bilan thermique global du logement : le triple vitrage a surtout un intérêt dans une maison déjà bien isolée en toiture et en murs, ou dans les régions aux hivers très froids. Nous en parlons au moment du devis.",
+  },
+  {
+    question: "Quel entretien pour des menuiseries bois-aluminium MéO ?",
+    reponse:
+      "À l'intérieur, un dépoussiérage du bois avec un chiffon doux. À l'extérieur, un nettoyage de l'aluminium à l'eau claire avec un savon doux et une éponge non abrasive. Il n'y a ni peinture ni lasure à refaire : le bois est protégé en usine par un traitement insecticide et fongicide et une lasure en phase aqueuse.",
+  },
+  {
+    question: "Quelle garantie sur des menuiseries MéO posées par Fenêtres sur Loir ?",
+    reponse:
+      "Les menuiseries MéO sont garanties jusqu'à 10 ans par le fabricant, selon les conditions de sa notice de garantie. La pose est couverte par notre garantie décennale. Comme nous sommes Menuisier d'Excellence MéO, vous pouvez en plus activer gratuitement l'extension de garantie proposée par MéO, dans les 14 jours qui suivent la signature du procès-verbal de fin de chantier.",
+  },
+  {
+    question: "Qu'est-ce qu'un Menuisier d'Excellence MéO ?",
+    reponse:
+      "MéO ne vend pas aux particuliers : ses menuiseries sont posées par des professionnels installateurs. Le Club des Menuisiers d'Excellence, fondé en 2012, réunit ceux que le fabricant reconnaît pour leur maîtrise de ses produits, la qualité de leur pose et leur service après-vente. Fenêtres sur Loir en fait partie et a reçu en 2025 deux Trophées d'or MéO : meilleure vente de portes d'entrée et meilleure performance.",
+  },
+  {
+    question: "Peut-on peindre le bois intérieur ?",
+    reponse:
+      "Oui, si vous choisissez la finition pin blanc : MéO indique qu'elle peut être recouverte d'une couleur de votre choix pour s'accorder à votre décoration. Les autres finitions sont des lasures qui laissent voir le veinage ; certaines l'estompent, comme le pin taupe ou le pin ardoise.",
+  },
+  {
+    question: "De quoi dépend le prix d'une menuiserie MéO ?",
+    reponse:
+      "De l'essence (pin ou chêne) et de la finition, des dimensions et de la forme, du type d'ouverture, du vitrage (double ou triple, acoustique, feuilleté), des options (petits-bois, volet roulant intégré, poignée) et du mode de pose, en rénovation ou en dépose totale. Le bois-alu se situe au-dessus du PVC et de l'aluminium à dimensions égales. Le devis est gratuit, détaillé et remis sous 48 h après une prise de mesures à domicile.",
+  },
+];
+
+const partageSujet = encodeURIComponent("Les menuiseries bois-aluminium MéO, expliquées par Fenêtres sur Loir");
+const partageCorps = encodeURIComponent(
+  `Bonjour,\n\nVoici la page qui explique les menuiseries bois-aluminium MéO que nous posons : le concept en coupe, les performances, les finitions et les garanties.\n${PAGE_URL}\n\nFenêtres sur Loir, Menuisier d'Excellence MéO`,
+);
+const partageWhatsapp = encodeURIComponent(`Les menuiseries bois-aluminium MéO expliquées par Fenêtres sur Loir : ${PAGE_URL}`);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    organizationNode(),
+    agencyNode("seiches"),
+    {
+      "@type": "Brand",
+      "@id": `${PAGE_URL}#meo`,
+      name: "MéO",
+      url: "https://www.fenetremeo.com/",
+      description:
+        "Créateur du concept de menuiserie bois-aluminium en 1983, fabricant français de fenêtres, baies coulissantes, portes d'entrée, verrières et murs rideaux bois-aluminium sur mesure, à Cugand (Vendée).",
+    },
+    {
+      "@type": "Service",
+      "@id": `${PAGE_URL}#service`,
+      serviceType: "Fourniture et pose de menuiseries bois-aluminium MéO",
+      name: "Menuiseries bois-aluminium MéO",
+      description,
+      provider: { "@id": agencyId("seiches") },
+      brand: { "@id": `${PAGE_URL}#meo` },
+      areaServed: { "@type": "AdministrativeArea", name: "Maine-et-Loire" },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${PAGE_URL}#faq`,
+      mainEntity: faq.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.reponse },
+      })),
+    },
+  ],
+};
 ---
 
-<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
-  <PagePartenaire
-    eyebrow="Nos partenaires"
-    title="Fenêtres sur Loir, votre Menuisier d'Excellence MéO"
-    brand="MéO"
-    brandTagline="Fabricant français de menuiseries bois-aluminium haut de gamme"
-    brandLogo={meoLogo}
-    heroPlaceholderLabel="Fenêtre bois-alu MéO en gros plan ou chantier en cours"
-    heroImage={meoHero}
-    heroImageAlt="Menuiserie bois-aluminium MéO sur mesure installée par Fenêtres sur Loir"
+<BaseLayout title={title} description={description} ogImage="/og/meo-bois-alu.jpg" schemaJsonLd={schema}>
+  <!-- Posé avant le rendu pour que les états « masqué avant apparition » ne
+       s'appliquent qu'avec JavaScript (voir global.css, data-reveal). -->
+  <script is:inline>document.documentElement.setAttribute("data-js", "");</script>
+
+  <!-- Hero : header transparent (data-hero-section), image en parallaxe -->
+  <section
+    class="meo-hero relative isolate overflow-hidden text-white -mt-[116px]"
+    data-hero-section
+    style="min-height: clamp(640px, 92vh, 960px);"
   >
-    <p>
-      Chez <strong>Fenêtres sur Loir</strong>, la qualité est au cœur de chaque projet. Notre partenariat avec <strong>MéO</strong>, fabricant français de menuiseries <strong>bois-aluminium</strong>, s'inscrit dans une démarche exigeante : <strong>proposer le meilleur du design, de la performance et de la durabilité</strong>.
-    </p>
-    <p>
-      En tant que <strong>Menuisier d'Excellence MéO</strong>, nous bénéficions d'un savoir-faire exclusif et d'un accompagnement technique privilégié pour répondre à toutes vos envies.
-    </p>
+    <div class="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+      <Image
+        src={heroImg}
+        alt=""
+        widths={[640, 960, 1280, 1920, 2400]}
+        sizes="100vw"
+        loading="eager"
+        decoding="async"
+        format="webp"
+        quality={78}
+        class="w-full h-full object-cover will-change-transform"
+        data-parallax-img
+      />
+    </div>
+    <div
+      class="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/45 to-black/70 sm:bg-gradient-to-r sm:from-black/80 sm:via-black/45 sm:to-black/15"
+      aria-hidden="true"
+    ></div>
 
-    <h2>Un partenariat fondé sur l'excellence française</h2>
-    <p>
-      MéO conçoit et fabrique ses menuiseries en France, sur son <strong>site de Cugand, en Vendée</strong>.
-    </p>
-    <p>
-      Leur signature : associer <strong>la chaleur du bois à la résistance de l'aluminium</strong>, pour des fenêtres, portes et baies vitrées à la fois élégantes, performantes et durables.
-    </p>
-    <blockquote>
-      Choisir MéO, c'est opter pour des menuiseries locales, éco-conçues et garanties sur le long terme.
-    </blockquote>
+    <Container width="wide" class="relative flex flex-col min-h-[inherit] pt-36 sm:pt-44 pb-10 lg:pb-12">
+      <Breadcrumb items={breadcrumb} class="meo-hero-crumb" />
 
-    <h2>Pourquoi choisir les menuiseries MéO ?</h2>
-    <p>Les menuiseries MéO réunissent le meilleur de deux mondes :</p>
-    <ul>
-      <li><strong>Un design sur mesure</strong> — 28 teintes aluminium à l'extérieur, deux essences de bois (pin et chêne) et 13 finitions à l'intérieur.</li>
-      <li><strong>Une performance thermique et acoustique exceptionnelle</strong> — conforme aux normes RE2020 et aux exigences BBC Rénovation.</li>
-      <li><strong>Une fabrication éco-responsable</strong> — bois issu de forêts gérées durablement, finitions sans solvants, traçabilité complète.</li>
-      <li><strong>Une sécurité renforcée</strong> — ferrures multipoints, vitrage retardateur d'effraction, motorisations compatibles domotique.</li>
-    </ul>
+      <div class="mt-auto pt-10 max-w-3xl">
+        <div class="flex items-center gap-4 mb-6" data-rise style="--rise: 0">
+          <span class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-white p-2 shadow-lg">
+            <Image src={meoLogo} alt="Logo MéO" widths={[56, 112]} sizes="56px" loading="eager" decoding="async" format="webp" quality={90} class="max-w-full max-h-full object-contain" />
+          </span>
+          <p class="text-[12px] font-semibold tracking-[0.18em] uppercase text-white/85">
+            Nos partenaires · Menuisier d'Excellence MéO
+          </p>
+        </div>
+        <h1
+          class="font-display text-white text-balance text-[clamp(2.1rem,4.8vw,3.75rem)] leading-[1.08] drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]"
+          data-rise
+          style="--rise: 1"
+        >
+          MéO : le bois à l'intérieur, l'aluminium à l'extérieur.
+          <strong class="font-bold italic">Sans compromis.</strong>
+        </h1>
+        <p class="mt-6 max-w-2xl text-[16px] sm:text-[18px] leading-relaxed text-white/90" data-rise style="--rise: 2">
+          Le fabricant vendéen a créé la fenêtre bois-aluminium en 1983. Fenêtres sur Loir la
+          pose depuis plus de vingt ans. Cette page explique comment elle est faite, ce qu'elle
+          apporte et ce que vous pouvez choisir.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3" data-rise style="--rise: 3">
+          <a
+            href="#coupe"
+            class="inline-flex items-center gap-2 rounded-full px-7 py-3 text-[14px] font-medium text-white shadow-sm transition-colors bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)]"
+          >
+            Voir la fenêtre en coupe
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </a>
+          <a
+            href="/contact/"
+            class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white border border-white/50 hover:bg-white hover:text-[var(--color-fg)] transition-colors"
+          >
+            Demander un devis gratuit
+          </a>
+        </div>
+      </div>
 
-    <h2>Notre rôle de Menuisier d'Excellence MéO</h2>
-    <p>
-      Être <strong>Menuisier d'Excellence</strong>, c'est bien plus qu'un titre : c'est un engagement envers la qualité, la maîtrise de la pose et la satisfaction client.
-    </p>
-    <p>En tant que partenaire certifié MéO, nous assurons :</p>
-    <ul>
-      <li>Une <strong>pose irréprochable</strong>, conforme aux recommandations techniques de la marque.</li>
-      <li>Des <strong>conseils personnalisés</strong>, selon votre habitat, vos envies et votre budget.</li>
-      <li>Un <strong>service après-vente réactif</strong>, en lien direct avec les équipes MéO.</li>
-      <li>Des <strong>produits garantis</strong>, posés par des artisans formés en continu.</li>
-    </ul>
-    <p>
-      En 2025, MéO nous a décerné deux <strong>Trophées d'or</strong> : meilleure vente de portes d'entrée et meilleure performance.
-    </p>
+      <!-- Bas du hero : repères puis trophées, à gauche pour laisser le coin
+           bas droit au dock des boutons flottants -->
+      <div class="mt-12 flex flex-col gap-6 max-w-3xl lg:pr-56" data-rise style="--rise: 4">
+        <ul class="flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-white/85" aria-label="Repères MéO">
+          <li class="inline-flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]" aria-hidden="true"></span>Créateur du concept bois-alu en 1983</li>
+          <li class="inline-flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]" aria-hidden="true"></span>Fabriqué à Cugand, en Vendée</li>
+          <li class="inline-flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]" aria-hidden="true"></span>Garantie fabricant jusqu'à 10 ans</li>
+        </ul>
+        <ul class="flex flex-wrap items-end gap-x-8 gap-y-4" aria-label="Distinctions MéO 2025 décernées à Fenêtres sur Loir">
+          <li>
+            <Image src={tropheePortes} alt="Trophée d'or MéO 2025, meilleure vente de portes d'entrée, décerné à Fenêtres sur Loir" widths={[300, 600]} sizes="240px" loading="eager" decoding="async" format="webp" quality={90} class="h-12 sm:h-14 w-auto object-contain" style="filter: drop-shadow(0 1px 6px rgba(0,0,0,0.55));" />
+          </li>
+          <li>
+            <Image src={tropheePerformance} alt="Trophée d'or MéO 2025, meilleure performance, décerné à Fenêtres sur Loir" widths={[300, 600]} sizes="240px" loading="eager" decoding="async" format="webp" quality={90} class="h-12 sm:h-14 w-auto object-contain" style="filter: drop-shadow(0 1px 6px rgba(0,0,0,0.55));" />
+          </li>
+        </ul>
+      </div>
+    </Container>
+  </section>
 
-    <h2>Les produits MéO que nous installons</h2>
-    <ul>
-      <li><a href="/fenetres-bois-alu-angers/"><strong>Fenêtres bois-alu</strong></a> et portes-fenêtres : sur mesure, design plat ou galbé. Tout le détail sur notre page fenêtres bois-alu à Angers, et le reste de la gamme sur la page <a href="/solutions/portes-fenetres/fenetres/">fenêtres sur mesure</a>.</li>
-      <li><a href="/solutions/portes-fenetres/baies-vitrees/"><strong>Baies vitrées et coulissants</strong></a> : grandes ouvertures, lignes épurées et hautes performances énergétiques.</li>
-      <li><a href="/solutions/portes-fenetres/portes-entree/"><strong>Portes d'entrée</strong></a> : contemporaines ou classiques, personnalisables dans les moindres détails.</li>
-      <li><a href="/solutions/confort-interieur/verrieres/"><strong>Verrières</strong></a> et <a href="/solutions/confort-interieur/murs-de-lumiere/"><strong>murs de lumière</strong></a> : structures fines et élégantes.</li>
-    </ul>
-  </PagePartenaire>
-
-  <section class="pb-12">
+  <!-- Introduction : réponse directe + les deux acteurs -->
+  <section class="section-tight">
     <Container width="default">
-      <div class="max-w-3xl mx-auto">
-        <h2 class="mb-4">Des réalisations signées MéO</h2>
-        <div class="grid grid-cols-3 gap-3">
+      <ReponseDirecte texte={reponseDirecte} class="max-w-3xl mb-10" />
+      <div class="grid gap-8 md:grid-cols-2 max-w-5xl" data-reveal-group>
+        <article class="rounded-2xl ring-1 ring-[var(--color-border)] bg-white p-7 sm:p-8" data-reveal>
+          <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">Le fabricant</p>
+          <h2 class="mt-3 text-[1.4rem]">MéO, créateur de la fenêtre bois-aluminium</h2>
+          <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+            Né en 1976 à Clisson, le fabricant invente le concept bois-aluminium en 1983 et s'y
+            consacre entièrement depuis les années 2000. Filiale du groupe familial vendéen
+            Liébot depuis 1990, MéO fabrique à Cugand, sur un site de 15 hectares, toute une
+            gamme de menuiseries extérieures sur mesure : fenêtres et portes-fenêtres, baies
+            coulissantes, portes d'entrée, verrières et murs rideaux.
+          </p>
+          <a href="https://www.fenetremeo.com/" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-1.5 text-[14px] font-medium text-[var(--color-accent)] hover:underline underline-offset-4">
+            fenetremeo.com
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
+          </a>
+        </article>
+        <article class="rounded-2xl ring-1 ring-[var(--color-border)] bg-white p-7 sm:p-8" data-reveal>
+          <p class="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">L'installateur</p>
+          <h2 class="mt-3 text-[1.4rem]">Fenêtres sur Loir, Menuisier d'Excellence</h2>
+          <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+            MéO ne vend pas aux particuliers : ses menuiseries sont posées par des professionnels
+            installateurs. Fenêtres sur Loir fait partie du Club des Menuisiers d'Excellence, le
+            réseau des partenaires que le fabricant reconnaît pour leur maîtrise de ses produits.
+            Nos équipes salariées conseillent, mesurent et posent, dans tout le Maine-et-Loire,
+            avec une garantie décennale et la certification RGE Qualibat.
+          </p>
+          <a href="/entreprise/notre-histoire/" class="mt-5 inline-flex items-center gap-1.5 text-[14px] font-medium text-[var(--color-accent)] hover:underline underline-offset-4">
+            Notre histoire depuis 2003
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
+          </a>
+        </article>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Chiffres animés -->
+  <section class="section-tight bg-[var(--color-tint)]" data-count-section>
+    <Container width="wide">
+      <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-10" data-reveal-group>
+        {chiffres.map((c) => (
+          <li data-reveal>
+            <p class="font-display text-[clamp(2rem,3.4vw,2.75rem)] leading-none font-bold text-[var(--color-fg)]">
+              {c.prefix ?? ""}<span data-count data-target={c.target}>{c.target}</span>{c.suffix ?? ""}
+            </p>
+            <p class="mt-3 text-[13px] text-[var(--color-muted)] leading-snug">{c.label}</p>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
+
+  <!-- Le concept : pourquoi deux matériaux -->
+  <section class="section">
+    <Container width="wide">
+      <div class="grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
+        <div data-reveal>
+          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">Le concept bois-aluminium</p>
+          <h2 class="text-balance">Pourquoi ne choisir qu'un seul matériau ?</h2>
+          <div class="prose-fsl mt-5">
+            <p>
+              Le bois isole mieux que tout autre matériau de menuiserie, mais il demande un
+              entretien régulier dès qu'il est exposé à la pluie et au soleil. L'aluminium ne
+              bouge pas, ne se repeint pas, mais il conduit le froid. MéO a tranché en 1983 :
+              chaque matériau là où il est le meilleur.
+            </p>
+            <p>
+              Une menuiserie MéO n'est pas une fenêtre en bois habillée d'une tôle. Ce sont
+              <strong>deux structures complètes</strong>, l'une en bois côté pièce, l'autre en
+              aluminium côté façade, assemblées par plots. La lame d'air qui les sépare coupe
+              le pont thermique et laisse l'aluminium se dilater sans contraindre le bois.
+            </p>
+            <p>
+              Le résultat se lit sur la fenêtre : le bois que vous touchez, la teinte que voient
+              vos voisins, et des performances mesurées par des organismes indépendants.
+            </p>
+          </div>
+        </div>
+        <figure data-reveal style="--reveal-delay: 120">
+          <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)] bg-white">
+            <Image
+              src={profilImg}
+              alt="Illustration : angle de menuiserie bois-aluminium vu en écorché, structure en bois à l'intérieur, capotage aluminium anthracite à l'extérieur fixé par plots, double vitrage"
+              widths={[600, 900, 1400, 1800]}
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+              quality={82}
+              class="w-full h-auto"
+            />
+          </div>
+          <figcaption class="mt-3 text-[13px] text-[var(--color-muted)]">
+            Vue d'artiste d'un angle de menuiserie bois-aluminium : bois à l'intérieur, capotage
+            aluminium à l'extérieur, plots d'assemblage, double vitrage. Illustration non
+            contractuelle, le schéma ci-dessous détaille chaque couche.
+          </figcaption>
+        </figure>
+      </div>
+    </Container>
+  </section>
+
+  <!-- La coupe animée au défilement -->
+  <section id="coupe" class="section bg-[var(--color-subtle)] scroll-mt-20" data-coupe>
+    <Container width="wide">
+      <div class="max-w-3xl mb-10 lg:mb-14" data-reveal>
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">La fenêtre en coupe</p>
+        <h2 class="text-balance">Une fenêtre MéO, couche par couche</h2>
+        <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+          Coupe horizontale schématique sur le montant d'une fenêtre à frappe, de l'extérieur
+          (à gauche) vers l'intérieur (à droite). Faites défiler : chaque couche se met en place
+          dans l'ordre où elle travaille. D'après la documentation technique MéO ; schéma de
+          principe, non contractuel.
+        </p>
+      </div>
+
+      <div class="grid gap-8 lg:grid-cols-2 lg:gap-16 items-start">
+        <!-- Scène épinglée -->
+        <div class="meo-coupe-stage lg:sticky" style="top: 96px;">
+          <div class="rounded-2xl bg-white ring-1 ring-[var(--color-border)] p-3 sm:p-5">
+            <svg viewBox="136 0 392 440" role="img" aria-labelledby="meo-coupe-title meo-coupe-desc" class="meo-coupe-svg w-full h-auto mx-auto">
+              <title id="meo-coupe-title">Coupe horizontale schématique d'un montant de fenêtre bois-aluminium MéO</title>
+              <desc id="meo-coupe-desc">De l'extérieur vers l'intérieur : capotage en aluminium, lame d'air et plots d'assemblage, structure en bois du dormant et de l'ouvrant, double vitrage collé au cadre bois avec intercalaire warm-edge, joints d'étanchéité entre dormant et ouvrant, mur.</desc>
+              <defs>
+                <pattern id="meo-pat-bois" width="12" height="12" patternUnits="userSpaceOnUse">
+                  <rect width="12" height="12" fill="#E8CFA3" />
+                  <path d="M0 4 H12 M0 9 H12" stroke="#D6B47F" stroke-width="1" />
+                </pattern>
+                <pattern id="meo-pat-mur" width="12" height="12" patternUnits="userSpaceOnUse">
+                  <rect width="12" height="12" fill="#EEF0F2" />
+                  <path d="M0 12 L12 0" stroke="#C9CCD1" stroke-width="1" />
+                </pattern>
+              </defs>
+
+              <!-- Repères -->
+              <g class="meo-coupe-txt" fill="#6b6b6b">
+                <text x="148" y="34" font-size="12" font-weight="600" letter-spacing="2">EXTÉRIEUR</text>
+                <text x="516" y="34" font-size="12" font-weight="600" letter-spacing="2" text-anchor="end">INTÉRIEUR</text>
+                <path d="M148 44 H240" stroke="#e2e2e2" stroke-width="1" />
+                <path d="M424 44 H516" stroke="#e2e2e2" stroke-width="1" />
+              </g>
+
+              <!-- Mur (toujours affiché) -->
+              <g data-layer="mur">
+                <rect x="150" y="352" width="340" height="88" fill="url(#meo-pat-mur)" stroke="#C9CCD1" />
+                <text x="320" y="402" text-anchor="middle" font-size="12" font-weight="600" letter-spacing="2" fill="#6b6b6b" class="meo-coupe-txt">MUR</text>
+              </g>
+
+              <!-- 1. Bois : dormant et ouvrant -->
+              <g data-layer="bois">
+                <rect x="250" y="290" width="180" height="62" rx="2" fill="url(#meo-pat-bois)" stroke="#B98B55" stroke-width="1.5" />
+                <path d="M270 204 H326 V240 H384 V200 H430 V284 H270 Z" fill="url(#meo-pat-bois)" stroke="#B98B55" stroke-width="1.5" stroke-linejoin="round" />
+                <text x="340" y="326" text-anchor="middle" font-size="11" fill="#7A5A33" class="meo-coupe-txt">dormant</text>
+                <text x="407" y="262" text-anchor="middle" font-size="11" fill="#7A5A33" class="meo-coupe-txt">ouvrant</text>
+              </g>
+
+              <!-- 4. Vitrage -->
+              <g data-layer="vitrage">
+                <rect x="338" y="0" width="34" height="236" fill="#EEF7FD" />
+                <rect x="330" y="0" width="8" height="236" fill="#CFE7F8" stroke="#4f9bd6" stroke-width="1" />
+                <rect x="372" y="0" width="8" height="236" fill="#CFE7F8" stroke="#4f9bd6" stroke-width="1" />
+                <path d="M338 6 V222" stroke="#6CB1E6" stroke-width="1.2" stroke-dasharray="3 3" />
+                <rect x="338" y="222" width="34" height="14" fill="#6b6b6b" />
+                <rect x="328" y="236" width="54" height="4" fill="#6CB1E6" />
+              </g>
+
+              <!-- 2. Aluminium -->
+              <g data-layer="alu">
+                <path d="M240 188 H330 V198 H254 V286 H240 Z" fill="#3A3F45" stroke="#22252A" stroke-width="1" stroke-linejoin="round" />
+                <rect x="224" y="288" width="14" height="64" fill="#3A3F45" stroke="#22252A" stroke-width="1" />
+              </g>
+
+              <!-- 3. Plots et lame d'air -->
+              <g data-layer="plots">
+                <rect x="254" y="218" width="16" height="8" rx="2" fill="#1a1b1f" />
+                <rect x="254" y="258" width="16" height="8" rx="2" fill="#1a1b1f" />
+                <rect x="292" y="198" width="8" height="6" rx="1.5" fill="#1a1b1f" />
+                <rect x="238" y="304" width="12" height="8" rx="2" fill="#1a1b1f" />
+                <rect x="238" y="334" width="12" height="8" rx="2" fill="#1a1b1f" />
+                <g class="meo-coupe-hint">
+                  <path d="M212 206 V268" stroke="#6CB1E6" stroke-width="2" stroke-linecap="round" />
+                  <path d="M206 212 L212 204 L218 212 M206 262 L212 270 L218 262" fill="none" stroke="#6CB1E6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <text x="200" y="241" text-anchor="end" font-size="11" fill="#4f9bd6" class="meo-coupe-txt">se dilate</text>
+                  <text x="200" y="254" text-anchor="end" font-size="11" fill="#4f9bd6" class="meo-coupe-txt">librement</text>
+                </g>
+              </g>
+
+              <!-- 5. Joints d'étanchéité -->
+              <g data-layer="joints">
+                <rect x="278" y="282" width="14" height="9" rx="4" fill="#2F3234" />
+                <rect x="404" y="282" width="14" height="9" rx="4" fill="#2F3234" />
+                <rect x="326" y="188" width="5" height="12" rx="2" fill="#2F3234" />
+              </g>
+
+              <!-- 6. Cote de l'ouvrant -->
+              <g data-layer="tout">
+                <path d="M240 148 V160 M430 148 V160 M240 154 H430" stroke="#1a1b1f" stroke-width="1" />
+                <text x="246" y="144" font-size="11" fill="#1a1b1f" class="meo-coupe-txt meo-coupe-halo">ouvrant 67 ou 75 mm</text>
+              </g>
+
+              <!-- Repères numérotés -->
+              <g class="meo-coupe-callouts" font-size="12" font-weight="600">
+                <g data-callout="bois"><path d="M470 320 H434" stroke="#1a1b1f" stroke-width="1" /><circle cx="482" cy="320" r="12" /><text x="482" y="324.5" text-anchor="middle">1</text></g>
+                <g data-callout="alu"><path d="M204 182 L240 190" stroke="#1a1b1f" stroke-width="1" /><circle cx="192" cy="180" r="12" /><text x="192" y="184.5" text-anchor="middle">2</text></g>
+                <g data-callout="plots"><path d="M204 300 L238 308" stroke="#1a1b1f" stroke-width="1" /><circle cx="192" cy="298" r="12" /><text x="192" y="302.5" text-anchor="middle">3</text></g>
+                <g data-callout="vitrage"><path d="M400 70 H382" stroke="#1a1b1f" stroke-width="1" /><circle cx="412" cy="70" r="12" /><text x="412" y="74.5" text-anchor="middle">4</text></g>
+                <g data-callout="joints"><path d="M470 286 H420" stroke="#1a1b1f" stroke-width="1" /><circle cx="482" cy="286" r="12" /><text x="482" y="290.5" text-anchor="middle">5</text></g>
+              </g>
+            </svg>
+
+            <ul class="mt-3 hidden lg:flex flex-wrap gap-2" aria-label="Légende de la coupe">
+              {legende.map((l) => (
+                <li>
+                  <button
+                    type="button"
+                    class="inline-flex items-center gap-2 rounded-full bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] px-3 py-1.5 text-[12px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors"
+                    data-coupe-goto={l.layer}
+                  >
+                    <span class="w-3 h-3 rounded-sm ring-1 ring-black/10" style={`background:${l.couleur}`} aria-hidden="true"></span>
+                    {l.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Étapes -->
+        <ol class="meo-coupe-steps">
+          {coupe.map((c, i) => (
+            <li class="meo-coupe-step" data-coupe-step={c.layer}>
+              <div class="flex items-start gap-4">
+                <span class="meo-coupe-num shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full ring-1 ring-[var(--color-border)] bg-white font-display text-[15px] font-bold text-[var(--color-fg)]">
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 class="text-[1.25rem] leading-snug">{c.titre}</h3>
+                  <p class="mt-3 text-[15px] leading-relaxed text-[var(--color-muted)]">{c.texte}</p>
+                  <p class="mt-3 text-[12px] font-semibold tracking-[0.08em] uppercase text-[var(--color-accent)]">{c.detail}</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <p class="mt-10 max-w-3xl text-[13px] text-[var(--color-muted)]" data-reveal>
+        Sources : MéO, fiche « Fenêtres bois-aluminium » (concept produit et caractéristiques
+        techniques de la fenêtre à frappe double vitrage, 2 vantaux en pin au format Acotherm),
+        pages « L'alliance bois-aluminium » et « Qu'est-ce que l'effet bilame ? », relevées le
+        12 octobre 2026 sur fenetremeo.com.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Avantages -->
+  <section class="section">
+    <Container width="wide">
+      <div class="max-w-3xl mb-10" data-reveal>
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">Ce que cela change</p>
+        <h2 class="text-balance">Six raisons de choisir le bois-aluminium MéO</h2>
+      </div>
+      <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+        {avantages.map((a, i) => (
+          <li class="rounded-2xl ring-1 ring-[var(--color-border)] bg-white p-6 sm:p-7" data-reveal>
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[var(--color-tint)] font-display text-[14px] font-bold text-[var(--color-fg)]">{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="mt-4 text-[1.15rem]">{a.titre}</h3>
+            <p class="mt-2.5 text-[14.5px] leading-relaxed text-[var(--color-muted)]">{a.texte}</p>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
+
+  <!-- Gamme -->
+  <section class="section bg-[var(--color-subtle)]">
+    <Container width="wide">
+      <div class="max-w-3xl mb-12" data-reveal>
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">La gamme MéO</p>
+        <h2 class="text-balance">Toute la menuiserie extérieure d'une maison, dans les mêmes matériaux</h2>
+        <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+          Fenêtres, baies, portes d'entrée et verrières partagent les mêmes essences, les mêmes
+          finitions et les mêmes teintes : vous accordez toutes les ouvertures d'une façade.
+        </p>
+      </div>
+
+      <div class="space-y-16 lg:space-y-24">
+        <!-- Fenêtres -->
+        <article class="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
+          <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]" data-reveal>
+            <Image src={facadeImg} alt="Illustration : maison en tuffeau et ardoise équipée de fenêtres bois-aluminium à capotage anthracite" widths={[600, 900, 1400, 1800]} sizes="(max-width: 1024px) 100vw, 45vw" loading="lazy" decoding="async" format="webp" quality={80} class="w-full h-auto aspect-[4/3] object-cover" />
+          </div>
+          <div data-reveal style="--reveal-delay: 120">
+            <h3 class="text-[1.5rem]">Fenêtres et portes-fenêtres à frappe</h3>
+            <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+              Ouverture à la française, oscillo-battante, à soufflet ou avec entrebâilleur.
+              Rectangle, plein cintre, cintre surbaissé, anse de panier, triangle, trapèze ou
+              circulaire. Petits-bois en applique (aluminium dehors, bois dedans, 18 ou 26 mm)
+              ou intégrés au vitrage (10 mm, blanc, laiton ou plomb). Entrées d'air standard,
+              hygroréglables ou acoustiques. Volet roulant intégré en bloc-baie, à enroulement
+              intérieur ou extérieur, ou brise-soleil à lames orientables.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href="/fenetres-bois-alu-angers/" class="inline-flex items-center rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-[13px] font-medium text-white hover:bg-[var(--color-accent-hover)] transition-colors">Fenêtres bois-alu à Angers</a>
+              <a href="/solutions/portes-fenetres/fenetres/" class="inline-flex items-center rounded-full ring-1 ring-[var(--color-border)] bg-white px-5 py-2.5 text-[13px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors">Toutes nos fenêtres</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Baies -->
+        <article class="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
+          <div class="lg:order-2 rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]" data-reveal>
+            <Image src={baieImg} alt="Illustration : baie coulissante bois-aluminium vue de l'intérieur, cadre en pin clair ouvert sur une terrasse" widths={[600, 900, 1400, 1800]} sizes="(max-width: 1024px) 100vw, 45vw" loading="lazy" decoding="async" format="webp" quality={80} class="w-full h-auto aspect-[4/3] object-cover" />
+          </div>
+          <div class="lg:order-1" data-reveal style="--reveal-delay: 120">
+            <h3 class="text-[1.5rem]">Baies coulissantes</h3>
+            <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+              De 2 à 6 vantaux sur 2 ou 3 rails, ou à galandage pour effacer les vantaux dans le
+              mur. La poignée intuitive ouvre et ferme la baie dès qu'elle est à 20°, et un
+              profil de tirage extérieur permet de la manœuvrer depuis la terrasse. Motorisation
+              possible, conçue avec Somfy. L'assemblage par plots laisse l'aluminium se dilater
+              sans déformer l'ouvrant : les teintes foncées sont possibles plein sud.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href="/solutions/portes-fenetres/baies-vitrees/" class="inline-flex items-center rounded-full ring-1 ring-[var(--color-border)] bg-white px-5 py-2.5 text-[13px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors">Nos baies vitrées</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Portes d'entrée : vue extérieure / vue intérieure -->
+        <article class="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
+          <div class="grid grid-cols-2 gap-3 sm:gap-4" data-reveal-group>
+            <figure data-reveal>
+              <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+                <Image src={porteExt} alt="Porte d'entrée bois-aluminium MéO vue de l'extérieur : face aluminium anthracite avec insert bois" widths={[400, 700, 1000]} sizes="(max-width: 1024px) 50vw, 22vw" loading="lazy" decoding="async" format="webp" quality={80} class="w-full h-auto aspect-[4/5] object-cover" />
+              </div>
+              <figcaption class="mt-2 text-[12px] font-semibold tracking-[0.08em] uppercase text-[var(--color-muted)]">Dehors : aluminium</figcaption>
+            </figure>
+            <figure data-reveal>
+              <div class="rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]">
+                <Image src={porteInt} alt="Porte d'entrée bois-aluminium MéO vue de l'intérieur : face en bois clair" widths={[400, 700, 1000]} sizes="(max-width: 1024px) 50vw, 22vw" loading="lazy" decoding="async" format="webp" quality={80} class="w-full h-auto aspect-[4/5] object-cover" />
+              </div>
+              <figcaption class="mt-2 text-[12px] font-semibold tracking-[0.08em] uppercase text-[var(--color-muted)]">Dedans : bois</figcaption>
+            </figure>
+          </div>
+          <div data-reveal style="--reveal-delay: 120">
+            <h3 class="text-[1.5rem]">Portes d'entrée</h3>
+            <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+              82 modèles au catalogue, pleins, vitrés ou semi-vitrés, droits ou cintrés, répartis
+              en dix gammes, de la plus contemporaine (Inspiration, Utopie) à la plus classique
+              (Légende, Originel). Serrure multipoints, verrous jusqu'à trois points et rosace de
+              sécurité. Vous composez votre porte sur le configurateur MéO, nous prenons les
+              mesures chez vous. En 2025, MéO nous a décerné le Trophée d'or de la meilleure
+              vente de portes d'entrée.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href="/solutions/portes-fenetres/portes-entree/" class="inline-flex items-center rounded-full ring-1 ring-[var(--color-border)] bg-white px-5 py-2.5 text-[13px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors">Nos portes d'entrée</a>
+              <a href="https://www.fenetremeo.com/porte-entree/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-[13px] font-medium text-[var(--color-accent)] hover:underline underline-offset-4">
+                Les 82 modèles sur fenetremeo.com
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Verrières et murs rideaux -->
+        <article class="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
+          <div class="lg:order-2 rounded-2xl overflow-hidden ring-1 ring-[var(--color-border)]" data-reveal>
+            <Image src={murRideauImg} alt="Illustration : façade vitrée bois-aluminium vue de l'intérieur, montants en chêne, salle à manger ouverte sur un jardin" widths={[600, 900, 1400, 1800]} sizes="(max-width: 1024px) 100vw, 45vw" loading="lazy" decoding="async" format="webp" quality={80} class="w-full h-auto aspect-[4/3] object-cover" />
+          </div>
+          <div class="lg:order-1" data-reveal style="--reveal-delay: 120">
+            <h3 class="text-[1.5rem]">Verrières, vérandas et murs rideaux</h3>
+            <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+              Trois familles : Horizon pour les façades vitrées, Espace pour les vérandas et
+              verrières, Ciel pour les puits de lumière. Montants en épicéa ou en chêne, 6
+              finitions intérieures et 26 teintes d'aluminium. Vitrages à contrôle solaire,
+              autonettoyants en toiture ou de protection des personnes. Le bureau d'études MéO
+              valide la faisabilité et chiffre le projet avec une projection en 3D.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href="/solutions/confort-interieur/verrieres/" class="inline-flex items-center rounded-full ring-1 ring-[var(--color-border)] bg-white px-5 py-2.5 text-[13px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors">Nos verrières</a>
+              <a href="/solutions/confort-interieur/murs-de-lumiere/" class="inline-flex items-center rounded-full ring-1 ring-[var(--color-border)] bg-white px-5 py-2.5 text-[13px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors">Murs de lumière</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Finitions et teintes -->
+  <section class="section">
+    <Container width="wide">
+      <div class="max-w-3xl mb-10" data-reveal>
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">Ce que vous choisissez</p>
+        <h2 class="text-balance">Deux essences, 13 finitions, 28 teintes</h2>
+        <p class="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+          Les couleurs ci-dessous sont des repères d'écran. Le nuancier réel, les échantillons de
+          bois et les vitrages se comparent dans notre showroom de Seiches-sur-le-Loir.
+        </p>
+      </div>
+
+      <div class="grid gap-10 lg:grid-cols-[2fr_3fr]">
+        <div data-reveal>
+          <h3 class="text-[1.2rem]">Le bois, à l'intérieur</h3>
+          <p class="mt-2 text-[14px] text-[var(--color-muted)]">Pin ou chêne, lasure en phase aqueuse. La finition pin blanc peut être peinte.</p>
+          <p class="mt-5 text-[12px] font-semibold tracking-[0.12em] uppercase text-[var(--color-fg)]">Pin · 7 finitions</p>
+          <ul class="mt-2 flex flex-wrap gap-2" data-reveal-group>
+            {boisPin.map(([nom, hex]) => (
+              <li class="inline-flex items-center gap-2 rounded-full ring-1 ring-[var(--color-border)] bg-white pl-1.5 pr-3 py-1 text-[13px]" data-reveal>
+                <span class="w-6 h-6 rounded-full ring-1 ring-black/10" style={`background:${hex}`} aria-hidden="true"></span>{nom}
+              </li>
+            ))}
+          </ul>
+          <p class="mt-5 text-[12px] font-semibold tracking-[0.12em] uppercase text-[var(--color-fg)]">Chêne · 6 finitions</p>
+          <ul class="mt-2 flex flex-wrap gap-2" data-reveal-group>
+            {boisChene.map(([nom, hex]) => (
+              <li class="inline-flex items-center gap-2 rounded-full ring-1 ring-[var(--color-border)] bg-white pl-1.5 pr-3 py-1 text-[13px]" data-reveal>
+                <span class="w-6 h-6 rounded-full ring-1 ring-black/10" style={`background:${hex}`} aria-hidden="true"></span>{nom}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div data-reveal style="--reveal-delay: 100">
+          <h3 class="text-[1.2rem]">L'aluminium, à l'extérieur</h3>
+          <p class="mt-2 text-[14px] text-[var(--color-muted)]">Thermolaquage certifié Qualimarine. Aspect satiné, texturé, sablé, anodisé ou ton bois.</p>
           {[
-            { src: meoGal1, alt: "Baies vitrées bois-alu MéO à Angers" },
-            { src: meoGal2, alt: "Fenêtres double vitrage MéO à Seiches-sur-le-Loir" },
-            { src: meoGal3, alt: "Porte d'entrée bois MéO sur mesure à Durtal" },
-          ].map((g) => (
-            <Image src={g.src} alt={g.alt} widths={[300, 500]} sizes="(max-width: 768px) 33vw, 220px" loading="lazy" decoding="async" format="webp" quality={78} class="rounded-xl ring-1 ring-[var(--color-border)] w-full h-auto aspect-[4/3] object-cover" />
+            ["Satinées", aluSatine],
+            ["Texturées", aluTexture],
+            ["Sablées", aluSable],
+            ["Anodisé et ton bois", aluAutres],
+          ].map(([groupe, teintes]) => (
+            <>
+              <p class="mt-5 text-[12px] font-semibold tracking-[0.12em] uppercase text-[var(--color-fg)]">{groupe as string}</p>
+              <ul class="mt-2 grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-6 xl:grid-cols-8 gap-2" data-reveal-group>
+                {(teintes as string[][]).map(([nom, hex]) => (
+                  <li class="text-center" data-reveal>
+                    <span class="block aspect-square rounded-xl ring-1 ring-black/10" style={`background:${hex}`} aria-hidden="true"></span>
+                    <span class="mt-1.5 block text-[11px] leading-tight text-[var(--color-muted)]">{nom}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
           ))}
         </div>
-        <p class="mt-4 text-[15px] text-[var(--color-muted)]">
-          <a href="/realisations/" class="text-[var(--color-accent)] underline underline-offset-4">Voir toutes nos réalisations →</a>
-        </p>
       </div>
     </Container>
   </section>
 
-  <section class="pb-20">
+  <!-- Performances et entretien -->
+  <section class="section bg-[var(--color-subtle)]">
     <Container width="default">
-      <div class="max-w-3xl mx-auto rounded-2xl bg-[var(--color-tint)] p-8 text-center">
-        <p class="text-[15px] text-[var(--color-muted)] leading-relaxed mb-6">
-          Venez découvrir les gammes MéO dans notre <strong class="text-[var(--color-fg)]">showroom de 300 m² à Seiches-sur-le-Loir</strong>. Nos conseillers vous accompagnent dans la conception de votre projet sur mesure.
-        </p>
-        <a href="/contact/" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
-          Demander un devis gratuit
-        </a>
+      <div class="grid gap-12 lg:grid-cols-[3fr_2fr] lg:gap-16 items-start">
+        <div data-reveal>
+          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">Mesuré, pas promis</p>
+          <h2 class="text-balance">Les performances publiées par MéO</h2>
+          <div class="prose-fsl mt-4">
+            <table>
+              <thead>
+                <tr>
+                  <th>Caractéristique</th>
+                  <th>Fenêtre à frappe</th>
+                  <th>Baie coulissante</th>
+                </tr>
+              </thead>
+              <tbody>
+                {performances.map(([nom, fen, baie]) => (
+                  <tr>
+                    <td>{nom}</td>
+                    <td>{fen}</td>
+                    <td>{baie}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p class="text-sm">
+              Double vitrage 4/20/TBE 4, menuiseries 2 vantaux en pin aux formats Acotherm
+              (fenêtre : H 1,48 × L 1,53 m pour le thermique, 1,45 m pour l'acoustique ; baie :
+              H 2,18 × L 2,35 m et 1,85 m). En triple vitrage, la fenêtre 1 vantail atteint Uw 0,7.
+              Source : fenetremeo.com, 12 octobre 2026. Les performances de votre projet figurent
+              sur le devis.
+            </p>
+            <p class="text-sm">
+              Pour lire ces coefficients : Uw mesure l'isolation (plus il est bas, mieux c'est),
+              Sw la part de chaleur solaire transmise, TLw la part de lumière transmise, le
+              classement A*E*V* l'étanchéité à l'air, à l'eau et au vent.
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-white ring-1 ring-[var(--color-border)] p-7 sm:p-8" data-reveal style="--reveal-delay: 120">
+          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">Au quotidien</p>
+          <h2 class="text-[1.4rem]">L'entretien, en deux lignes</h2>
+          <dl class="mt-5 space-y-5">
+            <div>
+              <dt class="font-semibold text-[var(--color-fg)]">À l'intérieur, le bois</dt>
+              <dd class="mt-1 text-[14.5px] leading-relaxed text-[var(--color-muted)]">Un dépoussiérage au chiffon doux. Le bois est traité et lasuré en usine : rien à refaire.</dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-[var(--color-fg)]">À l'extérieur, l'aluminium</dt>
+              <dd class="mt-1 text-[14.5px] leading-relaxed text-[var(--color-muted)]">De l'eau claire, un savon doux, une éponge non abrasive. Ni peinture ni lasure côté façade.</dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-[var(--color-fg)]">Le guide MéO</dt>
+              <dd class="mt-1 text-[14.5px] leading-relaxed text-[var(--color-muted)]">Le fabricant publie un guide d'entretien complet sur ses fiches produits ; nous vous le remettons à la fin du chantier.</dd>
+            </div>
+          </dl>
+        </div>
       </div>
     </Container>
   </section>
+
+  <!-- Menuisier d'Excellence -->
+  <section class="section bg-[var(--color-fg)] text-white">
+    <Container width="wide">
+      <div class="grid gap-12 lg:grid-cols-[2fr_3fr] lg:gap-16 items-start">
+        <div data-reveal>
+          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">Le Club des Menuisiers d'Excellence</p>
+          <h2 class="text-white text-balance">Une marque qui choisit qui la pose</h2>
+          <p class="mt-4 text-[15px] leading-relaxed text-white/80">
+            Fondé par MéO en 2012, le Club réunit les installateurs que le fabricant reconnaît
+            pour leur expertise, la qualité de leur pose et leur service après-vente. Pour vous,
+            c'est la garantie que la fenêtre est posée par des équipes formées à ses produits,
+            et l'accès à l'extension de garantie gratuite du fabricant.
+          </p>
+          <ul class="mt-8 flex flex-wrap items-end gap-8" aria-label="Trophées d'or MéO 2025 décernés à Fenêtres sur Loir">
+            <li>
+              <Image src={tropheePortes} alt="Trophée d'or MéO 2025, meilleure vente de portes d'entrée, décerné à Fenêtres sur Loir" widths={[300, 600]} sizes="260px" loading="lazy" decoding="async" format="webp" quality={90} class="h-16 sm:h-20 w-auto object-contain" />
+            </li>
+            <li>
+              <Image src={tropheePerformance} alt="Trophée d'or MéO 2025, meilleure performance, décerné à Fenêtres sur Loir" widths={[300, 600]} sizes="260px" loading="lazy" decoding="async" format="webp" quality={90} class="h-16 sm:h-20 w-auto object-contain" />
+            </li>
+          </ul>
+          <p class="mt-4 text-[13px] text-white/60">
+            En 2025, MéO a décerné à Fenêtres sur Loir deux Trophées d'or : meilleure vente de
+            portes d'entrée et meilleure performance.
+          </p>
+        </div>
+        <ul class="grid gap-4 sm:grid-cols-2" data-reveal-group>
+          {engagements.map(([t, d]) => (
+            <li class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5" data-reveal>
+              <p class="font-semibold text-white">{t}</p>
+              <p class="mt-1.5 text-[14px] leading-relaxed text-white/70">{d}</p>
+            </li>
+          ))}
+          <li class="rounded-2xl bg-[var(--color-accent)]/15 ring-1 ring-[var(--color-accent)]/40 p-5 sm:col-span-2" data-reveal>
+            <p class="font-semibold text-white">Et chez Fenêtres sur Loir</p>
+            <p class="mt-1.5 text-[14px] leading-relaxed text-white/80">
+              Pose par nos équipes salariées, sans sous-traitance, couverte par notre garantie
+              décennale. Certification RGE Qualibat pour mobiliser les aides à la rénovation.
+              Devis gratuit sous 48 h après prise de mesures à domicile. Toute la gamme MéO à
+              comparer dans notre showroom de 300 m² à Seiches-sur-le-Loir.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ : même source que le FAQPage JSON-LD -->
+  <section class="section-tight">
+    <Container width="default">
+      <div class="prose-fsl max-w-3xl mx-auto">
+        <h2>MéO et le bois-aluminium : vos questions</h2>
+        {faq.map((f) => (
+          <div data-reveal>
+            <h3>{f.question}</h3>
+            <p>{f.reponse}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Transmettre cette page -->
+  <section class="section-tight meo-no-print" id="transmettre">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto rounded-2xl bg-[var(--color-tint)] p-7 sm:p-9" data-reveal data-share>
+        <p class="mb-2 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">À garder sous la main</p>
+        <h2 class="text-[1.4rem]">Transmettre cette page</h2>
+        <p class="mt-3 text-[15px] leading-relaxed text-[var(--color-muted)]">
+          Vous hésitez encore, ou vous voulez en parler à la maison ? Envoyez-vous cette page,
+          partagez-la ou imprimez-la : le schéma, les performances et les finitions y restent lisibles.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <button type="button" data-share-copy class="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-[13px] font-medium text-white hover:bg-[var(--color-accent-hover)] transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
+            <span data-share-copy-label>Copier le lien</span>
+          </button>
+          <a href={`mailto:?subject=${partageSujet}&body=${partageCorps}`} class="inline-flex items-center gap-2 rounded-full ring-1 ring-[var(--color-border)] bg-white px-5 py-2.5 text-[13px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 7 10 7 10-7" /></svg>
+            Envoyer par e-mail
+          </a>
+          <a href={`https://wa.me/?text=${partageWhatsapp}`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full ring-1 ring-[var(--color-border)] bg-white px-5 py-2.5 text-[13px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-4-1L3 21l2.1-4.6A8.4 8.4 0 1 1 21 11.5Z" /></svg>
+            Partager sur WhatsApp
+          </a>
+          <button type="button" data-share-print class="inline-flex items-center gap-2 rounded-full ring-1 ring-[var(--color-border)] bg-white px-5 py-2.5 text-[13px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9" /><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /><rect x="6" y="14" width="12" height="8" /></svg>
+            Imprimer
+          </button>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <ConseilsLies
+    slugs={["fenetre-pvc-alu-bois-alu", "double-ou-triple-vitrage", "isolation-phonique-fenetre"]}
+    titre="Pour aller plus loin"
+  />
+
+  <CTASection
+    eyebrow="Votre projet"
+    title="Voir, toucher, comparer : parlons de vos menuiseries MéO"
+    text="Prise de mesures à domicile, choix des essences et des teintes au showroom de Seiches-sur-le-Loir, devis gratuit sous 48 h, pose par nos équipes salariées."
+    secondaryLabel="Fenêtres bois-alu à Angers"
+    secondaryHref="/fenetres-bois-alu-angers/"
+  />
 </BaseLayout>
+
+<style is:global>
+  /* Fil d'Ariane posé dans le hero sombre */
+  .meo-hero .meo-hero-crumb ol,
+  .meo-hero .meo-hero-crumb a,
+  .meo-hero .meo-hero-crumb span {
+    color: rgba(255, 255, 255, 0.72) !important;
+  }
+  .meo-hero .meo-hero-crumb a:hover,
+  .meo-hero .meo-hero-crumb [aria-current="page"] {
+    color: #fff !important;
+  }
+
+  /* Hero : titre, texte et boutons montent à l'arrivée */
+  @media (prefers-reduced-motion: no-preference) {
+    .meo-hero [data-rise] {
+      animation: meo-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      animation-delay: calc(120ms + var(--rise, 0) * 110ms);
+    }
+    @keyframes meo-rise {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+
+  /* Coupe animée */
+  .meo-coupe-svg text {
+    font-family: var(--font-body);
+  }
+  .meo-coupe-halo {
+    paint-order: stroke;
+    stroke: #fff;
+    stroke-width: 4px;
+    stroke-linejoin: round;
+  }
+  .meo-coupe-svg [data-layer] {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+      filter 0.4s ease;
+  }
+  .meo-coupe-svg [data-layer].is-active {
+    filter: drop-shadow(0 0 7px rgba(108, 177, 230, 0.85));
+  }
+  .meo-coupe-svg [data-layer="plots"] .meo-coupe-hint {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .meo-coupe-svg [data-layer="plots"].is-active .meo-coupe-hint {
+    opacity: 1;
+  }
+  .meo-coupe-svg [data-callout] {
+    transition: opacity 0.5s ease;
+  }
+  .meo-coupe-svg [data-callout] circle {
+    fill: #fff;
+    stroke: #1a1b1f;
+    stroke-width: 1.2;
+    transition: fill 0.3s ease, stroke 0.3s ease;
+  }
+  .meo-coupe-svg [data-callout] text {
+    fill: #1a1b1f;
+    transition: fill 0.3s ease;
+  }
+  .meo-coupe-svg [data-callout].is-active circle {
+    fill: var(--color-accent);
+    stroke: var(--color-accent);
+  }
+  .meo-coupe-svg [data-callout].is-active text {
+    fill: #fff;
+  }
+  /* États « pas encore posé » : seulement avec JavaScript */
+  [data-coupe][data-js] .meo-coupe-svg [data-layer]:not([data-layer="mur"]):not(.is-built) {
+    opacity: 0.12;
+  }
+  [data-coupe][data-js] .meo-coupe-svg [data-callout]:not(.is-built) {
+    opacity: 0;
+  }
+  /* Joints et cote : invisibles tant qu'ils ne sont pas posés (même
+     spécificité que la règle générale ci-dessus, déclarés après). */
+  [data-coupe][data-js] .meo-coupe-svg [data-layer="joints"]:not([data-layer="mur"]):not(.is-built),
+  [data-coupe][data-js] .meo-coupe-svg [data-layer="tout"]:not([data-layer="mur"]):not(.is-built) {
+    opacity: 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    [data-coupe][data-js] .meo-coupe-svg [data-layer="alu"]:not(.is-built) {
+      transform: translateX(-70px);
+    }
+    [data-coupe][data-js] .meo-coupe-svg [data-layer="plots"]:not(.is-built) {
+      transform: scale(0.6);
+    }
+    [data-coupe][data-js] .meo-coupe-svg [data-layer="vitrage"]:not(.is-built) {
+      transform: translateY(-60px);
+    }
+  }
+
+  .meo-coupe-stage {
+    z-index: 1;
+  }
+  @media (max-width: 1023px) {
+    /* Scène épinglée sous le header ; `top` est mesuré en JS (hauteur réelle
+       du header), 84px en secours. */
+    .meo-coupe-stage {
+      position: sticky;
+      top: 84px;
+      background: var(--color-subtle);
+      padding-bottom: 0.5rem;
+    }
+    .meo-coupe-stage .meo-coupe-svg {
+      max-height: 34vh;
+    }
+  }
+  .meo-coupe-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding-block: 1rem 2rem;
+  }
+  .meo-coupe-step {
+    transition: opacity 0.45s ease;
+  }
+  @media (min-width: 1024px) {
+    /* La scène tient sous le header (top 96 px) : SVG limité en hauteur, la
+       liste garde de l'air en bas pour que la scène reste visible quand la
+       dernière étape est au centre de l'écran. */
+    .meo-coupe-stage .meo-coupe-svg {
+      width: auto;
+      max-width: 100%;
+      max-height: min(640px, calc(100vh - 270px));
+    }
+    .meo-coupe-steps {
+      gap: 0;
+      padding-block: 0 24vh;
+    }
+    .meo-coupe-step {
+      min-height: 58vh;
+      display: flex;
+      align-items: center;
+      padding-block: 2rem;
+    }
+    .meo-coupe-step:first-child {
+      min-height: 46vh;
+      align-items: flex-start;
+    }
+    .meo-coupe-step:last-child {
+      min-height: 46vh;
+    }
+  }
+  [data-coupe][data-js] .meo-coupe-step {
+    opacity: 0.38;
+  }
+  [data-coupe][data-js] .meo-coupe-step.is-active {
+    opacity: 1;
+  }
+  .meo-coupe-step.is-active .meo-coupe-num {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+  }
+
+  /* Impression : page lisible, sans navigation ni éléments flottants, coupe complète */
+  @media print {
+    [data-topbar],
+    header[data-header],
+    footer,
+    [data-devis-popup],
+    [data-annonce],
+    .fixed,
+    .meo-no-print {
+      display: none !important;
+    }
+    .meo-hero {
+      margin-top: 0 !important;
+      min-height: 0 !important;
+      color: #000 !important;
+      background: #fff !important;
+    }
+    .meo-hero [data-parallax-img],
+    .meo-hero .absolute {
+      display: none !important;
+    }
+    .meo-hero h1,
+    .meo-hero p,
+    .meo-hero li {
+      color: #000 !important;
+      text-shadow: none !important;
+    }
+    .meo-hero img {
+      filter: invert(1) !important;
+    }
+    .meo-hero [data-rise],
+    .meo-coupe-svg [data-layer],
+    .meo-coupe-svg [data-callout],
+    .meo-coupe-step {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+    }
+    .meo-coupe-stage {
+      position: static !important;
+    }
+    .meo-coupe-step {
+      min-height: 0 !important;
+      break-inside: avoid;
+    }
+    .section,
+    .section-tight {
+      padding-block: 1.5rem !important;
+    }
+  }
+</style>
+
+<script>
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Apparition au défilement (data-reveal / data-reveal-group)
+  {
+    const groups = document.querySelectorAll<HTMLElement>("[data-reveal-group]");
+    for (const g of groups) {
+      const kids = g.querySelectorAll<HTMLElement>(":scope > * [data-reveal], :scope > [data-reveal]");
+      kids.forEach((el, i) => {
+        if (!el.style.getPropertyValue("--reveal-delay")) el.style.setProperty("--reveal-delay", String(Math.min(i, 12) * 80));
+      });
+    }
+    const targets = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    if ("IntersectionObserver" in window && targets.length) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add("is-in");
+              io.unobserve(e.target);
+            }
+          }
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+      );
+      targets.forEach((t) => io.observe(t));
+    } else {
+      targets.forEach((t) => t.classList.add("is-in"));
+    }
+  }
+
+  // Parallaxe douce de l'image du hero
+  {
+    const img = document.querySelector<HTMLElement>("[data-parallax-img]");
+    if (img && !reduced) {
+      let ticking = false;
+      const apply = () => {
+        ticking = false;
+        const y = Math.min(window.scrollY, window.innerHeight);
+        img.style.transform = `translate3d(0, ${(y * 0.22).toFixed(1)}px, 0) scale(1.08)`;
+      };
+      img.style.transform = "scale(1.08)";
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(apply);
+        },
+        { passive: true },
+      );
+    }
+  }
+
+  // Chiffres qui se comptent
+  {
+    const section = document.querySelector<HTMLElement>("[data-count-section]");
+    if (section) {
+      const counters = section.querySelectorAll<HTMLElement>("[data-count]");
+      const animate = (el: HTMLElement, target: number, duration = 1500) => {
+        if (reduced) {
+          el.textContent = String(target);
+          return;
+        }
+        const start = performance.now();
+        const step = (now: number) => {
+          const t = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - t, 3);
+          el.textContent = String(Math.round(target * eased));
+          if (t < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            counters.forEach((el) => animate(el, Number(el.dataset.target ?? 0)));
+            io.disconnect();
+          }
+        },
+        { threshold: 0.35 },
+      );
+      io.observe(section);
+    }
+  }
+
+  // Coupe animée : l'étape au centre de l'écran pose sa couche
+  {
+    const root = document.querySelector<HTMLElement>("[data-coupe]");
+    if (root) {
+      const steps = Array.from(root.querySelectorAll<HTMLElement>("[data-coupe-step]"));
+      const layers = Array.from(root.querySelectorAll<SVGGElement>("[data-layer]"));
+      const callouts = Array.from(root.querySelectorAll<SVGGElement>("[data-callout]"));
+      const order = steps.map((s) => s.dataset.coupeStep ?? "");
+
+      const setStep = (i: number) => {
+        const current = order[i];
+        const last = i === order.length - 1;
+        steps.forEach((s, k) => s.classList.toggle("is-active", k === i));
+        for (const l of layers) {
+          const name = l.dataset.layer ?? "";
+          if (name === "mur") continue;
+          const idx = order.indexOf(name);
+          const built = idx !== -1 && (idx <= i || last);
+          l.classList.toggle("is-built", built);
+          l.classList.toggle("is-active", name === current && !last);
+        }
+        for (const c of callouts) {
+          const name = c.dataset.callout ?? "";
+          const idx = order.indexOf(name);
+          c.classList.toggle("is-built", idx !== -1 && (idx <= i || last));
+          c.classList.toggle("is-active", name === current);
+        }
+      };
+
+      root.setAttribute("data-js", "");
+      setStep(0);
+
+      // Sous 1024 px, la scène est épinglée en haut : elle doit coller au
+      // header (hauteur mesurée) et l'étape « active » est celle qui passe
+      // dans la zone visible sous la scène, pas au centre de l'écran.
+      const stage = root.querySelector<HTMLElement>(".meo-coupe-stage");
+      const header = document.querySelector<HTMLElement>("header[data-header]");
+      const narrow = () => window.innerWidth < 1024;
+      // Valeur `top` de l'écran large (inline dans le HTML), à restaurer
+      const wideTop = stage?.style.top ?? "";
+      let topTick = false;
+      const placeStage = () => {
+        topTick = false;
+        if (!stage) return;
+        if (narrow()) {
+          const bottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+          stage.style.top = `${Math.round(bottom)}px`;
+        } else {
+          stage.style.top = wideTop;
+        }
+      };
+      // La barre supérieure se montre ou se cache avec une transition selon
+      // le sens du défilement : on remesure aussi une fois la transition finie.
+      let later1 = 0;
+      let later2 = 0;
+      const schedulePlace = () => {
+        if (!narrow()) return;
+        if (!topTick) {
+          topTick = true;
+          requestAnimationFrame(placeStage);
+        }
+        window.clearTimeout(later1);
+        window.clearTimeout(later2);
+        later1 = window.setTimeout(placeStage, 240);
+        later2 = window.setTimeout(placeStage, 520);
+      };
+      placeStage();
+      window.addEventListener("scroll", schedulePlace, { passive: true });
+      window.addEventListener("resize", placeStage);
+
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) setStep(steps.indexOf(e.target as HTMLElement));
+            }
+          },
+          { rootMargin: narrow() ? "-58% 0px -22% 0px" : "-42% 0px -42% 0px", threshold: 0 },
+        );
+        steps.forEach((s) => io.observe(s));
+      } else {
+        setStep(order.length - 1);
+      }
+
+      // Légende cliquable : amène l'étape correspondante au centre
+      root.querySelectorAll<HTMLButtonElement>("[data-coupe-goto]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const target = steps.find((s) => s.dataset.coupeStep === btn.dataset.coupeGoto);
+          target?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+        });
+      });
+    }
+  }
+
+  // Transmettre : copier le lien, imprimer
+  {
+    const box = document.querySelector<HTMLElement>("[data-share]");
+    if (box) {
+      const copyBtn = box.querySelector<HTMLButtonElement>("[data-share-copy]");
+      const label = box.querySelector<HTMLElement>("[data-share-copy-label]");
+      copyBtn?.addEventListener("click", async () => {
+        const url = window.location.origin + window.location.pathname;
+        try {
+          await navigator.clipboard.writeText(url);
+          if (label) label.textContent = "Lien copié";
+        } catch {
+          window.prompt("Copiez ce lien :", url);
+        }
+        window.setTimeout(() => {
+          if (label) label.textContent = "Copier le lien";
+        }, 2200);
+      });
+      box.querySelector<HTMLButtonElement>("[data-share-print]")?.addEventListener("click", () => window.print());
+    }
+  }
+</script>
