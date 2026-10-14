@@ -141,7 +141,7 @@ Une **vibration** ou une résonance pendant la manœuvre vient le plus souvent d
 
 Un moteur tubulaire ne grince pas : quand il fatigue, il **ronronne ou bourdonne plus fort** qu'avant, la montée devient plus lente, et il peut s'arrêter en cours de course par protection thermique. Si ce bruit est nouveau, surtout s'il s'accompagne d'arrêts, c'est l'étape avant la panne : faites-le diagnostiquer. Un moteur qui force parce que les coulisses sont sales s'use prématurément, d'où l'intérêt de commencer par le nettoyage.
 
-Les volets **solaires** ont les mêmes causes de grincement que les électriques. Un bruit différent ou un ralentissement marqué par grand froid n'est pas un défaut : un volet solaire Bubendorff ralentit de lui-même pour protéger sa batterie.
+Les [volets **solaires**](/volets-roulants-solaires-angers/) ont les mêmes causes de grincement que les électriques. Un bruit différent ou un ralentissement marqué par grand froid n'est pas un défaut : un volet solaire Bubendorff ralentit de lui-même pour protéger sa batterie.
 
 ## Volet roulant neuf qui grince : à faire corriger par l'installateur
 

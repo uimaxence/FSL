@@ -479,6 +479,11 @@ const communesToutes: Commune[] = [
         reponse:
           "Oui : depuis Doué-en-Anjou, nous couvrons tout le Saumurois, dont Distré, Varrains, Chacé, Souzay-Champigny, Allonnes, Vivy, Brain-sur-Allonnes, Montreuil-Bellay, Gennes-Val-de-Loire et Longué-Jumelles. Les communes de Montreuil-Bellay et de Gennes-Val-de-Loire disposent de leur propre page.",
       },
+      {
+        question: "Posez-vous des volets roulants solaires à Saumur ?",
+        reponse:
+          "Oui. Point Conseil Bubendorff, nous posons à Saumur et dans le Saumurois des volets roulants solaires, sans câblage ni saignée : le panneau intégré au coffre recharge la batterie du moteur. C'est la solution la plus simple pour remplacer des volets manuels sur les pavillons de Bagneux, du Chemin Vert ou de Saint-Lambert-des-Levées. Dans le centre ancien, l'avis de l'Architecte des Bâtiments de France peut imposer des volets battants : nous vous le disons avant le devis. La pose et le SAV sont assurés depuis notre agence de Doué-en-Anjou, à 18 km.",
+      },
     ],
   },
   {

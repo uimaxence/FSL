@@ -175,7 +175,7 @@ Réinitialiser un volet Bubendorff est sans risque tant que l'on respecte les s�
 - le tablier est **sorti de ses coulisses**, chevauché ou déformé dans le coffre ;
 - le volet est en **hauteur** ou de **grande dimension** : ouvrir un coffre sur une échelle n'est pas un bricolage du dimanche.
 
-Si Fenêtres sur Loir a posé vos volets Bubendorff, notre **SAV** vous guide par téléphone et se déplace depuis Seiches-sur-le-Loir ou Doué-en-Anjou. Pour un volet Bubendorff posé par un autre installateur, nous réalisons un diagnostic à domicile et vous orientons vers la réparation ou, si le volet a fait son temps, vers un remplacement par un [volet roulant solaire ou électrique](/solutions/portes-fenetres/volets/) neuf, garanti 7 ans.
+Si Fenêtres sur Loir a posé vos volets Bubendorff, notre **SAV** vous guide par téléphone et se déplace depuis Seiches-sur-le-Loir ou Doué-en-Anjou. Pour un volet Bubendorff posé par un autre installateur, nous réalisons un diagnostic à domicile et vous orientons vers la réparation ou, si le volet a fait son temps, vers un remplacement par un [volet roulant solaire](/volets-roulants-solaires-angers/) ou [électrique](/solutions/portes-fenetres/volets/) neuf, garanti 7 ans.
 
 ## Un volet Bubendorff bloqué à Angers, Saumur ou Doué-en-Anjou ?
 

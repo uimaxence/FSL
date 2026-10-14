@@ -133,7 +133,7 @@ Un point que l'on oublie au fil des travaux : la **trappe de visite** du coffre 
 
 ## Étape 4 : le panneau d'un volet solaire
 
-Un [volet roulant solaire](/solutions/portes-fenetres/volets/) tire toute son énergie d'un petit panneau photovoltaïque, le plus souvent fixé sur le coffre. Bubendorff demande que ce panneau soit **nettoyé de toutes les salissures et pollutions présentes sur le verre**, et qu'il ne soit **masqué par aucun objet**.
+Un [volet roulant solaire](/volets-roulants-solaires-angers/) tire toute son énergie d'un petit panneau photovoltaïque, le plus souvent fixé sur le coffre. Bubendorff demande que ce panneau soit **nettoyé de toutes les salissures et pollutions présentes sur le verre**, et qu'il ne soit **masqué par aucun objet**.
 
 - Nettoyez le verre à l'**eau claire** avec une éponge douce. Pas de produit abrasif, pas de grattoir.
 - Retirez feuilles, mousses et fientes, qui créent une ombre locale.

@@ -163,7 +163,7 @@ Les volets à commande manuelle des pavillons des années 70 à 90 sont encore t
 - **Manivelle dure ou bloquée** : ne forcez pas. Le tablier est probablement coincé (lame, gel, obstacle) ou le treuil grippé. Descendez d'abord le volet en butée basse pour soulager le mécanisme.
 - **Treuil hors service** : pièce à remplacer.
 
-Ces réparations sont possibles, mais sur un volet de plus de 25 ans, le coût cumulé (treuil, sangle, lames fatiguées) approche vite celui d'un volet neuf motorisé. C'est souvent le bon moment pour passer au **volet solaire** : pas de saignée ni de câblage, une pose en une demi-journée par fenêtre.
+Ces réparations sont possibles, mais sur un volet de plus de 25 ans, le coût cumulé (treuil, sangle, lames fatiguées) approche vite celui d'un volet neuf motorisé. C'est souvent le bon moment pour passer au **[volet solaire](/volets-roulants-solaires-angers/)** : pas de saignée ni de câblage, une pose en une demi-journée par fenêtre.
 
 ## Volet roulant solaire ou Bubendorff bloqué : les cas particuliers
 

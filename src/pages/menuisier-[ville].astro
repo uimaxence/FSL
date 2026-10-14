@@ -75,7 +75,8 @@ const services = [
   },
   {
     label: "Volets & stores",
-    href: "/solutions/portes-fenetres/volets/",
+    // Angers dispose d'une page dédiée aux volets roulants solaires (14/10/2026).
+    href: commune.slug === "angers" ? "/volets-roulants-solaires-angers/" : "/solutions/portes-fenetres/volets/",
     desc: "Volets roulants, battants ou solaires Bubendorff, motorisés et connectés : confort, occultation et sécurité au quotidien.",
   },
   {
@@ -194,6 +195,9 @@ const schema = communeGraph(commune, faqAll);
             </a>. Pour une maison de caractère, voyez aussi nos{" "}
             <a href="/fenetres-bois-alu-angers/" class="font-medium text-[var(--color-accent)] underline underline-offset-4">
               fenêtres bois-alu à Angers
+            </a>. Pour des volets sans câblage ni saignée, lisez notre page{" "}
+            <a href="/volets-roulants-solaires-angers/" class="font-medium text-[var(--color-accent)] underline underline-offset-4">
+              volets roulants solaires à Angers
             </a>.
           </p>
         </div>

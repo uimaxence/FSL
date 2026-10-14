@@ -33,6 +33,7 @@ export const GET: APIRoute = () => {
     ["Portes d'entrée", "/solutions/portes-fenetres/portes-entree/", "Portes d'entrée alu, bois, PVC et bois-alu, serrures multipoints."],
     ["Baies vitrées", "/solutions/portes-fenetres/baies-vitrees/", "Baies coulissantes, à galandage, à levage."],
     ["Volets & stores", "/solutions/portes-fenetres/volets/", "Volets roulants, battants et solaires Bubendorff."],
+    ["Volets roulants solaires à Angers", "/volets-roulants-solaires-angers/", "Fourniture et pose de volets roulants solaires Bubendorff à Angers par un Point Conseil Bubendorff : fonctionnement (panneau, batterie, moteur), pose en rénovation sans câblage ni saignée, hiver et exposition nord, mode CLIMAT+, garanties et SAV, aides et TVA, FAQ."],
     ["Portes de garage", "/solutions/portes-fenetres/porte-garage/", "Portes de garage sectionnelles, latérales et enroulables, motorisées, à Angers et en Maine-et-Loire."],
     ["Verrières", "/solutions/confort-interieur/verrieres/", "Verrières d'atelier acier ou aluminium sur mesure."],
     ["Carports & pergolas", "/solutions/confort-exterieur/carports-marquises/", "Carports, marquises et pergolas bioclimatiques."],

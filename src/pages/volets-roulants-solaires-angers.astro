@@ -1,0 +1,761 @@
+---
+// Page produit localisée « volet roulant solaire à Angers » — page cible UNIQUE
+// du site pour « volet roulant solaire angers » et ses variantes (volets
+// roulants solaires angers, volet solaire angers, pose volet roulant solaire,
+// volet roulant solaire bubendorff + Angers).
+//
+// SEO (relevé du 14/10/2026, DataForSEO) : « volet roulant solaire » 40 500
+// rech./mois en France, « volet roulant solaire bubendorff » 2 400 (KD 4),
+// « volet roulant solaire prix » 2 900, « pose volet roulant solaire » 590,
+// « volet roulant angers » 90. Sur « volet roulant solaire angers » (mobile,
+// géolocalisé Angers), aucune page de la première page ne traite du solaire à
+// Angers : annuaires, réparateurs et pages volets génériques. Les « autres
+// questions » Google portent sur la pose, l'hiver, les dimensions, les
+// inconvénients et la déductibilité → chacune a sa réponse ici (corps + FAQ).
+// La page /solutions/portes-fenetres/volets/ reste la page « tous volets,
+// Maine-et-Loire » ; /partenaires/bubendorff/ la page marque. Les guides de
+// dépannage renvoient ici pour le remplacement par un volet solaire.
+//
+// Faits produits : uniquement ce qui est publié sur bubendorff.com (pages
+// téléchargées en texte brut le 14/10/2026 : « Volets roulants solaires »,
+// « Volet roulant solaire à lames standard », « Volet roulant aluminium »,
+// « CLIMAT+ », « Découvrir Bubendorff », « Bubendorff-Service », FAQ « Quels
+// sont les avantages des volets roulants solaires », « Quel volet roulant
+// solaire choisir »). Garantie : le site Bubendorff indique aujourd'hui une
+// garantie fabricant de 2 ans et des Packs SAV optionnels de 5, 7 ou 10 ans
+// (pas « 7 ans » d'office comme l'indiquent d'anciennes brochures) ; la page
+// s'en tient à cette formulation. Aucun prix affiché (choix client).
+//
+// Images : src/assets/volets-solaires/* sont des illustrations générées
+// (fal.ai, 14/10/2026), pas des chantiers : ne jamais les présenter comme des
+// réalisations.
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import ReponseDirecte from "../components/ui/ReponseDirecte.astro";
+import CTASection from "../components/sections/CTASection.astro";
+import AgenceProche from "../components/sections/AgenceProche.astro";
+import ConseilsLies from "../components/sections/ConseilsLies.astro";
+import { organizationNode, agencyNode, agencyId } from "../lib/schema";
+import { SITE_URL } from "../config/business";
+import { communesVoisines } from "../lib/maillage";
+import heroImg from "../assets/volets-solaires/facade-pavillon.jpg";
+import coffreImg from "../assets/volets-solaires/coffre-gros-plan.jpg";
+import hiverImg from "../assets/volets-solaires/hiver.jpg";
+import tuffeauImg from "../assets/volets-solaires/facade-tuffeau.jpg";
+
+const title = "Volet roulant solaire à Angers — Point Conseil Bubendorff";
+const description =
+  "Pose de volets roulants solaires Bubendorff à Angers, sans câblage ni saignée, par Fenêtres sur Loir, Point Conseil Bubendorff. SAV local, devis gratuit.";
+
+const PAGE_URL = `${SITE_URL}/volets-roulants-solaires-angers/`;
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres/" },
+  { label: "Volets", href: "/solutions/portes-fenetres/volets/" },
+  { label: "Volets solaires à Angers" },
+];
+
+const reponseDirecte =
+  "Fenêtres sur Loir fournit et pose des volets roulants solaires Bubendorff à Angers et dans son agglomération : le panneau photovoltaïque intégré au coffre recharge la batterie du moteur, sans raccordement électrique, sans saignée ni câblage. Point Conseil Bubendorff et artisan certifié RGE Qualibat, l'entreprise intervient depuis son agence de Seiches-sur-le-Loir, à 22 km d'Angers, avec ses propres poseurs, et assure elle-même le service après-vente. Devis gratuit sous 48 h après prise de mesures à domicile.";
+
+// Caractéristiques publiées par Bubendorff (bubendorff.com, relevé le
+// 14/10/2026) pour ses volets roulants solaires en aluminium.
+const caracteristiques = [
+  ["Premier volet solaire", "2011 : premier volet roulant solaire certifié NF Fermetures et Stores"],
+  ["Endurance", "30 000 montées-descentes testées sous contrôle d'huissier, soit 3 manœuvres par jour pendant 30 ans"],
+  ["Batterie", "Robustesse certifiée 100 jours (NF Fermetures et Stores), fonctionnement été comme hiver sans chargeur de secours"],
+  ["Dimensions d'un volet rénovation", "Largeur jusqu'à 3 m, hauteur jusqu'à 2,5 m ; au-delà, juxtaposition de plusieurs volets"],
+  ["Teintes", "8 teintes de tablier et 8 teintes d'encadrement, laquage classe 2 haute durabilité"],
+  ["Commande", "Radio, télécommande 3 boutons ; centralisation et commande groupée CLIMAT+ en option"],
+  ["Garantie fabricant", "2 ans pièces, main-d'œuvre et déplacement ; Packs SAV de 5, 7 ou 10 ans en option à l'achat"],
+  ["Réparabilité", "Service de réparation à domicile pendant 30 ans"],
+  ["Fabrication", "France (5 usines) et Allemagne (1 usine) ; volet et moteur solaire conçus par Bubendorff"],
+];
+
+// Chantiers réels de volets solaires à Angers et dans l'agglomération.
+// À COMPLÉTER avec des chantiers fournis par le client (lieu, année, description
+// factuelle, photo du chantier). Ne jamais y mettre d'illustration générée ni de
+// chantier supposé : tant que la liste est vide, la section n'est pas affichée.
+interface Chantier {
+  lieu: string;
+  annee: number;
+  titre: string;
+  description: string;
+  photo: ImageMetadata;
+  photoAlt: string;
+  /** Lien vers la fiche /realisations/<slug>/ si elle existe. */
+  href?: string;
+}
+const chantiers: Chantier[] = [];
+
+// Communes de l'agglomération ayant une page dédiée (maillage géographique).
+const agglo = communesVoisines("angers", 6);
+
+// FAQ : source unique pour le bloc visible ET le FAQPage JSON-LD. Questions
+// calquées sur les « autres questions » Google du 14/10/2026 (pose, hiver,
+// dimensions, inconvénients, impôts) et sur les requêtes Search Console
+// (« volet roulant solaire bubendorff ne fonctionne plus »).
+const faq = [
+  {
+    question: "De quoi dépend le prix d'un volet roulant solaire posé à Angers ?",
+    reponse:
+      "Des dimensions de la baie, du type de coffre (rénovation posé devant la fenêtre, ou bloc-baie intégré à une fenêtre neuve), du type de lames (standard, ajourables ou orientables), des options de commande (centralisation, commande groupée CLIMAT+, moustiquaire) et du nombre de volets. Le solaire évite tout travail d'électricité : pas de saignée, pas de raccordement au tableau, pas d'électricien à faire venir. Le devis est gratuit et détaillé, remis sous 48 h après une prise de mesures à domicile.",
+  },
+  {
+    question: "Un volet roulant solaire fonctionne-t-il en hiver à Angers ?",
+    reponse:
+      "Oui. Bubendorff indique que ses volets solaires fonctionnent été comme hiver, même sans exposition directe au soleil, sans chargeur de secours, avec une robustesse de batterie certifiée 100 jours par la marque NF Fermetures et Stores. Le panneau capte la lumière du jour, pas seulement le plein soleil. Par grand froid, le moteur ralentit de lui-même pour préserver la batterie : c'est normal. Après une longue série de journées très sombres et de manœuvres répétées, il suffit de laisser le volet au repos pour qu'il se recharge.",
+  },
+  {
+    question: "Et sur une façade exposée au nord ?",
+    reponse:
+      "Bubendorff assure le fonctionnement de ses volets solaires en exposition nord : la luminosité du jour suffit à recharger la batterie. Ce qui compte vraiment, c'est que le panneau reste visible du ciel : un auvent, un balcon juste au-dessus, une glycine ou une haie qui le masquent en permanence réduisent la recharge. Nous vérifions ce point à la prise de mesures et nous vous disons honnêtement si une fenêtre se prête mieux à un volet électrique radio.",
+  },
+  {
+    question: "Quels sont les inconvénients d'un volet roulant solaire ?",
+    reponse:
+      "Ils sont peu nombreux mais réels : le panneau doit rester propre et dégagé ; la batterie est une pièce d'usure qui se remplace un jour, par un professionnel, sans changer le volet ; un volet rénovation est limité à 3 m de large et 2,5 m de haut, au-delà on juxtapose deux volets ; par grand froid le volet ralentit ; et dans le site patrimonial remarquable d'Angers, l'Architecte des Bâtiments de France peut refuser un volet roulant en façade visible, solaire ou non. En contrepartie, il n'y a ni câblage, ni saignée, ni consommation électrique, et le volet fonctionne pendant une coupure de courant.",
+  },
+  {
+    question: "Combien de temps dure la batterie d'un volet roulant solaire ?",
+    reponse:
+      "Bubendorff ne publie pas de durée de vie en années. La batterie est intégrée au moteur et ne demande aucun entretien ; c'est une pièce d'usure, remplaçable par une personne qualifiée sans changer le volet. Elle est couverte par la garantie fabricant de 2 ans, par les Packs SAV de 5, 7 ou 10 ans souscrits à l'achat, et le volet reste réparable à domicile pendant 30 ans. Un volet qui monte par à-coups ou s'arrête après quelques dizaines de centimètres signale une batterie faible : quelques heures de lumière sur un panneau propre rétablissent le fonctionnement ; sinon, c'est un appel à notre SAV.",
+  },
+  {
+    question: "Peut-on remplacer un volet manuel par un volet solaire sans travaux ?",
+    reponse:
+      "Oui, c'est le cas le plus fréquent. Le volet rénovation se pose devant la fenêtre existante, avec son coffre et ses coulisses, sans toucher à la maçonnerie ni à l'installation électrique. L'ancien volet à sangle ou à manivelle est déposé, le nouveau est fixé, puis la télécommande est paramétrée et testée avec vous. Comptez une demi-journée par fenêtre.",
+  },
+  {
+    question: "Les volets roulants solaires sont-ils déductibles des impôts ou éligibles aux aides ?",
+    reponse:
+      "Posés seuls, non : les volets roulants ne sont plus couverts par MaPrimeRénov' ni par les primes CEE, et le crédit d'impôt a disparu depuis 2021. Dans un logement de plus de deux ans, la fourniture et la pose bénéficient de la TVA réduite à 10 %. Posés en même temps que des fenêtres éligibles par un artisan RGE, ils peuvent sous conditions entrer dans le périmètre de la TVA à 5,5 % au titre des travaux induits et s'intégrer à un éco-prêt à taux zéro : nous étudions le montage global de votre projet.",
+  },
+  {
+    question: "Combien de temps dure la pose d'un volet roulant solaire ?",
+    reponse:
+      "Une demi-journée par fenêtre pour un volet en rénovation, coffre et coulisses compris ; une maison complète se pose en général en une à deux journées. Nos équipes salariées fixent le volet, règlent les fins de course, paramètrent les télécommandes et la commande groupée éventuelle, puis testent chaque commande avec vous avant de partir.",
+  },
+  {
+    question: "Mon volet roulant solaire Bubendorff ne fonctionne plus, que faire ?",
+    reponse:
+      "Un volet solaire n'est pas raccordé au secteur : la coupure au disjoncteur ne le concerne pas. Vérifiez la pile de la télécommande, nettoyez le panneau à l'eau claire, retirez ce qui pourrait le masquer et laissez le volet se recharger une journée sans le manœuvrer. S'il ne repart pas, la batterie ou le moteur sont en cause : si Fenêtres sur Loir a posé vos volets, notre SAV se déplace depuis Seiches-sur-le-Loir ; sinon, nous réalisons un diagnostic à domicile.",
+  },
+  {
+    question: "Peut-on poser un volet roulant solaire en appartement ou dans le centre historique d'Angers ?",
+    reponse:
+      "En appartement, oui, et c'est même l'un des cas où le solaire est le plus utile : aucun câble à passer en façade ni dans les parties communes. La pose modifie l'aspect extérieur de l'immeuble : l'accord de la copropriété est nécessaire. Dans le site patrimonial remarquable (centre historique, la Doutre, abords du château et de la cathédrale), la déclaration préalable est soumise à l'avis de l'Architecte des Bâtiments de France, qui refuse souvent les coffres de volets roulants en façade visible : nous proposons alors des volets battants, en bois ou en aluminium, éventuellement motorisés.",
+  },
+  {
+    question: "Volet roulant solaire ou électrique filaire : lequel choisir à Angers ?",
+    reponse:
+      "En rénovation, le solaire s'impose dans la grande majorité des cas : aucun câblage, pose rapide, fonctionnement maintenu en cas de coupure de courant. L'électrique filaire garde sa place en construction neuve, quand les gaines sont prévues, et pour les très grandes baies. Les deux se pilotent par télécommande radio et peuvent être centralisés ; une installation mixte est possible, avec au moins un volet solaire pour profiter du pilotage automatique CLIMAT+.",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    organizationNode(),
+    agencyNode("seiches"),
+    {
+      "@type": "Service",
+      "@id": `${PAGE_URL}#service`,
+      serviceType: "Fourniture et pose de volets roulants solaires",
+      name: "Volets roulants solaires à Angers",
+      description,
+      provider: { "@id": agencyId("seiches") },
+      brand: { "@type": "Brand", name: "Bubendorff" },
+      areaServed: {
+        "@type": "City",
+        name: "Angers",
+        address: {
+          "@type": "PostalAddress",
+          postalCode: "49000",
+          addressLocality: "Angers",
+          addressRegion: "Maine-et-Loire",
+          addressCountry: "FR",
+        },
+        geo: { "@type": "GeoCoordinates", latitude: 47.4784, longitude: -0.5632 },
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${PAGE_URL}#faq`,
+      mainEntity: faq.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.reponse },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  breadcrumb={breadcrumb}
+  schemaJsonLd={schema}
+  ogImage="/og/volets-solaires-angers.jpg"
+>
+  <!-- Hero -->
+  <section class="relative">
+    <div class="relative min-h-[420px] sm:min-h-[520px] flex items-end overflow-hidden">
+      <Image
+        src={heroImg}
+        alt="Pavillon aux volets roulants solaires : le panneau photovoltaïque est intégré au coffre de chaque volet"
+        widths={[640, 960, 1280, 1920]}
+        sizes="100vw"
+        loading="eager"
+        decoding="async"
+        format="webp"
+        quality={80}
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+      <Container width="default" class="relative pb-12 sm:pb-16 pt-24">
+        <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-white/85">
+          Volets roulants solaires Bubendorff · Angers (49000) et agglomération
+        </p>
+        <h1 class="text-white text-balance max-w-3xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
+          Volet roulant solaire à Angers : pose sans travaux électriques par un Point Conseil Bubendorff
+        </h1>
+        <p class="mt-5 max-w-2xl text-[17px] leading-relaxed text-white/90">
+          Ni câble, ni saignée, ni tableau électrique à modifier. Fenêtres sur Loir pose les
+          volets roulants solaires Bubendorff à Angers avec ses propres équipes, et en assure
+          le service après-vente.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="/contact/"
+            class="inline-flex items-center rounded-full px-7 py-3 text-[14px] font-medium text-white shadow-sm transition-colors"
+            style="background: var(--color-accent);"
+            onmouseover="this.style.background='var(--color-accent-hover)'"
+            onmouseout="this.style.background='var(--color-accent)'"
+          >
+            Demander un devis gratuit
+          </a>
+          <a
+            href="/partenaires/bubendorff/"
+            class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white border border-white/50 hover:bg-white hover:text-[var(--color-fg)] transition-colors"
+          >
+            Notre partenariat Bubendorff
+          </a>
+        </div>
+      </Container>
+    </div>
+  </section>
+
+  <!-- Corps rédactionnel -->
+  <section class="section-tight">
+    <Container width="default">
+      <ReponseDirecte texte={reponseDirecte} class="max-w-3xl mb-8" />
+      <div class="prose-fsl max-w-3xl">
+        <p class="lead">
+          Vous cherchez un <strong>volet roulant solaire à Angers</strong> ? C'est aujourd'hui la
+          façon la plus simple de motoriser ou de remplacer des volets en rénovation : aucun fil
+          à tirer, aucun électricien à faire venir, une pose en une demi-journée par fenêtre.
+          Fenêtres sur Loir est <a href="/partenaires/bubendorff/">Point Conseil Bubendorff</a>,
+          le fabricant alsacien qui a lancé en 2011 le premier volet roulant solaire certifié
+          NF Fermetures et Stores. Nous conseillons, mesurons, posons et dépannons dans toute
+          l'agglomération angevine.
+        </p>
+
+        <h2>Comment fonctionne un volet roulant solaire</h2>
+        <p>
+          Un volet roulant solaire est un volet roulant motorisé qui produit lui-même l'énergie
+          dont il a besoin. Il n'est relié ni au tableau électrique ni à une prise.
+        </p>
+        <ol>
+          <li>
+            <strong>Le panneau photovoltaïque</strong>, intégré au coffre, capte la lumière du
+            jour, directe ou diffuse.
+          </li>
+          <li>
+            <strong>La batterie</strong>, intégrée au moteur, stocke cette énergie et la restitue
+            à chaque manœuvre.
+          </li>
+          <li>
+            <strong>Le moteur solaire</strong>, conçu et fabriqué par Bubendorff, entraîne l'axe
+            et le tablier à la demande de la <strong>télécommande radio</strong> à trois boutons.
+          </li>
+          <li>
+            <strong>Aucun raccordement au réseau</strong> : le volet fonctionne même pendant une
+            coupure de courant, et il ne consomme pas d'électricité.
+          </li>
+        </ol>
+
+        <figure class="not-prose my-8">
+          <svg
+            viewBox="0 0 760 380"
+            role="img"
+            aria-labelledby="schema-volet-solaire-titre schema-volet-solaire-desc"
+            class="w-full h-auto rounded-2xl ring-1 ring-[var(--color-border)] bg-white"
+          >
+            <title id="schema-volet-solaire-titre">Schéma d'un volet roulant solaire</title>
+            <desc id="schema-volet-solaire-desc">
+              Coffre avec panneau photovoltaïque en face avant, moteur et batterie dans l'axe du
+              tablier, tablier aluminium guidé par deux coulisses, télécommande radio.
+            </desc>
+            <!-- mur -->
+            <rect x="0" y="0" width="760" height="380" fill="#f6f4f0" />
+            <!-- coulisses -->
+            <rect x="128" y="128" width="14" height="222" fill="#d9d4cc" />
+            <rect x="398" y="128" width="14" height="222" fill="#d9d4cc" />
+            <!-- fenêtre derrière le tablier -->
+            <rect x="142" y="300" width="256" height="50" fill="#bfd3e6" />
+            <line x1="270" y1="300" x2="270" y2="350" stroke="#ffffff" stroke-width="6" />
+            <!-- tablier -->
+            <g fill="#e9e6e0" stroke="#c8c2b8" stroke-width="1">
+              <rect x="142" y="128" width="256" height="20" />
+              <rect x="142" y="150" width="256" height="20" />
+              <rect x="142" y="172" width="256" height="20" />
+              <rect x="142" y="194" width="256" height="20" />
+              <rect x="142" y="216" width="256" height="20" />
+              <rect x="142" y="238" width="256" height="20" />
+              <rect x="142" y="260" width="256" height="20" />
+              <rect x="142" y="282" width="256" height="18" />
+            </g>
+            <!-- coffre -->
+            <rect x="118" y="40" width="304" height="90" rx="10" fill="#ffffff" stroke="#8d867b" stroke-width="2" />
+            <!-- panneau photovoltaïque -->
+            <rect x="134" y="50" width="272" height="22" rx="3" fill="#1f3a5f" />
+            <g stroke="#5b7ea8" stroke-width="1">
+              <line x1="168" y1="50" x2="168" y2="72" />
+              <line x1="202" y1="50" x2="202" y2="72" />
+              <line x1="236" y1="50" x2="236" y2="72" />
+              <line x1="270" y1="50" x2="270" y2="72" />
+              <line x1="304" y1="50" x2="304" y2="72" />
+              <line x1="338" y1="50" x2="338" y2="72" />
+              <line x1="372" y1="50" x2="372" y2="72" />
+              <line x1="134" y1="61" x2="406" y2="61" />
+            </g>
+            <!-- axe (tablier enroulé) + moteur -->
+            <circle cx="270" cy="103" r="22" fill="#e9e6e0" stroke="#c8c2b8" stroke-width="1.5" />
+            <circle cx="270" cy="103" r="14" fill="none" stroke="#c8c2b8" stroke-width="1" />
+            <rect x="262" y="96" width="16" height="14" rx="2" fill="#8d867b" />
+            <!-- télécommande -->
+            <rect x="520" y="200" width="46" height="104" rx="12" fill="#ffffff" stroke="#8d867b" stroke-width="2" />
+            <circle cx="543" cy="226" r="7" fill="#d9d4cc" />
+            <circle cx="543" cy="252" r="7" fill="#1f3a5f" />
+            <circle cx="543" cy="278" r="7" fill="#d9d4cc" />
+            <g fill="none" stroke="#1f3a5f" stroke-width="2" stroke-linecap="round">
+              <path d="M506 214a28 28 0 0 0 0 28" />
+              <path d="M494 204a44 44 0 0 0 0 48" />
+            </g>
+            <!-- repères -->
+            <g font-family="Poppins, system-ui, sans-serif" font-size="17" fill="#2b2924">
+              <g>
+                <circle cx="470" cy="61" r="11" fill="#1f3a5f" />
+                <text x="470" y="66" text-anchor="middle" fill="#ffffff" font-weight="600" font-size="13">1</text>
+                <text x="488" y="67">Panneau photovoltaïque</text>
+                <line x1="406" y1="61" x2="459" y2="61" stroke="#8d867b" stroke-width="1" />
+              </g>
+              <g>
+                <circle cx="470" cy="103" r="11" fill="#1f3a5f" />
+                <text x="470" y="108" text-anchor="middle" fill="#ffffff" font-weight="600" font-size="13">2</text>
+                <text x="488" y="109">Moteur solaire et batterie</text>
+                <line x1="292" y1="103" x2="459" y2="103" stroke="#8d867b" stroke-width="1" stroke-dasharray="3 3" />
+              </g>
+              <g>
+                <circle cx="470" cy="160" r="11" fill="#1f3a5f" />
+                <text x="470" y="165" text-anchor="middle" fill="#ffffff" font-weight="600" font-size="13">3</text>
+                <text x="488" y="166">Tablier aluminium</text>
+                <line x1="398" y1="160" x2="459" y2="160" stroke="#8d867b" stroke-width="1" />
+              </g>
+              <g>
+                <circle cx="543" cy="334" r="11" fill="#1f3a5f" />
+                <text x="543" y="339" text-anchor="middle" fill="#ffffff" font-weight="600" font-size="13">4</text>
+                <text x="543" y="366" text-anchor="middle" font-size="15">Commande radio</text>
+              </g>
+              <text x="40" y="368" font-size="14" fill="#6b655b">Coffre de rénovation, posé devant la fenêtre existante</text>
+            </g>
+          </svg>
+          <figcaption class="mt-3 text-sm text-[var(--color-muted)]">
+            Le panneau recharge la batterie du moteur ; le volet se manœuvre par radio, sans
+            aucun fil vers la maison.
+          </figcaption>
+        </figure>
+
+        <h2>Pourquoi le solaire s'impose en rénovation à Angers</h2>
+        <p>
+          Dans un logement existant, le poste le plus lourd d'une motorisation classique n'est
+          pas le volet : c'est l'électricité. Tirer une ligne depuis le tableau jusqu'à chaque
+          fenêtre suppose des saignées, des goulottes ou des gaines, des reprises d'enduit et
+          de peinture, et le passage d'un électricien. Le volet solaire supprime tout cela.
+        </p>
+        <ul>
+          <li>
+            <strong>Pavillons des années 1960 à 1990</strong> (Belle-Beille, Monplaisir, les
+            Justices, Saint-Léonard, la première couronne) : les volets manuels à sangle ou à
+            manivelle d'origine se remplacent un à un par des volets solaires, sans ouvrir les
+            murs.
+          </li>
+          <li>
+            <strong>Appartements</strong> : aucun câble en façade ni dans les parties communes.
+            Reste l'accord de la copropriété, puisque l'aspect extérieur change.
+          </li>
+          <li>
+            <strong>Fenêtres éloignées du tableau</strong> : étage, dépendance, véranda, atelier.
+          </li>
+          <li>
+            <strong>Maisons de caractère hors secteur protégé</strong> : coffre compact, panneau
+            intégré sans vis apparente, teintes assorties à la menuiserie.
+          </li>
+        </ul>
+        <p>
+          Dans le site patrimonial remarquable d'Angers (centre historique, la Doutre, abords du
+          château et de la cathédrale), l'Architecte des Bâtiments de France se prononce sur tout
+          ce qui est visible depuis la rue et refuse souvent les coffres de volets roulants en
+          façade. Nous le vérifions avant toute commande ; le cas échéant, nous proposons des
+          volets battants bois ou aluminium, présentés sur notre page
+          <a href="/solutions/portes-fenetres/volets/">volets roulants et battants</a>.
+        </p>
+
+        <figure class="not-prose my-8">
+          <Image
+            src={tuffeauImg}
+            alt="Maison de tuffeau avec un volet roulant solaire à coffre blanc, panneau photovoltaïque sur le dessus du coffre"
+            widths={[640, 960, 1280]}
+            sizes="(max-width: 768px) 100vw, 768px"
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={80}
+            class="w-full h-auto rounded-2xl ring-1 ring-[var(--color-border)]"
+          />
+          <figcaption class="mt-3 text-sm text-[var(--color-muted)]">
+            Illustration : sur une maison de tuffeau hors secteur protégé, un coffre blanc à
+            panneau intégré reste discret.
+          </figcaption>
+        </figure>
+
+        <h2>Fonctionne-t-il en hiver, et sur une façade exposée au nord ?</h2>
+        <p>
+          C'est la question que l'on nous pose le plus. La réponse de Bubendorff est claire : ses
+          volets solaires <strong>fonctionnent été comme hiver</strong>, même sans exposition
+          directe au soleil, <strong>y compris en exposition nord</strong>, et sans chargeur de
+          secours. Le fabricant appuie cette promesse sur une robustesse de batterie certifiée
+          100 jours par la marque NF Fermetures et Stores, le niveau le plus élevé de cette
+          certification.
+        </p>
+        <p>
+          Ce que nous constatons sur le terrain, à Angers comme en bord de Loire :
+        </p>
+        <ul>
+          <li>
+            Le panneau capte la <strong>lumière du jour</strong>, pas seulement le soleil. Un ciel
+            gris d'hiver angevin recharge moins vite, mais il recharge.
+          </li>
+          <li>
+            Par <strong>grand froid</strong>, le volet ralentit de lui-même pour préserver sa
+            batterie. Ce n'est pas une panne.
+          </li>
+          <li>
+            Le panneau doit rester <strong>propre et visible du ciel</strong> : un auvent, un
+            balcon, une glycine ou une haie qui le masquent en permanence réduisent la recharge.
+            Nous le vérifions fenêtre par fenêtre à la prise de mesures.
+          </li>
+          <li>
+            Après une longue série de journées sombres et de manœuvres répétées, laissez le volet
+            au repos : il se recharge seul. Notre guide d'<a href="/blog/entretien-volet-roulant/">entretien
+            d'un volet roulant</a> explique comment nettoyer le panneau.
+          </li>
+        </ul>
+
+        <figure class="not-prose my-8">
+          <Image
+            src={hiverImg}
+            alt="Façade sous un ciel gris d'hiver, volets roulants solaires à coffre gris clair avec panneau intégré"
+            widths={[640, 960, 1280]}
+            sizes="(max-width: 768px) 100vw, 768px"
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={80}
+            class="w-full h-auto rounded-2xl ring-1 ring-[var(--color-border)]"
+          />
+          <figcaption class="mt-3 text-sm text-[var(--color-muted)]">
+            Illustration : un matin de brume en Anjou. La lumière diffuse suffit à recharger la
+            batterie.
+          </figcaption>
+        </figure>
+
+        <h2>Les volets roulants solaires Bubendorff en chiffres</h2>
+        <p>Valeurs publiées par le fabricant pour ses volets roulants solaires en aluminium.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Caractéristique</th>
+              <th>Volet roulant solaire Bubendorff</th>
+            </tr>
+          </thead>
+          <tbody>
+            {caracteristiques.map(([nom, valeur]) => (
+              <tr>
+                <td>{nom}</td>
+                <td>{valeur}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="text-sm text-[var(--color-muted)]">
+          Source : Bubendorff (bubendorff.com), relevé le 14 octobre 2026. Pour comparaison, la
+          marque NF Fermetures et Stores a ajouté fin 2025 une classe d'endurance la plus
+          exigeante à 21 000 cycles. Les caractéristiques de votre projet figurent sur le devis.
+        </p>
+        <p>
+          Bubendorff est le seul fabricant européen à concevoir et fabriquer à la fois le volet
+          roulant et son moteur, solaire ou électrique. Fenêtres sur Loir a choisi cette marque
+          pour cette raison, et parce que le fabricant s'engage à réparer ses volets à domicile
+          pendant 30 ans.
+        </p>
+
+        <h2>CLIMAT+ : le volet qui se règle sur la météo</h2>
+        <p>
+          Les volets solaires Bubendorff embarquent de série un capteur d'ensoleillement et de
+          température extérieure. Associés à une <strong>commande groupée CLIMAT+</strong>, ils
+          pilotent automatiquement jusqu'à 30 volets, sans box domotique, sans application et
+          sans programmation :
+        </p>
+        <ul>
+          <li>
+            <strong>En été</strong>, les volets se ferment quand la température monte, pour
+            éviter la surchauffe des pièces exposées.
+          </li>
+          <li>
+            <strong>En hiver</strong>, ils se ferment à la tombée de la nuit pour limiter les
+            déperditions de chaleur, et laissent entrer le soleil en journée.
+          </li>
+        </ul>
+        <p>
+          Un seul volet solaire dans l'installation suffit pour que la commande CLIMAT+ pilote
+          aussi vos volets électriques radio. Bubendorff indique que ce mode répond aux exigences
+          de gestion automatique de la RE2020 ; il s'active depuis la télécommande, sans rien
+          reprogrammer en cas de changement d'occupant. Pour aller plus loin, les volets
+          Bubendorff se raccordent aussi à une box domotique et à un pilotage par smartphone.
+        </p>
+
+        <h2>Coffre, lames, teintes : ce que vous choisissez</h2>
+        <ul>
+          <li>
+            <strong>Le coffre</strong> : en rénovation, un coffre compact posé devant la fenêtre
+            existante, panneau intégré et design sans vis apparente ; en construction neuve ou en
+            remplacement complet des fenêtres, un bloc-baie intégré à la menuiserie, compatible
+            avec nos fenêtres MéO et Arcades &amp; Baies.
+          </li>
+          <li>
+            <strong>Les lames</strong> : en aluminium, standard, ajourables (les ajours disparaissent
+            une fois le volet fermé, et des verrous automatiques se déclenchent) ou orientables, une
+            innovation Bubendorff qui permet de doser la lumière et d'aérer en sécurité.
+          </li>
+          <li>
+            <strong>Les teintes</strong> : 8 teintes de tablier et 8 teintes d'encadrement, en
+            laquage classe 2 haute durabilité, à accorder à vos menuiseries.
+          </li>
+          <li>
+            <strong>Les commandes</strong> : télécommande individuelle, commande groupée CLIMAT+,
+            centralisation, position préférentielle mémorisée sur la touche Bubendorff.
+          </li>
+          <li>
+            <strong>Les options</strong> : moustiquaire enroulable, juxtaposition de plusieurs
+            volets pour les baies de plus de 3 m.
+          </li>
+        </ul>
+        <p>
+          Tout se voit et se manipule dans notre showroom de 300 m² à Seiches-sur-le-Loir, à
+          vingt minutes d'Angers.
+        </p>
+
+        <figure class="not-prose my-8">
+          <Image
+            src={coffreImg}
+            alt="Gros plan sur un coffre de volet roulant blanc avec sa bande photovoltaïque intégrée, au-dessus d'une fenêtre PVC"
+            widths={[640, 960, 1280]}
+            sizes="(max-width: 768px) 100vw, 768px"
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={80}
+            class="w-full h-auto rounded-2xl ring-1 ring-[var(--color-border)]"
+          />
+          <figcaption class="mt-3 text-sm text-[var(--color-muted)]">
+            Illustration : le panneau occupe la face avant du coffre, sans aucun câble apparent.
+          </figcaption>
+        </figure>
+
+        <h2>Pose de volets roulants solaires à Angers : les étapes</h2>
+        <ul>
+          <li>
+            <strong>Premier échange</strong> par téléphone, par le formulaire ou au showroom de
+            Seiches-sur-le-Loir.
+          </li>
+          <li>
+            <strong>Visite à domicile</strong> à Angers : relevé de cotes, état des volets et des
+            coulisses existants, exposition de chaque panneau, démarches éventuelles (déclaration
+            préalable, ABF, copropriété).
+          </li>
+          <li><strong>Devis détaillé gratuit sous 48 h</strong>, volet par volet.</li>
+          <li>
+            <strong>Fabrication sur mesure</strong> par Bubendorff, en France, en général sous 3
+            à 5 semaines selon la saison.
+          </li>
+          <li>
+            <strong>Pose par nos équipes salariées</strong>, une demi-journée par fenêtre : dépose
+            de l'ancien volet, fixation, réglage des fins de course, paramétrage des télécommandes,
+            test de chaque commande avec vous.
+          </li>
+        </ul>
+
+        <h2>Un SAV à 22 km d'Angers, par ceux qui ont posé vos volets</h2>
+        <p>
+          Point Conseil Bubendorff, nous intervenons nous-mêmes sur les volets que nous avons
+          posés : diagnostic, fins de course, télécommande, batterie ou moteur, sans centre
+          d'appel ni sous-traitant. La batterie d'un volet solaire est une pièce d'usure : elle se
+          remplace sans changer le volet, par un professionnel. Et parce que Bubendorff conserve
+          les pièces pendant 30 ans, un volet posé aujourd'hui reste réparable longtemps.
+        </p>
+        <p>
+          Avant d'appeler, nos guides règlent une bonne part des questions :
+          <a href="/blog/reinitialiser-volet-roulant-bubendorff/">réinitialiser un volet roulant Bubendorff</a>,
+          <a href="/blog/telecommande-bubendorff-pile-programmation/">changer la pile et programmer la télécommande</a>,
+          <a href="/blog/volet-roulant-bloque-que-faire/">volet roulant bloqué</a> et
+          <a href="/blog/volet-roulant-qui-grince/">volet roulant qui grince</a>.
+        </p>
+
+        <h2>Aides et TVA pour des volets roulants solaires</h2>
+        <p>
+          Posés seuls, les volets roulants n'ouvrent plus droit à MaPrimeRénov' ni aux primes CEE,
+          et le crédit d'impôt a disparu. Dans un logement de plus de deux ans, la fourniture et
+          la pose bénéficient de la <strong>TVA réduite à 10 %</strong>. Si vous changez vos
+          fenêtres en même temps, par un artisan RGE comme Fenêtres sur Loir, les volets peuvent
+          sous conditions entrer dans le périmètre de la TVA à 5,5 % au titre des travaux induits
+          et s'intégrer à un éco-prêt à taux zéro : voyez notre
+          <a href="/blog/aides-changer-fenetres-2026/">guide des aides pour changer ses fenêtres</a>
+          et demandez un devis combiné.
+        </p>
+
+        <h2>Angers, l'agglomération, Saumur et le sud du Maine-et-Loire</h2>
+        <p>
+          Nous posons des volets roulants solaires dans tous les quartiers d'Angers et dans les
+          communes d'Angers Loire Métropole, depuis notre
+          <a href="/agences/seiches-sur-le-loir/">agence de Seiches-sur-le-Loir</a>. Depuis notre
+          <a href="/agences/doue-en-anjou/">agence de Doué-en-Anjou</a>, nous couvrons le sud du
+          département, autour de <a href="/menuisier-saumur/">Saumur</a> et de
+          <a href="/menuisier-cholet/">Cholet</a>, avec la même pose et le même SAV.
+        </p>
+      </div>
+
+      <ul class="flex flex-wrap gap-2 mt-4 max-w-3xl">
+        <li>
+          <a
+            href="/menuisier-angers/"
+            class="inline-flex items-center rounded-full bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+          >
+            Menuisier à Angers
+          </a>
+        </li>
+        {agglo.map((v) => (
+          <li>
+            <a
+              href={`/menuisier-${v.slug}/`}
+              class="inline-flex items-center rounded-full bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] px-4 py-2 text-sm text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+            >
+              Menuisier à {v.nom}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a
+            href="/zones-intervention/"
+            class="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-[var(--color-accent)] hover:underline"
+          >
+            Toutes nos communes →
+          </a>
+        </li>
+      </ul>
+    </Container>
+  </section>
+
+  <!-- Chantiers réels : affichés seulement si la liste est renseignée -->
+  {
+    chantiers.length > 0 && (
+      <section class="section-tight bg-[var(--color-subtle)]">
+        <Container width="wide">
+          <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)] text-center">
+            Nos chantiers
+          </p>
+          <h2 class="text-center mb-10 text-balance">Volets roulants solaires posés à Angers et alentours</h2>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {chantiers.map((c) => {
+              const Carte = c.href ? "a" : "div";
+              return (
+                <li>
+                  <Carte
+                    href={c.href}
+                    class="group block h-full overflow-hidden rounded-2xl ring-1 ring-[var(--color-border)] bg-white"
+                  >
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                      <Image
+                        src={c.photo}
+                        alt={c.photoAlt}
+                        widths={[400, 700, 1000]}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                        format="webp"
+                        quality={78}
+                        class="absolute inset-0 w-full h-full object-cover"
+                      />
+                    </div>
+                    <div class="p-5">
+                      <p class="text-xs font-medium text-[var(--color-accent)]">
+                        {c.lieu} · {c.annee}
+                      </p>
+                      <h3 class="mt-1 text-lg">{c.titre}</h3>
+                      <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">{c.description}</p>
+                    </div>
+                  </Carte>
+                </li>
+              );
+            })}
+          </ul>
+        </Container>
+      </section>
+    )
+  }
+
+  <AgenceProche agence="seiches" communeNom="Angers" distanceKm={22} />
+
+  <!-- FAQ — même source que le FAQPage JSON-LD -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <div class="prose-fsl max-w-3xl mx-auto">
+        <h2>Volets roulants solaires à Angers : vos questions</h2>
+        {faq.map((f) => (
+          <>
+            <h3>{f.question}</h3>
+            <p>{f.reponse}</p>
+          </>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <ConseilsLies
+    slugs={["reinitialiser-volet-roulant-bubendorff", "entretien-volet-roulant", "telecommande-bubendorff-pile-programmation"]}
+    titre="Nos guides sur les volets roulants Bubendorff"
+  />
+
+  <CTASection
+    eyebrow="Votre projet à Angers"
+    title="Votre devis volets roulants solaires à Angers, gratuit sous 48 h"
+    text="Prise de mesures à domicile, vérification de l'exposition de chaque panneau, pose par nos équipes salariées et SAV local : parlons de votre projet."
+    secondaryLabel="Tous nos volets"
+    secondaryHref="/solutions/portes-fenetres/volets/"
+  />
+</BaseLayout>
