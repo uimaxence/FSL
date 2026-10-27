@@ -1,20 +1,28 @@
 ---
+// Popup devis. Lecture PostHog du 27/10/2026 : affichée après 15 s sur toutes
+// les pages, elle était fermée dans 43 % des sessions (315) pour 5 clics sur
+// son bouton. Elle n'apparaît plus que pour un visiteur engagé (temps de
+// lecture ET défilement), et BaseLayout ne l'inclut pas sur la page contact,
+// les guides et les pages légales.
 import { Image } from "astro:assets";
 import porteAlu from "../../assets/porte-4-alu.png";
 
 interface Props {
-  /** Délai d'apparition après le premier scroll/timer (en ms) */
-  delayMs?: number;
+  /** Temps de lecture minimum avant l'apparition (ms). */
+  attenteMs?: number;
+  /** Part de la page à avoir fait défiler avant l'apparition (0 à 1). */
+  seuilScroll?: number;
 }
 
-const { delayMs = 15000 } = Astro.props;
+const { attenteMs = 20000, seuilScroll = 0.5 } = Astro.props;
 ---
 
 <aside
   id="devis-popup"
   class="fixed left-4 bottom-4 sm:left-5 sm:bottom-5 z-50 w-[min(360px,calc(100vw-2rem))] opacity-0 translate-y-4 invisible transition-all duration-500 ease-out pointer-events-none"
   data-devis-popup
-  data-delay={delayMs}
+  data-attente={attenteMs}
+  data-scroll={seuilScroll}
   aria-hidden="true"
   aria-label="Démarrez votre projet de menuiserie"
 >
@@ -84,9 +92,30 @@ const { delayMs = 15000 } = Astro.props;
 
 <script>
   const STORAGE_KEY = "fsl-devis-popup-dismissed";
+  // Le stockage peut être indisponible (navigation privée, données bloquées) :
+  // dans ce cas la popup se comporte comme pour un premier passage.
+  const lire = (stockage: Storage) => {
+    try {
+      return stockage.getItem(STORAGE_KEY);
+    } catch {
+      return null;
+    }
+  };
+  const ecrire = (stockage: Storage) => {
+    try {
+      stockage.setItem(STORAGE_KEY, "1");
+    } catch {
+      /* rien : la popup reviendra à la prochaine page */
+    }
+  };
+
   const popup = document.getElementById("devis-popup");
-  if (popup && !sessionStorage.getItem(STORAGE_KEY) && !localStorage.getItem(STORAGE_KEY)) {
-    const delay = Number(popup.getAttribute("data-delay") ?? 15000);
+  if (popup && !lire(sessionStorage) && !lire(localStorage)) {
+    const attente = Number(popup.getAttribute("data-attente") ?? 20000);
+    const seuil = Number(popup.getAttribute("data-scroll") ?? 0.5);
+    let tempsEcoule = false;
+    let scrollAtteint = false;
+    let affichee = false;
 
     const show = () => {
       popup.classList.remove("opacity-0", "translate-y-4", "invisible", "pointer-events-none");
@@ -99,11 +128,32 @@ const { delayMs = 15000 } = Astro.props;
       popup.classList.remove("opacity-100", "translate-y-0");
       popup.setAttribute("aria-hidden", "true");
       window.setTimeout(() => popup.classList.add("invisible"), 500);
-      if (persistent) localStorage.setItem(STORAGE_KEY, "1");
-      else sessionStorage.setItem(STORAGE_KEY, "1");
+      ecrire(persistent ? localStorage : sessionStorage);
     };
 
-    window.setTimeout(show, delay);
+    // Apparition quand les deux conditions sont réunies : temps de lecture
+    // minimum et moitié de la page défilée (une page trop courte pour défiler
+    // compte comme défilée).
+    const essayer = () => {
+      if (affichee || !tempsEcoule || !scrollAtteint) return;
+      affichee = true;
+      show();
+    };
+    const surScroll = () => {
+      const hauteur = document.documentElement.scrollHeight - window.innerHeight;
+      if (hauteur <= 0 || window.scrollY / hauteur >= seuil) {
+        scrollAtteint = true;
+        window.removeEventListener("scroll", surScroll);
+        essayer();
+      }
+    };
+
+    window.setTimeout(() => {
+      tempsEcoule = true;
+      essayer();
+    }, attente);
+    window.addEventListener("scroll", surScroll, { passive: true });
+    surScroll();
 
     popup.querySelector("[data-devis-popup-close]")?.addEventListener("click", () => hide(true));
     popup.querySelector("[data-devis-popup-later]")?.addEventListener("click", () => hide(false));

@@ -26,8 +26,10 @@ const avecVideo = media.videos.length > 0;
 
 // Réalisation filmée : affiches des vidéos en WebP (attribut poster du lecteur,
 // miniatures de la liste) ; les fichiers vidéo sont ceux du carrousel de l'accueil.
+// La première affiche est l'élément LCP sur mobile : elle est préchargée dans
+// le <head> (LCP p75 à 8 s sur la longère, 5 mesures, lecture PostHog du 27/10).
 const affiches = await Promise.all(
-  media.videos.map((v) => getImage({ src: v.poster, width: 720, format: "webp", quality: 80 })),
+  media.videos.map((v) => getImage({ src: v.poster, width: 720, format: "webp", quality: 70 })),
 );
 const videoUrl = (slug: string) => `/temoignages/${slug}.mp4`;
 const credit = (compte?: string) =>
@@ -84,6 +86,9 @@ const schema = {
   breadcrumb={breadcrumb}
   schemaJsonLd={schema}
 >
+  <Fragment slot="head">
+    {avecVideo && <link rel="preload" as="image" href={affiches[0].src} />}
+  </Fragment>
   <article>
     {
       avecVideo ? (

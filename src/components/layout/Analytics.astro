@@ -29,20 +29,26 @@ const config = {
       capture_performance: { web_vitals: true, network_timing: false },
     });
 
-    // Conversions : appels, e-mails et liens sortants, avec la zone de la page.
+    // Conversions : appels, e-mails, liens sortants, liens internes vers la page
+    // contact (devis_clic) et liens d'un bloc suivi (cta_clic), avec la zone de
+    // la page. Un ancêtre `data-zone` impose sa zone (ex. fin_de_guide).
     document.addEventListener("click", function (event) {
       var lien = event.target instanceof Element ? event.target.closest("a[href]") : null;
       if (!lien) return;
       var href = lien.getAttribute("href") || "";
-      var zone = lien.closest("[data-boutons-flottants]")
-        ? "bouton_flottant"
-        : lien.closest("#devis-popup")
-          ? "popup_devis"
-          : lien.closest("footer")
-            ? "pied_de_page"
-            : lien.closest("main")
-              ? "contenu"
-              : "entete";
+      if (href.indexOf("#") === 0) return;
+      var bloc = lien.closest("[data-zone]");
+      var zone = bloc
+        ? bloc.getAttribute("data-zone")
+        : lien.closest("[data-boutons-flottants]")
+          ? "bouton_flottant"
+          : lien.closest("#devis-popup")
+            ? "popup_devis"
+            : lien.closest("footer")
+              ? "pied_de_page"
+              : lien.closest("main")
+                ? "contenu"
+                : "entete";
 
       if (href.indexOf("tel:") === 0) {
         posthog.capture("appel_clic", { zone: zone });
@@ -50,6 +56,12 @@ const config = {
         posthog.capture("email_clic", { zone: zone });
       } else if (lien.hostname && lien.hostname !== location.hostname) {
         posthog.capture("lien_sortant_clic", { zone: zone, domaine: lien.hostname });
+      } else if (lien.pathname === location.pathname) {
+        return;
+      } else if (lien.pathname.indexOf("/contact") === 0) {
+        posthog.capture("devis_clic", { zone: zone, cible: lien.pathname });
+      } else if (bloc) {
+        posthog.capture("cta_clic", { zone: zone, cible: lien.pathname });
       }
     });
   }

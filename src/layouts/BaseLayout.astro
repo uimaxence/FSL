@@ -41,6 +41,16 @@ const pathname = Astro.url.pathname;
 const showMeoFab =
   pathname.startsWith("/solutions/portes-fenetres") ||
   pathname.startsWith("/partenaires/meo");
+
+// Pas de popup devis là où elle gêne : page contact (le visiteur y est déjà),
+// guides (ils ont leur encart de fin d'article) et pages légales. Lecture
+// PostHog du 27/10/2026 : 77 fermetures pour 106 sessions mobiles sur le guide
+// le plus lu, 5 clics sur la popup en quatre semaines dont 2 sur /contact/.
+const sansPopupDevis =
+  pathname.startsWith("/contact") ||
+  pathname.startsWith("/blog/") ||
+  pathname.startsWith("/mentions-legales") ||
+  pathname.startsWith("/politique-cookies");
 ---
 
 <!doctype html>
@@ -77,6 +87,7 @@ const showMeoFab =
     <link rel="apple-touch-icon" href="/logo-FSL.png" />
 
     {schemaJsonLd && <SchemaJsonLd data={schemaJsonLd} />}
+    <slot name="head" />
     <Analytics />
   </head>
   <body class="min-h-screen flex flex-col">
@@ -102,7 +113,7 @@ const showMeoFab =
       <slot />
     </main>
     <Footer meoFab={showMeoFab} />
-    <DevisPopup />
+    {!sansPopupDevis && <DevisPopup />}
     <BoutonsFlottants showMeo={showMeoFab} />
   </body>
 </html>
