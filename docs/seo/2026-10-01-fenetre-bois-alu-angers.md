@@ -19,7 +19,15 @@ Noter aussi le nombre de résultats organiques renvoyés (voir « Deux jeux de r
 | 01/10/2026 | Ordinateur (1 mesure) | 4ᵉ | `/solutions/portes-fenetres/fenetres/` | 70 | Absente | Point de départ |
 | 12/10/2026 | Search Console (01→09/10, toutes requêtes) | `/fenetres-bois-alu-angers/` : 145 impressions, position moyenne 20,2, 0 clic | `/fenetres-bois-alu-angers/` | — | — | Page déployée le 01/10, indexée ; SERP DataForSEO en erreur toute la matinée (40101), mesure mobile/ordinateur à refaire |
 
-Prochain relevé : dès que l'API SERP répond, puis jeudi 15 octobre 2026.
+| 09/11/2026 | Mobile (1 mesure) | 2ᵉ | `/fenetres-bois-alu-angers/` (reconnue à son titre « Fenêtre bois-alu à Angers — Menuisier d'Excellence MéO », l'API ne renvoie plus l'adresse) | 68 | Absente | Page MéO refondue (12/10), page volets solaires Angers (14/10). Autres pages du site dans la même liste : 17ᵉ (fenêtres sur mesure), 31ᵉ (porte d'entrée Angers), 50ᵉ (`/fenetres-angers/`). Aperçu IA présent en tête de page |
+| 09/11/2026 | Ordinateur (1 mesure) | 30ᵉ | Réalisation « Villa contemporaine (Angers) » ; page cible absente des 69 résultats | 69 | Absente | Jeu de résultats très différent du mobile (1ᵉʳ : « Porte d'entrée bois à Angers ») : à refaire avant de conclure |
+| 09/11/2026 | Search Console (08/08→07/11, toutes requêtes) | `/fenetres-bois-alu-angers/` : 598 impressions, position moyenne 17,8, 0 clic | `/fenetres-bois-alu-angers/` | — | — | « fenetre mixte angers » : 80 impressions, position 7,9. La requête « fenêtre bois alu angers » ne figure pas dans les 1 000 premières requêtes de l'export : la filtrer dans la Search Console |
+
+Aucun relevé entre le 12/10 et le 09/11 (semaines des 15, 22, 29/10 et du 05/11 manquantes).
+Le 09/11, l'API SERP a répondu 2 fois sur 9 (erreurs 40101 / 40106) : une seule mesure par
+appareil, à compléter par 2 mesures mobile et 1 ordinateur.
+
+Prochain relevé : compléter celui du 09/11 dès que l'API répond, puis jeudi 12 novembre 2026.
 
 ### Détail du 01/10/2026
 

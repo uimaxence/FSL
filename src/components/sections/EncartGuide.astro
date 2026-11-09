@@ -1,25 +1,42 @@
 ---
-// Encart de fin d'article. Lecture PostHog du 27/10/2026 : les guides faisaient
-// un tiers des sessions d'entrée du site (241) pour un seul appel, sans aucun
-// pont vers l'entreprise en fin de lecture. Deux variantes selon les tags de
-// l'article ; `data-zone` donne sa zone aux événements d'audience (appel_clic,
-// devis_clic, cta_clic) pour mesurer ce que l'encart apporte.
+// Encarts de contact des articles. Lecture PostHog du 27/10/2026 : les guides
+// faisaient un tiers des sessions d'entrée du site (241) pour un seul appel,
+// sans aucun pont vers l'entreprise. Deux variantes selon les tags de l'article
+// et deux formats :
+// - `complet` : bloc de fin d'article (zone `fin_de_guide`) ;
+// - `compact` : bandeau placé avant le premier intertitre (zone `debut_de_guide`).
+//   Ajouté le 09/11/2026 : en deux semaines le bloc de fin n'a reçu qu'un clic
+//   pour plus de 200 entrées, la lecture médiane d'un guide (23 s sur mobile)
+//   s'arrêtant bien avant le bas de page. Il s'adresse d'abord au lecteur local.
+// `data-zone` donne sa zone aux événements d'audience (appel_clic, devis_clic,
+// cta_clic) pour mesurer ce que chaque encart apporte.
 import Container from "../ui/Container.astro";
 import Button from "../ui/Button.astro";
 import { mainAgence, toE164 } from "../../config/business";
 
 export type VarianteEncart = "depannage" | "projet";
+export type FormatEncart = "complet" | "compact";
 
 interface Props {
   variante?: VarianteEncart;
+  format?: FormatEncart;
 }
 
-const { variante = "projet" } = Astro.props;
+const { variante = "projet", format = "complet" } = Astro.props;
 const telHref = `tel:${toE164(mainAgence.telephone)}`;
 
 const contenus: Record<
   VarianteEncart,
-  { eyebrow: string; titre: string; texte: string; cta: string; lienLabel: string; lienHref: string }
+  {
+    eyebrow: string;
+    titre: string;
+    texte: string;
+    cta: string;
+    lienLabel: string;
+    lienHref: string;
+    titreCompact: string;
+    texteCompact: string;
+  }
 > = {
   depannage: {
     eyebrow: "Si le réglage ne suffit pas",
@@ -29,6 +46,9 @@ const contenus: Record<
     cta: "Demander un diagnostic",
     lienLabel: "Nos agences et leurs horaires →",
     lienHref: "/agences/",
+    titreCompact: "Vous habitez le Maine-et-Loire ?",
+    texteCompact:
+      "Si vous préférez ne pas y toucher, nos menuisiers se déplacent pour un diagnostic à domicile, depuis Seiches-sur-le-Loir, à vingt minutes d'Angers, et Doué-en-Anjou.",
   },
   projet: {
     eyebrow: "Votre projet",
@@ -38,29 +58,53 @@ const contenus: Record<
     cta: "Demander un devis gratuit",
     lienLabel: "Voir nos réalisations →",
     lienHref: "/realisations/",
+    titreCompact: "Un projet de menuiseries dans le Maine-et-Loire ?",
+    texteCompact:
+      "Conseil personnalisé, devis gratuit sous 48 h et pose par nos propres équipes, certifiées RGE, depuis Seiches-sur-le-Loir, à vingt minutes d'Angers, et Doué-en-Anjou.",
   },
 };
 
 const c = contenus[variante];
+// Texte foncé souligné en bleu : le bleu d'accent seul est trop pâle sur le
+// fond teinté. Hauteur de 44 px pour le toucher sur mobile.
+const lienCompact =
+  "inline-flex min-h-11 items-center font-semibold text-[var(--color-fg)] underline decoration-[var(--color-accent)] decoration-2 underline-offset-4 transition-colors hover:text-[var(--color-accent-hover)]";
 ---
 
-<section class="section-tight" data-zone="fin_de_guide" data-encart-guide={variante}>
-  <Container width="narrow">
-    <div class="rounded-2xl bg-[var(--color-tint)] p-8 sm:p-10">
-      <p class="mb-2 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
-        {c.eyebrow}
+{
+  format === "compact" ? (
+    <aside
+      class="my-10 rounded-2xl bg-[var(--color-tint)] px-6 py-5"
+      data-zone="debut_de_guide"
+      data-encart-guide={variante}
+    >
+      <p class="font-semibold text-[var(--color-fg)]">{c.titreCompact}</p>
+      <p class="mt-1.5 text-[15px] leading-relaxed text-[var(--color-muted)]">{c.texteCompact}</p>
+      <p class="mt-1.5 flex flex-wrap gap-x-6 text-[15px]">
+        <a href={telHref} class={lienCompact}>Appeler le {mainAgence.telephone}</a>
+        <a href="/contact/" class={lienCompact}>{c.cta} →</a>
       </p>
-      <h2 class="text-2xl text-balance">{c.titre}</h2>
-      <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-[var(--color-muted)]">{c.texte}</p>
-      <div class="mt-6 flex flex-wrap items-center gap-3">
-        <Button href="/contact/" variant="primary">{c.cta}</Button>
-        <Button href={telHref} variant="outline" arrow={false}>Appeler le {mainAgence.telephone}</Button>
-      </div>
-      <p class="mt-5 text-sm">
-        <a href={c.lienHref} class="font-medium text-[var(--color-accent)] hover:underline underline-offset-4">
-          {c.lienLabel}
-        </a>
-      </p>
-    </div>
-  </Container>
-</section>
+    </aside>
+  ) : (
+    <section class="section-tight" data-zone="fin_de_guide" data-encart-guide={variante}>
+      <Container width="narrow">
+        <div class="rounded-2xl bg-[var(--color-tint)] p-8 sm:p-10">
+          <p class="mb-2 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+            {c.eyebrow}
+          </p>
+          <h2 class="text-2xl text-balance">{c.titre}</h2>
+          <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-[var(--color-muted)]">{c.texte}</p>
+          <div class="mt-6 flex flex-wrap items-center gap-3">
+            <Button href="/contact/" variant="primary">{c.cta}</Button>
+            <Button href={telHref} variant="outline" arrow={false}>Appeler le {mainAgence.telephone}</Button>
+          </div>
+          <p class="mt-5 text-sm">
+            <a href={c.lienHref} class="font-medium text-[var(--color-accent)] hover:underline underline-offset-4">
+              {c.lienLabel}
+            </a>
+          </p>
+        </div>
+      </Container>
+    </section>
+  )
+}
