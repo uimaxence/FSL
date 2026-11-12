@@ -60,6 +60,13 @@ export const googleBusiness = {
   },
 } as const;
 
+/**
+ * Configurateur de portes d'entrée MéO (relevé le 12/11/2026 sur fenetremeo.com,
+ * lien « Configurer ma porte d'entrée »). Le site refuse l'affichage en iframe
+ * (X-Frame-Options: SAMEORIGIN) : on y renvoie toujours par un lien, nouvel onglet.
+ */
+export const MEO_CONFIGURATEUR_URL = "https://www.portemeo.com/";
+
 /** Profils sociaux. `null` = pas de profil réel → non rendu, non injecté en sameAs. */
 export const social = {
   facebook: "https://www.facebook.com/fenetressurloir",

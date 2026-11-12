@@ -28,7 +28,7 @@ schema:
     "@type": BlogPosting
     headline: "Fenêtre PVC ou alu (ou bois-alu) : que choisir en 2026 ?"
     datePublished: 2026-07-15
-    dateModified: 2026-09-22
+    dateModified: 2026-11-12
     inLanguage: fr-FR
     author:
       "@type": Organization
@@ -122,6 +122,8 @@ Le **bois-alu** ne fait aucun compromis : du **bois noble à l'intérieur** (cha
 - solution privilégiée pour les **maisons de caractère**, la rénovation en centre ancien et les constructions RE2020.
 
 C'est le positionnement haut de gamme que nous portons en tant que **[Menuisier d'Excellence MéO](/partenaires/meo/)**. Pour tout savoir, consultez notre page **[fenêtres bois-alu à Angers](/fenetres-bois-alu-angers/)**.
+
+Vous hésitez seulement entre ces deux-là ? Notre [comparatif PVC ou bois-alu](/fenetre-pvc-ou-bois-alu/) les met face à face, critère par critère.
 
 ## Tableau comparatif : PVC, alu, bois-alu
 

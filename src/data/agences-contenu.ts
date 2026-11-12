@@ -45,13 +45,13 @@ export const AGENCES_CONTENU: Record<AgenceRattachement, AgenceContenu> = {
     slug: "doue-en-anjou",
     cle: "doue",
     metaTitle:
-      "Agence de Doué-en-Anjou (49) — Menuisier RGE Saumurois",
+      "Fenêtres sur Loir à Doué-la-Fontaine — Agence de Doué-en-Anjou (49)",
     metaDescription:
-      "Agence Fenêtres sur Loir à Doué-en-Anjou, 7 rue Saint François : menuisier RGE Qualibat pour le Saumurois, le Choletais et les Mauges. Horaires et plan.",
+      "Agence Fenêtres sur Loir à Doué-la-Fontaine (Doué-en-Anjou), 7 rue Saint François : menuiserie RGE Qualibat pour le Saumurois et le Layon. Horaires, téléphone et plan.",
     eyebrow: "Agence du sud Anjou",
-    lead: "L'agence de Doué-en-Anjou rapproche Fenêtres sur Loir du sud du Maine-et-Loire. Elle dessert le Saumurois, le Choletais, les Mauges et le Layon avec la même exigence : pose certifiée RGE Qualibat, sans sous-traitance. Devis gratuit sous 48 h.",
+    lead: "L'agence de Doué-en-Anjou, à Doué-la-Fontaine, rapproche Fenêtres sur Loir du sud du Maine-et-Loire. Elle dessert le Saumurois, le Choletais, les Mauges et le Layon avec la même exigence : pose certifiée RGE Qualibat, sans sous-traitance. Devis gratuit sous 48 h.",
     body: [
-      "Située au 7 rue Saint François, à Doué-en-Anjou, cette agence prolonge le savoir-faire de Fenêtres sur Loir vers le sud du département. Elle réduit les distances vers Saumur, Cholet, Chemillé et les Mauges, pour des rendez-vous et une pose plus réactifs.",
+      "Située au 7 rue Saint François, à Doué-la-Fontaine (commune de Doué-en-Anjou), cette agence prolonge le savoir-faire de Fenêtres sur Loir vers le sud du département. Elle réduit les distances vers Saumur, Cholet, Chemillé et les Mauges, pour des rendez-vous et une pose plus réactifs.",
       "Fenêtres PVC, aluminium, bois et bois-alu, volets roulants et battants, portes d'entrée, baies vitrées et aménagements extérieurs : toute la gamme de menuiseries sur mesure est disponible, avec l'accompagnement sur les aides à la rénovation énergétique (MaPrimeRénov', primes CEE, éco-PTZ).",
       "Le Saumurois compte de nombreux secteurs patrimoniaux (habitat troglodytique, centres anciens soumis à l'avis des Architectes des Bâtiments de France) : nos équipes adaptent les menuiseries aux contraintes locales tout en améliorant l'isolation.",
     ],

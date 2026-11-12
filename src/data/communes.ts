@@ -54,6 +54,16 @@ export interface Commune {
   realisationSlugs?: string[];
   /** 2-3 Q/R locales — alimente aussi le FAQPage JSON-LD */
   faq?: CommuneFaq[];
+  /**
+   * Nom sous lequel la commune est réellement cherchée quand il diffère du nom
+   * officiel (commune nouvelle). Ex. « Doué-la-Fontaine » pour Doué-en-Anjou :
+   * 70 recherches/mois pour « menuisier doué la fontaine », aucune mesurée pour
+   * « doué en anjou » (relevé du 12/11/2026). Sert au <title>, au H1 et au lead.
+   */
+  nomUsuel?: string;
+  /** <title> et H1 imposés (sinon gabarit « Menuisier à {nom} (49) »). */
+  seoTitle?: string;
+  h1?: string;
 }
 
 export const AGENCES: Record<AgenceRattachement, Agence> = {
@@ -394,26 +404,62 @@ const communesToutes: Commune[] = [
   {
     slug: "doue-en-anjou",
     nom: "Doué-en-Anjou",
+    // SEO (12/11/2026) : on cherche « menuisier / menuiserie doué la fontaine »
+    // (70 rech./mois chacune), pas « doué en anjou ». La page était 4ᵉ sur
+    // ordinateur derrière deux artisans douessins, et absente du pack local.
+    // → ancien nom dans le title, le H1 et le texte ; contenu local étoffé ;
+    // numéro de l'agence de Doué mis en avant (voir le gabarit).
+    nomUsuel: "Doué-la-Fontaine",
+    seoTitle: "Menuisier à Doué-la-Fontaine (Doué-en-Anjou) — Menuiserie RGE",
+    h1: "Menuisier à Doué-la-Fontaine, Doué-en-Anjou (49700)",
     codePostal: "49700",
     lat: 47.1936,
     lng: -0.2772,
     agence: "doue",
     distanceKm: 0,
-    metaTitle: "Menuisier à Doué-en-Anjou (49) — Notre nouvelle agence | Fenêtres sur Loir",
+    metaTitle: "Menuisier à Doué-la-Fontaine (Doué-en-Anjou) — Menuiserie RGE",
     metaDescription:
-      "Notre nouvelle agence de menuiserie est à Doué-en-Anjou : fenêtres, portes, volets et baies sur mesure, pose RGE. Conseil de proximité dans le Saumurois et le Layon.",
+      "Menuiserie Fenêtres sur Loir à Doué-la-Fontaine (Doué-en-Anjou), 7 rue Saint François : fenêtres, portes d'entrée et volets sur mesure, bois-alu MéO, pose RGE par nos équipes.",
     intro:
-      "Doué-en-Anjou accueille notre nouvelle agence : c'est notre point d'ancrage pour tout le sud du département. Cité des roses et terre de troglodytes, elle a un bâti de tuffeau qui mérite des menuiseries soignées.",
+      "Notre agence de menuiserie est installée à Doué-la-Fontaine, au 7 rue Saint François. Fenêtres, portes d'entrée, volets et baies vitrées sur mesure : vous êtes reçus sur place, et ce sont nos équipes qui posent.",
     body: [
-      "Depuis notre agence douessine, nous rayonnons sur le Saumurois et la vallée du Layon. La proximité change tout : conseil, prise de mesures et SAV au plus près de chez vous.",
-      "Le tuffeau, très présent à Doué, appelle des menuiseries respectueuses des teintes claires et des proportions traditionnelles, tout en apportant le confort thermique d'aujourd'hui.",
+      "Doué-la-Fontaine est devenue Doué-en-Anjou en regroupant ses communes voisines, mais l'adresse ne change pas : notre agence se trouve au 7 rue Saint François. Vous y voyez les menuiseries, vous comparez les matériaux et les teintes, et vous repartez avec un rendez-vous de prise de mesures. Depuis Doué, nous intervenons dans tout le Saumurois et la vallée du Layon.",
+      "Le bâti douessin est un bâti de tuffeau : maisons de bourg aux encadrements de pierre claire, longères, habitat troglodytique de plaine, et pavillons plus récents autour du centre. Les ouvertures y sont rarement standard. Nous relevons chaque baie une à une et faisons fabriquer sur mesure, y compris les formes cintrées.",
+      "Nous posons le PVC, l'aluminium, le bois et le bois-aluminium. Pour une maison de caractère, nous conseillons souvent les menuiseries bois-alu MéO, fabriquées en Vendée : du bois à l'intérieur, de l'aluminium à l'extérieur. Fenêtres sur Loir est Menuisier d'Excellence MéO et a reçu en 2025 deux Trophées d'or du fabricant, dont celui de la meilleure vente de portes d'entrée.",
+      "La pose est assurée par nos équipes salariées, sans sous-traitance, sous certification RGE Qualibat. Le même interlocuteur vous suit du premier rendez-vous au service après-vente.",
     ],
-    quartiers: ["Doué-la-Fontaine", "Montfort", "Les Verchers-sur-Layon", "Forges"],
+    quartiers: [
+      "Doué-la-Fontaine",
+      "Soulanger",
+      "Douces",
+      "Montfort",
+      "Forges",
+      "Meigné",
+      "Brigné",
+      "Concourson-sur-Layon",
+      "Saint-Georges-sur-Layon",
+      "Les Verchers-sur-Layon",
+    ],
     faq: [
       {
-        question: "Quelles sont les coordonnées de l'agence de Doué-en-Anjou ?",
+        question: "Où se trouve la menuiserie Fenêtres sur Loir à Doué-la-Fontaine ?",
         reponse:
-          "Notre agence se situe au 7 rue Saint François, 49700 Doué-en-Anjou. Vous pouvez nous joindre au 07 66 52 24 00 pour un rendez-vous ou un devis gratuit.",
+          "Au 7 rue Saint François, 49700 Doué-en-Anjou (Doué-la-Fontaine). Vous pouvez joindre l'agence au 07 66 52 24 00 pour un rendez-vous ou un devis gratuit ; les horaires et le plan d'accès figurent sur la page de l'agence.",
+      },
+      {
+        question: "Doué-la-Fontaine ou Doué-en-Anjou : est-ce la même agence ?",
+        reponse:
+          "Oui. Doué-la-Fontaine fait partie de la commune nouvelle de Doué-en-Anjou, avec Brigné, Concourson-sur-Layon, Forges, Meigné, Montfort, Saint-Georges-sur-Layon et Les Verchers-sur-Layon. Notre agence dessert toutes ces communes, ainsi que le Saumurois et le Layon.",
+      },
+      {
+        question: "Posez-vous des portes d'entrée à Doué-la-Fontaine ?",
+        reponse:
+          "Oui : portes d'entrée en bois-aluminium MéO, en aluminium ou en PVC, posées par nos équipes. Vous pouvez composer votre porte MéO sur le configurateur du fabricant, chez vous ou avec nous à l'agence ; nous reprenons ensuite votre composition pour la prise de mesures et le devis.",
+      },
+      {
+        question: "PVC ou bois-alu pour une maison en tuffeau à Doué-la-Fontaine ?",
+        reponse:
+          "Les deux se posent. Le PVC est le plus accessible et isole très bien. Le bois-alu garde du vrai bois à l'intérieur, propose davantage de teintes et de formes, et supporte les teintes foncées au soleil ; il coûte plus cher. Notre comparatif PVC ou bois-alu détaille les critères un par un.",
       },
     ],
   },

@@ -32,9 +32,11 @@ const heroImg = contenu.cle === "doue" ? agenceDoueImg : showroomImg;
 const secondImg = contenu.cle === "doue" ? agenceDoueImg : showroomImg2;
 
 // Communes desservies par cette agence (celles qui ont une page dédiée) — maillage.
-const communesAgence = communes.filter(
-  (c) => c.agence === contenu.cle && c.slug !== contenu.slug,
-);
+// La commune de l'agence elle-même est listée en premier : c'est la page cible
+// de « menuisier + ville », elle doit recevoir un lien depuis la page agence.
+const communesAgence = communes
+  .filter((c) => c.agence === contenu.cle)
+  .sort((a, b) => Number(b.slug === contenu.slug) - Number(a.slug === contenu.slug));
 
 const mapsQuery = encodeURIComponent(
   `${agence.adresse}, ${agence.codePostal} ${agence.ville}`,
@@ -159,7 +161,7 @@ const schema = {
                 href={`/menuisier-${c.slug}/`}
                 class="inline-flex items-center rounded-full bg-[var(--color-subtle)] ring-1 ring-[var(--color-border)] px-3.5 py-1.5 text-sm text-[var(--color-fg)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
               >
-                Menuisier à {c.nom}
+                Menuisier à {c.nomUsuel ?? c.nom}
               </a>
             </li>
           ))}

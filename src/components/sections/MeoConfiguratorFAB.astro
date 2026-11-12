@@ -1,12 +1,13 @@
 ---
 import { Image } from "astro:assets";
 import meoLogo from "../../assets/meo-logo.png";
+import { MEO_CONFIGURATEUR_URL } from "../../config/business";
 
 interface Props {
   href?: string;
 }
 
-const { href = "https://www.fenetremeo.com/nos-catalogues/" } = Astro.props;
+const { href = MEO_CONFIGURATEUR_URL } = Astro.props;
 ---
 
 <a
@@ -14,7 +15,7 @@ const { href = "https://www.fenetremeo.com/nos-catalogues/" } = Astro.props;
   target="_blank"
   rel="noopener noreferrer"
   class="group inline-flex items-center gap-2.5 pl-2 pr-4 py-2 rounded-full bg-[var(--color-fg)] text-white shadow-2xl ring-1 ring-black/10 hover:bg-black transition-all hover:-translate-y-0.5"
-  aria-label="Voir le catalogue MéO (ouvre dans un nouvel onglet)"
+  aria-label="Configurer une porte d'entrée MéO (ouvre dans un nouvel onglet)"
 >
   <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white">
     <Image
@@ -30,7 +31,7 @@ const { href = "https://www.fenetremeo.com/nos-catalogues/" } = Astro.props;
     />
   </span>
   <span class="text-[13px] font-medium leading-tight">
-    <span class="block">Découvrez le</span>
-    <span class="block text-white/80 text-[11px]">catalogue MéO →</span>
+    <span class="block">Configurez votre porte</span>
+    <span class="block text-white/80 text-[11px]">configurateur MéO →</span>
   </span>
 </a>

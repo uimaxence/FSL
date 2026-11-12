@@ -12,6 +12,7 @@ import { getCommuneMedia } from "../lib/commune-media";
 import ReponseDirecte from "../components/ui/ReponseDirecte.astro";
 import { communeGraph } from "../lib/schema";
 import { communesVoisines } from "../lib/maillage";
+import { toE164, MEO_CONFIGURATEUR_URL } from "../config/business";
 
 export function getStaticPaths() {
   return communes.map((commune) => ({
@@ -27,14 +28,19 @@ const agence = AGENCES[commune.agence];
 // marque ajoutée par Google via og:site_name. Évite la troncature SERP
 // constatée sur les anciens metaTitle (72-84 car.). « fenêtres, portes &
 // volets » couvre les requêtes « pose fenêtre / porte / volet + ville ».
-const pageTitle = `Menuisier à ${commune.nom} (49) — Fenêtres, portes & volets`;
+const pageTitle =
+  commune.seoTitle ?? `Menuisier à ${commune.nom} (49) — Fenêtres, portes & volets`;
+// Nom réellement cherché (ancien nom d'une commune nouvelle), sinon nom officiel.
+const nomCherche = commune.nomUsuel ?? commune.nom;
+const estDoue = commune.slug === "doue-en-anjou";
+const telAgence = `tel:${toE164(agence.telephone)}`;
 const media = getCommuneMedia(commune.slug);
 const voisines = communesVoisines(commune.slug, 4);
 
 // Bloc réponse directe (GEO) — factuel, citable tel quel par un LLM.
 const reponseDirecte =
   commune.distanceKm === 0
-    ? `Fenêtres sur Loir pose fenêtres, portes, volets et baies vitrées à ${commune.nom} (${commune.codePostal}) depuis 2003. Artisan certifié RGE Qualibat, l'entreprise dispose d'une agence à ${commune.nom} même. Devis gratuit sous 48 h.`
+    ? `Fenêtres sur Loir est une entreprise de menuiserie installée à ${nomCherche}${commune.nomUsuel ? ` (${commune.nom}, ${commune.codePostal})` : ` (${commune.codePostal})`}, au ${agence.adresse}. Elle fournit et pose fenêtres, portes d'entrée, volets et baies vitrées sur mesure, avec ses propres équipes. Entreprise fondée en 2003, certifiée RGE Qualibat, Menuisier d'Excellence MéO. Téléphone de l'agence : ${agence.telephone}. Devis gratuit sous 48 h.`
     : `Fenêtres sur Loir pose fenêtres, portes, volets et baies vitrées à ${commune.nom} (${commune.codePostal}) depuis 2003. Artisan certifié RGE Qualibat, l'entreprise intervient depuis son agence de ${agence.ville}, à environ ${commune.distanceKm} km. Devis gratuit sous 48 h.`;
 
 // FAQ : questions uniques de la commune + 3 questions localisées (interpolées
@@ -144,7 +150,7 @@ const schema = communeGraph(commune, faqAll);
           Zone d'intervention · Maine-et-Loire (49)
         </p>
         <h1 class="text-white text-balance max-w-3xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.5)]">
-          Menuisier à {commune.nom} ({commune.codePostal})
+          {commune.h1 ?? `Menuisier à ${commune.nom} (${commune.codePostal})`}
         </h1>
         <p class="mt-5 max-w-2xl text-[17px] leading-relaxed text-white/90">
           {commune.intro}
@@ -159,12 +165,21 @@ const schema = communeGraph(commune, faqAll);
           >
             Demander un devis gratuit
           </a>
-          <a
-            href="/realisations/"
-            class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white border border-white/50 hover:bg-white hover:text-[var(--color-fg)] transition-colors"
-          >
-            Voir nos réalisations
-          </a>
+          {estDoue ? (
+            <a
+              href={telAgence}
+              class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white border border-white/50 hover:bg-white hover:text-[var(--color-fg)] transition-colors"
+            >
+              Appeler l'agence : {agence.telephone}
+            </a>
+          ) : (
+            <a
+              href="/realisations/"
+              class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white border border-white/50 hover:bg-white hover:text-[var(--color-fg)] transition-colors"
+            >
+              Voir nos réalisations
+            </a>
+          )}
         </div>
       </Container>
     </div>
@@ -176,7 +191,7 @@ const schema = communeGraph(commune, faqAll);
       <ReponseDirecte texte={reponseDirecte} class="max-w-3xl mb-8" />
       <div class="prose-fsl max-w-3xl">
         <p class="lead">
-          Vous cherchez un <strong>menuisier à {commune.nom}</strong> pour la pose ou le
+          Vous cherchez un <strong>menuisier à {nomCherche}</strong> pour la pose ou le
           remplacement de fenêtres, portes, volets ou baies vitrées ? Artisan certifié RGE,
           Fenêtres sur Loir conçoit, fabrique et installe vos menuiseries sur mesure à
           {commune.nom} et dans tout le secteur ({commune.codePostal}).
@@ -200,6 +215,37 @@ const schema = communeGraph(commune, faqAll);
               volets roulants solaires à Angers
             </a>.
           </p>
+        </div>
+      )}
+
+      {estDoue && (
+        <div class="max-w-3xl mt-8 grid sm:grid-cols-2 gap-4" data-zone="doue_outils">
+          <a
+            href="/fenetre-pvc-ou-bois-alu/"
+            class="group rounded-xl ring-1 ring-[var(--color-border)] bg-white p-5 hover:ring-[var(--color-accent)] transition-colors"
+          >
+            <p class="font-semibold text-[var(--color-fg)] group-hover:text-[var(--color-accent)] transition-colors">
+              PVC ou bois-alu : le comparatif →
+            </p>
+            <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">
+              Isolation, aspect, teintes, entretien, budget : les deux matériaux comparés
+              critère par critère, dans un tableau à imprimer.
+            </p>
+          </a>
+          <a
+            href={MEO_CONFIGURATEUR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group rounded-xl ring-1 ring-[var(--color-border)] bg-white p-5 hover:ring-[var(--color-accent)] transition-colors"
+          >
+            <p class="font-semibold text-[var(--color-fg)] group-hover:text-[var(--color-accent)] transition-colors">
+              Configurer votre porte d'entrée MéO ↗
+            </p>
+            <p class="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">
+              Modèle, vitrage, bois intérieur, teinte extérieure : composez votre porte en
+              ligne, ou venez le faire avec nous à l'agence de Doué.
+            </p>
+          </a>
         </div>
       )}
 

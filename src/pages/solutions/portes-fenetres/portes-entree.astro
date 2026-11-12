@@ -6,6 +6,7 @@ import CTASection from "../../../components/sections/CTASection.astro";
 import CertificationsBanner from "../../../components/sections/CertificationsBanner.astro";
 import AidsBox from "../../../components/sections/AidsBox.astro";
 import ConseilsLies from "../../../components/sections/ConseilsLies.astro";
+import { MEO_CONFIGURATEUR_URL } from "../../../config/business";
 
 import porteHero from "../../../assets/porte-1-boisalu.png";
 import porteMixte from "../../../assets/porte-1-boisalu.png";
@@ -113,7 +114,11 @@ const schema = [
             <a href="/contact/" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-white shadow-sm" style="background: var(--color-accent);">
               Demander un devis
             </a>
-            <a href="#modeles" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)]">
+            <a href={MEO_CONFIGURATEUR_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full px-6 py-3 text-[14px] font-medium border border-[var(--color-fg)] text-[var(--color-fg)] hover:bg-[var(--color-fg)] hover:text-white transition-colors">
+              Configurer ma porte MéO
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
+            </a>
+            <a href="#modeles" class="inline-flex items-center rounded-full px-6 py-3 text-[14px] font-medium text-[var(--color-fg)] hover:text-[var(--color-accent)]">
               Voir les modèles
             </a>
           </div>
@@ -412,10 +417,33 @@ const schema = [
         </article>
       </div>
 
+      <!-- Configurateur MéO : zone suivie (lien_sortant_clic, zone configurateur_porte) -->
+      <div class="mt-10 max-w-4xl mx-auto rounded-2xl bg-[var(--color-fg)] text-white p-7 sm:p-9 grid sm:grid-cols-[1fr_auto] gap-6 sm:items-center" data-zone="configurateur_porte" id="configurateur">
+        <div>
+          <p class="mb-2 text-xs font-semibold tracking-[0.18em] uppercase text-white/70">Configurateur MéO</p>
+          <h3 class="text-[1.35rem] text-white">Composez votre porte d'entrée en ligne</h3>
+          <p class="mt-3 text-[15px] leading-relaxed text-white/80">
+            Modèle, forme, vitrage, finition du bois à l'intérieur, teinte de l'aluminium à
+            l'extérieur : le configurateur MéO affiche votre porte au fur et à mesure de vos
+            choix. Faites-le chez vous, ou avec nous au showroom : nous reprenons ensuite votre
+            composition pour la prise de mesures et le devis.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <a href={MEO_CONFIGURATEUR_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 rounded-full bg-white px-6 py-3 text-[14px] font-medium text-[var(--color-fg)] hover:bg-[var(--color-tint)] transition-colors whitespace-nowrap">
+            Ouvrir le configurateur
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
+          </a>
+          <a href="/contact/" class="inline-flex items-center justify-center rounded-full px-6 py-3 text-[14px] font-medium text-white ring-1 ring-white/40 hover:bg-white/10 transition-colors whitespace-nowrap">
+            Le faire avec un conseiller
+          </a>
+        </div>
+      </div>
+
       <p class="text-center mt-8 text-sm text-[var(--color-muted)]">
         Catalogue complet visible en showroom ·
-        <a href="https://www.meomenuiserie.com" target="_blank" rel="noopener noreferrer" class="text-[var(--color-accent)] underline underline-offset-4">
-          meomenuiserie.com
+        <a href="https://www.fenetremeo.com/porte-entree/" target="_blank" rel="noopener noreferrer" class="text-[var(--color-accent)] underline underline-offset-4">
+          les portes d'entrée sur fenetremeo.com
         </a>
       </p>
     </Container>

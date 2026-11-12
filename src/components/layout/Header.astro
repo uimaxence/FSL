@@ -6,6 +6,7 @@ import portesImg from "../../assets/porte-1-boisalu.png";
 import fenetresImg from "../../assets/porte-fenetre-3.png";
 import exterieurImg from "../../assets/carport-1.png";
 import interieurImg from "../../assets/hero-1.jpg";
+import { MEO_CONFIGURATEUR_URL } from "../../config/business";
 
 const pathname = Astro.url.pathname;
 const isActive = (href: string) =>
@@ -46,6 +47,7 @@ const solutionsColumns = [
     alt: "Portes d'entrée bois-aluminium MéO par Fenêtres sur Loir",
     items: [
       { label: "Porte d'entrée", href: "/solutions/portes-fenetres/portes-entree/" },
+      { label: "Configurateur de porte MéO ↗", href: MEO_CONFIGURATEUR_URL, external: true },
       { label: "Porte-fenêtre", href: "/solutions/portes-fenetres/porte-fenetre/" },
       { label: "Porte de garage", href: "/solutions/portes-fenetres/porte-garage/" },
       { label: "Portes intérieures", href: "/solutions/portes-fenetres/portes-interieures/" },
@@ -59,6 +61,7 @@ const solutionsColumns = [
     items: [
       { label: "Fenêtres", href: "/solutions/portes-fenetres/fenetres/" },
       { label: "Fenêtres bois-alu", href: "/fenetres-bois-alu-angers/" },
+      { label: "PVC ou bois-alu : comparatif", href: "/fenetre-pvc-ou-bois-alu/" },
       { label: "Baies vitrées", href: "/solutions/portes-fenetres/baies-vitrees/" },
       { label: "Volets", href: "/solutions/portes-fenetres/volets/" },
       { label: "Volets solaires", href: "/volets-roulants-solaires-angers/" },
@@ -105,14 +108,14 @@ const navItems: NavEntry[] = [
       />
     </a>
 
-    <nav class="hidden lg:flex items-center gap-7" aria-label="Navigation principale">
+    <nav class="hidden lg:flex items-center gap-4 xl:gap-7" aria-label="Navigation principale">
       {
         navItems.map((item) => (
           <div class="relative">
             <a
               href={item.href}
               class:list={[
-                "inline-flex items-center gap-1 py-2 text-[14px] font-medium transition-colors whitespace-nowrap",
+                "inline-flex items-center gap-1 py-2 text-[13px] xl:text-[14px] font-medium transition-colors whitespace-nowrap",
                 isActive(item.href)
                   ? "text-[var(--color-accent)]"
                   : "text-[var(--color-fg)] hover:text-[var(--color-accent)]",
@@ -146,6 +149,19 @@ const navItems: NavEntry[] = [
     </nav>
 
     <div class="flex items-center gap-3 shrink-0">
+      <!-- Accès direct au configurateur de portes MéO : visible en permanence
+           sur grand écran (usage en rendez-vous, au showroom), dans le menu
+           mobile sinon. -->
+      <a
+        href={MEO_CONFIGURATEUR_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden min-[1440px]:inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] font-medium text-[var(--color-fg)] ring-1 ring-[var(--color-border)] hover:ring-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors whitespace-nowrap"
+        aria-label="Configurer une porte d'entrée MéO (ouvre dans un nouvel onglet)"
+      >
+        Configurer ma porte
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
+      </a>
       <a
         href="/contact/"
         class="hidden sm:inline-flex items-center rounded-full px-5 py-2.5 text-[14px] font-medium text-white transition-colors shadow-sm"
@@ -153,7 +169,9 @@ const navItems: NavEntry[] = [
         onmouseover="this.style.background='var(--color-accent-hover)'"
         onmouseout="this.style.background='var(--color-accent)'"
       >
-        Demandez un rendez-vous
+        <!-- Libellé court entre 1024 et 1279 px : la navigation débordait de l'écran. -->
+        <span class="lg:hidden xl:inline">Demandez un rendez-vous</span>
+        <span class="hidden lg:inline xl:hidden">Rendez-vous</span>
       </a>
       <button
         type="button"
@@ -239,6 +257,8 @@ const navItems: NavEntry[] = [
                   <li>
                     <a
                       href={sub.href}
+                      target={"external" in sub ? "_blank" : undefined}
+                      rel={"external" in sub ? "noopener noreferrer" : undefined}
                       class="block px-2 py-1.5 rounded-md text-[13px] text-[var(--color-muted)] hover:bg-[var(--color-tint)] hover:text-[var(--color-accent)] transition-colors"
                     >
                       {sub.label}
@@ -323,7 +343,7 @@ const navItems: NavEntry[] = [
                     <ul>
                       {col.items.map((sub) => (
                         <li>
-                          <a href={sub.href} class="block px-3 py-1.5 pl-6 text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)]">
+                          <a href={sub.href} target={"external" in sub ? "_blank" : undefined} rel={"external" in sub ? "noopener noreferrer" : undefined} class="block px-3 py-1.5 pl-6 text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)]">
                             {sub.label}
                           </a>
                         </li>
@@ -380,6 +400,17 @@ const navItems: NavEntry[] = [
             style="background: var(--color-accent);"
           >
             Demandez un rendez-vous
+          </a>
+        </li>
+        <li class="pt-1">
+          <a
+            href={MEO_CONFIGURATEUR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex w-full items-center justify-center gap-1.5 rounded-full px-6 py-3 text-[15px] font-medium text-[var(--color-fg)] ring-1 ring-[var(--color-border)]"
+          >
+            Configurer ma porte d'entrée MéO
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
           </a>
         </li>
       </ul>

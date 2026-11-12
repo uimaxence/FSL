@@ -1,0 +1,575 @@
+---
+// Comparatif « fenêtre PVC ou bois-alu » — page d'aide à la vente (12/11/2026).
+//
+// Usage : support que l'équipe commerciale montre ou envoie à un client qui
+// hésite entre un devis PVC et un devis bois-alu MéO (agence de Doué en
+// particulier, où la concurrence locale vend surtout du PVC). Elle s'imprime
+// sur une page (feuille @media print) et se transmet (bloc « Transmettre »).
+//
+// Règles de rédaction :
+// - comparatif de MATÉRIAUX, jamais d'entreprises : aucun concurrent nommé ni
+//   visé (dénigrement, publicité comparative encadrée par le Code de la
+//   consommation). Nous posons nous-mêmes du PVC : il est décrit honnêtement.
+// - faits bois-alu : uniquement ce qui est publié sur fenetremeo.com (relevés
+//   des 01/10 et 12/10/2026, voir docs/seo/2026-10-12-page-meo-bois-alu.md).
+// - faits PVC : généralités de métier déjà publiées sur le site
+//   (/blog/fenetre-pvc-alu-bois-alu/), sans chiffre de marque.
+// - aucun prix (choix client).
+//
+// SEO : pas de volume mesuré sur « fenêtre pvc ou bois alu » (12/11/2026). La
+// page ne remplace pas /blog/fenetre-pvc-alu-bois-alu/ (cible « PVC ou alu ») :
+// elle traite le seul duel PVC / bois-alu et les deux pages se renvoient l'une
+// à l'autre.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import ReponseDirecte from "../components/ui/ReponseDirecte.astro";
+import CTASection from "../components/sections/CTASection.astro";
+import ConseilsLies from "../components/sections/ConseilsLies.astro";
+import { organizationNode, agencyNode } from "../lib/schema";
+import { SITE_URL, AGENCES, MEO_CONFIGURATEUR_URL, toE164 } from "../config/business";
+
+const title = "Fenêtre PVC ou bois-alu : le comparatif critère par critère";
+const description =
+  "PVC ou bois-alu pour vos fenêtres et votre porte d'entrée ? Isolation, aspect, teintes, entretien, tenue dans le temps, budget : le tableau comparatif d'un menuisier qui pose les deux.";
+
+const PAGE_URL = `${SITE_URL}/fenetre-pvc-ou-bois-alu/`;
+
+const breadcrumb = [
+  { label: "Accueil", href: "/" },
+  { label: "Portes & Fenêtres", href: "/solutions/portes-fenetres/" },
+  { label: "Fenêtres", href: "/solutions/portes-fenetres/fenetres/" },
+  { label: "PVC ou bois-alu" },
+];
+
+const reponseDirecte =
+  "Le PVC est le matériau le plus accessible : il isole très bien et ne demande aucun entretien. Le bois-alu coûte plus cher et apporte ce que le PVC n'a pas : du vrai bois à l'intérieur, de l'aluminium thermolaqué à l'extérieur, 13 finitions de bois et 28 teintes, des formes cintrées, des teintes foncées possibles plein sud. À vitrage égal, les deux isolent à un niveau proche : la différence se joue sur l'aspect, la tenue dans le temps et le budget. Fenêtres sur Loir pose les deux, avec ses propres équipes.";
+
+// [critère, PVC, bois-alu MéO]
+const lignes: [string, string, string][] = [
+  [
+    "De quoi c'est fait",
+    "Profilés en PVC à plusieurs chambres, renforcés d'acier selon les dimensions.",
+    "Deux structures assemblées par plots : bois (pin ou chêne) côté pièce, aluminium côté façade.",
+  ],
+  [
+    "Isolation thermique",
+    "Très bonne : le PVC ne conduit pas la chaleur. La valeur exacte dépend de la gamme et figure sur le devis.",
+    "Uw 1,2 en double vitrage, 0,7 en triple (fenêtre à frappe MéO). Rupture totale de pont thermique entre le bois et l'aluminium.",
+  ],
+  [
+    "Isolation au bruit",
+    "Dépend surtout du vitrage choisi.",
+    "28 dB avec le double vitrage de série ; vitrages acoustiques possibles.",
+  ],
+  [
+    "Ce que vous voyez dedans",
+    "Une surface PVC lisse : blanc, teinté, ou film décor imitant le bois.",
+    "Du bois véritable : pin ou chêne, 13 finitions, du naturel à l'ébène.",
+  ],
+  [
+    "Ce que l'on voit dehors",
+    "Blanc, gris, beige et quelques décors : un choix de teintes plus restreint.",
+    "Aluminium thermolaqué, 28 teintes (satinées, texturées, sablées, anodisée, ton bois).",
+  ],
+  [
+    "Teintes foncées au soleil",
+    "Le PVC se dilate davantage à la chaleur : en teinte foncée plein sud, les fabricants encadrent les dimensions.",
+    "L'aluminium se dilate sans contraindre le bois : les teintes foncées sont possibles plein sud.",
+  ],
+  [
+    "Formes et grandes dimensions",
+    "Formes courantes ; les cintres et les très grandes baies atteignent vite leurs limites.",
+    "7 formes dont plein cintre, cintre surbaissé et anse de panier ; baies coulissantes de 2 à 6 vantaux.",
+  ],
+  [
+    "Entretien",
+    "Eau savonneuse, une à deux fois par an.",
+    "Eau claire et savon doux sur l'aluminium, chiffon doux sur le bois. Ni peinture ni lasure à refaire côté façade.",
+  ],
+  [
+    "Tenue dans le temps",
+    "Bonne : 25 à 35 ans pour un PVC de qualité bien posé. L'aspect ne se rénove pas : un profilé PVC ne se repeint pas.",
+    "L'aluminium fait face à la pluie et aux UV, le bois reste à l'abri côté pièce. La finition pin blanc peut être repeinte.",
+  ],
+  [
+    "Maison ancienne, secteur protégé",
+    "Souvent refusé par l'Architecte des Bâtiments de France sur les façades anciennes.",
+    "Plus souvent accepté, à valider au cas par cas avec l'Architecte des Bâtiments de France.",
+  ],
+  [
+    "Origine et matière",
+    "Matière plastique, recyclable par des filières dédiées. Origine variable selon le fabricant.",
+    "Fabriqué à Cugand, en Vendée. Bois certifié PEFC, label Origine France Garantie, certification NF.",
+  ],
+  [
+    "Garantie fabricant",
+    "Selon le fabricant : elle figure sur le devis.",
+    "Jusqu'à 10 ans, avec une extension gratuite réservée aux poses par un Menuisier d'Excellence MéO.",
+  ],
+  [
+    "Budget",
+    "Le plus accessible des matériaux, à dimensions et vitrage égaux.",
+    "Le plus élevé : le bois-alu se situe au-dessus du PVC et de l'aluminium.",
+  ],
+];
+
+const faq = [
+  {
+    question: "Fenêtre PVC ou bois-alu : laquelle isole le mieux ?",
+    reponse:
+      "Les deux isolent à un niveau proche. Le PVC est isolant par nature ; la fenêtre bois-alu MéO affiche un Uw de 1,2 W/m²·K en double vitrage et de 0,7 en triple vitrage, selon le fabricant. Dans les deux cas, c'est le vitrage et la qualité de la pose qui font l'essentiel du résultat : une bonne fenêtre mal posée isole mal.",
+  },
+  {
+    question: "Pourquoi une fenêtre bois-alu coûte-t-elle plus cher qu'une fenêtre PVC ?",
+    reponse:
+      "Parce qu'elle réunit deux menuiseries en une : une structure en bois (pin ou chêne) à l'intérieur et une structure en aluminium thermolaqué à l'extérieur, assemblées par plots. S'y ajoutent le choix de l'essence et de la finition, la fabrication sur mesure en Vendée et les certifications du fabricant. Le prix de votre projet dépend ensuite des dimensions, des formes, du vitrage et du mode de pose : il figure sur le devis, gratuit.",
+  },
+  {
+    question: "Le PVC est-il un mauvais matériau ?",
+    reponse:
+      "Non. Une fenêtre PVC de qualité, bien posée, isole très bien, ne demande pas d'entretien et dure 25 à 35 ans. Ses limites sont ailleurs : un aspect plastique à l'intérieur, un choix de teintes plus restreint, des formes et des dimensions plus contraintes, et un refus fréquent en secteur protégé. Nous posons du PVC et nous le recommandons quand le budget est la première contrainte.",
+  },
+  {
+    question: "Le bois d'une fenêtre bois-alu demande-t-il de l'entretien ?",
+    reponse:
+      "Très peu. Le bois se trouve à l'intérieur, à l'abri des intempéries, protégé par une lasure de finition : selon MéO, un dépoussiérage au chiffon doux suffit. À l'extérieur, l'aluminium se nettoie à l'eau claire avec un savon doux. Il n'y a ni peinture ni lasure à refaire côté façade.",
+  },
+  {
+    question: "Peut-on associer PVC et bois-alu dans une même maison ?",
+    reponse:
+      "Oui, c'est une façon courante de tenir un budget : bois-alu pour la porte d'entrée, le séjour et la façade sur rue, PVC pour les pièces secondaires. Nous vérifions avec vous l'accord des teintes extérieures, qui n'est pas toujours parfait d'un matériau à l'autre.",
+  },
+  {
+    question: "Où voir et comparer une fenêtre PVC et une fenêtre bois-alu ?",
+    reponse:
+      "Dans notre showroom de 300 m² à Seiches-sur-le-Loir, près d'Angers, et à notre agence de Doué-en-Anjou (Doué-la-Fontaine), 7 rue Saint François. Pour une porte d'entrée, le configurateur MéO permet aussi de composer son modèle en ligne avant le rendez-vous.",
+  },
+];
+
+const partageSujet = encodeURIComponent("Fenêtre PVC ou bois-alu : le comparatif de Fenêtres sur Loir");
+const partageCorps = encodeURIComponent(
+  `Bonjour,\n\nVoici le comparatif PVC / bois-alu dont nous avons parlé : isolation, aspect, teintes, entretien, tenue dans le temps et budget, critère par critère.\n${PAGE_URL}\n\nFenêtres sur Loir`,
+);
+const partageWhatsapp = encodeURIComponent(`Fenêtre PVC ou bois-alu, le comparatif de Fenêtres sur Loir : ${PAGE_URL}`);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    organizationNode(),
+    agencyNode("doue"),
+    agencyNode("seiches"),
+    {
+      "@type": "Article",
+      "@id": `${PAGE_URL}#article`,
+      headline: title,
+      description,
+      inLanguage: "fr-FR",
+      datePublished: "2026-11-12",
+      dateModified: "2026-11-12",
+      mainEntityOfPage: PAGE_URL,
+      author: { "@id": `${SITE_URL}/#organization` },
+      publisher: { "@id": `${SITE_URL}/#organization` },
+      about: ["Fenêtre PVC", "Fenêtre bois-aluminium", "MéO"],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${PAGE_URL}#faq`,
+      mainEntity: faq.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.reponse },
+      })),
+    },
+  ],
+};
+
+const agences = [AGENCES.doue, AGENCES.seiches];
+---
+
+<BaseLayout title={title} description={description} breadcrumb={breadcrumb} schemaJsonLd={schema}>
+  <!-- En-tête -->
+  <section class="section-tight bg-[var(--color-tint)] cmp-entete">
+    <Container width="default">
+      <p class="mb-3 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">
+        Comparatif · Fenêtres et portes d'entrée
+      </p>
+      <h1 class="text-balance max-w-3xl">Fenêtre PVC ou bois-alu : le comparatif, critère par critère</h1>
+      <p class="mt-5 max-w-2xl text-[17px] leading-relaxed text-[var(--color-muted)]">
+        Deux devis, deux matériaux, un écart de prix. Voici ce qui les sépare vraiment, écrit
+        par un menuisier qui pose les deux.
+      </p>
+      <div class="mt-7 flex flex-wrap gap-3 cmp-no-print">
+        <a href="#tableau" class="inline-flex items-center rounded-full bg-[var(--color-accent)] px-6 py-3 text-[14px] font-medium text-white hover:bg-[var(--color-accent-hover)] transition-colors">
+          Voir le tableau
+        </a>
+        <button type="button" data-cmp-print class="inline-flex items-center gap-2 rounded-full ring-1 ring-[var(--color-border)] bg-white px-6 py-3 text-[14px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9" /><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /><rect x="6" y="14" width="12" height="8" /></svg>
+          Imprimer le comparatif
+        </button>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section-tight">
+    <Container width="default">
+      <ReponseDirecte texte={reponseDirecte} class="max-w-3xl" />
+    </Container>
+  </section>
+
+  <!-- Tableau comparatif -->
+  <section class="pb-12 sm:pb-16 scroll-mt-28" id="tableau">
+    <Container width="default">
+      <h2 class="mb-6 text-balance">PVC et bois-alu comparés en 13 critères</h2>
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th scope="col"><span class="sr-only">Critère</span></th>
+            <th scope="col">Fenêtre PVC</th>
+            <th scope="col" class="cmp-meo">Fenêtre bois-alu MéO</th>
+          </tr>
+        </thead>
+        <tbody>
+          {lignes.map(([critere, pvc, boisAlu]) => (
+            <tr>
+              <th scope="row">{critere}</th>
+              <td data-label="PVC">{pvc}</td>
+              <td data-label="Bois-alu MéO" class="cmp-meo">{boisAlu}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="mt-4 max-w-3xl text-sm text-[var(--color-muted)] leading-relaxed">
+        Bois-alu : valeurs publiées par MéO (fenetremeo.com, relevé d'octobre 2026) pour sa
+        fenêtre à frappe deux vantaux en double vitrage. PVC : caractéristiques générales du
+        matériau, variables selon le fabricant et la gamme. Les performances et le prix de
+        votre projet figurent sur votre devis.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Verdict -->
+  <section class="section-tight bg-[var(--color-subtle)]">
+    <Container width="default">
+      <h2 class="mb-8 text-balance">Lequel choisir ?</h2>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-2xl bg-white ring-1 ring-[var(--color-border)] p-6 sm:p-7">
+          <h3 class="text-[1.2rem]">Le PVC est le bon choix si…</h3>
+          <ul class="mt-4 space-y-2.5 text-[15px] leading-relaxed text-[var(--color-muted)]">
+            <li>le budget est votre première contrainte ;</li>
+            <li>vous remplacez les fenêtres d'un pavillon aux ouvertures standard ;</li>
+            <li>l'aspect du cadre, dedans comme dehors, compte peu pour vous ;</li>
+            <li>le logement est destiné à la location.</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl bg-white ring-2 ring-[var(--color-accent)] p-6 sm:p-7">
+          <h3 class="text-[1.2rem]">Le bois-alu vaut la différence si…</h3>
+          <ul class="mt-4 space-y-2.5 text-[15px] leading-relaxed text-[var(--color-muted)]">
+            <li>vous voulez du bois dans vos pièces, sans rien repeindre côté façade ;</li>
+            <li>la maison a du caractère : tuffeau, ouvertures cintrées, secteur protégé ;</li>
+            <li>vous tenez à une teinte précise, y compris foncée et exposée au sud ;</li>
+            <li>vous restez dans la maison et voulez des menuiseries faites pour durer ;</li>
+            <li>l'origine compte : fabrication en Vendée, bois certifié PEFC.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-6 max-w-3xl text-[15px] leading-relaxed text-[var(--color-muted)]">
+        Entre les deux, beaucoup de nos clients panachent : bois-alu pour la porte d'entrée et
+        les pièces de vie, PVC pour le reste. Et si vous hésitez avec l'aluminium, notre guide
+        <a href="/blog/fenetre-pvc-alu-bois-alu/" class="text-[var(--color-accent)] underline underline-offset-4">fenêtre PVC ou alu</a>
+        compare les trois matériaux.
+      </p>
+    </Container>
+  </section>
+
+  <!-- La pose -->
+  <section class="section-tight">
+    <Container width="default">
+      <div class="prose-fsl max-w-3xl">
+        <h2>Ce qui ne dépend pas du matériau : la pose</h2>
+        <p>
+          Une fenêtre vaut ce que vaut sa pose. Un calfeutrement négligé ou un dormant mal
+          réglé annule les performances annoncées, en PVC comme en bois-alu. Quand vous
+          comparez deux devis, comparez aussi qui pose, et comment.
+        </p>
+        <ul>
+          <li><strong>Qui pose ?</strong> Chez Fenêtres sur Loir, ce sont nos équipes salariées, sans sous-traitance.</li>
+          <li><strong>Quelle qualification ?</strong> Certification RGE Qualibat, nécessaire pour les aides à la rénovation énergétique.</li>
+          <li><strong>Quel lien avec le fabricant ?</strong> Nous sommes <a href="/partenaires/meo/">Menuisier d'Excellence MéO</a> : le fabricant reconnaît notre maîtrise de ses produits et ouvre à nos clients une extension de garantie gratuite. En 2025, MéO nous a décerné deux Trophées d'or, dont celui de la meilleure vente de portes d'entrée.</li>
+          <li><strong>Quel mode de pose ?</strong> En rénovation sur le dormant existant ou en dépose totale : le choix doit être écrit sur le devis.</li>
+          <li><strong>Et après ?</strong> Garantie décennale sur la pose, et un service après-vente assuré par l'entreprise qui a posé.</li>
+        </ul>
+        <p>
+          Pour comprendre comment une fenêtre bois-alu est construite, notre page
+          <a href="/partenaires/meo/">MéO et le bois-aluminium</a> la montre en coupe, couche
+          par couche.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Porte d'entrée : configurateur -->
+  <section class="pb-12 sm:pb-16 cmp-no-print">
+    <Container width="default">
+      <div class="rounded-2xl bg-[var(--color-fg)] text-white p-7 sm:p-9 grid sm:grid-cols-[1fr_auto] gap-6 sm:items-center" data-zone="configurateur_porte">
+        <div>
+          <p class="mb-2 text-xs font-semibold tracking-[0.18em] uppercase text-white/70">Porte d'entrée</p>
+          <h2 class="text-[1.4rem] text-white">Voyez la différence sur votre porte</h2>
+          <p class="mt-3 text-[15px] leading-relaxed text-white/80">
+            Le configurateur MéO affiche votre porte d'entrée bois-alu au fil de vos choix :
+            modèle, vitrage, bois intérieur, teinte extérieure. Faites-le chez vous ou avec
+            nous, en agence.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <a href={MEO_CONFIGURATEUR_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 rounded-full bg-white px-6 py-3 text-[14px] font-medium text-[var(--color-fg)] hover:bg-[var(--color-tint)] transition-colors whitespace-nowrap">
+            Ouvrir le configurateur
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
+          </a>
+          <a href="/solutions/portes-fenetres/portes-entree/" class="inline-flex items-center justify-center rounded-full px-6 py-3 text-[14px] font-medium text-white ring-1 ring-white/40 hover:bg-white/10 transition-colors whitespace-nowrap">
+            Nos portes d'entrée
+          </a>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Agences : visible à l'écran et à l'impression -->
+  <section class="section-tight bg-[var(--color-subtle)] cmp-agences">
+    <Container width="default">
+      <h2 class="mb-6 text-balance">Comparer les deux en vrai</h2>
+      <div class="grid sm:grid-cols-2 gap-5">
+        {agences.map((a) => (
+          <address class="not-italic rounded-2xl bg-white ring-1 ring-[var(--color-border)] p-6 text-[15px] leading-relaxed text-[var(--color-muted)]">
+            <p class="font-semibold text-[var(--color-fg)]">Fenêtres sur Loir — {a.nom}</p>
+            <p class="mt-2">{a.adresse}, {a.codePostal} {a.ville}</p>
+            <p class="mt-1">
+              <a href={`tel:${toE164(a.telephone)}`} class="font-medium text-[var(--color-accent)] hover:underline">{a.telephone}</a>
+            </p>
+          </address>
+        ))}
+      </div>
+      <p class="mt-5 text-sm text-[var(--color-muted)]">
+        Agence de Doué-en-Anjou : à Doué-la-Fontaine, pour le Saumurois et le Layon.
+        <a href="/menuisier-doue-en-anjou/" class="text-[var(--color-accent)] underline underline-offset-4 cmp-no-print">Menuisier à Doué-la-Fontaine</a>
+      </p>
+    </Container>
+  </section>
+
+  <!-- FAQ — même source que le FAQPage JSON-LD (non imprimée : le comparatif
+       papier tient ainsi sur trois pages) -->
+  <section class="section-tight cmp-no-print">
+    <Container width="default">
+      <div class="prose-fsl max-w-3xl mx-auto">
+        <h2>PVC ou bois-alu : vos questions</h2>
+        {faq.map((f) => (
+          <>
+            <h3>{f.question}</h3>
+            <p>{f.reponse}</p>
+          </>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Transmettre -->
+  <section class="pb-12 sm:pb-16 cmp-no-print">
+    <Container width="default">
+      <div class="max-w-3xl mx-auto rounded-2xl bg-[var(--color-tint)] p-7 sm:p-9" data-share>
+        <p class="mb-2 text-xs font-semibold tracking-[0.18em] uppercase text-[var(--color-accent)]">À garder sous la main</p>
+        <h2 class="text-[1.4rem]">Transmettre ce comparatif</h2>
+        <p class="mt-3 text-[15px] leading-relaxed text-[var(--color-muted)]">
+          Vous voulez en parler à la maison avant de décider ? Envoyez-vous la page ou
+          imprimez le tableau.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <button type="button" data-share-copy class="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-[13px] font-medium text-white hover:bg-[var(--color-accent-hover)] transition-colors">
+            <span data-share-copy-label>Copier le lien</span>
+          </button>
+          <a href={`mailto:?subject=${partageSujet}&body=${partageCorps}`} class="inline-flex items-center rounded-full ring-1 ring-[var(--color-border)] bg-white px-5 py-2.5 text-[13px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors">
+            Envoyer par e-mail
+          </a>
+          <a href={`https://wa.me/?text=${partageWhatsapp}`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-full ring-1 ring-[var(--color-border)] bg-white px-5 py-2.5 text-[13px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors">
+            Partager sur WhatsApp
+          </a>
+          <button type="button" data-cmp-print class="inline-flex items-center rounded-full ring-1 ring-[var(--color-border)] bg-white px-5 py-2.5 text-[13px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors">
+            Imprimer
+          </button>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <div class="cmp-no-print">
+    <ConseilsLies
+      slugs={["fenetre-pvc-alu-bois-alu", "double-ou-triple-vitrage", "aides-changer-fenetres-2026"]}
+      titre="Nos conseils avant de choisir vos fenêtres"
+    />
+
+    <CTASection
+      eyebrow="Votre projet"
+      title="Deux devis pour comparer : PVC et bois-alu"
+      text="Prise de mesures à domicile, puis un devis détaillé dans chaque matériau si vous le souhaitez : vous décidez avec les vrais chiffres de votre maison."
+      secondaryLabel="Le bois-alu MéO expliqué"
+      secondaryHref="/partenaires/meo/"
+    />
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .cmp {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .cmp th,
+  .cmp td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .cmp thead th {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-fg);
+    border-bottom: 2px solid var(--color-fg);
+  }
+  .cmp tbody th {
+    width: 22%;
+    font-weight: 600;
+    color: var(--color-fg);
+  }
+  .cmp td {
+    width: 39%;
+    color: var(--color-muted);
+  }
+  .cmp .cmp-meo {
+    background: var(--color-tint);
+    color: var(--color-fg);
+  }
+  .cmp thead .cmp-meo {
+    border-radius: 0.75rem 0.75rem 0 0;
+    color: var(--color-accent);
+  }
+  .cmp tbody tr:last-child .cmp-meo {
+    border-radius: 0 0 0.75rem 0.75rem;
+  }
+
+  /* Téléphone : chaque critère devient une carte, les deux matériaux empilés */
+  @media (max-width: 639px) {
+    .cmp thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+    .cmp,
+    .cmp tbody,
+    .cmp tr,
+    .cmp th,
+    .cmp td {
+      display: block;
+      width: 100%;
+    }
+    .cmp tr {
+      margin-bottom: 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: 0.875rem;
+      overflow: hidden;
+    }
+    .cmp tbody th {
+      width: 100%;
+      border-bottom: 0;
+      padding-bottom: 0.25rem;
+      font-size: 1rem;
+    }
+    .cmp td {
+      width: 100%;
+      border-bottom: 0;
+      padding-top: 0.6rem;
+      padding-bottom: 0.8rem;
+    }
+    .cmp td::before {
+      content: attr(data-label);
+      display: block;
+      margin-bottom: 0.15rem;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+    .cmp tbody tr:last-child .cmp-meo {
+      border-radius: 0;
+    }
+  }
+
+  /* Impression : titre, tableau, verdict et coordonnées des agences */
+  @media print {
+    [data-topbar],
+    header[data-header],
+    footer,
+    nav[aria-label="Fil d'Ariane"],
+    [data-devis-popup],
+    #devis-popup,
+    [data-annonce],
+    .fixed,
+    .cmp-no-print {
+      display: none !important;
+    }
+    body {
+      font-size: 11pt;
+    }
+    .cmp-entete {
+      background: #fff !important;
+      padding-top: 0 !important;
+      padding-bottom: 0.5rem !important;
+    }
+    section {
+      padding-top: 0.6rem !important;
+      padding-bottom: 0.6rem !important;
+      background: #fff !important;
+    }
+    .cmp {
+      font-size: 9.5pt;
+    }
+    .cmp th,
+    .cmp td {
+      padding: 0.35rem 0.5rem;
+    }
+    .cmp tr,
+    .cmp-agences address {
+      break-inside: avoid;
+    }
+    .cmp .cmp-meo {
+      background: #f1f1f1 !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-cmp-print]").forEach((b) =>
+    b.addEventListener("click", () => window.print()),
+  );
+  const box = document.querySelector<HTMLElement>("[data-share]");
+  if (box) {
+    const label = box.querySelector<HTMLElement>("[data-share-copy-label]");
+    box.querySelector<HTMLButtonElement>("[data-share-copy]")?.addEventListener("click", async () => {
+      const url = window.location.origin + window.location.pathname;
+      try {
+        await navigator.clipboard.writeText(url);
+        if (label) label.textContent = "Lien copié";
+      } catch {
+        window.prompt("Copiez ce lien :", url);
+      }
+      window.setTimeout(() => {
+        if (label) label.textContent = "Copier le lien";
+      }, 2200);
+    });
+  }
+</script>

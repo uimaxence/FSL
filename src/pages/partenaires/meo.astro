@@ -27,7 +27,7 @@ import ReponseDirecte from "../../components/ui/ReponseDirecte.astro";
 import CTASection from "../../components/sections/CTASection.astro";
 import ConseilsLies from "../../components/sections/ConseilsLies.astro";
 import { organizationNode, agencyNode, agencyId } from "../../lib/schema";
-import { SITE_URL } from "../../config/business";
+import { SITE_URL, MEO_CONFIGURATEUR_URL } from "../../config/business";
 import meoLogo from "../../assets/meo-logo.png";
 import tropheePortes from "../../assets/trophee-meo-2025-portes-entree.png";
 import tropheePerformance from "../../assets/trophee-meo-2025-performance.png";
@@ -738,6 +738,10 @@ const schema = {
               vente de portes d'entrée.
             </p>
             <div class="mt-5 flex flex-wrap gap-3">
+              <a href={MEO_CONFIGURATEUR_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-[13px] font-medium text-white hover:bg-[var(--color-accent-hover)] transition-colors">
+                Configurer ma porte
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
+              </a>
               <a href="/solutions/portes-fenetres/portes-entree/" class="inline-flex items-center rounded-full ring-1 ring-[var(--color-border)] bg-white px-5 py-2.5 text-[13px] font-medium text-[var(--color-fg)] hover:ring-[var(--color-accent)] transition-colors">Nos portes d'entrée</a>
               <a href="https://www.fenetremeo.com/porte-entree/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-[13px] font-medium text-[var(--color-accent)] hover:underline underline-offset-4">
                 Les 82 modèles sur fenetremeo.com
