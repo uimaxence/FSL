@@ -12,7 +12,9 @@ import { getCommuneMedia } from "../lib/commune-media";
 import ReponseDirecte from "../components/ui/ReponseDirecte.astro";
 import { communeGraph } from "../lib/schema";
 import { communesVoisines } from "../lib/maillage";
-import { toE164, MEO_CONFIGURATEUR_URL } from "../config/business";
+import { toE164, MEO_CONFIGURATEUR_URL, googleBusiness } from "../config/business";
+import { avisAgence } from "../lib/avis";
+import { deCommune } from "../lib/typo";
 
 export function getStaticPaths() {
   return communes.map((commune) => ({
@@ -34,6 +36,12 @@ const pageTitle =
 const nomCherche = commune.nomUsuel ?? commune.nom;
 const estDoue = commune.slug === "doue-en-anjou";
 const telAgence = `tel:${toE164(agence.telephone)}`;
+// « d'Angers », « des Ponts-de-Cé », « de Saumur »…
+const deLaCommune = deCommune(commune.nom);
+// Note Google de l'agence de rattachement : la même que celle déclarée dans le
+// JSON-LD (aggregateRating), affichée ici pour que la donnée soit visible.
+const avis = avisAgence(commune.agence);
+const noteAffichee = avis?.note.toFixed(1).replace(".", ",");
 const media = getCommuneMedia(commune.slug);
 const voisines = communesVoisines(commune.slug, 4);
 
@@ -60,7 +68,9 @@ const faqLocalisees = [
     reponse: `Oui, le devis est gratuit et sans engagement. Après une prise de mesures à ${commune.nom}, nous vous remettons une proposition détaillée sous 48 h.`,
   },
 ];
-const faqAll = [...(commune.faq ?? []), ...faqLocalisees];
+const faqAll = commune.faqComplete
+  ? (commune.faq ?? [])
+  : [...(commune.faq ?? []), ...faqLocalisees];
 
 const services = [
   {
@@ -95,7 +105,7 @@ const services = [
     href: "/solutions/confort-exterieur/carports-marquises/",
     desc: "Carports, marquises et pergolas bioclimatiques en aluminium pour aménager et protéger vos extérieurs.",
   },
-];
+].map((s) => ({ ...s, desc: commune.servicesDesc?.[s.label] ?? s.desc }));
 
 const aides = [
   { titre: "Certification RGE Qualibat", texte: "Indispensable pour ouvrir droit aux aides : notre pose est réalisée par nos équipes, sans sous-traitance." },
@@ -181,6 +191,28 @@ const schema = communeGraph(commune, faqAll);
             </a>
           )}
         </div>
+        {avis && (
+          <a
+            href={googleBusiness[commune.agence].mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-zone="note_google_ville"
+            class="mt-6 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[14px] text-white/90 hover:text-white transition-colors"
+            aria-label={`${noteAffichee} sur 5, ${avis.total} avis Google pour l'agence de ${agence.ville} — voir la fiche`}
+          >
+            <span class="flex text-amber-400" aria-hidden="true">
+              {[1, 2, 3, 4, 5].map(() => (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+              ))}
+            </span>
+            <span>
+              <strong class="text-white">{noteAffichee}/5</strong> · {avis.total} avis Google
+              <span class="text-white/75"> · agence de {agence.ville}</span>
+            </span>
+          </a>
+        )}
       </Container>
     </div>
   </section>
@@ -197,26 +229,23 @@ const schema = communeGraph(commune, faqAll);
           {commune.nom} et dans tout le secteur ({commune.codePostal}).
         </p>
         {commune.body.map((p) => <p>{p}</p>)}
+        {commune.sections?.map((section) => (
+          <>
+            <h2>{section.titre}</h2>
+            {section.paragraphes.map((p) => <p>{p}</p>)}
+            {section.liens && (
+              <p>
+                {section.liens.map((lien, i) => (
+                  <>
+                    {i > 0 && " · "}
+                    <a href={lien.href}>{lien.label}</a>
+                  </>
+                ))}
+              </p>
+            )}
+          </>
+        ))}
       </div>
-
-      {commune.slug === "angers" && (
-        <div class="max-w-3xl mt-8 rounded-xl ring-1 ring-[var(--color-border)] bg-white p-5 sm:p-6">
-          <p class="text-sm text-[var(--color-muted)] leading-relaxed">
-            <strong class="text-[var(--color-fg)]">Un projet de fenêtres à Angers ?</strong>
-            {" "}Matériaux adaptés au bâti angevin, démarches ABF, pose en rénovation ou dépose totale,
-            aides : consultez notre page dédiée{" "}
-            <a href="/fenetres-angers/" class="font-medium text-[var(--color-accent)] underline underline-offset-4">
-              fenêtres à Angers
-            </a>. Pour une maison de caractère, voyez aussi nos{" "}
-            <a href="/fenetres-bois-alu-angers/" class="font-medium text-[var(--color-accent)] underline underline-offset-4">
-              fenêtres bois-alu à Angers
-            </a>. Pour des volets sans câblage ni saignée, lisez notre page{" "}
-            <a href="/volets-roulants-solaires-angers/" class="font-medium text-[var(--color-accent)] underline underline-offset-4">
-              volets roulants solaires à Angers
-            </a>.
-          </p>
-        </div>
-      )}
 
       {estDoue && (
         <div class="max-w-3xl mt-8 grid sm:grid-cols-2 gap-4" data-zone="doue_outils">
@@ -280,7 +309,7 @@ const schema = communeGraph(commune, faqAll);
     <div class="relative aspect-[16/9] sm:aspect-[21/7] overflow-hidden">
       <Image
         src={media.band}
-        alt={`Réalisation de menuiserie Fenêtres sur Loir près de ${commune.nom}`}
+        alt={`Réalisation de menuiserie Fenêtres sur Loir près ${deLaCommune}`}
         widths={[640, 960, 1280, 1920]}
         sizes="100vw"
         loading="lazy"
@@ -296,7 +325,7 @@ const schema = communeGraph(commune, faqAll);
             Artisan menuisier RGE
           </p>
           <p class="font-display text-white text-[clamp(1.5rem,3.5vw,2.5rem)] leading-tight max-w-2xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)]">
-            Fenêtres, portes &amp; volets sur mesure, posés près de {commune.nom}.
+            Fenêtres, portes &amp; volets sur mesure, posés près {deLaCommune}.
           </p>
         </Container>
       </div>
@@ -413,10 +442,10 @@ const schema = communeGraph(commune, faqAll);
   {voisines.length > 0 && (
     <section class="section-tight">
       <Container width="default">
-        <h2 class="mb-3">Fenêtres sur Loir intervient aussi près de {commune.nom}</h2>
+        <h2 class="mb-3">Fenêtres sur Loir intervient aussi près {deLaCommune}</h2>
         <p class="text-[var(--color-muted)] max-w-2xl mb-6 leading-relaxed">
           Notre zone d'intervention s'étend aux communes voisines. Découvrez nos
-          menuiseries sur mesure dans les secteurs proches de {commune.nom} :
+          menuiseries sur mesure dans les secteurs proches {deLaCommune} :
         </p>
         <ul class="flex flex-wrap gap-2">
           {voisines.map((v) => (

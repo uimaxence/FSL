@@ -1,10 +1,10 @@
 {
-  "fetchedAt": "2026-10-27",
+  "fetchedAt": "2026-11-16",
   "note": "Généré par scripts/fetch-avis-google.mjs — ne pas éditer à la main.",
   "agences": {
     "seiches": {
       "rating": 4.8,
-      "count": 142,
+      "count": 143,
       "reviews": [
         {
           "auteur": "Herve Laguigner",
@@ -12,6 +12,14 @@
           "texte": "Un grand bravo à Fenêtres sur Loir, encore une fois j’ai fait appel à eux pour un carport de grande taille et je suis enchanté par leur professionnalisme, réactivité, suivi. Tous les jours ils aspirent pour laisser la terrasse propre. Ne comptent pas les heures et le Gérant Monsieur Chêne suit merveilleusement bien le chantier. Carport de super qualite et visuellement top. Grand merci au chef d’équipe Ghislain et à son duo Gaetan et Lenny.",
           "dateRelative": "il y a 5 mois",
           "date": "2026-05-20",
+          "agence": "seiches"
+        },
+        {
+          "auteur": "jocelyne crossouard",
+          "note": 5,
+          "texte": "La pose de nos volets s’est faite en juin, rien à dire sur la qualité du travail.\nEntreprise sérieuse et à l’écoute\nNous apprécions toujours la venue de Rosa même si c’est au détour d’une rue. 🙂",
+          "dateRelative": "il y a 2 mois",
+          "date": "2026-09-15",
           "agence": "seiches"
         },
         {
@@ -23,27 +31,19 @@
           "agence": "seiches"
         },
         {
-          "auteur": "Sebastien Mottier",
+          "auteur": "Anne Heurtebise",
           "note": 5,
-          "texte": "Nous avons fait appel à Rosa et son entreprise fenetre sur Loir pour le remplacement de nos menuiseries qui ne dataient pas d’hier dans notre maison qui elle aussi ne date pas d’hier. Nous avons été parfaitement accueilli et conseillé et notre maison a retrouvé un look moderne tout en gardant son authenticité.\n\nUne super équipe\nUne super entreprise\n\nLe plus : la proximité et le côté familial",
-          "dateRelative": "il y a 3 mois",
-          "date": "2026-07-03",
+          "texte": "Un grand merci à Rosa pour son accueil exceptionnel et chaleureux !\n​La transformation avant/après par l'équipe de Fenêtres sur Loire est impressionnante. Le changement de notre porte a été réalisé avec une rapidité remarquable et un vrai soin du détail.\n​Équipe ultra-efficace, réactive et d'une gentillesse absolue : vous pouvez y aller les yeux fermés. Je recommande à 100 % !",
+          "dateRelative": "il y a 2 mois",
+          "date": "2026-09-14",
           "agence": "seiches"
         },
         {
-          "auteur": "Vincent DÉMAS",
+          "auteur": "michel richard",
           "note": 5,
-          "texte": "J’ai confié à Fenêtre sur Loir le remplacement de ma porte d’entrée ainsi que de mes fenêtres, et l’expérience a été irréprochable du début à la fin.\n\nLa qualité des conseils a été particulièrement remarquable : accompagnement sur mesure, écoute attentive et recommandations parfaitement adaptées à mon projet.\n\nLes tarifs sont en parfaite adéquation avec le niveau de prestation proposé, alliant exigence, qualité des matériaux et excellence dans la pose. Les finitions sont soignées et le résultat final est à la hauteur de mes attentes.\n\nUne entreprise sérieuse et hautement professionnelle que je recommande en toute confiance.",
-          "dateRelative": "il y a 6 mois",
-          "date": "2026-04-23",
-          "agence": "seiches"
-        },
-        {
-          "auteur": "Lorelei Lachaize",
-          "note": 5,
-          "texte": "Nous avons fait appel à fenêtre sur loir pour le changement de toutes les fenêtres, portes fenêtres et la porte d'entrée de notre maison. Ainsi que la pose de volets solaires.\nNous avons été très bien reçu et conseillé par Rosa. Sa bonne humeur, sa disponibilité et sa bienveillance nous ont conquis !\nL'equipe de poseur, a fait un travail de qualité et soigné.\nNous les recommandons sans hésiter !",
-          "dateRelative": "il y a 8 mois",
-          "date": "2026-02-09",
+          "texte": "Bonjour, nous avons fait poser la porte \"Manoir\" sur le village de Grezillé. Celle ci nous a sauté aux yeux lors de 2 salons et du coup nous avons fait faire le devis par Rosa, le métrage par...(Je ne sais plus son prénom et enfin elle est posée depuis 4 jours par 2 techniciens (je ne me rappelle plus les prénoms) mais la matinée pose s'est très bien passée.technicien arrivés tôt, protection de la maison et de la nouvelle porte mise en oeuvre, préparation, montage et réglages effectués au top. Nettoyage du chantier et explications et vérif de chantier ensemble, impeccable\nPlus de bruit des véhicules de la rue, plus de froid au sol.\nBravo a toute l'équipe\nMichel et Emmanuelle",
+          "dateRelative": "il y a 2 semaines",
+          "date": "2026-11-01",
           "agence": "seiches"
         }
       ]
@@ -61,11 +61,11 @@
           "agence": "doue"
         },
         {
-          "auteur": "Emeline Joufflineau",
+          "auteur": "Maloé Saulquin",
           "note": 5,
-          "texte": "Que dire ! Vraiment une équipe au top! Nous avons fait poser notre porte d’entrée et nos fenêtres de la gamme MéO ! On vous les recommande les yeux fermés ! Merci encore à vous",
-          "dateRelative": "il y a 4 mois",
-          "date": "2026-06-19",
+          "texte": "Entreprise très sérieuse, Manon est une commerciale très à l’écoute. Les produits de menuiseries sont tous made in France et d’une très belle qualité ! le suivi client a été très rigoureux, je recommande 😊",
+          "dateRelative": "il y a un mois",
+          "date": "2026-09-30",
           "agence": "doue"
         },
         {
@@ -77,19 +77,19 @@
           "agence": "doue"
         },
         {
-          "auteur": "LoicDeforge MCFrance",
+          "auteur": "david colin",
           "note": 5,
-          "texte": "Entreprise sérieuse avec une équipe très professionnelle !J'ai choisi cette entreprise pour la qualité des produits (Fenêtres et Porte d'entrée Bois/ Alu  ) et la qualité de leur installation . Merci à Rosa et Nicolas 😉",
-          "dateRelative": "il y a 4 mois",
-          "date": "2026-06-19",
+          "texte": "J’ai fait travailler plusieurs reprises fenêtre sur Loir\nÀ chaque jour c’est un bonheur, tu devis à la pause rien fait au hasard, un grand professionnalisme pour cette société, je recommande vivement",
+          "dateRelative": "il y a 3 mois",
+          "date": "2026-07-24",
           "agence": "doue"
         },
         {
-          "auteur": "Emma Audiau",
+          "auteur": "LoicDeforge MCFrance",
           "note": 5,
-          "texte": "Accueil chaleureux et professionnel avec une équipe à l’écoute et de bon conseil. Travail de qualité et soigné. Je recommande ! 👍🏼",
-          "dateRelative": "il y a 4 mois",
-          "date": "2026-06-29",
+          "texte": "Entreprise sérieuse avec une équipe très professionnelle !J'ai choisi cette entreprise pour la qualité des produits (Fenêtres et Porte d'entrée Bois/ Alu  ) et la qualité de leur installation . Merci à Rosa et Nicolas 😉",
+          "dateRelative": "il y a 5 mois",
+          "date": "2026-06-19",
           "agence": "doue"
         }
       ]

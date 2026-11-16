@@ -64,6 +64,23 @@ export interface Commune {
   /** <title> et H1 imposés (sinon gabarit « Menuisier à {nom} (49) »). */
   seoTitle?: string;
   h1?: string;
+  /**
+   * Sections rédigées propres à la commune (h2 + paragraphes + liens), affichées
+   * après `body`. Servent aux pages ville travaillées à part (Angers, 16/11/2026)
+   * pour couvrir les requêtes « produit + ville » avec un texte qui n'existe sur
+   * aucune autre page ville.
+   */
+  sections?: CommuneSection[];
+  /** Textes des cartes « Nos menuiseries » propres à la commune, par libellé. */
+  servicesDesc?: Record<string, string>;
+  /** true : la FAQ de la commune est complète, on n'ajoute pas les 3 questions génériques. */
+  faqComplete?: boolean;
+}
+
+export interface CommuneSection {
+  titre: string;
+  paragraphes: string[];
+  liens?: { href: string; label: string }[];
 }
 
 export const AGENCES: Record<AgenceRattachement, Agence> = {
@@ -129,8 +146,64 @@ const communesToutes: Commune[] = [
     body: [
       "Angers conjugue un cœur de ville classé et de larges secteurs pavillonnaires de la seconde moitié du XXᵉ siècle. Cette double réalité guide nos préconisations : menuiseries aluminium fines et vitrages à contrôle solaire pour les immeubles, blocs bois-alu MéO pour les maisons de caractère de la Doutre.",
       "Nous gérons l'ensemble des démarches, y compris les déclarations préalables de travaux auprès de la Ville d'Angers et la coordination avec l'Architecte des Bâtiments de France dans le périmètre du site patrimonial remarquable.",
-      "Notre entreprise de menuiserie intervient chaque semaine sur Angers et sa première couronne pour la pose de fenêtres en rénovation : remplacement de menuiseries d'origine dans les pavillons des années 1960-1990 de Belle-Beille, Monplaisir ou des Justices, menuiserie aluminium sur mesure pour les extensions contemporaines, portes d'entrée et volets roulants Bubendorff dans toute l'agglomération. La prise de cotes se fait chez vous, la fabrication est française (MéO, Arcades & Baies) et la pose est assurée par nos propres équipes.",
+      "Fenêtres sur Loir est une entreprise de menuiserie de Seiches-sur-le-Loir, à 22 km d'Angers, soit une vingtaine de minutes. Nous nous déplaçons chez vous pour le relevé de cotes, la fabrication est française (MéO, Arcades & Baies, Bubendorff) et la pose est faite par nos propres équipes, qui assurent aussi le service après-vente. Notre showroom de 300 m² permet de voir les menuiseries grandeur nature avant de décider.",
     ],
+    // Réécriture du 16/11/2026. Relevé Google « menuisier angers » : page absente
+    // de la première page, occupée par des annuaires, des agenceurs et la carte
+    // (adresses angevines). La page ressort en revanche entre la 9ᵉ et la 15ᵉ
+    // place sur « pose fenetre angers », « baie vitrée angers », « devis fenetre
+    // angers », « changer fenetre angers », « fenetre pvc angers » : une section
+    // par sujet, sans recopier /fenetres-angers/ (qui garde le détail fenêtres).
+    sections: [
+      {
+        titre: "Pose et remplacement de fenêtres à Angers",
+        paragraphes: [
+          "Changer ses fenêtres à Angers commence par une visite à domicile : nous mesurons chaque ouverture et vérifions l'état des dormants. Si le cadre existant est sain, la nouvelle fenêtre se pose dessus, en rénovation, sans toucher à la maçonnerie ni aux tapisseries. S'il est fatigué, cas fréquent dans les maisons anciennes du centre, nous le retirons pour une dépose totale, qui redonne du clair de vitrage et une meilleure isolation.",
+          "Le devis de fenêtres est gratuit et vous parvient sous 48 h après la visite. Il précise la technique de pose retenue ouverture par ouverture, le vitrage et les aides auxquelles vous avez droit.",
+        ],
+        liens: [{ href: "/fenetres-angers/", label: "Pose de fenêtres à Angers : matériaux, démarches et déroulé" }],
+      },
+      {
+        titre: "Menuiserie PVC, aluminium, bois ou bois-alu : laquelle pour votre quartier ?",
+        paragraphes: [
+          "Nous posons les quatre matériaux, et le quartier oriente souvent le choix. Dans les pavillons de Belle-Beille, de Monplaisir ou des Justices, la fenêtre PVC remplace les menuiseries d'origine sans entretien par la suite. La menuiserie aluminium, aux profils fins, convient aux immeubles, aux extensions et aux grandes ouvertures. Dans la Doutre et aux abords du château, le bois ou le bois-alu MéO respectent les façades anciennes et les prescriptions de l'Architecte des Bâtiments de France.",
+        ],
+        liens: [
+          { href: "/fenetre-pvc-ou-bois-alu/", label: "Comparatif PVC ou bois-alu" },
+          { href: "/fenetres-bois-alu-angers/", label: "Fenêtres bois-alu à Angers" },
+        ],
+      },
+      {
+        titre: "Baies vitrées à Angers : coulissant, galandage ou levage-coulissant",
+        paragraphes: [
+          "Une baie vitrée se choisit d'abord selon la place disponible. Le coulissant classique suffit quand un vantail peut rester visible. Le galandage fait disparaître les vantaux dans la cloison et libère toute l'ouverture, ce qui suppose de prévoir le doublage. La baie à levage-coulissant manœuvre sans effort de très grands vitrages. Nous posons ces baies en aluminium à rupture de pont thermique, avec un seuil plat quand le sol le permet, aussi bien sur une extension neuve que pour remplacer une ancienne porte-fenêtre.",
+        ],
+        liens: [{ href: "/solutions/portes-fenetres/baies-vitrees/", label: "Nos baies vitrées sur mesure" }],
+      },
+      {
+        titre: "Portes d'entrée à Angers",
+        paragraphes: [
+          "Nos portes d'entrée sont en aluminium ou en bois-alu, avec serrure multipoints certifiée A2P. Le modèle, le vitrage et la teinte se choisissent au showroom ou sur le configurateur en ligne de MéO. Fenêtres sur Loir est Menuisier d'Excellence MéO et a reçu en 2025 deux Trophées d'or du fabricant, dont celui de la meilleure vente de portes d'entrée. Dans le centre historique, le dessin et la teinte de la porte sont soumis à l'avis de l'Architecte des Bâtiments de France : nous préparons la déclaration préalable.",
+        ],
+        liens: [{ href: "/solutions/portes-fenetres/portes-entree/", label: "Nos portes d'entrée" }],
+      },
+      {
+        titre: "Volets roulants à Angers",
+        paragraphes: [
+          "Nous posons des volets roulants Bubendorff, motorisés, en rénovation comme en neuf. Le volet solaire fonctionne sans câblage ni saignée : il se pose sur une façade existante sans reprendre l'électricité ni les finitions intérieures, ce qui convient bien aux appartements et aux maisons déjà rénovées.",
+        ],
+        liens: [{ href: "/volets-roulants-solaires-angers/", label: "Volets roulants solaires à Angers" }],
+      },
+    ],
+    servicesDesc: {
+      "Fenêtres": "PVC pour les pavillons, aluminium pour les immeubles et les extensions, bois ou bois-alu en secteur protégé : chaque fenêtre est fabriquée aux cotes de l'ouverture.",
+      "Portes d'entrée": "Aluminium ou bois-alu MéO, serrure multipoints A2P, teinte et dessin adaptés aux façades angevines, y compris dans le périmètre ABF.",
+      "Baies vitrées": "Coulissant, galandage ou levage-coulissant en aluminium, pour une extension, une pièce de vie ou le remplacement d'une porte-fenêtre.",
+      "Volets & stores": "Volets roulants Bubendorff motorisés, dont le volet solaire qui se pose sans câblage ni saignée sur une façade existante.",
+      "Verrières": "Verrières d'intérieur sur mesure, en acier ou en aluminium, pour ouvrir une cuisine ou une entrée d'appartement sans perdre la lumière.",
+      "Carports & pergolas": "Carports, marquises et pergolas bioclimatiques en aluminium pour les jardins et les cours de l'agglomération.",
+    },
+    faqComplete: true,
     quartiers: ["La Doutre", "La Madeleine", "Belle-Beille", "Monplaisir", "Saint-Léonard", "Justices"],
     abf: true,
     abfNote:
@@ -156,6 +229,21 @@ const communesToutes: Commune[] = [
         question: "Couvrez-vous toute l'agglomération d'Angers ?",
         reponse:
           "Oui : Angers et l'ensemble d'Angers Loire Métropole, dont Avrillé, Beaucouzé, Trélazé, Saint-Barthélemy-d'Anjou, Bouchemaine, Les Ponts-de-Cé, Mûrs-Érigné et Verrières-en-Anjou. Chaque commune dispose de sa propre page avec nos réalisations à proximité.",
+      },
+      {
+        question: "Où voir vos menuiseries quand on habite Angers ?",
+        reponse:
+          "Au showroom de Seiches-sur-le-Loir, à 22 km d'Angers : 300 m² de fenêtres, portes d'entrée, volets et baies vitrées exposés grandeur nature. Vous pouvez aussi demander directement une visite à domicile, c'est nous qui venons prendre les mesures.",
+      },
+      {
+        question: "Qui pose les menuiseries sur un chantier à Angers ?",
+        reponse:
+          "Nos équipes salariées, sans sous-traitance. L'entreprise est certifiée RGE Qualibat, condition pour bénéficier de MaPrimeRénov', des primes CEE et de l'éco-prêt à taux zéro. Les mêmes équipes assurent ensuite les réglages et le service après-vente.",
+      },
+      {
+        question: "Combien de temps dure le remplacement des fenêtres d'une maison à Angers ?",
+        reponse:
+          "La pose prend généralement un à deux jours pour une maison complète. Le délai de fabrication, sur mesure et en France, s'ajoute en amont : il vous est indiqué avec le devis.",
       },
     ],
   },
